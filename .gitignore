@@ -1,2 +1,9 @@
 
-.DS_Store
+#Ignore everything
+*
+#But not .tex or .pdf
+!.pdf
+!.tex
+#...even if they are in subdirectories
+!*/
+#In particular these subdirectories
