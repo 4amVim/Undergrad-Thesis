@@ -1,9 +1,7 @@
 \documentclass[20pt]{extarticle} %big fontsize
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-
-\renewcommand{\labelitemi}{\Roman{labelitemi} %Roman enumeration
-
+\usepackage{enumitem}
 %force margins to 1inch
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
@@ -18,9 +16,11 @@
 \begin{document}
 
 \paragraph{Question 1}
-\[\text{let <a$_$n> be a real sequence; }\sigma_n := \frac{a_1+a_2+...+a_n}{n} \]
+\[ <a_n>\text{ is a real sequence; }\sigma_n := \frac{a_1+a_2+...+a_n}{n} \]
 Going to show that
-\item
-\[ \sum_{i=1}^{n} m_{i} \delta_{i} \]
+\begin{enumerate}[label=\Roman*]
+	\item $\text{lim inf } a_n \leq  $
 
+	\item
+\end{enumerate}
 \end{document}
