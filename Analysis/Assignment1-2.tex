@@ -2,7 +2,6 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{enumitem}
-\usepackage{marginnote}
 %force margins to 1inch
 %\addtolength{\oddsidemargin}{-.875in}
 %\addtolength{\evensidemargin}{-.875in}
@@ -27,16 +26,46 @@ Going to show that
 		Now, if $a_n$ is constant, and equal to a,
 		\[ \forall n \in \mathbb{N} \text{ , inf} \{ a_i | i\geq n \} =a = \frac{na}{n} =\sigma_n\]
 		Otherwise, if $a_n$ is not constant, then,
-		\[ \exists i,j \in \mathbb{N} \text{ such that(wlog) } a_i < a_j\]
-		Suppose if possible, lim inf $a_n$=m$>$lim inf $\sigma_n$
+		\[ \exists i,j \in \mathbb{N} \text { such that(wlog) } a_i < a_j \]
+		Suppose if possible, lim inf $a_n=m> \text{ lim inf } \sigma_n$
 		But, \[ \forall n \in \mathbb{N} \text{ such that } n \geq i,j, \]
-\begin{equation*}
-\begin{split}
-		\sigma_n= \frac{a_1 + ... a_i + a_j + ... + a_n}{n} & \geq{\frac{(n-2)m+a_i+a_j}{n}}\\
-								    & \geq \frac{(n-1)m+a_j}{n}\\
-								    & >m \marginnote{roac}
-\end{split}
-\end{equation*}
-	\item $\text{lim sup } a_n \geq \text{lim sup }\sigma_n  $
+		\begin{equation*}
+			\begin{split}
+				\sigma_n= \frac{a_1 + ... a_i + a_j + ... + a_n}{n} & \geq{\frac{(n-2)m+a_i+a_j}{n}}\\
+										    & \geq \frac{(n-1)m+a_j}{n}\\
+										    & >m \text{ [ $\because m \leq a_i < a_j $ ] }
+			\end{split}
+		\end{equation*}
+		\[	\text{Hence, inf } \sigma_n \geq \frac{(n-1)m+a_j}{n} \]
+		\[		\implies \text{lim inf } \sigma_n \geq \lim_{n \to \infty} \frac{(n-1)m+a_j}{n}=m\]
+	\text{But this contradicts the initial assumption.}
+
+	\item \text{lim sup }$ a_n \geq \text{lim sup }\sigma_n$
+If $a_n$ is unbounded above, then \text{lim sup }$a_n =  \infty \geq \text{lim sup }\sigma_n$ .\\
+
+		So, let $a_n$ be bounded above, thus LHS is a real number,
+		\[ M:= \text{lim sup }a_n \]
+		Now, if $a_n$ is constant, and equal to a,
+		\[ \forall n \in \mathbb{N} \text{ , sup} \{ a_i | i\geq n \} =a = \frac{na}{n} =\sigma_n\]
+		Otherwise, if $a_n$ is not constant, then,
+		\[ \exists i,j \in \mathbb{N} \text { such that(wlog) } a_i < a_j \]
+		Suppose if possible, lim sup $a_n=M< \text{ lim sup } \sigma_n$
+		But, \[ \forall n \in \mathbb{N} \text{ such that } n \geq i,j, \]
+		\begin{equation*}
+			\begin{split}
+				\sigma_n= \frac{a_1 + ... a_i + a_j + ... + a_n}{n} & \leq{\frac{(n-2)M+a_i+a_j}{n}}\\
+										    & \leq \frac{(n-1)M+a_j}{n}\\
+										    & <M \text{ [ $\because M \geq a_j > a_i $ ] }
+			\end{split}
+		\end{equation*}
+		\[	\text{Hence, inf } \sigma_n \leq \frac{(n-1)M+a_j}{n} \]
+		\[		\implies \text{lim inf } \sigma_n \leq \lim_{n \to \infty} \frac{(n-1)M+a_j}{n}=M\]
+	\text{But this contradicts the initial assumption.}
 \end{enumerate}
+
+\paragraph{Question 2}%
+
+
+
+
 \end{document}
