@@ -2,12 +2,13 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{enumitem}
+\usepackage{marginnote}
 %force margins to 1inch
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
+%\addtolength{\oddsidemargin}{-.875in}
+%\addtolength{\evensidemargin}{-.875in}
+%\addtolength{\textwidth}{1.75in}
+%\addtolength{\topmargin}{-.875in}
+%\addtolength{\textheight}{1.75in}
 
 \newcommand{\N}{\mathbb{N}}
 
@@ -21,8 +22,21 @@ Going to show that
 \begin{enumerate}[label=\Roman*]
 	\item $\text{lim inf } a_n \leq \text{lim inf }\sigma_n  $ \\
 		If $a_n$ is unbounded below, then \text{lim inf }$a_n = -\infty \leq \text{lim inf }\sigma_n$
-		Else, if $$
-
+		So, let $a_n$ be bounded below, thus LHS is a real number,
+		\[ m:= \text{lim inf }a_n \]
+		Now, if $a_n$ is constant, and equal to a,
+		\[ \forall n \in \mathbb{N} \text{ , inf} \{ a_i | i\geq n \} =a = \frac{na}{n} =\sigma_n\]
+		Otherwise, if $a_n$ is not constant, then,
+		\[ \exists i,j \in \mathbb{N} \text{ such that(wlog) } a_i < a_j\]
+		Suppose if possible, lim inf $a_n$=m$>$lim inf $\sigma_n$
+		But, \[ \forall n \in \mathbb{N} \text{ such that } n \geq i,j, \]
+\begin{equation*}
+\begin{split}
+		\sigma_n= \frac{a_1 + ... a_i + a_j + ... + a_n}{n} & \geq{\frac{(n-2)m+a_i+a_j}{n}}\\
+								    & \geq \frac{(n-1)m+a_j}{n}\\
+								    & >m \marginnote{roac}
+\end{split}
+\end{equation*}
 	\item $\text{lim sup } a_n \geq \text{lim sup }\sigma_n  $
 \end{enumerate}
 \end{document}
