@@ -38,10 +38,10 @@ Going to show that
 		\end{equation*}
 		\[	\text{Hence, inf } \sigma_n \geq \frac{(n-1)m+a_j}{n} \]
 		\[		\implies \text{lim inf } \sigma_n \geq \lim_{n \to \infty} \frac{(n-1)m+a_j}{n}=m\]
-	\text{But this contradicts the initial assumption.}
+		\text{But this contradicts the initial assumption.}
 
 	\item \text{lim sup }$ a_n \geq \text{lim sup }\sigma_n$
-If $a_n$ is unbounded above, then \text{lim sup }$a_n =  \infty \geq \text{lim sup }\sigma_n$ .\\
+		If $a_n$ is unbounded above, then \text{lim sup }$a_n =  \infty \geq \text{lim sup }\sigma_n$ .\\
 
 		So, let $a_n$ be bounded above, thus LHS is a real number,
 		\[ M:= \text{lim sup }a_n \]
@@ -60,12 +60,20 @@ If $a_n$ is unbounded above, then \text{lim sup }$a_n =  \infty \geq \text{lim s
 		\end{equation*}
 		\[	\text{Hence, inf } \sigma_n \leq \frac{(n-1)M+a_j}{n} \]
 		\[		\implies \text{lim inf } \sigma_n \leq \lim_{n \to \infty} \frac{(n-1)M+a_j}{n}=M\]
-	\text{But this contradicts the initial assumption.}
+		\text{But this contradicts the initial assumption.}
 \end{enumerate}
 
-\paragraph{Question 2}%
+\paragraph{Question 2}
+\[ \text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n} \leq \text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n} \]
 
+\begin{enumerate}[label=\Roman*]
+	\item $\text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n}$
+	\item $\text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n}$
+\end{enumerate}
 
-
+\paragraph{Appendix}
+\begin{enumerate}
+	\item \text{also, make sure to show liminf $\leq$ limsup}
+\end{enumerate}
 
 \end{document}
