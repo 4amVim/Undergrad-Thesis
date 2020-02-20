@@ -67,9 +67,33 @@ Going to show that
 \[ \text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n} \leq \text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n} \]
 
 \begin{enumerate}[label=\Roman*]
-	\item	We have that $a_n$ is bounded below by 0.
-	\item $\text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n}$
+	\item Showing that $\text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n}$\\
+		Case 1: \text{lim inf } $ \frac{a_{n+1}}{n}=0 $
+		\[ \forall n \in \mathbb{N}, a_n > 0 \implies (a_n)^ \frac{1}{n}> 0 \]
+		\[ \text{ Thus } , \text{lim inf }(a_n)^ \frac{1}{n} \geq 0 = \text{lim inf } \frac{a_{n+1}}{a_n} 	 \]
+
+		Case 2: \text{lim inf } $ \frac{a_{n+1}}{a_n}= \infty $\\
+		So, for any $ a \in \mathbb{N},$
+		\[ \exists M_a \in \mathbb{N}: n\geq	M_a \implies \frac{a_{n+1}}{a_n}> a \]
+		Fix any a, and choose $n>M_a$. For any such n,
+		\[  \frac{a_{n+1}}{a_n}>a \implies a_{n+1} >aa_n  \]
+		\[ \implies a_n>aa_{n-1}> a^2a_{n-2}>...>a^{n-M}a_M \]
+		\[ \implies  (a_n)^ \frac{1}{n} > a( \frac{a_M}{a^M} )^	\frac{1}{n} \]
+		Now as for fixed $a$, $ \frac{a_M}{a^M} $ is constant,
+		\[ \lim_{n \to \infty} (\frac{a_M}{a^M})^{ \frac{1}{n} }=1 \implies \lim_{n \to \infty} a(\frac{a_M}{a^M})^{ \frac{1}{n} }=a\]
+		Thus, \[\forall \epsilon >0, \exists K \in \mathbb{N}: n>K \implies a(\frac{a_M}{a^M})^{ \frac{1}{n} }>a- \epsilon \]
+		And hence, in particular, $a(\frac{a_M}{a^M})^{ \frac{1}{n} }>a-1$ for any natural number $a$.
+		\[ (a_n)^ \frac{1}{n}  > a(\frac{a_M}{a^M})^{ \frac{1}{n} }> a-1 \implies \lim_{n \to \infty} (a_n)^ \frac{1}{n}= \infty  \]
+		\[ \therefore  \text{lim inf } \frac{a_{n+1}}{a_n} = \infty=\text{lim inf }(a_n)^\frac{1}{n}\]
+		Case 3: \text{lim inf } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $
+		So, $ \forall \epsilon > 0 \exists M \in \mathbb{N}: n > M $
+
 	\item $\text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n}$
+\end{enumerate}
+
+\paragraph{Question 3}
+\begin{enumerate}[label=\Roman*]
+	\item
 \end{enumerate}
 
 \paragraph{Question 4}
@@ -82,17 +106,16 @@ Going to show that
 			\item	$a_n:=1$
 		\end{enumerate}
 	\item Some divergent sequences are: \begin{enumerate}
-			\item	$a_n := n$
-				\[\frac{  a_{n+1} }{  a_n  }= \frac{n+1}{n}=1+ \frac{1}{n} \]
-				This tends to 1 [ for $ \epsilon= \frac{1}{n} , \text{ take } \delta = \frac{1}{n+1}   $]\\
-				But the sequence diverges [ to $\infty$  ].
-		\end{enumerate}
+		\item	$a_n := n$
+			\[\frac{  a_{n+1} }{  a_n  }= \frac{n+1}{n}=1+ \frac{1}{n} \]
+			This tends to 1 [ for $ \epsilon= \frac{1}{n} , \text{ take } \delta = \frac{1}{n+1}   $]\\
+			But the sequence diverges [ to $\infty$  ].
+	\end{enumerate}
 \end{enumerate}
 
 \paragraph{Appendix}
 \begin{enumerate}
 	\item \text{also, make sure to show liminf $\leq$ limsup}
 \end{enumerate}
-
 
 \end{document}
