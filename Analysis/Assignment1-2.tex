@@ -85,10 +85,15 @@ Going to show that
 		And hence, in particular, $a(\frac{a_M}{a^M})^{ \frac{1}{n} }>a-1$ for any natural number $a$.
 		\[ (a_n)^ \frac{1}{n}  > a(\frac{a_M}{a^M})^{ \frac{1}{n} }> a-1 \implies \lim_{n \to \infty} (a_n)^ \frac{1}{n}= \infty  \]
 		\[ \therefore  \text{lim inf } \frac{a_{n+1}}{a_n} = \infty=\text{lim inf }(a_n)^\frac{1}{n}\]
-		Case 3: \text{lim inf } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $
-		So, $ \forall \epsilon > 0 \exists M \in \mathbb{N}: n > M $
+		Case 3: \text{lim inf } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $\\
+		So, $ \forall \epsilon > 0,  \exists M \in \mathbb{N}: n > M \implies \frac{a_{n+1}}{a_n} > a-\epsilon$
+		\[ a_n>(a-\epsilon) a_{n-1}>(a-\epsilon)^2 a_{n-2}>...>(a-\epsilon)^{n-M} a_M \]
+		\[ \implies (a_n)^ \frac{1}{n}>(a- \epsilon) (\frac{a_M}{a^M})^{ \frac{1}{n} } \implies \lim_{n \to \infty} (a_n)^ \frac{1}{n} > (a-\epsilon) \]
+		Thus, $\text{lim inf }(a_n)^ \frac{1}{n} \geq a- \epsilon $, but as this holds for every $\epsilon$,
+		\[ \text{lim inf }(a_n)^ \frac{1}{n} \geq a= \text{lim inf } \frac{a_{n+1}}{a_n}  \]
 
 	\item $\text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n}$
+
 \end{enumerate}
 
 \paragraph{Question 3}
