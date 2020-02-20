@@ -9,15 +9,10 @@
 %\addtolength{\topmargin}{-.875in}
 %\addtolength{\textheight}{1.75in}
 
-\newcommand{\N}{\mathbb{N}}
-
-\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
-
 \begin{document}
 
 \paragraph{Question 1}
 \[ <a_n>\text{ is a real sequence; }\sigma_n := \frac{a_1+a_2+...+a_n}{n} \]
-Going to show that
 \begin{enumerate}[label=\Roman*]
 	\item $\text{lim inf } a_n \leq \text{lim inf }\sigma_n  $ \\
 		If $a_n$ is unbounded below, then \text{lim inf }$a_n = -\infty \leq \text{lim inf }\sigma_n$
@@ -27,15 +22,11 @@ Going to show that
 		\[ \forall n \in \mathbb{N} \text{ , inf} \{ a_i | i\geq n \} =a = \frac{na}{n} =\sigma_n\]
 		Otherwise, if $a_n$ is not constant, then,
 		\[ \exists i,j \in \mathbb{N} \text { such that(wlog) } a_i < a_j \]
-		Suppose if possible, lim inf $a_n=m> \text{ lim inf } \sigma_n$
-		But, \[ \forall n \in \mathbb{N} \text{ such that } n \geq i,j, \]
-		\begin{equation*}
-			\begin{split}
-				\sigma_n= \frac{a_1 + ... +a_i+... + a_j + ... + a_n}{n} & \geq{\frac{(n-2)m+a_i+a_j}{n}}\\
-										    & \geq \frac{(n-1)m+a_j}{n}\\
-										    & >m \text{ [ $\because m \leq a_i < a_j $ ] }
-			\end{split}
-		\end{equation*}
+		Suppose if possible, lim inf $a_n=m> \text{ lim inf } \sigma_n$.
+		But, $ \forall n \in \mathbb{N} \text{ such that } n \geq i,j,$
+		\[\sigma_n= \frac{a_1 + ... +a_i+... + a_j + ... + a_n}{n}\]
+		\[\implies \sigma_n  \geq{\frac{(n-2)m+a_i+a_j}{n}} \geq \frac{(n-1)m+a_j}{n}>m\]
+		\text{ [ $\because m \leq a_i < a_j $ ] }
 		\[	\text{Hence, inf } \sigma_n \geq \frac{(n-1)m+a_j}{n} \]
 		\[		\implies \text{lim inf } \sigma_n \geq \lim_{n \to \infty} \frac{(n-1)m+a_j}{n}=m\]
 		\text{But this contradicts the initial assumption.}
@@ -63,9 +54,9 @@ Going to show that
 		\text{But this contradicts the initial assumption.}
 \end{enumerate}
 
+
 \paragraph{Question 2}
 \[ \text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n} \leq \text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n} \]
-
 \begin{enumerate}[label=\Roman*]
 	\item Showing that $\text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n}$\\
 		Case 1: \text{lim inf } $ \frac{a_{n+1}}{a_n}=0 $
@@ -117,15 +108,16 @@ Going to show that
 \end{enumerate}
 
 \paragraph{Question 3}
+\[\text{ $a_n$ & $b_n$ are bounded, non-negative sequences; $a_n \rightarrow a >0 $   } \]
 \begin{enumerate}[label=\Roman*]
-	\item
+	\item \text{lim sup }$a_n b_n = a \text{ lim sup }b_n$
+
 \end{enumerate}
 
 \paragraph{Question 4}
-\begin{enumerate}
-	\item
-	\item
-	\item
+\begin{enumerate}[label=\Roman*]
+	\item lim inf $ \frac{a_{n+1}}{a_n}>1 \implies a_n \nrightarrow 0 \text{ and }  \text{lim sup } |a_n|>0   $
+	\item \text{lim sup}$ \frac{a_{n+1}}{a_n}<1 \implies a_x \rightarrow 0 \text{ where } a_n>0$
 	\item Some convergant sequences are:
 		\begin{enumerate}
 			\item	$a_n:=1$
