@@ -1,14 +1,18 @@
 \documentclass{article}
 \usepackage[margin=0.7in]{geometry}
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb,xcolor}
 \usepackage{enumitem}
 
+\theoremstyle{definition}
 \newtheorem{example}{Example}[section]
 
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}[section]
+
 \begin{document}
-\section{Categories}
-\label{sec:Categories}
-\paragraph{Definition} A category, $\mathcal{A}$ is defined to have each of the following,
+\section{Categories} \label{sec:Categories}
+\begin{definition}[Category] %{{{Define Category
+A category, $\mathcal{A}$ is defined to have each of the following,
 \begin{enumerate}[label=(\roman*)]
 	\item A collection of objects, denoted by ob($\mathcal{A}$) and written A,B,C $\in \mathcal{A}$.\\
 		Such that each object has an `identity', $ 1_A \in \mathcal{A}(A,A) , 1_B \in \mathcal{A}(B,B), 1_C \in \mathcal{A}(C,C)$
@@ -19,12 +23,19 @@
 			\item and they are `fixed' by the identity $ f \circ 1_A =f= 1_B \circ f $
 		\end{enumerate}
 \end{enumerate}
+\end{definition}
 
-\label{par:dCategory}
-
-
-\begin{example}
-
+\begin{example} [Non-trivial Identity]
+Consider the objects to be groups, and morphisms to be direct product between them:
+\begin{enumerate}[label=\roman*]%{{{Definition
+	\item ob $ (\mathcal{A}) = \{ G | $  G is a group$ \} $
+	\item $  \mathcal{A}(A,B) : = A \times B $
+	\item  $ \mathcal{A}(A,B) \ \circ \mathcal{A}(B,C) \mapsto \mathcal{A}(A,C) $
+\end{enumerate}
+So, there's a unique morphism between any two objects i.e groups. And the identity morphism,
+\[ \forall A,B  \in \mathbb{\mathcal{A} }\;, \text{ if f $ \in \mathcal{A}(A,B)$, then }   1_A \circ f \in \mathcal{A}(A,A) \times \mathcal{A}(A,B) \mapsto \mathcal{A}(A,B) \]
+Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence has a unique inverse.
+\textcolor{blue} {asd}
 \end{example}
 \section{Functors}
 \label{sec:Functors}
