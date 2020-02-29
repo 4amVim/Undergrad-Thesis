@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumitem}
+
+\newtheorem{example}{Example}[section]
+
+\begin{document}
+\section{Categories}
+\label{sec:Categories}
+\paragraph{Definition} A category, $\mathcal{A}$ is defined to have each of the following,
+\begin{enumerate}[label=(\roman*)]
+	\item A collection of objects, denoted by ob($\mathcal{A}$) and written A,B,C $\in \mathcal{A}$.\\
+		Such that each object has an `identity', $ 1_A \in \mathcal{A}(A,A) , 1_B \in \mathcal{A}(B,B), 1_C \in \mathcal{A}(C,C)$
+	\item For each pair of objects, a collection of `links'/morphisms between them, denoted by $\mathcal{A}(A,B)$ \\and written as f $ \in \mathcal{A}(A,B) \; g \in \mathcal{A}(B,C) $. Such that,
+		\begin{enumerate}[label=(\alph*)]
+			\item morphisms with matching domain,co-domain can be `chained'/composed $ (g,f)=g \circ f $
+			\item with this composition being associative, $ (h \circ g)\circ f=h \circ ( g \circ f) $
+			\item and they are `fixed' by the identity $ f \circ 1_A =f= 1_B \circ f $
+		\end{enumerate}
+\end{enumerate}
+
+\label{par:dCategory}
+
+
+\begin{example}
+
+\end{example}
+\section{Functors}
+\label{sec:Functors}
+\begin{example}
+\end{example}
+
+\section{Natural Isomorphisms}
+\label{sec:Natural Isomorphisms}
+\begin{example}
+\end{example}
+
+
+\end{document}
+
