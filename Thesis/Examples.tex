@@ -25,21 +25,52 @@ A category, $\mathcal{A}$ is defined to have each of the following,
 \end{enumerate}
 \end{definition}
 
-\begin{example} [Non-trivial Identity]
+\begin{example} {\textbf{Non-trivial Identity \;}}%{{{Non-trivial Identity 		Example
 Consider the objects to be groups, and morphisms to be direct product between them:
 \begin{enumerate}[label=\roman*]%{{{Definition
 	\item ob $ (\mathcal{A}) = \{ G | $  G is a group$ \} $
 	\item $  \mathcal{A}(A,B) : = A \times B $
-	\item  $ \mathcal{A}(A,B) \ \circ \mathcal{A}(B,C) \mapsto \mathcal{A}(A,C) $
+	\item  $ \mathcal{A}(B,C) \ \circ \mathcal{A}(A,B) \mapsto \mathcal{A}(A,C) $
 \end{enumerate}
 So, there's a unique morphism between any two objects i.e groups. And the identity morphism,
-\[ \forall A,B  \in \mathbb{\mathcal{A} }\;, \text{ if f $ \in \mathcal{A}(A,B)$, then }   1_A \circ f \in \mathcal{A}(A,A) \times \mathcal{A}(A,B) \mapsto \mathcal{A}(A,B) \]
+\[ \forall A,B  \in \mathbb{\mathcal{A} }\;, \text{ if f $ \in \mathcal{A}(A,B)$, then }  f \circ 1_A \in \mathcal{A}(A,B) \times \mathcal{A}(A,A) \mapsto \mathcal{A}(A,B) \text{ and } 1_B \circ f \in \mathcal{A}(B,B) \times \mathcal{A}(A,B) \mapsto \mathcal{A}(A,B) \]
 Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence has a unique inverse.
-\textcolor{blue} {asd}
+\textcolor{blue} {But how exactly?}
 \end{example}
+\begin{example}{\textbf{Set}} %{{{ Set		Example
+	The objects are defined to be sets, and morphisms are the functions between them, with the usual composition law:
+	\begin{enumerate}[label=\roman*] %{{{ Definition
+	\item ob $ (\mathcal{A}) = \{ S | $  S is a set$ \} $
+	\item $  (f:A \mapsto B )\in \mathcal{A}(A,B)$
+	\item  $ (g \in \mathcal{A}(B,C))  \circ (f \in \mathcal{A}(A,B)) \mapsto  g(f) \in \mathcal{A}(A,C) $
+	\end{enumerate}
+\end{example}
+\begin{example}{\textbf{Grp}} %{{{ Grp		Example
+\begin{enumerate}[label=\roman*]
+	\item $  ob(\mathcal{A} ) = \{G| G \text{ is a group } \}  $
+	\item $ \mathcal{A} (A,B)= Hom(A,B) $
+	\item  composition is defined as that bewtween two group homomorphisms
+\end{enumerate}
+In this example, the set of all morphisms along with composition forms a group.
+\end{example}
+
 \section{Functors}
 \label{sec:Functors}
-\begin{example}
+\begin{definition}{Functor}%{{{Functor Definition
+	A functor is a map between categories, written $ F:\mathcal{A} \mapsto \mathcal{B}  $ , consists :
+\begin{enumerate}[label=(\roman*)]
+	\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \mapsto ob(\mathcal{B} ) $ . Written as $ A \mapsto F(A) $ .
+	\item associative, identity-preserving function taking links between objects of $ \mathcal{A}  $ to those for $ \mathcal{B}  $ , $ f\mapsto F(f) $  , i.e.
+		\begin{align*}
+					\forall A,B \in \mathbb{\mathcal{A} }, \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
+			      &  (b) A \in \mathcal{A} \implies F(1_A )=1_{F(A)}
+		 \end{align*}
+\end{enumerate}
+\end{definition}
+\begin{example}{Forgetful Functors}
+	\begin{enumerate}[label=(\alph*)]
+		\item
+	\end{enumerate}
 \end{example}
 
 \section{Natural Isomorphisms}
