@@ -73,7 +73,15 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 	An isomorphism, between objects, is a morphism between them such that it's `inverse' is also a morphism. So,
 	\[ f: A \mapsto B \text{ is an isomorphism } \iff \exists g \in \mathcal{A}(B,A): gf=1_A \text{ and } fg=1_B\]
 \end{definition}
-
+\begin{definition}[Product Category] %{{{ Product Category		Definition
+	Somewhat like a cartesian product of categories. Given categories $ \mathcal{A}  $ and $ \mathcal{B}  $ , $ \mathcal{A}  \times \mathcal{B}  $ is defined as:
+	\begin{enumerate}[label=\roman*]
+		\item $ ob( \mathcal{A}  \times \mathcal{B}) := ob(\mathcal{A} ) \times ob(\mathcal{B} )$
+		\item $(\mathcal{A} \times \mathcal{B})((A,B),(A',B')):=\mathcal{A} (A,A')\times\mathcal{B} (B,B') $
+		\item $ (f,g) \in \mathcal{A}\times \mathcal{B} ((A,B),(C,D)) \; , \;(a,b) \in \mathcal{A}\times \mathcal{B} ((C,D),(E,F)) \implies (a,b) \circ (f,g) := (a \circ f, b \circ g)$
+		\item $ \forall (A,B) \in ob(\mathcal{A}\times \mathcal{B})\; , \; 1_{(A,B)}:=(1_A,1_B) $
+	\end{enumerate}
+\end{definition}
 \section{Functors}
 \label{sec:Functors}
 \begin{definition}{Functor}%{{{Functor Definition
@@ -92,6 +100,7 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 		\item
 	\end{enumerate}
 \end{example}
+
 
 \section{Natural Isomorphisms}
 \label{sec:Natural Isomorphisms}
