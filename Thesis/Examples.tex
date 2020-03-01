@@ -24,7 +24,6 @@ A category, $\mathcal{A}$ is defined to have each of the following,
 		\end{enumerate}
 \end{enumerate}
 \end{definition}
-
 \begin{example} {\textbf{Non-trivial Identity \;}}%{{{Non-trivial Identity 		Example
 Consider the objects to be groups, and morphisms to be direct product between them:
 \begin{enumerate}[label=\roman*]%{{{Definition
@@ -46,13 +45,34 @@ Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence 
 	\end{enumerate}
 \end{example}
 \begin{example}{\textbf{Grp}} %{{{ Grp		Example
-\begin{enumerate}[label=\roman*]
+Objects are groups,with homomorphisms between them being the morphisms, and composition being as usual:
+	\begin{enumerate}[label=\roman*]
 	\item $  ob(\mathcal{A} ) = \{G| G \text{ is a group } \}  $
-	\item $ \mathcal{A} (A,B)= Hom(A,B) $
-	\item  composition is defined as that bewtween two group homomorphisms
+	\item $ \mathcal{A} (A,B)= Hom(A,B) \text{ i.e. all } f \text{ such that } \forall x,y \in A f((x) \, ._A \, (y))=(f(x)) \,._B\,(f(y))      $
+	\item  composition is defined as that between two group homomorphisms
 \end{enumerate}
 In this example, the set of all morphisms along with composition forms a group.
 \end{example}
+\begin{example}{\textbf{Ring}} %{{{ Ring		Example
+Objects are rings, and arrows are ring homomorphisms between them.
+\begin{enumerate}[label=\roman*]
+	\item $  ob(\mathcal{A} ) = \{G| G \text{ is a ring } \}  $
+	\item $ \mathcal{A} (A,B) = Hom(A,B) $
+	\item  composition is defined as that between two ring homomorphisms
+\end{enumerate}
+\end{example}
+\begin{example}{\textbf{Vect$ _k$ }} %{{{ Vect$ _k$ 		Example
+Objects are vector spaces \textit{over field k} , and the morphisms between them are linear transformations
+	\begin{enumerate}[label=\roman*]
+	\item $ ob(\mathcal{A} ) = \{A | A $ is  a vector space$   \}$
+	\item $ \mathcal{A} (A,B) = \mathcal{L} (A,B) $
+	\item  composition is defined as that of linear transformations
+\end{enumerate}
+\end{example}
+\begin{definition}[Isomorphism]
+	An isomorphism, between objects, is a morphism between them such that it's `inverse' is also a morphism. So,
+	\[ f: A \mapsto B \text{ is an isomorphism } \iff \exists g \in \mathcal{A}(B,A): gf=1_A \text{ and } fg=1_B\]
+\end{definition}
 
 \section{Functors}
 \label{sec:Functors}
