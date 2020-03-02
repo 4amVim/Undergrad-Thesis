@@ -82,9 +82,21 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 		\item $ \forall (A,B) \in ob(\mathcal{A}\times \mathcal{B})\; , \; 1_{(A,B)}:=(1_A,1_B) $
 	\end{enumerate}
 \end{definition}
+
+\begin{example}[CAT] %{{{ CAT		Example
+	The category of all categories with morphisms being functors.
+	\begin{enumerate}[label=\roman*]
+	\item $ ob(\mathcal{A} ) = \{A | A $ is  a category$   \}$
+	\item $ \mathcal{A} (A,B) = F (A,B) $
+	\item $ F: \mathcal{A}  \mapsto \mathcal{B}\;,\; G: \mathcal{B} \mapsto \mathcal{C} \implies G \circ F := H: \mathcal{A} \mapsto \mathcal{C} $
+	\end{enumerate}
+ And thus, the identity of $ \mathcal{A}  $ is the functor, $ 1_{\mathcal{A}} : \mathcal{A}  \mapsto \mathcal{A}  $
+\end{example}
+
+
 \section{Functors}
 \label{sec:Functors}
-\begin{definition}{Functor}%{{{Functor Definition
+\begin{definition}{ \textbf{Functor} }%{{{Functor Definition
 	A functor is a map between categories, written $ F:\mathcal{A} \mapsto \mathcal{B}  $ , consists :
 \begin{enumerate}[label=(\roman*)]
 	\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \mapsto ob(\mathcal{B} ) $ . Written as $ A \mapsto F(A) $ .
