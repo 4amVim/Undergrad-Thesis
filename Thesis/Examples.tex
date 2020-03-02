@@ -82,7 +82,6 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 		\item $ \forall (A,B) \in ob(\mathcal{A}\times \mathcal{B})\; , \; 1_{(A,B)}:=(1_A,1_B) $
 	\end{enumerate}
 \end{definition}
-
 \begin{example}[CAT] %{{{ CAT		Example
 	The category of all categories with morphisms being functors.
 	\begin{enumerate}[label=\roman*]
@@ -93,10 +92,9 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
  And thus, the identity of $ \mathcal{A}  $ is the functor, $ 1_{\mathcal{A}} : \mathcal{A}  \mapsto \mathcal{A}  $
 \end{example}
 
-
 \section{Functors}
 \label{sec:Functors}
-\begin{definition}{ \textbf{Functor} }%{{{Functor Definition
+\begin{definition}[(Covariant)Functor]%{{{Functor Definition
 	A functor is a map between categories, written $ F:\mathcal{A} \mapsto \mathcal{B}  $ , consists :
 \begin{enumerate}[label=(\roman*)]
 	\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \mapsto ob(\mathcal{B} ) $ . Written as $ A \mapsto F(A) $ .
@@ -107,11 +105,34 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 		 \end{align*}
 \end{enumerate}
 \end{definition}
-\begin{example}{Forgetful Functors}
-	\begin{enumerate}[label=(\alph*)]
-		\item
+
+\begin{example}{\textbf{Forgetful Functors}} %{{{ Forgetful Functors		Example
+They essentially ignore some of the structure of the 'domain'.
+\begin{enumerate}[label=(\alph*)]
+		\item $ U:Grp\mapsto Set $ takes groups to their underlying set, and homomorphisms to maps between the sets.Similarly, $ Ring \mapsto Set $ and $ Vect_k \mapsto Set $
+		\item Let $ Ab $ be the category of abelian groups, then,   $ U:Ring \mapsto Ab $ takes rings to their additive group, `forgetting' the multiplicative group. And if $ Mon $ is the category of monoids, $ U:Ring \mapsto Mon $ `forgets' the additive group.
+		\item $ U:Ab \mapsto Grp $ just takes each abelian group to itself, and does the same for (homo)morphisms.
 	\end{enumerate}
 \end{example}
+\begin{example}{\textbf{Free Functors}} %{{{ Free Functors		Example
+	\begin{enumerate}[label=(\alph*)]
+		\item let $ F(S) $ denote the free group on a set S. Then, $ U:Set \mapsto Grp $ is a `free' functor taking sets to their free group, and thus the maps between them becomes a homomorphism between their free groups.
+		\item \textcolor{red}{Same for Rings pp20}
+		\item \textcolor{red}{Same for Vector Spaces}
+	\end{enumerate}
+\end{example}
+\begin{example}
+	Let $ \mathcal{G}, \mathcal{H}$ be the one object categories of monoids G,H respectively. Then, due to composition being associative and identity preseving, possible functors are precisely the homomorphisms.
+\end{example}
+\begin{definition}[Contravariant Functor] %{{{ Contravariant Functor		Definition
+	For categories $ \mathcal{A} and \mathcal{B}  $ , $ \mathcal{A} ^{op} \mapsto \mathcal{B} $ is a contravariant functor from $ \mathcal{A}  $ to $ \mathcal{B}  $.
+\end{definition}
+\begin{example}
+	Let k be a field and $ V,W $ be vector spaces over it. Then fixing W,
+	\[ \forall f \in Hom(V,V`), \exists f^*:Hom(V',W) \mapsto Hom(V,W) \]
+	So, for each $ V \in ob(Vect_k)$, $ Hom(V,W) $ defines a contravariant functor from $ Vect_k^{op} \text{ to } Vect_k $
+\end{example}
+
 
 
 \section{Natural Isomorphisms}
