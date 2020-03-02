@@ -1,11 +1,31 @@
-\documentclass{article} %big fontsize
-\usepackage[margin=1in]{geometry} %set margins
-\usepackage{amsmath,amsthm,amssymb}
+\documentclass{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,xcolor}
 \usepackage{enumitem}
 
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}[section]
+
 \begin{document}
-\paragraph{Introduction}
 This document will contain definitions and other trivial notes.
+\section{`Trivial' definitons}
+
+\begin{definition}[Monoid]
+	A semi-group with identity.
+\end{definition}
+
+\begin{definition}[Inclusion Map]
+	A map $ f:A \mapsto B $ that takes $ x\in A $ to $ x \in B $
+\end{definition}
+
+\begin{definition}[(left) G-Set] %{{{ (left) G-Set		Definition
+Let $ G $ be a group, and $ X $ a set.Then, f is a left group action on of G on X, or X is a left G-Set iff
+\[ f:G\times X \mapsto X : \forall x \in X \; , \;  \[ \[ f(e_G,x)=x \text{ and } \forall a,b \in G \; , \; f(ab,x)=f(a, f(b,x))  \]
+\end{definition}
+
 
 
 
