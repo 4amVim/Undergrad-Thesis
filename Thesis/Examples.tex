@@ -65,6 +65,10 @@ Objects are rings, and arrows are ring homomorphisms between them.
 	\item  composition is defined as that between two ring homomorphisms
 \end{enumerate}
 \end{example}
+\begin{definition}[Dual Category] %{{{ Dual Category		Definition
+	Given a category $ \mathcal{A}  $ , it's opposite/dual, $ \mathcal{A} ^{op}  $ is a category with the same objects, but reversed arrows, while keeping the composition :
+	\[ ob(\mathcal{A}^{op} ) =ob(\mathcal{A}) \text{ and } \forall A,B \in ob(\mathcal{A} )\; , \; \mathcal{A} ^{op}(A,B)=\mathcal{A} (B,A) \]
+\end{definition}
 \begin{example}{\textbf{Vect$ _k$ }} %{{{ Vect$ _k$ 		Example
 Objects are vector spaces \textit{over field k} , and the morphisms between them are linear transformations
 	\begin{enumerate}[label=\roman*]
@@ -87,10 +91,6 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 	\end{enumerate}
 \end{definition}
 
-\begin{definition}[Dual Category] %{{{ Dual Category		Definition
-	Given a category $ \mathcal{A}  $ , it's opposite/dual, $ \mathcal{A} ^{op}  $ is a category with the same objects, but reversed arrows:
-	\[  \]
-\end{definition}
 
 \begin{example}[CAT] %{{{ CAT		Example
 	The category of all categories with morphisms being functors.
@@ -126,9 +126,10 @@ They essentially ignore some of the structure of the 'domain'.
 \end{example}
 \begin{example}{\textbf{Free Functors}} %{{{ Free Functors		Example
 	\begin{enumerate}[label=(\alph*)]
-		\item let $ F(S) $ denote the free group on a set S. Then, $ U:Set \mapsto Grp $ is a `free' functor taking sets to their free group, and thus the maps between them becomes a homomorphism between their free groups.
-		\item \textcolor{red}{Same for Rings pp20}
-		\item \textcolor{red}{Same for Vector Spaces}
+		\item let $ F(S) $ denote the free group on a set S. Then, $ F:Set \mapsto Grp $ is a `free' functor taking sets to their free group, and thus the maps between them become homomorphisms between their free groups. As,
+			\[ f \in Set(S,S') \mapsto F(f) \in Grp(F(S),F(S')) \text{ i.e. } f:s \mapsto s' \text{ goes to } F(f): F(s):=g \mapsto f(g)    \]
+		\item Similarly, there's a `free' functor $ F:Set \mapsto CRing $ to the category of commutative rings. Defined as taking sets to polynomial rings having each element as a commuting variable, and coefficients from $ \mathbb{Z}$  .
+	\item To construct a free functor to$ Vect_k $ , take $ Set \mapsto CRing \xrightarrow{\text{ (a)} } Field $, the category of fields by using part (a). Thus,
 	\end{enumerate}
 \end{example}
 \begin{example}
@@ -144,7 +145,8 @@ They essentially ignore some of the structure of the 'domain'.
 \begin{example}
 	Let k be a field and $ V,V',W $ be vector spaces over it. Then fixing W,
 	\[ \forall f \in Hom(V,V`), \exists f^*:Hom(V',W) \mapsto Hom(V,W) \text{ as } g \in Hom(V',W) \implies V \xrightarrow{f}V'\xrightarrow{g}W  \]
-	So, for each $ V \in ob(Vect_k)$, $ Hom(V,W) $ defines a contravariant functor from $ Vect_k^{op} \text{ to } Vect_k $
+	\textcolor{red}{recheck the following argument}
+	So, for each $ V \in ob(Vect_k)$, $ Hom(V,W) $ defines a contravariant functor (by putting $ V'= $ ) from $ Vect_k^{op} \text{ to } Vect_k $
 \end{example}
 
 
