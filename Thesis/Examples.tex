@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,xcolor}
-\usepackage{enumitem}
+\usepackage{enumitem,mathtools}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
@@ -44,6 +44,10 @@ Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence 
 	\item  $ (g \in \mathcal{A}(B,C))  \circ (f \in \mathcal{A}(A,B)) \mapsto  g(f) \in \mathcal{A}(A,C) $
 	\end{enumerate}
 \end{example}
+\begin{example}{\textbf{Pre-ordered Set}} %{{{ Pre-ordered Set		Example
+A pre-ordered , can be made into a category via the binary operation, so that the morphism $ a \mapsto b $ is defined iff $ a\leq b $ where $ \leq  $ is the preorder.
+The interesting part about this category is that there's at most one morphism between any two objects.
+\end{example}
 \begin{example}{\textbf{Grp}} %{{{ Grp		Example
 Objects are groups,with homomorphisms between them being the morphisms, and composition being as usual:
 	\begin{enumerate}[label=\roman*]
@@ -82,6 +86,12 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 		\item $ \forall (A,B) \in ob(\mathcal{A}\times \mathcal{B})\; , \; 1_{(A,B)}:=(1_A,1_B) $
 	\end{enumerate}
 \end{definition}
+
+\begin{definition}[Dual Category] %{{{ Dual Category		Definition
+	Given a category $ \mathcal{A}  $ , it's opposite/dual, $ \mathcal{A} ^{op}  $ is a category with the same objects, but reversed arrows:
+	\[  \]
+\end{definition}
+
 \begin{example}[CAT] %{{{ CAT		Example
 	The category of all categories with morphisms being functors.
 	\begin{enumerate}[label=\roman*]
@@ -100,7 +110,7 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 	\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \mapsto ob(\mathcal{B} ) $ . Written as $ A \mapsto F(A) $ .
 	\item associative, identity-preserving function taking links between objects of $ \mathcal{A}  $ to those for $ \mathcal{B}  $ , $ f\mapsto F(f) $  , i.e.
 		\begin{align*}
-					\forall A,B \in \mathbb{\mathcal{A} }, \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
+					\forall A,B \in \mathbb{\mathcal{A} },\; \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
 			      &  (b) A \in \mathcal{A} \implies F(1_A )=1_{F(A)}
 		 \end{align*}
 \end{enumerate}
@@ -122,14 +132,18 @@ They essentially ignore some of the structure of the 'domain'.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	Let $ \mathcal{G}, \mathcal{H}$ be the one object categories of monoids G,H respectively. Then, due to composition being associative and identity preseving, possible functors are precisely the homomorphisms.
+	Let $ \mathcal{G}, \mathcal{H}$ be the one object categories of monoids G,H respectively. Then, due to composition being associative and identity preserving, possible functors are precisely the homomorphisms.
 \end{example}
+\begin{example}
+	Let monoid G be regarded as a one-object category, $ \mathcal{G} $. Then, functor $ F:\mathcal{G} \mapsto Set $ has one object, a set S. And, $ \forall g \in G, \; F(g):S \mapsto S  $ is defined as $ (F(g))(s)=g*s$ where * is an associative identity-preserving function.Thus, $ (g,s) \mapsto g.s $ i.e. S is a left G-set.
+\end{example}
+
 \begin{definition}[Contravariant Functor] %{{{ Contravariant Functor		Definition
-	For categories $ \mathcal{A} and \mathcal{B}  $ , $ \mathcal{A} ^{op} \mapsto \mathcal{B} $ is a contravariant functor from $ \mathcal{A}  $ to $ \mathcal{B}  $.
+	For categories $ \mathcal{A} \text{ and }\mathcal{B}  $ , $ \mathcal{A} ^{op} \mapsto \mathcal{B} $ is a contravariant functor from $ \mathcal{A}  $ to $ \mathcal{B}  $.
 \end{definition}
 \begin{example}
-	Let k be a field and $ V,W $ be vector spaces over it. Then fixing W,
-	\[ \forall f \in Hom(V,V`), \exists f^*:Hom(V',W) \mapsto Hom(V,W) \]
+	Let k be a field and $ V,V',W $ be vector spaces over it. Then fixing W,
+	\[ \forall f \in Hom(V,V`), \exists f^*:Hom(V',W) \mapsto Hom(V,W) \text{ as } g \in Hom(V',W) \implies V \xrightarrow{f}V'\xrightarrow{g}W  \]
 	So, for each $ V \in ob(Vect_k)$, $ Hom(V,W) $ defines a contravariant functor from $ Vect_k^{op} \text{ to } Vect_k $
 \end{example}
 
@@ -141,5 +155,7 @@ They essentially ignore some of the structure of the 'domain'.
 \end{example}
 
 
+\pagebreak
+To be continued.
 \end{document}
 
