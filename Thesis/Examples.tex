@@ -152,6 +152,21 @@ They essentially ignore some of the structure of the 'domain'.
 	\[ f \in Vect_k^{op}(V',V)=Vect_k(V,V') \mapsto g \in Vect_k(V',V)   \]
 \end{example}
 
+\begin{definition}[Faithful Functor] %{{{ Faithful Functor		Definition
+	A functor $ F:\mathcal{A}  \mapsto \mathcal{B} $ is faithful iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is injective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $ A,A' $ goes to at most one arrow between $ F(A),F(A') $
+\end{definition}
+\begin{definition}[Full Functor] %{{{ Full Functor		Definition
+	A functor $ F:\mathcal{A}  \mapsto \mathcal{B} $ is full iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is surjective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $  A,A' $goes to at least one arrow between $ F(A),F(A') $
+\end{definition}
+
+\begin{definition}[Subcategory] %{{{ Subcategory		Definition
+A subcategory of $ \mathcal{A}  $ is a category with objects from $ \mathcal{A} $, but not necessarily all of them. Similarly for the morphisms.
+\end{definition}
+
+\begin{definition}[Full Subcategory] %{{{ Full Subcategory		Definition
+A full subcategory of $ \mathcal{A} $ that retains as many morphisms of $ \mathcal{A} $ as possible.
+\end{definition}
+
 
 
 \section{Natural Isomorphisms}
