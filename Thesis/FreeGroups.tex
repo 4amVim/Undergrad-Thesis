@@ -9,7 +9,33 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
 \begin{document}
-\paragraph{A note on Free groups}
+\paragraph{A note on Free groups(borrowed from Hungerford Ch1)}
+\begin{definition}[Concrete category] %{{{ Concrete category		Definition
+	A category $ \mathcal{A}  $ , along with a \textcolor{red}{ faithful functor to $ Set $ } i.e. a function $ F $ s.t.
+\end{definition}
+
+\begin{definition}[Free object ] %{{{ Free object 		Definition
+Let $ A $ be an object of concrete category $ \mathcal{A}  $ ,$ \, X \neq \phi $ a set, and a map $ i:X \rightarrow A $. Then, $ A $ is said to be free on the set X iff
+\[ B \in \mathcal{B} \text{ and }  f:X \rightarrow B \implies \exists! g \in \mathcal{A} (A,B) \text{ such that } g \circ i = f  \]
+\end{definition}
+
+\begin{theorem}[Free objects depend only on the cardinality of the set they're free on] %{{{ Free objects depend only on the cardinality of the set they're free on		Definition
+	If $ \text{ F and F' }$ are objects of a concrete category $ \mathcal{A} $ such that they're free on $ X \text{ and } X' $ respectively. Then
+	\[ |X|=|X'| \implies F \cong F'\]
+\end{theorem}
+\begin{proof}
+As $ |X|=|X'| $, there's a bijection $ b: X\longleftrightarrow X' $ . And as $ F,F' $ are free on X,X' , \\
+there are maps $ i:X \rightarrow F \text{ and } i':X \rightarrow F' $ . Also, as the maps obey composition,
+\end{proof}
+\begin{corollary}
+	Two objects of a category are free on the same set only if they're isomorphic.
+\end{corollary}
+
+
+
 \end{document}
 

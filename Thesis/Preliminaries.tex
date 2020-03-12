@@ -13,12 +13,24 @@
 This document will contain definitions and other trivial notes.
 \section{`Trivial' definitons}
 
-\begin{definition}[Monoid] %{{{ Monoid		Definition
-	A semi-group with identity.
+\begin{definition}[Inclusion Map] %{{{ Inclusion Map		Definition
+	For $ A \subseteq B, $ a map $ f:A \rightarrow B $ that takes $ x\in A $ to $ x \in B $
 \end{definition}
 
-\begin{definition}[Inclusion Map] %{{{ Inclusion Map		Definition
-	A map $ f:A \mapsto B $ that takes $ x\in A $ to $ x \in B $
+\begin{definition}[Monomorphism] %{{{ Monomorphism		Definition
+Injective homomorphism
+\end{definition}
+
+\begin{definition}[Epimorphism] %{{{ Epimorphism		Definition
+Surjective homomorphism
+\end{definition}
+
+\begin{definition}[Endomorphism] %{{{ Endomorphism		Definition
+A homomorphism with same domain and co-domain
+\end{definition}
+
+\begin{definition}[Automorphism] %{{{ Definition Name		Definition
+An isomorphism with same domain and co-domain
 \end{definition}
 
 \begin{definition}[(left) G-Set] %{{{ (left) G-Set		Definition
@@ -42,6 +54,21 @@ Partial order with trichotomy.
 	A functor $ \mathcal{A} ^{op} \mapsto Set$
 \end{definition}
 
+\section{Group Theory}
+
+\begin{definition}[Monoid] %{{{ Monoid		Definition
+	A semi-group with identity.
+\end{definition}
+
+\begin{definition}[Direct Product] %{{{ Direct Product		Definition
+	Direct product of groups $ G \text{ and } H $ is the group on the set $ G \times H $ with the binary operation:
+\[ (a,b)(a',b')=(aa',bb') \; \text{where} \; a,a' \in G; \; b,b' \in H\]
+\end{definition}
+
+\begin{definition}[Congruence Relation] %{{{ Congruence Relation		Definition
+On a monoid $ M $ , an equivalence relation, $ \sim $ , such that $ \forall a,a',b,b' \in M $,
+\[ a \sim a' ,\, b\sim b' \implies ab \sim a'b'  \]
+\end{definition}
 
 
 
