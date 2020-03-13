@@ -18,7 +18,7 @@
 	A category $ \mathcal{A}  $ , along with a \textcolor{red}{ faithful functor to $ Set $ }
 \end{definition}
 
-\begin{definition}[Free object ] %{{{ Free object 		Definition
+\begin{definition}[Free object on a set] %{{{ Free object 		Definition
 Let $ A $ be an object of concrete category $ \mathcal{A}  $ ,$ \, X \neq \phi $ a set, and a map $ i:X \rightarrow A $. Then, $ A $ is said to be free on the set X iff
 \begin{equation*}
 B\in \mathcal{B} \text{ and }f:X\rightarrow B\implies
@@ -38,16 +38,49 @@ B\in \mathcal{B} \text{ and }f:X\rightarrow B\implies
 	\[ |X|=|X'| \implies F \cong F'\]
 \end{theorem}
 \begin{proof}
-
-
-As $ |X|=|X'| $, there's a bijection $ b: X\longleftrightarrow X' $ . And as $ F,F' $ are free on X,X' , \\
-there are maps $ i:X \rightarrow F \text{ and } i':X \rightarrow F' $ . Also, as the maps obey composition,
-\[
+Let $ A,B $ be free on $ X,Y ;\; i:X \rightarrow A \text{ and } j:Y \rightarrow B $. With $ |X|=|Y| $ , so, there's a bijection, $ p: X \leftrightarrow Y $
+\begin{equation}
+\text{As $ A$  is free on $ X $ ,}
 \begin{tikzcd}
-	A \arrow{r}{f} \arrow[swap]{dr}{g \circ f} & B \arrow{d}{g} \\
-						   & C
+	X \arrow{r}{i} \arrow[swap]{dr}{p \circ j} & A  \arrow{d}{f} \\ & B
 \end{tikzcd}
- \]
+	\text{ i.e. }
+	\begin{tikzcd}
+		X \arrow{r}{i} \arrow{d}{p} & A  \arrow{d}{f} \\ Y \arrow{r}{j} & B
+	\end{tikzcd}
+\text{ must commute for some unique f.}
+\end{equation}
+
+\begin{equation}
+\text{Similarly, as $ B$  is free on $ Y $ ,}
+\begin{tikzcd}
+	Y \arrow{r}{j} \arrow[swap]{dr}{p^{-1} \circ i} & B  \arrow{d}{g} \\ & A
+\end{tikzcd}
+	\text{ i.e. }
+	\begin{tikzcd}
+		Y \arrow{r}{j} \arrow{d}{p^{-1}} & B  \arrow{d}{g} \\ X \arrow{r}{i} & A
+	\end{tikzcd}
+\text{ must commute for some unique g.}
+\end{equation}
+\begin{equation*}
+	\text{ Combining (1):}
+	\begin{tikzcd}
+		A \arrow{r}{f} & B \\ X \arrow{u}{i} \arrow{r}{p} & Y\arrow{u}{j}
+	\end{tikzcd}
+	\text{ and (2):}
+	\begin{tikzcd}
+		B \arrow{r}{g} & A \\ Y \arrow{u}{j} \arrow{r}{p^{-1}} & X\arrow{u}{i}
+	\end{tikzcd}
+	\text{ gives }
+	\begin{tikzcd}
+		A \arrow{r}{f \circ g} &[4em] A \\ X \arrow{u}{i} \arrow{r}{p \circ p^{-1} = 1_X} & X\arrow{u}{i}
+	\end{tikzcd}
+	\text{ So that }
+	\begin{tikzcd}
+		X \arrow{r}{i} \arrow[swap]{dr}{i \circ 1_X = i} &A \arrow{d}{f \circ g} \\ &A
+	\end{tikzcd}
+\end{equation*}
+But again, as $ A $ is free on $ X $ , there exists a unique $ \psi $ satisfying $ \psi \circ i = i $. Thus, $ \psi = f \circ g $ , and as $ 1_A \circ i = i $, uniqueness of $ \psi $ gives $ f \circ g = 1_A $. Now, via symmetry, $ g \circ f = 1_B $. Hence, $A \cong B$
 
 \end{proof}
 \begin{corollary}
