@@ -11,6 +11,7 @@
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{construction}{Construction}[theorem]
 
 \begin{document}
 \paragraph{A note on Free groups(borrowed from Hungerford Ch1)}
@@ -86,7 +87,18 @@
 	Two objects of a category are free on the same set only if they're isomorphic.
 \end{corollary}
 
-Given X, going to con
+\begin{construction}[Free Group on a set]
+	Given X, constructing the free group on it, F(X):\\
+	If $X=\phi$, then define F(X) to be the trivial group. Else, let$X\neq \phi$, thus there exists a disjoint set, $X'$with $|X|=|X'|$.
+	And also, choose a set $I$ with exactly one element, say $\mathcal{I} $ such that $I\cap X=\phi =I\cap X'$.\\
+	Now, a \textbf{ \textit{word} \textcolor{blue}{(on X)}} is defined to be a sequence $(a_n)$, of symbols,
+	with at most finitely many terms that aren't $\mathcal{I}$:
+	\[ (a_n)_{n\in \mathbb{N}} \text{ s.t. } a_i \in X \cup I \cup X'
+	\text{ and } \exists k \in \mathbb{N}: \forall i \geq k,\; a_i=\mathcal{I}   \]
+	Define \textbf{\textit{empty word, $1$}} as $(\mathcal{I})_{n \in \mathbb{N}}$.
+	A word is said to be \textbf{\textit{reduced}} iff :
+	cas
+\end{construction}
 
 
 
