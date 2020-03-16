@@ -96,11 +96,26 @@
 	\[ (a_n)_{n\in \mathbb{N}} \text{ s.t. } a_i \in X \cup I \cup X'
 	\text{ and } \exists k \in \mathbb{N}: \forall i \geq k,\; a_i=\mathcal{I}   \]
 	Define \textbf{\textit{empty word, $1$}} as $(\mathcal{I})_{n \in \mathbb{N}}$.
-	A word is said to be \textbf{\textit{reduced}} iff :
-	cas
+	A word is said to be \textbf{\textit{reduced}} iff
+	\[ \text{ (i) }   \forall x \in X , a_i=x \implies a_{i+1} \neq x^{-1}
+			\text{ and }  a_i = x^{-1} \implies a_{i+1} \neq x \]
+			\[ \text{ (ii) } a_k=\mathcal{I} \implies \forall i \geq k , a_i=\mathcal{I} \]
+			So, every non-empty reduced word is of the form
+			\[ x_1^{\lambda_1},x_2^{\lambda_2},...,x_n^{\lambda_n},\mathcal{I},\mathcal{I},\mathcal{I}...
+			\text{ with } n \in \mathbb{N} ,\; x_i \in X ,\; \lambda_i = \pm 1 \]
+			And two reduced words are equal if and only if they're equal as sequences.
+Now, define the inclusion map,
+\[ i:X \rightarrow F(X) \text{ as } \forall x \in X, x \mapsto (x^1,\mathcal{I},.. ) \]
+Finally, define a binary operation on reduced words:
+\[ (a) \text{ the empty word, 1 is the identity, } 1.w=w=w.1 \; \;\forall w \]
+\[ (b) \text{ for non-empty, reduced words: } w=(x_1^{\lambda_1},x_2^{\lambda_2},...,x_n^{\lambda_n}), \;
+w' =(y_1^{\lambda_1},y_2^{\lambda_2},...,y_m^{\lambda_m}), \]
+\[ \begin{cases}
+	x, &\text{ if }as\
+
+\end{cases} \]
 \end{construction}
 
 
 
 \end{document}
-
