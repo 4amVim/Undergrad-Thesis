@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,xcolor}
-\usepackage{enumitem,mathtools}
+\usepackage{enumitem,mathtools,tikz-cd}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
@@ -9,77 +9,80 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
 
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}[section]
+
 \begin{document}
 \section{Categories} \label{sec:Categories}
 \begin{definition}[Category] %{{{ Category		Definition
-A category, $\mathcal{A}$ is defined to have each of the following,
-\begin{enumerate}[label=(\roman*)]
-	\item A collection of objects, denoted by ob($\mathcal{A}$) and written A,B,C $\in \mathcal{A}$.\\
-		Such that each object has an `identity', $ 1_A \in \mathcal{A}(A,A) , 1_B \in \mathcal{A}(B,B), 1_C \in \mathcal{A}(C,C)$
-	\item For each pair of objects, a collection of `links'/morphisms between them, denoted by $\mathcal{A}(A,B)$ \\and written as f $ \in \mathcal{A}(A,B) \; g \in \mathcal{A}(B,C) $. Such that,
-		\begin{enumerate}[label=(\alph*)]
-			\item morphisms with matching domain,co-domain can be `chained'/composed $ (g,f)=g \circ f $
-			\item with this composition being associative, $ (h \circ g)\circ f=h \circ ( g \circ f) $
-			\item and they are `fixed' by the identity $ f \circ 1_A =f= 1_B \circ f $
-		\end{enumerate}
-\end{enumerate}
+	A category, $\mathcal{A}$ is defined to have each of the following,
+	\begin{enumerate}[label=(\roman*)]
+		\item A collection of objects, denoted by ob($\mathcal{A}$) and written A,B,C $\in \mathcal{A}$.\\
+			Such that each object has an `identity', $ 1_A \in \mathcal{A}(A,A) , 1_B \in \mathcal{A}(B,B), 1_C \in \mathcal{A}(C,C)$
+		\item For each pair of objects, a collection of `links'/morphisms between them, denoted by $\mathcal{A}(A,B)$ \\and written as f $ \in \mathcal{A}(A,B) \; g \in \mathcal{A}(B,C) $. Such that,
+			\begin{enumerate}[label=(\alph*)]
+				\item morphisms with matching domain,co-domain can be `chained'/composed $ (g,f)=g \circ f $
+				\item with this composition being associative, $ (h \circ g)\circ f=h \circ ( g \circ f) $
+				\item and they are `fixed' by the identity $ f \circ 1_A =f= 1_B \circ f $
+			\end{enumerate}
+	\end{enumerate}
 \end{definition}
 \begin{example} {\textbf{Non-trivial Identity \;}}%{{{Non-trivial Identity 		Example
-Consider the objects to be groups, and morphisms to be direct product between them:
-\begin{enumerate}[label=\roman*]%{{{Definition
-	\item ob $ (\mathcal{A}) = \{ G | $  G is a group$ \} $
-	\item $  \mathcal{A}(A,B) : = A \times B $
-	\item  $ \mathcal{A}(B,C) \ \circ \mathcal{A}(A,B) \mapsto \mathcal{A}(A,C) $
-\end{enumerate}
-So, there's a unique morphism between any two objects i.e groups. And the identity morphism,
-\[ \forall A,B  \in \mathbb{\mathcal{A} }\;, \text{ if f $ \in \mathcal{A}(A,B)$, then }  f \circ 1_A \in \mathcal{A}(A,B) \times \mathcal{A}(A,A) \mapsto \mathcal{A}(A,B) \text{ and } 1_B \circ f \in \mathcal{A}(B,B) \times \mathcal{A}(A,B) \mapsto \mathcal{A}(A,B) \]
-Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence has a unique inverse.
-\textcolor{blue} {But how exactly?}
+	Consider the objects to be groups, and morphisms to be direct product between them:
+	\begin{enumerate}[label=\roman*]%{{{Definition
+		\item ob $ (\mathcal{A}) = \{ G | $  G is a group$ \} $
+		\item $  \mathcal{A}(A,B) : = A \times B $
+		\item  $ \mathcal{A}(B,C) \ \circ \mathcal{A}(A,B) \rightarrow \mathcal{A}(A,C) $
+	\end{enumerate}
+	So, there's a unique morphism between any two objects i.e groups. And the identity morphism,
+	\[ \forall A,B  \in \mathbb{\mathcal{A} }\;, \text{ if f $ \in \mathcal{A}(A,B)$, then }  f \circ 1_A \in \mathcal{A}(A,B) \times \mathcal{A}(A,A) \rightarrow \mathcal{A}(A,B) \text{ and } 1_B \circ f \in \mathcal{A}(B,B) \times \mathcal{A}(A,B) \rightarrow \mathcal{A}(A,B) \]
+	Thus, $ ob(\mathcal{A} ) $ along with $ \circ  $ is actually a group. And hence has a unique inverse.
+	\textcolor{blue} {But how exactly?}
 \end{example}
 \begin{example}{\textbf{Set}} %{{{ Set		Example
 	The objects are defined to be sets, and morphisms are the functions between them, with the usual composition law:
 	\begin{enumerate}[label=\roman*] %{{{ Definition
-	\item ob $ (\mathcal{A}) = \{ S | $  S is a set$ \} $
-	\item $  (f:A \mapsto B )\in \mathcal{A}(A,B)$
-	\item  $ (g \in \mathcal{A}(B,C))  \circ (f \in \mathcal{A}(A,B)) \mapsto  g(f) \in \mathcal{A}(A,C) $
+		\item ob $ (\mathcal{A}) = \{ S | $  S is a set$ \} $
+		\item $  (f:A \rightarrow B )\in \mathcal{A}(A,B)$
+		\item  $ (g \in \mathcal{A}(B,C))  \circ (f \in \mathcal{A}(A,B)) \rightarrow  g(f) \in \mathcal{A}(A,C) $
 	\end{enumerate}
 \end{example}
 \begin{example}{\textbf{Pre-ordered Set}} %{{{ Pre-ordered Set		Example
-A pre-ordered , can be made into a category via the binary operation, so that the morphism $ a \mapsto b $ is defined iff $ a\leq b $ where $ \leq  $ is the preorder.
-The interesting part about this category is that there's at most one morphism between any two objects.
+	A pre-ordered , can be made into a category via the binary operation, so that the morphism $ a \rightarrow b $ is defined iff $ a\leq b $ where $ \leq  $ is the preorder.
+	The interesting part about this category is that there's at most one morphism between any two objects.
 \end{example}
 \begin{example}{\textbf{Grp}} %{{{ Grp		Example
-Objects are groups,with homomorphisms between them being the morphisms, and composition being as usual:
+	Objects are groups,with homomorphisms between them being the morphisms, and composition being as usual:
 	\begin{enumerate}[label=\roman*]
-	\item $  ob(\mathcal{A} ) = \{G| G \text{ is a group } \}  $
-	\item $ \mathcal{A} (A,B)= Hom(A,B) \text{ i.e. all } f \text{ such that } \forall x,y \in A f((x) \, ._A \, (y))=(f(x)) \,._B\,(f(y))      $
-	\item  composition is defined as that between two group homomorphisms
-\end{enumerate}
-In this example, the set of all morphisms along with composition forms a group.
+		\item $  ob(\mathcal{A} ) = \{G| G \text{ is a group } \}  $
+		\item $ \mathcal{A} (A,B)= Hom(A,B) \text{ i.e. all } f \text{ such that } \forall x,y \in A f((x) \, ._A \, (y))=(f(x)) \,._B\,(f(y))      $
+		\item  composition is defined as that between two group homomorphisms
+	\end{enumerate}
+	In this example, the set of all morphisms along with composition forms a group.
 \end{example}
 \begin{example}{\textbf{Ring}} %{{{ Ring		Example
-Objects are rings, and arrows are ring homomorphisms between them.
-\begin{enumerate}[label=\roman*]
-	\item $  ob(\mathcal{A} ) = \{G| G \text{ is a ring } \}  $
-	\item $ \mathcal{A} (A,B) = Hom(A,B) $
-	\item  composition is defined as that between two ring homomorphisms
-\end{enumerate}
+	Objects are rings, and arrows are ring homomorphisms between them.
+	\begin{enumerate}[label=\roman*]
+		\item $  ob(\mathcal{A} ) = \{G| G \text{ is a ring } \}  $
+		\item $ \mathcal{A} (A,B) = Hom(A,B) $
+		\item  composition is defined as that between two ring homomorphisms
+	\end{enumerate}
 \end{example}
 \begin{definition}[Dual Category] %{{{ Dual Category		Definition
 	Given a category $ \mathcal{A}  $ , it's opposite/dual, $ \mathcal{A} ^{op}  $ is a category with the same objects, but reversed arrows, while keeping the composition :
 	\[ ob(\mathcal{A}^{op} ) =ob(\mathcal{A}) \text{ and } \forall A,B \in ob(\mathcal{A} )\; , \; \mathcal{A} ^{op}(A,B)=\mathcal{A} (B,A) \]
 \end{definition}
 \begin{example}{\textbf{Vect$ _k$ }} %{{{ Vect$ _k$ 		Example
-Objects are vector spaces \textit{over field k} , and the morphisms between them are linear transformations
+	Objects are vector spaces \textit{over field k} , and the morphisms between them are linear transformations
 	\begin{enumerate}[label=\roman*]
-	\item $ ob(\mathcal{A} ) = \{A | A $ is  a vector space$   \}$
-	\item $ \mathcal{A} (A,B) = \mathcal{L} (A,B) $
-	\item  composition is defined as that of linear transformations
-\end{enumerate}
+		\item $ ob(\mathcal{A} ) = \{A | A $ is  a vector space$   \}$
+		\item $ \mathcal{A} (A,B) = \mathcal{L} (A,B) $
+		\item  composition is defined as that of linear transformations
+	\end{enumerate}
 \end{example}
 \begin{definition}[Isomorphism] %{{{ Isomorphism		Definition
 	An isomorphism, between objects, is a morphism between them such that it's `inverse' is also a morphism. So,
-	\[ f: A \mapsto B \text{ is an isomorphism } \iff \exists g \in \mathcal{A}(B,A): gf=1_A \text{ and } fg=1_B\]
+	\[ f: A \rightarrow B \text{ is an isomorphism } \iff \exists g \in \mathcal{A}(B,A): gf=1_A \text{ and } fg=1_B\]
 \end{definition}
 \begin{definition}[Product Category] %{{{ Product Category		Definition
 	Somewhat like a cartesian product of categories. Given categories $ \mathcal{A}  $ and $ \mathcal{B}  $ , $ \mathcal{A}  \times \mathcal{B}  $ is defined as:
@@ -95,42 +98,41 @@ Objects are vector spaces \textit{over field k} , and the morphisms between them
 \begin{example}[CAT] %{{{ CAT		Example
 	The category of all categories with morphisms being functors.
 	\begin{enumerate}[label=\roman*]
-	\item $ ob(\mathcal{A} ) = \{A | A $ is  a category$   \}$
-	\item $ \mathcal{A} (A,B) = F (A,B) $
-	\item $ F: \mathcal{A}  \mapsto \mathcal{B}\;,\; G: \mathcal{B} \mapsto \mathcal{C} \implies G \circ F := H: \mathcal{A} \mapsto \mathcal{C} $
+		\item $ ob(\mathcal{A} ) = \{A | A $ is  a category$   \}$
+		\item $ \mathcal{A} (A,B) = F (A,B) $
+		\item $ F: \mathcal{A}  \rightarrow \mathcal{B}\;,\; G: \mathcal{B} \rightarrow \mathcal{C} \implies G \circ F := H: \mathcal{A} \rightarrow \mathcal{C} $
 	\end{enumerate}
- And thus, the identity of $ \mathcal{A}  $ is the functor, $ 1_{\mathcal{A}} : \mathcal{A}  \mapsto \mathcal{A}  $
+	And thus, the identity of $ \mathcal{A}  $ is the functor, $ 1_{\mathcal{A}} : \mathcal{A}  \rightarrow \mathcal{A}  $
 \end{example}
 
 \section{Functors}
 \label{sec:Functors}
 \begin{definition}[(Covariant)Functor]%{{{Functor Definition
-	A functor is a map between categories, written $ F:\mathcal{A} \mapsto \mathcal{B}  $ , consists :
-\begin{enumerate}[label=(\roman*)]
-	\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \mapsto ob(\mathcal{B} ) $ . Written as $ A \mapsto F(A) $ .
-	\item associative, identity-preserving function taking links between objects of $ \mathcal{A}  $ to those for $ \mathcal{B}  $ , $ f\mapsto F(f) $  , i.e.
-		\begin{align*}
-					\forall A,B \in \mathbb{\mathcal{A} },\; \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
-			      &  (b) A \in \mathcal{A} \implies F(1_A )=1_{F(A)}
-		 \end{align*}
-\end{enumerate}
+	A functor is a map between categories, written $ F:\mathcal{A} \rightarrow \mathcal{B}  $ , consists :
+	\begin{enumerate}[label=(\roman*)]
+		\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \rightarrow ob(\mathcal{B} ) $ . Written as $ A \rightarrow F(A) $ .
+		\item associative, identity-preserving function taking links between objects of $ \mathcal{A}  $ to those for $ \mathcal{B}  $ , $ f\mapsto F(f) $  , i.e.
+			\begin{align*}
+				\forall A,B \in \mathbb{\mathcal{A} },\; \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
+			\end{align*}
+	\end{enumerate}
 \end{definition}
 
 \begin{example}{\textbf{Forgetful Functors}} %{{{ Forgetful Functors		Example
-They essentially ignore some of the structure of the 'domain'.
-\begin{enumerate}[label=(\alph*)]
-		\item $ U:Grp\mapsto Set $ takes groups to their underlying set, and homomorphisms to maps between the sets.Similarly, $ Ring \mapsto Set $ and $ Vect_k \mapsto Set $
-		\item Let $ Ab $ be the category of abelian groups, then,   $ U:Ring \mapsto Ab $ takes rings to their additive group, `forgetting' the multiplicative group. And if $ Mon $ is the category of monoids, $ U:Ring \mapsto Mon $ `forgets' the additive group.
-		\item $ U:Ab \mapsto Grp $ just takes each abelian group to itself, and does the same for (homo)morphisms.
+	They essentially ignore some of the structure of the 'domain'.
+	\begin{enumerate}[label=(\alph*)]
+		\item $ U:Grp\rightarrow Set $ takes groups to their underlying set, and homomorphisms to maps between the sets.Similarly, $ Ring \rightarrow Set $ and $ Vect_k \rightarrow Set $
+		\item Let $ Ab $ be the category of abelian groups, then,   $ U:Ring \rightarrow Ab $ takes rings to their additive group, `forgetting' the multiplicative group. And if $ Mon $ is the category of monoids, $ U:Ring \rightarrow Mon $ `forgets' the additive group.
+		\item $ U:Ab \rightarrow Grp $ just takes each abelian group to itself, and does the same for (homo)morphisms.
 	\end{enumerate}
 \end{example}
 \begin{example}{\textbf{Free Functors}} %{{{ Free Functors		Example
 	\begin{enumerate}[label=(\alph*)]
-		\item let $ F(S) $ denote the free group on a set S. Then, $ F:Set \mapsto Grp $ is a `free' functor taking sets to their free group, and thus the maps between them become homomorphisms between their free groups. As,
-			\[ f \in Set(S,S') \mapsto F(f) \in Grp(F(S),F(S')) \text{ i.e. } f:s \mapsto s' \text{ goes to } F(f) \text{ defined as } g:=F(s) \mapsto f(g)    \]
-		\item Similarly, there's a `free' functor $ F:Set \mapsto CRing $ to the category of commutative rings. Defined as taking sets to polynomial rings having each element as a commuting variable, and coefficients from $ \mathbb{Z}$  .
+		\item let $ F(S) $ denote the free group on a set S. Then, $ F:Set \rightarrow Grp $ is a `free' functor taking sets to their free group, and thus the maps between them become homomorphisms between their free groups. As,
+			\[ f \in Set(S,S') \mapsto F(f) \in Grp(F(S),F(S')) \text{ i.e. } f:s \rightarrow s' \text{ goes to } F(f) \text{ defined as } g:=F(s) \mapsto f(g)    \]
+		\item Similarly, there's a `free' functor $ F:Set \rightarrow CRing $ to the category of commutative rings. Defined as taking sets to polynomial rings having each element as a commuting variable, and coefficients from $ \mathbb{Z}$  .
 		\item Fix any field $ \mathbb{F} $ , and define F(S) to be a vector space over it with (Shrauder)basis S. As basis completely determines a vector space,
-			\[ F(S):= \{ L: S \mapsto \mathbb{F} \; |\; \text{ L takes only finitely many s } \in \text{ S to a non-zero k } \in \mathbb{F} \} \text{ i.e. } F(S) \mapsto \sum_{s \in S} k_ss  \]
+			\[ F(S):= \{ L: S \rightarrow \mathbb{F} \; |\; \text{ L takes only finitely many s } \in \text{ S to a non-zero k } \in \mathbb{F} \} \text{ i.e. } F(S) \mapsto \sum_{s \in S} k_ss  \]
 			\[ \text{ and } f \in Set(S,S') \text{ goes to } F(f): L(F(S),F(S'))\]
 	\end{enumerate}
 \end{example}
@@ -138,7 +140,7 @@ They essentially ignore some of the structure of the 'domain'.
 	Let $ \mathcal{G}, \mathcal{H}$ be the one object categories of monoids G,H respectively. Then, due to composition being associative and identity preserving, possible functors are precisely the homomorphisms.
 \end{example}
 \begin{example}
-	Let monoid G be regarded as a one-object category, $ \mathcal{G} $. Then, functor $ F:\mathcal{G} \mapsto Set $ has one object, a set S. And, $ \forall g \in G, \; F(g):S \mapsto S  $ is defined as $ (F(g))(s)=g*s$ where * is an associative identity-preserving function.Thus, $ (g,s) \mapsto g.s $ i.e. S is a left G-set.
+	Let monoid G be regarded as a one-object category, $ \mathcal{G} $. Then, functor $ F:\mathcal{G} \rightarrow Set $ has one object, a set S. And, $ \forall g \in G, \; F(g):S \rightarrow S  $ is defined as $ (F(g))(s)=g*s$ where * is an associative identity-preserving function.Thus, $ (g,s) \mapsto g.s $ i.e. S is a left G-set.
 \end{example}
 
 \begin{definition}[Contravariant Functor] %{{{ Contravariant Functor		Definition
@@ -146,33 +148,54 @@ They essentially ignore some of the structure of the 'domain'.
 \end{definition}
 \begin{example}
 	Let k be a field and $ V,V',W $ be vector spaces over it. Then fixing W,
-	\[ \forall f \in Hom(V,V'), \exists f^*:Hom(V',W) \mapsto Hom(V,W) \text{ as } g \in Hom(V',W) \implies V \xrightarrow{f}V'\xrightarrow{g}W  \]
+	\[ \forall f \in Hom(V,V'), \exists f^*:Hom(V',W) \rightarrow Hom(V,W) \text{ as } g \in Hom(V',W) \implies V \xrightarrow{f}V'\xrightarrow{g}W  \]
 	\textcolor{red}{recheck the following argument}
 	So, for each $ V \in ob(Vect_k)$, $ Hom(V,W) $ defines a (contravariant) functor on $ Vect_k $, as, fixing W=V, the above argument can be restated as
 	\[ f \in Vect_k^{op}(V',V)=Vect_k(V,V') \mapsto g \in Vect_k(V',V)   \]
 \end{example}
 
 \begin{definition}[Faithful Functor] %{{{ Faithful Functor		Definition
-	A functor $ F:\mathcal{A}  \mapsto \mathcal{B} $ is faithful iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is injective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $ A,A' $ goes to at most one arrow between $ F(A),F(A') $
+	A functor $ F:\mathcal{A}  \rightarrow \mathcal{B} $ is faithful iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is injective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $ A,A' $ goes to at most one arrow between $ F(A),F(A') $
 \end{definition}
 \begin{definition}[Full Functor] %{{{ Full Functor		Definition
-	A functor $ F:\mathcal{A}  \mapsto \mathcal{B} $ is full iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is surjective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $  A,A' $goes to at least one arrow between $ F(A),F(A') $
+	A functor $ F:\mathcal{A}  \rightarrow \mathcal{B} $ is full iff the map$ \mathcal{A} (A,A') \mapsto \mathcal{B}(F(A),F(A'))$ is surjective for any $ A,A' \in \mathcal{A} $ i.e. each arrow between $  A,A' $goes to at least one arrow between $ F(A),F(A') $
 \end{definition}
 
 \begin{definition}[Subcategory] %{{{ Subcategory		Definition
-A subcategory of $ \mathcal{A}  $ is a category with objects from $ \mathcal{A} $, but not necessarily all of them. Similarly for the morphisms.
+	A subcategory of $ \mathcal{A}  $ is a category with objects from $ \mathcal{A} $, but not necessarily all of them. Similarly for the morphisms.
 \end{definition}
 
 \begin{definition}[Full Subcategory] %{{{ Full Subcategory		Definition
-A full subcategory of $ \mathcal{A} $ that retains as many morphisms of $ \mathcal{A} $ as possible.
+	A full subcategory of $ \mathcal{A} $ that retains as many morphisms of $ \mathcal{A} $ as possible.
 \end{definition}
 
 
 
 \section{Natural Isomorphisms}
 \label{sec:Natural Isomorphisms}
-\begin{example}
-\end{example}
+\begin{definition}[Natural Isomorphism] %{{{ Natural Isomorphism		Definition
+	Let $\mathcal{A} $ and $\mathcal{B} $ be categories and functors, $F,G: \mathcal{A} \rightarrow \mathcal{B} $. Then, a natural transformation, $\alpha : F\rightarrow G$ is a family of arrows in $\mathcal{B}$ , $\big( F(A) \xrightarrow{ \; \alpha_A \; } G(A) \big)_{A\in \mathcal{A} }$ such that
+	\[
+		\text{ (Naturality Axiom) \hspace{4em} }\forall f \in \mathcal{A}(A,A'), \text{ the square }
+		\begin{tikzcd}
+			F(A) \arrow[swap]{d}{\alpha_A} \arrow{r}{F(f)} & F(A') \arrow{d}{\alpha_{A'}}  \\
+			G(A) \arrow[swap]{r}{G(f)} & G(A')
+		\end{tikzcd}
+	\text{ commutes }\]
+This is written as
+	$\begin{tikzcd}[row sep=large, column sep=huge]
+		\mathcal{A} \arrow[r, bend left=50, "F"{name=U, below}]
+		\arrow[r, bend right = 50, "G"{name=D, above}]
+			& \mathcal{B}
+			\arrow[Rightarrow, from=U , to=D, "\alpha"]
+	\end{tikzcd}.$
+\end{definition}
+
+
+\begin{lemma}{Components of a Natural Isomorphism} %{{{ Components of a Natural Isomorphism		Lemma
+
+\end{lemma}
+
 
 
 \pagebreak
