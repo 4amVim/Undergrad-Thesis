@@ -12,6 +12,9 @@
 \theoremstyle{definition}
 \newtheorem{lemma}{Lemma}[section]
 
+\theoremstyle{definition}
+\newtheorem{construction}{Construction}[section]
+
 \begin{document}
 \section{Categories} \label{sec:Categories}
 \begin{definition}[Category] %{{{ Category		Definition
@@ -94,7 +97,6 @@
 	\end{enumerate}
 \end{definition}
 
-
 \begin{example}[CAT] %{{{ CAT		Example
 	The category of all categories with morphisms being functors.
 	\begin{enumerate}[label=\roman*]
@@ -103,6 +105,11 @@
 		\item $ F: \mathcal{A}  \rightarrow \mathcal{B}\;,\; G: \mathcal{B} \rightarrow \mathcal{C} \implies G \circ F := H: \mathcal{A} \rightarrow \mathcal{C} $
 	\end{enumerate}
 	And thus, the identity of $ \mathcal{A}  $ is the functor, $ 1_{\mathcal{A}} : \mathcal{A}  \rightarrow \mathcal{A}  $
+\end{example}
+\begin{example}{\textbf{Functor Category}} %{{{ Functor Category		Example
+	Fix categories $\mathcal{A} $ and $\mathcal{B} $ . Take objects to be the functors $F:A \rightarrow B $
+	and morphisms as the natural transformations between the objects. \\
+	This \textbf{Functor category} is written as $[\mathcal{A} ,\mathcal{B} ]$ and $\mathcal{B} ^{\mathcal{A} }$
 \end{example}
 
 \section{Functors}
@@ -203,13 +210,12 @@
 \begin{example}{\textbf{From a discrete category}} %{{{ From a discrete category		Example
 	The natural transformation has one component for every object, $A \in \mathcal{A}$, that takes $1_{F(A)}\mapsto 1_{G(A)}$.
 \end{example}
-
 \begin{example}{\textbf{Determinant (of an n$\times$n matrix)}} %{{{ Determinant (of an n$\times$n matrix)		Example
 	Let $R$ be a commutative ring with unity. So, the matrices on it form a monoid under matrix multiplication. Also, a ring homomorphism,
 	$f: R \rightarrow S$ would induce a monoid homomorphism, $g:M_n(R)\rightarrow M_n(S) $ as
 	\[ f(rr')=f(r)f(r') \implies g(MM')= g(M)g(M') \]
 	Now, this defines a functor, $M_n: \textit{CRing} \rightarrow \textit{Mon}$ which takes each ring to monoid of
-	matrices with entries from it. Also, there's a forgetful functor, $F:\textit{CRing} \rightarrow \textit{Mon}$
+	matrices with entries from it(And each ring homomorphism, $h$ to a map that applies $h$ pointwise to the matrices). Also, there's a forgetful functor, $F:\textit{CRing} \rightarrow \textit{Mon}$
 	that retains only multiplication.
 	Every $n \times n$ matrix over $X$ over $R$ has a determinant in $R$ which, due to linearity, is a monoid homomorphism,
 	$det_R: M_n(R) \rightarrow F(R)$. In order to show that $det_R$ is a natural transformation,
@@ -218,17 +224,62 @@
 \begin{tikzcd}
 M_n(R) \arrow[swap]{d}{det_R} \arrow{r}{M_n(h)}
 	& M_n(S) \arrow{d}{det_S}\\
-G(R) \arrow[swap]{r}{F(h)}
+F(R) \arrow[swap]{r}{F(h)}
 	& F(S)
 \end{tikzcd}
 \text{ must commute }
 	\]
-	So, need to show that, given a matrix $M$ over $R$, and $H:= M_n(h)\; ; \;$
-	\[ |M| \]
-
-
+	So, given any matrix $M$ over $R$, and $A:= M_n(h)\; ; \; B:= F(h)$, need to show that $ B(|M|_R)=|A(M)|_S $.
+	I.e. that taking the determinant, and then  applying only the multiplicative part of $h$ to it
+	is equivalent to
+	first applying, pointwise to the entries of $M$, the homomorphism $h$ , and then taking the determinant.
 \end{example}
 
+\begin{construction}[Composition of Natural Transforms]
+	Given $\begin{tikzcd}[row sep=large, column sep=huge]
+	\mathcal{A} \arrow[r, bend left=50, "F"{name=U, below}]
+	\arrow[r, bend right = 50, "G"{name=D, above}]
+		& \mathcal{\mathcal{B} }
+	\arrow[Rightarrow, from=U , to=D, "\alpha"]
+	\end{tikzcd}$ and $\begin{tikzcd}[row sep=large, column sep=huge]
+	\mathcal{A} \arrow[r, bend left=50, "G"{name=U, below}]
+	\arrow[r, bend right = 50, "H"{name=D, above}]
+		& \mathcal{\mathcal{B} }
+	\arrow[Rightarrow, from=U , to=D, "\beta"]
+	\end{tikzcd}$, \\
+	define their composition, $\beta \circ \alpha$ as
+	\[ \forall A \in \mathcal{A} \; , \; (\beta \circ \alpha)_A = \beta_A \circ \alpha_A \; \; \text{ i.e. }
+		\begin{tikzcd}[row sep=large, column sep=huge]
+	\Bigg(F(A) \arrow{r}{\alpha_A} \arrow[bend left=20]{rr}{(\beta \circ \alpha)_A} & G(A) \arrow{r}{\beta_A}
+											& H(A)\bigg)_{A \in \mathcal{A} }
+\end{tikzcd}
+	\]
+\end{construction}
+
+
+\begin{example}{\textbf{[ $2,\mathcal{B}$ ]}} %{{{ [ $2,\mathcal{B}$ ]		Example
+	Let $2$ be the discrete category with two objects. So, a functor, $F:2 \rightarrow \mathcal{B} $ is a pair of objects in $\mathcal{B} $ and a natural transformation is a pair of maps in $\mathcal{B} $. Thus, the functor category $[2,\mathcal{B} ]$ a.k.a. $\mathcal{B} ^2$ is isomorphic to the product category $\mathcal{B}  \times \mathcal{B} $.
+\end{example}
+
+\begin{definition}[Natural Isomorphism] %{{{ Natural Isomorphism		Definition
+	Let $\mathcal{A} $ and $\mathcal{B} $ be categories, a natural isomorphism between functors from $\mathcal{A} $ to $\mathcal{B} $ is an isomorphism in $[\mathcal{A} ,\mathcal{B} ]$. I.e. a natural transformation such that it's 'inverse' is also a natural transformation between some functors in $[\mathcal{A},\mathcal{B}] $.
+\end{definition}
+\begin{lemma}[Alternate Defintion of Natural Isomorphism]
+	Given a natural transformation, $\begin{tikzcd}[row sep=large, column sep=huge]
+	\mathcal{A}  \arrow[r, bend left=50, "F"{name=U, below}]
+	\arrow[r, bend right = 50, "G"{name=D, above}]
+		& \mathcal{B}
+	\arrow[Rightarrow, from=U , to=D, "\alpha"]
+	\end{tikzcd}$. It is a natural isomorphism iff $ \forall A \in \mathcal{A} ,$  $\alpha_A : F(A) \rightarrow G(A)$ is an isomorphism.
+	\begin{proof}
+		\textcolor{red}{soon}
+	\end{proof}
+\end{lemma}
+
+\begin{definition}[Isomorphy of functors] %{{{ Isomorphy of functors		Definition
+	For functors $\mathcal{A} \overset{F}{\underset{G}{\rightrightarrows}} \mathcal{B} $, it's said that $F(A) \cong G(A) $ naturally in A iff $F$ and $G$ are naturally isomorphic. \\
+	It gives not only that $\forall A \in \mathcal{A}\; , \;  F(A) \cong G(A)$ but that there's a family of \textit{isomorphisms}, $\Big( F(A)\xleftrightarrow{\alpha_A \;} G(A) \Big)_{A \in \mathcal{A} }$ in $\mathcal{B} $ that satisfies the naturality axiom.
+\end{definition}
 
 
 
