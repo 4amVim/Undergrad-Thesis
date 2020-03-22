@@ -9,7 +9,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
 
-\theoremstyle{lemma}
+\theoremstyle{definition}
 \newtheorem{lemma}{Lemma}[section]
 
 \begin{document}
@@ -113,7 +113,10 @@
 		\item function taking objects of $ \mathcal{A}  $ to those of $ \mathcal{B} $ i.e. $ ob(\mathcal{A} ) \rightarrow ob(\mathcal{B} ) $ . Written as $ A \rightarrow F(A) $ .
 		\item associative, identity-preserving function taking links between objects of $ \mathcal{A}  $ to those for $ \mathcal{B}  $ , $ f\mapsto F(f) $  , i.e.
 			\begin{align*}
-				\forall A,B \in \mathbb{\mathcal{A} },\; \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that }   &  (a)\; f\in \mathcal{A} (A,B) \,,g \in \mathcal{A}(B,C) \implies     F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
+				\forall A,B \in \mathbb{\mathcal{A} },\; \mathcal{A}(A,B) \mapsto \mathcal{B}(F(A),F(B)) \text{ such that } &
+				(a)\; f:A\rightarrow B \,,g : B\rightarrow C \implies
+				F(g \circ  f) = F(g) \circ  F(f) = F(g \circ f) \\
+																	    & (b)\; F(1_A)= 1_{F_{A}}
 			\end{align*}
 	\end{enumerate}
 \end{definition}
@@ -171,9 +174,9 @@
 
 
 
-\section{Natural Isomorphisms}
-\label{sec:Natural Isomorphisms}
-\begin{definition}[Natural Isomorphism] %{{{ Natural Isomorphism		Definition
+\section{Natural Transformation}
+\label{sec:Natural Transformation}
+\begin{definition}[Natural Transformation] %{{{ Natural Transformation		Definition
 	Let $\mathcal{A} $ and $\mathcal{B} $ be categories and functors, $F,G: \mathcal{A} \rightarrow \mathcal{B} $. Then, a natural transformation, $\alpha : F\rightarrow G$ is a family of arrows in $\mathcal{B}$ , $\big( F(A) \xrightarrow{ \; \alpha_A \; } G(A) \big)_{A\in \mathcal{A} }$ such that
 	\[
 		\text{ (Naturality Axiom) \hspace{4em} }\forall f \in \mathcal{A}(A,A'), \text{ the square }
@@ -182,19 +185,52 @@
 			G(A) \arrow[swap]{r}{G(f)} & G(A')
 		\end{tikzcd}
 	\text{ commutes }\]
-This is written as
+	This is written as
 	$\begin{tikzcd}[row sep=large, column sep=huge]
 		\mathcal{A} \arrow[r, bend left=50, "F"{name=U, below}]
 		\arrow[r, bend right = 50, "G"{name=D, above}]
 			& \mathcal{B}
 			\arrow[Rightarrow, from=U , to=D, "\alpha"]
-	\end{tikzcd}.$
+	\end{tikzcd}.$ And $\alpha_A$,are called the components of $\alpha$.
 \end{definition}
-
-
-\begin{lemma}{Components of a Natural Isomorphism} %{{{ Components of a Natural Isomorphism		Lemma
-
+\begin{lemma}[Unique factorization through components] For any $A,B \in \mathcal{A} $
+	\[ \forall f \in \mathcal{A} (A,B) \; , \; \exists! f' \in \mathcal{B} \big(F(A),G(B)\big)   \]
+	\begin{proof}
+		Because of the naturality axiom, there's at least one such map, $f'=G(f) \circ \alpha_A$. And if there exist two such maps, say $a,b$ then
+	\end{proof}
 \end{lemma}
+
+\begin{example}{\textbf{From a discrete category}} %{{{ From a discrete category		Example
+	The natural transformation has one component for every object, $A \in \mathcal{A}$, that takes $1_{F(A)}\mapsto 1_{G(A)}$.
+\end{example}
+
+\begin{example}{\textbf{Determinant (of an n$\times$n matrix)}} %{{{ Determinant (of an n$\times$n matrix)		Example
+	Let $R$ be a commutative ring with unity. So, the matrices on it form a monoid under matrix multiplication. Also, a ring homomorphism,
+	$f: R \rightarrow S$ would induce a monoid homomorphism, $g:M_n(R)\rightarrow M_n(S) $ as
+	\[ f(rr')=f(r)f(r') \implies g(MM')= g(M)g(M') \]
+	Now, this defines a functor, $M_n: \textit{CRing} \rightarrow \textit{Mon}$ which takes each ring to monoid of
+	matrices with entries from it. Also, there's a forgetful functor, $F:\textit{CRing} \rightarrow \textit{Mon}$
+	that retains only multiplication.
+	Every $n \times n$ matrix over $X$ over $R$ has a determinant in $R$ which, due to linearity, is a monoid homomorphism,
+	$det_R: M_n(R) \rightarrow F(R)$. In order to show that $det_R$ is a natural transformation,
+	\[
+\forall h \in \textit{Cring}(R,S), \text{ the square }
+\begin{tikzcd}
+M_n(R) \arrow[swap]{d}{det_R} \arrow{r}{M_n(h)}
+	& M_n(S) \arrow{d}{det_S}\\
+G(R) \arrow[swap]{r}{F(h)}
+	& F(S)
+\end{tikzcd}
+\text{ must commute }
+	\]
+	So, need to show that, given a matrix $M$ over $R$, and $H:= M_n(h)\; ; \;$
+	\[ |M| \]
+
+
+\end{example}
+
+
+
 
 
 
