@@ -281,6 +281,24 @@ F(R) \arrow[swap]{r}{F(h)}
 	It gives not only that $\forall A \in \mathcal{A}\; , \;  F(A) \cong G(A)$ but that there's a family of \textit{isomorphisms}, $\Big( F(A)\xleftrightarrow{\alpha_A \;} G(A) \Big)_{A \in \mathcal{A} }$ in $\mathcal{B} $ that satisfies the naturality axiom.
 \end{definition}
 
+\begin{definition}[Equivalent categories] %{{{ Equivalent categories		Definition
+	Categories $\mathcal{A}$ and $\mathcal{B} $ are said to be equivalent iff there's an \textit{equivalence} between them.
+	An equivalence is  a pair of functors , $F,G$ along with a natural isomorphisms $\alpha, \beta$ such that:
+	\[ \alpha: 1_{\mathcal{A} } \rightleftarrows G \circ F \text{ and } \beta: F \circ G \rightleftarrows 1_{\mathcal{B} } \]
+	And it's writtten $\mathcal{A} \simeq \mathcal{B} $
+\end{definition}
+
+\begin{definition}[Essentially Surjective on objects] %{{{ Essentially Surjective on objects		Definition
+	A functor $F: \mathcal{A} \rightarrow \mathcal{B} $ is said to be \textbf{essentially surjective} on objects iff
+	$ \forall B \in \mathcal{B} \; , \; \exists A \in \mathcal{A} \text{ such that } F(A) \cong B $.
+\end{definition}
+\begin{lemma}
+	A functor \textcolor{red}{??} is an equivalence iff it is full, faithful and essentially surjective on objects.
+	\begin{proof}
+
+	\end{proof}
+\end{lemma}
+
 
 
 
@@ -288,4 +306,3 @@ F(R) \arrow[swap]{r}{F(h)}
 \pagebreak
 To be continued.
 \end{document}
-
