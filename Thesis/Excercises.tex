@@ -1,18 +1,67 @@
 \documentclass{article}
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,xcolor}
-\usepackage{enumitem}
+\usepackage{enumitem,tikz-cd}
 
-\newtheorem{example}{Excercise}[section]
+\theoremstyle{definition}
+\newtheorem*{excercise}{Excercise}
 
 \begin{document}
 \section{Chapter 1}
 
-\begin{example}
+\section{Functors(pg26)}
 
-\end{example}
+\begin{excercise}[1.2.21] %{{{ 1.2.21		Excercise
+	As $A \cong $ A', there's a bijection between them in $\mathcal{A} $ i.e.
+	$\begin{tikzcd}
+		A \arrow{r}{f} & \arrow{l}{f^{-1}}  A'
+	\end{tikzcd}$
+	with $f \in \mathcal{A}(A,A')$ and $ f^{-1} \in \mathcal{A}(A',A)$.
+	Thus, $F(f) \in \mathcal{B}(F(A),F(A'))$ and $ F(f^{-1}) \in \mathcal{B}(F(A'),F(A))$.
+	And as $F$ is a functor,
+	\[ F(f) \circ F(f^{-1}) = F(f \circ f^{-1}) = F(1_A) = 1_{F(A)} \text{ similarly, }
+	F(f^{-1}) \circ F(f) = 1_{F(A')} \]
+	Hence, we have an isomorphism, $
+	\begin{tikzcd}
+		F(A) \arrow{r}{F(f)} & \arrow{l}{F(f^{-1})} A'.
+	\end{tikzcd}$
+\end{excercise}
+\begin{excercise}[1.2.22] %{{{ 1.2.22		Excercise
+	Let $a,a' \in A $ with $a \leq a'$, so that there's a morphism, $f:a\rightarrow a'$ in $\mathcal{A}$.\\
+	Now, $F:\mathcal{A} \rightarrow \mathcal{B} $ gives $F(a) \xrightarrow{F(f)} F(a')$ i.e. $F(a)\leq F(a')$.
+\end{excercise}
+\begin{excercise}[1.2.23] %{{{ 1.2.23		Excercise
+	\begin{enumerate}[label=(\alph*)]
+		\item As $ob(G)=ob(G^{op})$,just need to ensure morphisms.
+			\[\forall f \in \mathcal{A}(A,B) ,\; \; f^{-1} \in \mathcal{A}(B,A) \implies
+			f \in \mathcal{A}^{op}(B,A) ,\; \; f^{-1} \in \mathcal{A}^{op}(A,B) \]
+			Thus, for any two objects $A,B$ , morphisms between them in $\mathcal{A} $
+			are also in $\mathcal{A} ^{op}$. More precisely, define functors
+			\[ G \xrightarrow{F} G^{op} \text{ and } G^{op} \xrightarrow{F^{-1}} G \text{ as }
+			F(f)\mapsto f^{-1} \text{ and } G(f^{-1}) \mapsto f \]
+			Hence, $ F^{-1} \circ F : G \rightarrow G \text{ and } F \circ  F^{-1} : G^{op} \rightarrow G^{op}$.
+			Giving an isomorphism, $G\cong G^{op}$  in \textbf{CAT}.
+		\item Take the monoid, say $M$, consisting $2\times2$ matrices, $\Bigg\{
+				I:=\begin{bmatrix}
+					1 & 0 \\
+					0 & 1
+				\end{bmatrix},
+				A:=\begin{bmatrix}
+					1 & 0 \\
+					0 & 0
+			\end{bmatrix}\Bigg\}$ under matrix multiplication.
+			So, $M$ has two morphisms, the identity morphism, $i$ and and $a$.
+			Now, suppose $M \cong M^{op} $, then, $a$ must have an inverse i.e.
+			$ k:= \in M : k.a=i $ i.e. a matrix $K: KA = I$ but this can't be as $A$ is a singular matrix.
+	\end{enumerate}
+\end{excercise}
+\begin{excercise}[1.2.24] %{{{ 1.2.24		Excercise
 
-\section{Chapter 2}
+\end{excercise}
+
+\pagebreak
+TBD
+
 
 \end{document}
 
