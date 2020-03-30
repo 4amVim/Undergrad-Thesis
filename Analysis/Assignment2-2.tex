@@ -1,0 +1,102 @@
+\documentclass[20pt,a4paper]{extarticle} %big fontsize
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumitem}
+
+\begin{document}
+
+\paragraph{Question 1}
+\begin{align*}
+	C \subseteq D \subseteq \mathbb{R}&;& \big(f _n\big)_{n \in \mathbb{N}} \text{ is uniformly convergent on } C \\
+					  & & \text{ and } \forall i \in \mathbb{N} , \; f_i : D \xrightarrow{} \mathbb{R}
+					  \text{ is continous }
+\end{align*}
+\textbf{Need to show that, } \text{there's a continous function, }
+\[ f \text{ such that } f_n \rightrightarrows f \text{ on } closure(C) \cap D \]
+\begin{proof}
+	As the sequence uniformly converges on $C$, there's a function, $f$ such that for $\epsilon = 1$,
+	\[ \exists \delta : n \geq \delta \implies \forall x \in C \; , \; |f_n(x) - f(x)| \leq 1 \]
+	So, just need to show that $ f_n \xrightarrow {C'} f $ uniformly i.e.
+	\[ \exists K : n \geq K \implies \forall x \in C' , \; |f_n (x) - f(x)| \leq 1 \]
+Fix any $x \in C'$ and $ i \geq \delta$ , so, there's a ball around x that intersects C, $B(x) \cap C \neq \phi $.
+	And, as $f_i$ is continous on D,
+	\[ \exists \delta' : n \geq \delta' \implies |f_i(x_n) - f_i(x)| \leq 1 \; \]
+	Also, because $(x_m)$ is in $C$ and $i \geq \delta$  ,
+	\[ |f_i(x_m)- f(x_m)| \leq 1 \]
+	Thus,
+
+
+\end{proof}
+
+\paragraph{Question 2}
+Prove that $\Sigma x^n(1-x)$ converges pointwise on $[0,1]$ but not uniformly.
+While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
+\begin{proof}
+	As $x^n(1-x) = x^{n+1} - x^n$, the first sum telescopes:
+\[\sum_{i=1}^k = (x^2 - x) + (x^3 -x^2) +... + (x^{k+1} -x^k) = x^{k+1} - x \]
+So $\Sigma x^n(1-x)$ converges to $-x$. As, for $\epsilon >0$ and $x \in [0,1]$ ,
+choose $\delta$ such that $x^{\delta}<\epsilon$. So,
+\[ r \geq \delta \implies | \sum_{n=1}^r x^n(1-x) - (-x) | = | x^{i}(x) - f(x) | \]
+
+\[  \]
+\end{proof}
+
+\pagebreak
+\begin{enumerate}[label=\Roman*]
+	\item Showing that $\text{lim inf } \frac{a_{n+1}}{a_n} \leq \text{lim inf }(a_n)^\frac{1}{n}$\\
+		Case 1: \text{lim inf } $ \frac{a_{n+1}}{a_n}=0 $
+		\[ \forall n \in \mathbb{N}, a_n > 0 \implies (a_n)^ \frac{1}{n}> 0 \]
+		\[ \text{ Thus } , \text{lim inf }(a_n)^ \frac{1}{n} \geq 0 = \text{lim inf } \frac{a_{n+1}}{a_n} 	 \]
+
+		Case 2: \text{lim inf } $ \frac{a_{n+1}}{a_n}= \infty $\\
+		So, for any $ a \in \mathbb{N},$
+		\[ \exists M_a \in \mathbb{N}: n\geq	M_a \implies \frac{a_{n+1}}{a_n}> a \]
+		Fix any a, and choose $n>M_a$. For any such n,
+		\[  \frac{a_{n+1}}{a_n}>a \implies a_{n+1} >aa_n  \]
+		\[ \implies a_n>aa_{n-1}> a^2a_{n-2}>...>a^{n-M}a_M \]
+		\[ \implies  (a_n)^ \frac{1}{n} > a( \frac{a_M}{a^M} )^	\frac{1}{n} \]
+		Now as for fixed $a$, $ \frac{a_M}{a^M} $ is constant,
+		\[ \lim_{n \to \infty} (\frac{a_M}{a^M})^{ \frac{1}{n} }=1 \implies \lim_{n \to \infty} a(\frac{a_M}{a^M})^{ \frac{1}{n} }=a\]
+		Thus, \[\forall \epsilon >0, \exists K \in \mathbb{N}: n>K \implies a(\frac{a_M}{a^M})^{ \frac{1}{n} }>a- \epsilon \]
+		And hence, in particular, $a(\frac{a_M}{a^M})^{ \frac{1}{n} }>a-1$ for any natural number $a$.
+		\[ (a_n)^ \frac{1}{n}  > a(\frac{a_M}{a^M})^{ \frac{1}{n} }> a-1 \implies \lim_{n \to \infty} (a_n)^ \frac{1}{n}= \infty  \]
+		\[ \therefore  \text{lim inf } \frac{a_{n+1}}{a_n} = \infty=\text{lim inf }(a_n)^\frac{1}{n}\]
+		Case 3: \text{lim inf } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $\\
+		So, $ \forall \epsilon > 0,  \exists M \in \mathbb{N}: n > M \implies \frac{a_{n+1}}{a_n} > a-\epsilon$
+		\[ a_n>(a-\epsilon) a_{n-1}>(a-\epsilon)^2 a_{n-2}>...>(a-\epsilon)^{n-M} a_M \]
+		\[ \implies (a_n)^ \frac{1}{n}>(a- \epsilon) (\frac{a_M}{a^M})^{ \frac{1}{n} }\]
+		But, as $\lim_{n \to \infty} (\frac{a_M}{a^M})^ \frac{1}{n}=1 $,\\
+		\[ (a_n)^ \frac{1}{n}>(a- \epsilon) (\frac{a_M}{a^M})^{ \frac{1}{n} }>(a-\epsilon)(1-\epsilon)=a-(1+a)\epsilon+ \epsilon^2 \]
+		\[ \implies  (a_n)^ \frac{1}{n}>a-(1+a)\epsilon \]
+		But as this holds for every $\epsilon >0$,
+		\[ \text{lim inf }(a_n)^ \frac{1}{n} \geq a-0= \text{lim inf } \frac{a_{n+1}}{a_n}  \]
+		\newpage
+	\item  $\text{lim sup }(a_n)^\frac{1}{n} \leq \text{lim sup }\frac{a_{n+1}}{a_n}$\\
+		Case 1: \text{lim sup } $ \frac{a_{n+1}}{a_n}=\infty $\\
+		As \text{lim sup }$(a_n)^ \frac{1}{n} \leq \infty = \text{lim sup }\frac{a_{n+1}}{a_n}$,done\\
+
+		Case 2: \text{lim sup } $ \frac{a_{n+1}}{a_n}= -\infty $\\
+		\[ \text{lim sup }  \frac{a_{n+1}}{a_n}= -\infty \implies \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = -\infty\]
+		But, as all $a_n$ are positive, so is their raito, and hence it cant be unbounded below. \\
+
+		Case 3: \text{lim sup } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $\\
+		So, $ \forall \epsilon > 0,  \exists M \in \mathbb{N}: n > M \implies \frac{a_{n+1}}{a_n} < a+\epsilon$
+		\[ a_n<(a+\epsilon) a_{n-1}<(a+\epsilon)^2 a_{n-2}<...<(a+\epsilon)^{n-M} a_M \]
+		Now, as $(\frac{a_M}{a^M})^{ \frac{1}{n} }$ is constant,
+		\[   	\exists K \in \mathbb{N}: n \geq K \implies  (\frac{a_M}{a^M})^{ \frac{1}{n} } <1+\epsilon\]
+		\[ \implies (a_n)^ \frac{1}{n}<(a+ \epsilon) (\frac{a_M}{a^M})^{ \frac{1}{n} } < (a+\epsilon)(1+\epsilon)=a+(a+1)\epsilon + \epsilon^2 \]
+		Thus,
+		\[\text{lim sup }(a_n)^ \frac{1}{n} \leq a+(a+1) \epsilon + \epsilon^2<a+(a+1)(1+\epsilon)\epsilon, \]
+		but as this holds for every $\epsilon>0$,
+		\[ \text{lim inf }(a_n)^ \frac{1}{n} \leq a= \text{lim inf } \frac{a_{n+1}}{a_n}  \]
+
+\end{enumerate}
+
+\paragraph{Question 3}
+\[\text{ $a_n$ \& $b_n$ are bounded, non-negative sequences; $a_n \rightarrow a >0 $   } \]
+As $a_n, b_n $ are bounded sequences, so is $a_n b_n$.\\
+Hence, L:=lim sup $a_n b_n $ and R:=lim sup $b_n$ are real numbers
+
+
+
+\end{document}
