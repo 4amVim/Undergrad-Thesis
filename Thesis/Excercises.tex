@@ -54,11 +54,38 @@
 			$ k:= \in M : k.a=i $ i.e. a matrix $K: KA = I$ but this can't be as $A$ is a singular matrix.
 	\end{enumerate}
 \end{excercise}
-\begin{excercise}[1.2.24] %{{{ 1.2.24		Excercise
-	\textcolor{blue}{help needed}
-\end{excercise}
 \begin{excercise}[1.2.25] %{{{ 1.2.25		Excercise
-		\item \textcolor{blue}{To do 2}
+		\begin{enumerate}[label=(\alph*)]
+			\item Let $A \in \mathcal{A} $ and $F^A$ be defined as mentioned.
+				For unitality, as $F^A(B)=F(A,B)$  \[
+				B \in \mathcal{B} \implies F^A(1_B)=F(1_A,1_B)=1_{F_{(A,B)}}=1_{F^A(B)}\]
+				And for composability, let $f\in \mathcal{B}(X,Y)$ and
+				$ g \in \mathcal{B}(Y,Z) $,
+				\[F^A(f)\circ F^A(g)=(1_A,f)\circ(1_A,g)=(1_A,f\circ g)=F^A(f\circ g)\]
+				Hence, $F^A$ is a functor. To prove $F_B$ a functor, \\
+				For unitality, as $F_B(A)=F(A,B)$  \[
+				A\in\mathcal{A}\implies F_B(1_A)=F(1_A,1_B)=1_{F_{(A,B)}}=1_{F_B(A)}\]
+				And for composability, let $f\in \mathcal{A}(X,Y)$ and
+				$ g \in \mathcal{A}(Y,Z) $,
+				\[F_B(f) \circ  F_B(g) = (f,1_B) \circ (g,1_B) = (f \circ g,1_B) =F_B(f \circ g) \]
+			\item Let  $A \in \mathcal{A} $ and $B \in \mathcal{B} $, then,
+				$ F^A (B) = F(A,B) = F_B(A) $.
+				For $f \in \mathcal{A}(A,A')$ \text{ and } $g \in\mathcal{B}(B,B')$,
+				\[ F^{A'}(g) \circ F_B(f) = F(1_{A'},g) \circ F(f,1_B)
+					=F(1_{A'} \circ  f , g \circ 1_B)
+					=F(f \circ 1_A,1_{B'} \circ g)
+				=F_{B'}(f) \circ  F^A(g)\]
+			\item Define functor $F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C} $
+				as
+				\[ \forall (A,B) \in \mathcal{A} \times \mathcal{B},F((A,B)):=F^A(B)
+				\text{ for objects} \]
+				And, for any morphism in the product category,
+				$(A,B)\xrightarrow{(f,g)} (A',B')$ ,
+				$F((f,g)) := F^{A'}(g) \circ F_B(f)$
+				Now, This functor exists, as
+				$F((1_A,1_B))=F^{A'}(1_B) \circ F_B(1_A)= $
+				\[  \]
+		\end{enumerate}
 \end{excercise}
 \begin{excercise}[1.2.26] %{{{ 1.2.26		Excercise
 	\textcolor{blue}{need to read topology}
@@ -99,7 +126,39 @@ and $g,h \mapsto f $. Gives G as a non-faithful but full functor. For a functor 
 
 \section{Natural Transformation (pg38)}
 
-\begin{excercise}[1.3.26] %{{{ 1.3.25		Excercise
+\begin{excercise}[1.3.26] %{{{ 1.3.26		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.27] %{{{ 1.3.27		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.28] %{{{ 1.3.28		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.29] %{{{ 1.3.29		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.30] %{{{ 1.3.30		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.31] %{{{ 1.3.31		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.32] %{{{ 1.3.32		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.33] %{{{ 1.3.33		Excercise
+
+\end{excercise}
+
+\begin{excercise}[1.3.34] %{{{ 1.3.34		Excercise
 
 \end{excercise}
 
@@ -111,4 +170,3 @@ TBD
 
 
 \end{document}
-
