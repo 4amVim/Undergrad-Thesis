@@ -1,7 +1,7 @@
 \documentclass[20pt,a4paper]{extarticle} %big fontsize
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage{enumitem,amsfonts,extarrows}
+\usepackage{enumitem,amsfonts,extarrows,xcolor}
 
 \begin{document}
 
@@ -14,6 +14,7 @@
 	\text{ and } f \text{ is continous. }
 \end{eqnarray*}
 \begin{proof}
+
 	Fix any $\epsilon > 0$. Need to show that
 	\[ \exists K >0 \text{ s.t. } k\geq K \implies \forall x \in \overline{C} \cap D, \;
 	|f_k(x) - f(x) |< \epsilon\]
@@ -41,6 +42,7 @@
 	And as $(f_i)_{i \in \mathbb{N}}$ is a sequence of continous functions on $D$, that uniformly converges to $f$,
 	$f$ is continous on $\overline{C}\cap D$.
 \end{proof}
+\textcolor{yellow}{Note: In case $D$ were bounded, $\overline{C} \cap D $ would be compact. Then, Heine-Cantor Theorem would give the existence of $f$ , and Uniform Limit Theorem would give it's continuity.   }
 
 \paragraph{Question 2}
 Prove that $\Sigma x^n(1-x)$ converges pointwise on $[0,1]$ but not uniformly.
@@ -63,7 +65,7 @@ While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
 							      &=x + 2 \lim_{k \to \infty }\frac{-x(1-(-x)^k)}{1+x}\\
 							      &=x+\frac{-2x}{1+x}
 	\end{align*}
-	To show uniform convergence, try M-test?
+	To show uniform convergence, try drichilet-test?
 
 \end{proof}
 
