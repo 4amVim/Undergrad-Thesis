@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\paragraph{Question 1} %{{{ Question 1
+\paragraph{Question 1}
 \begin{eqnarray*}
 	C \subseteq D \subseteq \mathbb{R};\\
 	\big(f _n\big)_{n \in \mathbb{N}} \text{ is uniformly convergent on } C ;\\
@@ -67,17 +67,28 @@ While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
 							      &=x + 2 \lim_{k \to \infty }\frac{-x(1-(-x)^k)}{1+x}\\
 							      &=x+\frac{-2x}{1+x}
 	\end{align*}
-	To show uniform convergence, try drichilet-test?
+	To show uniform convergence, going to use the Drichilet test.
 
 \end{proof}
 
 \pagebreak
 
 \paragraph{Question 3}
-\[\text{ $a_n$ \& $b_n$ are bounded, non-negative sequences; $a_n \rightarrow a >0 $   } \]
-As $a_n, b_n $ are bounded sequences, so is $a_n b_n$.\\
-Hence, L:=lim sup $a_n b_n $ and R:=lim sup $b_n$ are real numbers
+\begin{eqnarray*}
+	A \text{ is closed and bounded }; \\
+	(f_n) \text{ is a sequence of continous functions on }A; \\
+	(f_n) \xrightarrow{p.w.} f, \text{ with f continous on }A; \\
+	\forall x \in A, f_n(x) \geq f_{n+1}(x), \text{ with } n \in \mathbb{N};
+\end{eqnarray*}
+\textbf{Prove} that $f_n \rightrightarrows f(A)$ \\
 
-
-
+\paragraph{Question 4}
+Construct a sequence of functions, $(f_n)$  on [0,1] such that
+	\begin{enumerate}[label=(\alph*)]
+		\item each $f_i$ is discontinous at every point of [0,1]; \\
+			and
+		\item $\exists f$, a continous function on [0,1] such that $f_n \rightrightarrows f$
+	\end{enumerate}
+\paragraph{Question 5}
+\textbf{Prove} If $\Sigma a_n$ is absolutely convergent then $\Sigma \frac{a_n x^n}{1+x^{2n}}$ converges uniformly on $\mathbb{R}.$
 \end{document}
