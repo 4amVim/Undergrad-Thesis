@@ -15,37 +15,45 @@
 \end{eqnarray*}
 \begin{proof}
 
-	Fix any $\epsilon > 0$. Need to show that
-	\[ \exists K >0 \text{ s.t. } k,l\geq K \implies \forall x \in \overline{C} \cap D, \;
+	Fix any $\epsilon > 0$. Need to show uniform convergance only on the derived set of $C,\; C'$,
+	because it's already given for $C$ :
+	\[ \exists K >0 \text{ s.t. } k,l\geq K \implies \forall x \in C' \cap D, \;
 	|f_k(x) - f_l(x) |< \epsilon\]
-	So, fix any $c \in \overline{C} \cap D$.
 
-	As each $f_i$ is given continous on $D$, $\exists \delta(i,c) >0 $ such that
-	\[ \forall y \in D, |c-y| \leq \delta \implies |f_i(c) - f_i(y)| < \epsilon/2 \]
-	So, in particular, for any sequence in $C$, $(c_n) \rightarrow c$,
-	\begin{align*}
-		\exists N((c_n),\delta) \text{ such that }
-		n\geq N & \implies |c_n - c| < \delta \\
-		& \implies |f_i(c_n) - f_i(c)| < \epsilon/2
-	\end{align*}
+	As each $f_i$ is given continous on $D$, for each $c \in C' \cap D,$
+	$ \exists \delta_{(i,c)} >0 $ such that
+	\[ \forall y \in D, |c-y| \leq \delta \implies |f_i(c) - f_i(y)| < \epsilon/3  \]
+	Now, each of these $\delta$ depends on $i$ and $c$. But, every $\delta$ is strictly positive.
+	Hence, taking the minimum of all such $\delta$ (for a given $\epsilon$) would still give a
+	strictly positive quantity:
+	\[ \Delta_\epsilon := min\{\delta_{(i,c)}:  i \in \mathbb{N}, c \in \overline{C} \cap D\} > 0 \]
+	Now, as for any $c \in C'$ ,there's a sequence in $C$, $(c_n) \rightarrow c$, \\
+	For each such sequence, $(c_n)$ , $\exists N_{(c_n)}$ such that
+	\[ n \geq N_{(c_n)} \implies |c_n - c| < \delta_{(i,c)}	\implies |f_i(c_n) - f_i(c)| < \epsilon/3 \]
+	Again, as each of these $N_{(c_n)}$ is a natural number, their maximum, $\alpha$ is also a natural number.
+	 This $\alpha$ exists as each sequence converges to $c$, and hence must eventually get $\Delta$ close to $c$.
+
 	Now, as $f_i \overset{C}{\rightrightarrows} f$, $\exists \beta$ such that
-	for any $c \in C$,
+	for any $a \in C$,
 	\begin{equation*}
-		k \geq \beta \implies |f_k(c) - f(c)| < \epsilon/2
+		k \geq \beta \implies \forall a \in C, \; |f_k(a) - f(a)| < \epsilon/3
 	\end{equation*}
 	By triangle inequality,
-	\[ |f_i(c) - f_j(c)| \leq |f_i(c) - f_i(c_\alpha)| + |f_i(c_\alpha) - f_j(c_\alpha))|+|f_j(c_\alpha) - f_j(c)|\]
-	Thus,for $L > max\{ \beta , N \}$, both (1) and (2) will hold:
 	\begin{align*}
-		i \geq L \implies \epsilon/2 +\epsilon/2 &> |f_i(c_i) - f_i(c)|+ |f_i(c_i) - f(c)| \\
+		|f_i(c) - f_j(c)| \leq &\\
+		|f_i(c) - f_i(c_{i+j})| &+ |f_i(c_{i+j}) - f_j(c_{i+j}))|+|f_j(c_{i+j}) - f_j(c)|
+	\end{align*}
+	Thus,for $L > max\{ \beta , \alpha \}$,
+	\begin{align*}
+		i,j \geq L \implies \epsilon/3 +\epsilon/3 +\epsilon/3 & \\
+		<|f_i(c) - f_i(c_{i+j})| + |f_i(c_{i+j}) &- f_j(c_{i+j}))|+|f_j(c_{i+j}) - f_j(c)| \\
 							 &\geq |f_i(c) - f(c) |
 	\end{align*}
 	Hence, the sequence uniformly converges to $f$ on $\overline{C}\cap D$.\\
 	And as $(f_i)_{i \in \mathbb{N}}$ is a sequence of continous functions on $D$, that uniformly converges to $f$,
 	$f$ is continous on $\overline{C}\cap D$.
 \end{proof}
-\textcolor{yellow}{Note: In case $D$ were bounded, $\overline{C} \cap D $ would be compact. Then, Heine-Cantor Theorem would give the existence of $f$ , and Uniform Limit Theorem would give it's continuity.   }
-
+	\pagebreak
 \paragraph{Question 2}
 Prove that $\Sigma x^n(1-x)$ converges pointwise on $[0,1]$ but not uniformly.
 While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
@@ -58,7 +66,6 @@ While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
 	Then, as the $k^{th}$ partial sum is $x-x^{k+1}$, a polynomial, and hence continous on $[0,1]$,
 	it's limit function, $f$ must be continous on $[0,1]$. But, $f$ is discontinous at 1 as
 	\[ \lim_{x \to 1} f(x) = \lim_{x \to 1} x = 1 \neq 0 = f(1) \]
-	\pagebreak
 	The partial sums for the second series of functions,
 	\[\sum_{i=1}^k (-x)^n(1-x) = -x +2[(-x)^2 + (-x)^3 + ... + (-x)^k] + (-x)^{k+1})\]
 	So, for $x=1$, every partial sum is 0, and for $0\leq x <1$,
@@ -105,9 +112,7 @@ $\therefore $ for any n,x $|A_n(x)| \leq 2$, $a_n$ is uniformly bounded.
 	\end{enumerate}
 
 \end{proof}
-
-\pagebreak
-
+	\pagebreak
 \paragraph{Question 3}
 \begin{eqnarray*}
 	A \text{ is closed and bounded }; \\
