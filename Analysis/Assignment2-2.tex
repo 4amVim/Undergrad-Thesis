@@ -67,7 +67,42 @@ While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
 							      &=x + 2 \lim_{k \to \infty }\frac{-x(1-(-x)^k)}{1+x}\\
 							      &=x+\frac{-2x}{1+x}
 	\end{align*}
-	To show uniform convergence, going to use the Drichilet test.
+	To show uniform convergence, going to use the Drichilet test:
+	\begin{enumerate}[label=\Roman*]
+		\item Take $b_n(x): = \frac{x^n}{2} = (\frac{x}{\sqrt[n]{2}})^n$ .Going to show that
+			\begin{enumerate}[label=(\roman*)]
+				\item $\forall x \in$[0,1], $b_n(x) \geq b_{n+1}(x)$ : \\
+					As $b_{n+1}(x) - b_{n}(x) = \frac{x^{n+1}}{\sqrt[n+1]{2}} -
+					\frac{x^n}{\sqrt[n]{2}}= \frac{x^n}{\sqrt[n]{2}}(\frac{x}{\sqrt{2}}-1) \leq 0  $
+				\item $b_n \rightrightarrows 0(C)$ \\
+					\begin{align*}
+						\text{ Take } \delta > \frac{ln2}{ln(\epsilon +1)} &\implies ln(\epsilon+1) >
+					\frac{1}{\delta}ln(2) \\
+					& \implies \epsilon> \sqrt[\delta]{2}
+					\end{align*}
+					\begin{align*}
+						|b_n(x) - b_m(x)| = |\frac{x}{\sqrt[n]{2}}- \frac{x}{\sqrt[m]{2}}|
+						&=x(\frac{1}{\sqrt[n]{2}}- \frac{1}{\sqrt[m]{2}}) \\
+						\leq (\frac{1}{\sqrt[n]{2}}- \frac{1}{\sqrt[m]{2}})
+						= \frac {\sqrt[m]{2}-\sqrt[n]{2}}{\sqrt[n]{2}\sqrt[m]{2}}
+						&\leq \sqrt[m]{2}-\sqrt[n]{2}\\
+						& \leq \sqrt[\delta]{2} -1 \leq \epsilon
+					\end{align*}
+			\end{enumerate}
+		\item Take $a_n(x):=2(-1)^n(1-x)$. So, \\
+				$|(A_n(x))|=|\sum_{i=1}^n a_i(x)| = 2(1-x)|\sum_{i=1}^n (-1)^n|$ \\
+				= $\begin{cases}
+	0 & n \text{ is even } \\
+	2(1-x) &  n \text{ is odd }
+\end{cases}$ \\
+$\therefore $ for any n,x $|A_n(x)| \leq 2$, $a_n$ is uniformly bounded.
+\item So, Drichilet's test is applicable and
+	\begin{align*}
+		\Sigma b_n a_n &= \Sigma \frac{x^n}{2} \times 2 (-1)^n(1-x) \\
+			       &= \Sigma (-1)^nx^n(1-x) \\
+			       &\text{ uniformly converges on [0,1] }
+	\end{align*}
+	\end{enumerate}
 
 \end{proof}
 
@@ -89,6 +124,29 @@ Construct a sequence of functions, $(f_n)$  on [0,1] such that
 			and
 		\item $\exists f$, a continous function on [0,1] such that $f_n \rightrightarrows f$
 	\end{enumerate}
+	\begin{proof}
+		Define $f_n(x)=
+		\begin{cases}
+			\frac{1}{n} & x \in \mathbb{Q} \\
+			0 & x \not \in \mathbb{Q} \\
+		\end{cases}$
+			\begin{enumerate}[label=(\alph*)]
+				\item This sequence is discontinous on [0,1] as :\begin{enumerate}[label=(\roman*)]
+					\item For $q\in \mathbb{Q}$, take any sequence of irrational numbers,
+						$(p_n)\rightarrow q$. So,
+						\[ \lim_{k \to \infty} f_n(p_k)=0\neq \frac{1}{n} = f_n(q) \]
+					\item For $p \not \in \mathbb{Q}$, take any sequence of rational numbers,
+						$(q_n)\rightarrow p$. So,
+						\[ \lim_{k \to \infty} f_n(q_k)=\frac{1}{n}\neq 0= f_n(q) \]
+				\end{enumerate}
+			\item The defined sequence uniformly converges to 0 as:\\
+				Fix $\epsilon = \frac{1}{n}$, and choose  $\delta > n $,
+				\[ m \geq \delta \implies |f_m(x)|=\frac{1}{m} \leq \frac{1}{\delta} < \frac{1}{n} = \epsilon \]
+			\end{enumerate}
+
+	\end{proof}
+
 \paragraph{Question 5}
 \textbf{Prove} If $\Sigma a_n$ is absolutely convergent then $\Sigma \frac{a_n x^n}{1+x^{2n}}$ converges uniformly on $\mathbb{R}.$
+
 \end{document}

@@ -75,16 +75,20 @@
 					=F(1_{A'} \circ  f , g \circ 1_B)
 					=F(f \circ 1_A,1_{B'} \circ g)
 				=F_{B'}(f) \circ  F^A(g)\]
-			\item Define functor $F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C} $
+			\item As $\mathcal{C}$ is a categeory,
+				Define functor $F:\mathcal{A}\times\mathcal{B}\rightarrow\mathcal{C}$
 				as
-				\[ \forall (A,B) \in \mathcal{A} \times \mathcal{B},F((A,B)):=F^A(B)
-				\text{ for objects} \]
+				\[ \forall (A,B) \in \mathcal{A} \times \mathcal{B},\; F((A,B)):=F^A(B)=F_B(A)\]
 				And, for any morphism in the product category,
 				$(A,B)\xrightarrow{(f,g)} (A',B')$ ,
 				$F((f,g)) := F^{A'}(g) \circ F_B(f)$
 				Now, This functor exists, as
-				$F((1_A,1_B))=F^{A'}(1_B) \circ F_B(1_A)= $
-				\[  \]
+				\[F((1_A,1_B))=F^A(1_B) \circ F_B(1_A)=F(1_A,1_B) \circ F(1_A,1_B) = F(1_A,1_B)= 1_{(A,B)} \]
+				(But this above equation is wrong, as don't yet have the existence of F)
+				Need to somehow show that
+				\[ F(1_A,1_B)=1_{(A,B)} \]
+				and
+				\[ F(g \circ f) = F(g) \circ F(f) \]
 		\end{enumerate}
 \end{excercise}
 \begin{excercise}[1.2.26] %{{{ 1.2.26		Excercise
@@ -96,7 +100,7 @@
 	$f_2:B\rightarrow B'$. And a category, $\mathcal{B} $ with objects $K,L$ and morphism $g:K\rightarrow L$. And define F as taking $f_1,f_2$ to $g$.
 	\[ \begin{tikzcd}
 		A \arrow[rr, "f"] \arrow[rd, dotted, maps to, bend right=49] & {} \arrow[r] \arrow[rd, "F", dashed] & A' \arrow[rd, dotted, maps to, bend left=49] &   \\
-									     & K \arrow[rr, "g" description]        & {}                                          & L \\
+& K \arrow[rr, "g" description]        & {}                                          & L \\
 		B \arrow[rr, "e"] \arrow[ru, dotted, maps to, bend left=49]  & {} \arrow[ru, "F", dashed]           & B' \arrow[ru, dotted,maps to , bend right=49]         &
 	\end{tikzcd}\]
 	This functor is faithful as every hom-set has at most one non-identity morphism. And the  functor  doesn't map any of those to identity.
@@ -127,18 +131,26 @@ and $g,h \mapsto f $. Gives G as a non-faithful but full functor. For a functor 
 \section{Natural Transformation (pg38)}
 
 \begin{excercise}[1.3.26] %{{{ 1.3.26		Excercise
+	If $\alpha$ is a natural isomorphism, then
 
 \end{excercise}
 
 \begin{excercise}[1.3.27] %{{{ 1.3.27		Excercise
+Need to find functors $F,G$  such that
+$[\mathcal{A}^{op},\mathcal{B}^{op}] \overset{F}{\underset{G}{\rightleftharpoons}}[ \mathcal{A} ,\mathcal{B} ]^{op} $.
 
 \end{excercise}
 
 \begin{excercise}[1.3.28] %{{{ 1.3.28		Excercise
+		\begin{enumerate}[label=(\alph*)]
+			\item
+			\item
+		\end{enumerate}
 
 \end{excercise}
 
-\begin{excercise}[1.3.29] %{{{ 1.3.29		Excercise
+\begin{excercise}[1.3.29] %{{{ 1.3.29		Excercise	It'll be hard man, but thats what you're here for no ?
+
 
 \end{excercise}
 
