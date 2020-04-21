@@ -1,0 +1,38 @@
+\documentclass[20pt,a4paper]{extarticle} %big fontsize
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumitem,amsfonts,extarrows,xcolor}
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}[section]
+
+\begin{document}
+\paragraph{Question 1}
+For counter-example, consider
+\newpage
+\paragraph{Question 3}
+\textbf{(a)} $f(x,y):=\frac{x^2y^2}{x^2y^2+(x-y)^2}=\frac{1}{1+(\frac{x-y}{xy})^2}=\frac{1}{1+(\frac{1}{y}-\frac{1}{x})^2}$\\
+\[ \lim_{x \to 0} f(x,y)=\lim_{x \to 0} \frac{1}{1+(\frac{1}{y}-\frac{1}{x})^2}=0
+\implies \lim_{y \to 0}\lim_{x \to 0}f(x,y)=0 \]
+And as the expression is symmetric in $x \text{ and } y$,
+\[ \lim_{y \to 0}\lim_{x \to 0}f(x,y)=\lim_{x \to 0}\lim_{y \to 0}f(x,y)\]
+But the simultaneous limit at$(0,0)$  along $T(t):=(t,t) $ is
+\[ \lim_{t \to 0} f(T(t))= \lim_{t \to 0} \frac{1}{1+(\frac{1}{t}-\frac{1}{t})^2}=1 \]
+If the simultaneous limit existed, all the iterated limits would be equal to it. So, there is a curve,
+$S(t):=(\frac{1}{t},\frac{1}{t+1})$ with
+\[ \lim_{t \to \infty} f(S(t)) = \lim_{t \to \infty} \frac{1}{1+(t+1-t)^2}=\frac{1}{2} \]
+Thus, $f$ is discontinous at $(0,0)$
+
+\textbf{(b)} $f(x,y):=\frac{e^{\frac{-1}{x^2}}y}{e^{\frac{-1}{x^2}}+y^2}=\frac{ye^{\frac{1}{x^2}}}
+{ 1+(ye^{\frac{1}{x^2}})^2}=\frac{1}{ \frac{1}{ye^{1/x^2}}+ye^{1/x^2}} $\\
+\[ \lim_{y \to 0} \lim_{x \to 0}\frac{1}{ \frac{1}{ye^{1/x^2}}+ye^{1/x^2}}= \lim_{y \to 0} 0=0  \]
+\[ \lim_{x \to 0} \lim_{y \to 0}\frac{ye^{\frac{1}{x^2}}}{ 1+(ye^{\frac{1}{x^2}})^2}=\lim_{x \to 0} 0=0\]
+To show the non-existence of simulatenous limit at $(0,0)$, consider the curve $T(t):=(t,e^{-1/t^2})$
+\[ \lim_{t \to 0} f(T(t)) = \frac{e^{-1/t^2}\times e^{1/t^2}}{1+(e^{-1/t^2}\times e^{1/t^2})^2}=\frac{1}{2} \]
+
+\paragraph{Question 4}
+\end{document}
+
