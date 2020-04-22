@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 25cb68a68dd85aac76580005c6bc2012e8ee2a330876bc537f721df40cd6ac89
+-- hash: 32215848b4541b5971d90bf13fe814a1d21cf2eac964d0b2aa59b01b08cf044c
 
-name:           thesis-haskell-test
+name:           bear
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/thesis-haskell-test#readme>
-homepage:       https://github.com/githubuser/thesis-haskell-test#readme
-bug-reports:    https://github.com/githubuser/thesis-haskell-test/issues
-author:         Author name here
+description:    Please see the README on GitHub at <https://github.com/Marceline/bear#readme>
+homepage:       https://github.com/Marceline/bear#readme
+bug-reports:    https://github.com/Marceline/bear/issues
+author:         bbq
 maintainer:     example@example.com
-copyright:      2020 Author name here
+copyright:      2020 bbq
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,40 +23,40 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/thesis-haskell-test
+  location: https://github.com/Marceline/bear
 
 library
   exposed-modules:
       Lib
   other-modules:
-      Paths_thesis_haskell_test
+      Paths_bear
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
   default-language: Haskell2010
 
-executable thesis-haskell-test-exe
+executable bear-exe
   main-is: Main.hs
   other-modules:
-      Paths_thesis_haskell_test
+      Paths_bear
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , thesis-haskell-test
+    , bear
   default-language: Haskell2010
 
-test-suite thesis-haskell-test-test
+test-suite bear-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_thesis_haskell_test
+      Paths_bear
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , thesis-haskell-test
+    , bear
   default-language: Haskell2010
