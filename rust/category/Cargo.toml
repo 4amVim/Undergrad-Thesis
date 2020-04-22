@@ -1,0 +1,9 @@
+[package]
+name = "category"
+version = "0.1.0"
+authors = ["ice bear <4429609+Marceline@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
