@@ -1,1 +1,0 @@
-/home/gunter/docs/Undergrad/rust-implementation/category/target/debug/category: /home/gunter/docs/Undergrad/rust-implementation/category/src/lib.rs /home/gunter/docs/Undergrad/rust-implementation/category/src/main.rs
