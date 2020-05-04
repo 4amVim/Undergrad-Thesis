@@ -311,7 +311,24 @@ F(R) \arrow[swap]{r}{F(h)}
 
 \section{Representables}
 \label{sec:Representables}
-q
+Hereon, only regarding locally small categories.
+
+\begin{definition}[Functor H^A] %{{{ H^A		Definition
+	For a fixed $A \in \mathcal{A}$, functor $H^A: \mathcal{A} \rightarrow \textbf{Set}$ is defined:
+	\begin{enumerate}[label=\roman*]
+		\item on objects $B \in \mathcal{A}, H^A(B) := \mathcal{A}(A,B) $
+		\item for morphisms $f \in \mathcal{A}(X,Y)$,  $H^A(g):\mathcal{A}(A,X) \rightarrow \mathcal{A}(A,Y)$
+			mapping each arrow, $p:A \rightarrow X$ as $p \mapsto f \circ p$
+	\end{enumerate}
+
+\end{definition}
+
+\begin{definition}[Representable functor] %{{{ Representable functor		Definition
+	Functor $F:\mathcal{A} \rightarrow \textbf{Set}$ is said to be representable iff it's isomorphic to
+	$H^A$ for some $A \in \mathcal{A} $. And in that case, the object $A$ along with the isomorphism
+	are called a arepresentation of $F$ .
+\end{definition}
+
 
 
 
