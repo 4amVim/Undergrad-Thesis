@@ -1,7 +1,7 @@
 \documentclass[20pt,a4paper]{extarticle} %big fontsize
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
-\usepackage{enumitem,amsfonts,extarrows,xcolor}
+\usepackage{enumitem,amsfonts,extarrows,xcolor,inputenc}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
@@ -12,7 +12,124 @@
 \begin{document}
 %\paragraph{Question 1}
 %\paragraph{Question 2}
-\paragraph{Question 3}
+\paragraph{Question 5}
+\[ f(x,y)=xy(1-x^2-y^2) \]
+For each partial derivative to be zero,
+\begin{align*}
+	& f_x=y-3x^2y-y^3=0 \text{ and }f_y=x-x^3-3xy^2=0 \\
+	\implies & f_x=y(1-3x^2-y^2)=0 \text{ and } f_y=x(1-x^2-3y^2)=0
+\end{align*}
+So, a critical point is $(0,0)$.\\
+
+And,\\
+If $x=0,y\neq0$ then $f_x=y(1-y^2)=0 \implies y= \pm 1$\\
+gives two critical points: $(0,\pm 1)$\\
+
+If $y=0,x\neq0$ then $0=f_y=y(1-x^2) \implies x= \pm 1$ \\
+gives two critical points: $(\pm 1,0)$\\
+
+If $x\neq 0 \neq y$, then \\
+\begin{align*}
+	f_x=y-3x^2y-y^3=0 & \implies y(1-3x^2)=y^3 &\\
+			  & \implies 1-3x^2=y^2 &(equation A)\\
+	\text{ And, also, } & &\\
+	f_y=x-3y^2x-x^3=0 & \implies x(1-3y^2)=x^3 &\\
+			  & \implies 1-3y^2=x^2 &(equation B)\\
+\end{align*}
+Thus,
+\begin{align*}
+	\text{ Substituting B into A, } & 1-3+9y^2=y^2 \implies y = \pm 0.5 \\
+	\text{ And, substituting A into B, } & 1-3+9x^2=x^2 \implies x = \pm 0.5
+\end{align*}
+
+Thus, the four such possible points are also critical:
+\[(0.5,0.5),(0.5,-0.5),(-0.5,0.5),(-0.5,-0.5)\]
+Now, to classify these critical points, looking at $rt-s^2$
+\[ r=f_{xx}=-6xy=f_{yy}=t \text{ and } s=f_{xy}=1-3x^2-3y^2 \]
+\[ \text{ So, } rt=36x^2y^2 \text{ and } s^2= (1-3(x^2+y^2))^2 \]
+
+At $(0,0), rt=0$ and $s=1$. Thus, $rt-s^2=0-1<0 $\\
+Thus, $(0,0)$ is a saddle point.\\
+
+At $(\pm 1,0) \text{ and } (0, \pm 1)$,\\
+$rt=36\times 1 \times 0=36 \times 0 \times 1=0$ and $s^2=(1-3)^2=4$.\\
+Thus, $rt-s^2=0-4<0$\\
+Thus, $(\pm 1,0) , (0, \pm 1)$ are saddle points.\\
+
+At $(0.5,0.5),(0.5,-0.5),(-0.5,0.5),(-0.5,-0.5)$,\\
+$rt=36x^2y^2=36 \times 0.25 \times 0.25=\frac{9}{4}=2.25$ \\ and $s^2=(1-3(0.25+0.25))^2=(-0.5)^2=0.25$\\
+Hence, $rt-s^2=2.25-0.25=2>0$ \\
+Thus, $(0.5,-0.5),(-0.5,0.5)$ are minima(as $r=1.5$ ),\\ while $(0.5,0.5),(-0.5,-0.5)$ are maxima(as $r=1.5$ ).
+\pagebreak
+
+\paragraph{Question 4}
+(b) $f(x,y):= \frac{2xy}{\sqrt{x^2+y^2}}$ \\
+\[ \frac{\partial f}{\partial x}=\lim_{h \to 0} \frac{f(h,0)-f(0,0)}{h}=
+\lim_{h \to 0} \frac{1}{h} \big( \frac{2h \times 0}{\sqrt{h^2+0}} - 0 \big)=0\]
+So, the partial derivative along $x$ exists at $(0,0)$. And by symmetry, it also exists along $y$.\\
+And at a point, $(x,y)$ in a strict neighbourhood of $(0,0)$ ,
+\begin{align*}
+	\frac{\partial f}{\partial y}(x,y)&=\lim_{k \to 0} \frac{1}{k} \Big(
+	\frac{2x(y+k)}{\sqrt{x^2+(y+k)^2}}- \frac{2xy}{\sqrt{x^2+y^2}}  \Big) \\
+					  & =\lim_{k \to 0} \frac{1}{k} \Big(
+						  \frac{2x(y+k) \sqrt{x^2+y^2} - 2xy(\sqrt{x^2+(y+k)^2}}
+						  {\sqrt{x^2+y^2}\sqrt{x^2+(y+k)^2}} \Big) \\
+					  & =\lim_{k \to 0} \frac{2x}{k} \Big(
+						  \frac{(y+k)\sqrt{x^2+y^2} - y\sqrt{x^2+(y+k)^2}}
+						  {\sqrt{x^2+y^2}\sqrt{x^2+(y+k)^2}} \Big)\\
+\end{align*}
+If the above derivative is continous,then $ \lim_{(j,0) \to (0,0)}\frac{\partial f}{\partial x} = 0$ \\
+\begin{align*}
+	\label{eq:}
+\frac{\partial f}{\partial y}(j,0) 				  & =\lim_{k \to 0} \frac{2j}{k} \Big(
+						  \frac{(0+k)\sqrt{j^2+0^2} - 0\sqrt{j^2+(0+k)^2}}
+						  {\sqrt{j^2+0^2}\sqrt{j^2+(0+k)^2}} \Big) \\
+						  & =\lim_{k \to 0} \frac{2j}{k} \Big(
+							  \frac{k|j|}{|j|\sqrt{j^2+k^2}} \Big)
+							  =\lim_{k \to 0} \frac{2j}{\sqrt{j^2+k^2}}=2
+\end{align*}
+Thus, $\frac{\partial f}{\partial y}$ is discontinous at (0,0) and by symmetry, so is
+$\frac{\partial f}{\partial x}$. \newpage
+Hence $\frac{\partial^2 f}{\partial x^2} \text{ and }
+\frac{\partial^2 f}{\partial x^2}$ don't exist at $(0,0)$.
+For differentiability at (0,0), consider the following limit along line $i=j$,
+\begin{align*}
+&\lim_{h^2+k^2 \to 0} \frac{f(0+h,0+k)- f(0,0)-h\frac{\partial f}{\partial x}(0,0)
+-k\frac{\partial f}{\partial y}(0,0)}{\sqrt{h^2+k^2 }} \\
+&=\lim_{h^2+k^2 \to 0} \frac{\frac{2hk}{\sqrt{h^2+k^2}}- 0-h\times 0-k \times 0)}{\sqrt{h^2+k^2 }}
+=\lim_{j=i \to 0} \frac{1}{\sqrt{2j^2}} \frac{2j^2}{\sqrt{2j^2}}=1
+\end{align*}
+Hence, as aforementioned limit is non-zero for some path through $(0,0)$, the function isn't
+differentiable at $(0,0)$. \\
+
+(a) $f(x,y):=\frac{xy(x+y)sin(x-y)}{x^2+y^2}$\\
+The partial derivative along $x \text{ at } (0,0) $,
+\[ \frac{\partial f}{\partial x} =\lim_{h \to 0} \Big( \frac{f(h,0)-f(0,0)}{h} \Big) \]
+\[=\lim_{h \to 0} \frac{(h\times 0(h+0)sin(h-0)-0)}{h^2+0}=0 \]
+And at a point, $(a,b)$  in the neighbourhood of $(0,0)$ partial derivative along x is,
+\begin{align*}
+	& \lim_{h \to 0} \frac{f(a+h,b)-f(a,b)}{h} = \\ & \lim_{h \to 0} \frac{1}{h} \Big(
+	\frac{(x+h)y(x+h+y)sin(x+h-y)}{(x+h)^2+y^2}- \frac{xy(x+y)sin(x-y)}{x^2+y^2} \Big)
+\end{align*}
+
+(WIP)
+\[ \frac{\partial f}{\partial x} = \frac{y\big( (-x^2y+2xy^2+y^3)sin(x-y)+(x^3+x^3y+x^2y^2+xy^3)cos(x-y) \big)]}{(x^2+y^2)^2} \]
+Thus, for the second partial derivative along x,
+\[ \frac{\partial^2 f}{\partial x^2}=\lim_{h \to 0} \frac{1}{h} \Big( \frac{\partial f (h,0)}{\partial x}
+-\frac{\partial f (0,0)}{\partial x} \Big)= \lim_{h \to 0} \frac{(0\times (...))-0}{h}=0 \]
+Similarly, along the y-direction, \\
+\[ \frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(0,h)-f(0,0)}{h}= \lim_{h \to 0}
+\frac{0-0}{h}=0\]
+And,
+\[  \frac{\partial f}{\partial x} = \frac{-x}{(x^2+y^2)^2}[(-x^3-2x^2y+xy^2)sin(x-y)+...]\]
+the second order derivative is,
+\[ \frac{\partial^2 f}{\partial x^2} = \lim_{h \to 0} \frac{f_y(0,h)-f_y(0,0)}{h}=0 \]
+Now, as the second partial derivative exists along x and y directions, the first partial derivatives are continous. Hence, $f$ is differentiable at (0,0).
+\newpage
+
+
+
+\paragraph{Question 3 (Marked)}
 \textbf{(a)} $f(x,y):=\frac{x^2y^2}{x^2y^2+(x-y)^2}=\frac{1}{1+(\frac{x-y}{xy})^2}=\frac{1}{1+(\frac{1}{y}-\frac{1}{x})^2}$\\
 \[ \lim_{x \to 0} f(x,y)=\lim_{x \to 0} \frac{1}{1+(\frac{1}{y}-\frac{1}{x})^2}=0
 \implies \lim_{y \to 0}\lim_{x \to 0}f(x,y)=0 \]
@@ -33,60 +150,5 @@ To show the non-existence of simulatenous limit at $(0,0)$, consider the curve $
 \[\lim_{t\to 0}f(T(t))=\frac{e^{-1/t^2}\times e^{1/t^2}}{1+(e^{-1/t^2}\times e^{1/t^2})^2}=\frac{1}{2} \]
 
 \newpage
-\paragraph{Question 4}
-(b) $f(x,y):= \frac{2xy}{\sqrt{x^2+y^2}}$ \\
-\[ \frac{\partial f}{\partial x}=\lim_{h \to 0} \frac{f(h,0)-f(0,0)}{h}=
-\lim_{h \to 0} \frac{1}{h} \big( \frac{2h \times 0}{\sqrt{h^2+0}} - 0 \big)=0\]
-So, the partial derivative along $x$ exists at $(0,0)$. And by symmetry, it also exists along $y$.
-And in a neighbourhood of $(0,0)$ ,
-$\frac{\partial f}{\partial x}= \frac{2y\sqrt{x^2+y^2}-2xy(\frac{2x}{2\sqrt{x^2+y^2}})}{x^2+y^2}
-=\frac{y\Big( 2\sqrt{x^2+y^2}-2x(\frac{2x}{2\sqrt{x^2+y^2}})\Big)}{x^2+y^2}$.
-\[ \frac{\partial^2 f}{\partial x^2}=\lim_{h \to 0} \frac{f_x(h,0)-f_x(0,0)}{h}=
-\lim_{h \to 0}\frac{0-0}{0}=0\]
-Again, by symmetry, $\frac{\partial^2 f}{\partial y^2}(0,0)=0$. Thus, as second partial derivative
-exists along $x \text{ and } y$, the first derivatives are continous at $(0,0)$ , and hence, f is
-differentiable at $(0,0)$.\\
-
-(a) $f(x,y):=\frac{xy(x+y)sin(x-y)}{x^2+y^2}$\\
-The partial derivative along $x$,
-\[ \frac{\partial f}{\partial x} =\lim_{h \to 0} \Big( \frac{f(h,0)-f(0,0)}{h} \Big) \]
-\[=\lim_{h \to 0} \frac{(h\times 0(h+0)sin(h-0)-0)}{h^2+0}=0 \]
-And in the neighbourhood of $(0,0)$,
-\[ \frac{\partial f}{\partial x} = \frac{y\big( (-x^2y+2xy^2+y^3)sin(x-y)+(x^3+x^3y+x^2y^2+xy^3)cos(x-y) \big)]}{(x^2+y^2)^2} \]
-Thus, for the second partial derivative along x,
-\[ \frac{\partial^2 f}{\partial x^2}=\lim_{h \to 0} \frac{1}{h} \Big( \frac{\partial f (h,0)}{\partial x}
--\frac{\partial f (0,0)}{\partial x} \Big)= \lim_{h \to 0} \frac{(0\times (...))-0}{h}=0 \]
-Similarly, along the y-direction, \\
-\[ \frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(0,h)-f(0,0)}{h}= \lim_{h \to 0}
-\frac{0-0}{h}=0\]
-And,
-\[  \frac{\partial f}{\partial x} = \frac{-x}{(x^2+y^2)^2}[(-x^3-2x^2y+xy^2)sin(x-y)+...]\]
-the second order derivative is,
-\[ \frac{\partial^2 f}{\partial x^2} = \lim_{h \to 0} \frac{f_y(0,h)-f_y(0,0)}{h}=0 \]
-Now, as the second partial derivative exists along x and y directions, the first partial derivatives are continous. Hence, $f$ is differentiable at (0,0).
-\newpage
-\paragraph{Question 5}
-\[ f(x,y)=xy(1-x^2-y^2) \]
-\[ f_x=y-3x^2y-y^3 \text{ and }f_y=x-x^3-3xy^2  \]
-So, a critical point is $(0,0)$. And,\\
-If $x=0,y\neq0$ then $0=f_x=y(1-y^2) \implies y= \pm 1$\\gives a critical point $(0,\pm 1)$\\
-If $y=0,x\neq0$ then $0=f_y=y(1-x^2) \implies x= \pm 1$ \\gives a critical point $(\pm 1,0)$\\
-
-If $x\neq 0 \neq y$, then \\
-$f_y=y-3x^2y-y^3=0=x-x^3-3xy^2=f_y$ gives $(\pm 0.5, \pm 0.5)$ \\
-Now, to classify these critical points, looking at $rt-s^2$
-\[ r=f_{xx}=-6xy=f_{yy}=t \text{ and } s=f_{xy}=1-3x^2-3y^2 \]
-
-At $(0,0), r=0=t$ and $s=1$. Thus, $rt-s^2=0-1<0$\\
-Thus, $(0,0)$ is a maxima.\\
-
-At $(\pm 1,0) \text{ and } (0, \pm 1)$,\\
-$rt=36x^2y^2=0$ and $s=1-3$. Thus, $rt-s^2=0-4<0$\\
-Thus, $(\pm 1,0) , (0, \pm 1)$ are maxima.\\
-
-At $(\pm 0.5,\pm 0.5) \text{ and } (-0.5,-0.5)$,\\
-$rt=36x^2y^2=\frac{9}{4}$ and $s=1-3(0.25+0.25)=-0.5$\\
-Hence, $rt-s^2=2.25-0.25=2>0$ \\
-Thus, all four points, $ (\pm 0.5,\pm 0.5) $ are minima.
 \end{document}
 
