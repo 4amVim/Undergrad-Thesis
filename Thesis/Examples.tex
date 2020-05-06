@@ -313,7 +313,7 @@ F(R) \arrow[swap]{r}{F(h)}
 \label{sec:Representables}
 Hereon, only regarding locally small categories.
 
-\begin{definition}[Functor $H^A$] %{{{ H^A		Definition
+\begin{definition}[Functor $H^A \text{ aka } \mathcal{A} (f , \_ )$ ] %{{{ H^A		Definition
 	For a fixed $A \in \mathcal{A}$, functor $H^A: \mathcal{A} \rightarrow \textbf{Set}$ is defined:
 	\begin{enumerate}[label=\roman*]
 		\item on objects $B \in \mathcal{A}, H^A(B) := \mathcal{A}(A,B) $
@@ -327,6 +327,37 @@ Hereon, only regarding locally small categories.
 	Functor $F:\mathcal{A} \rightarrow \textbf{Set}$ is said to be representable iff it's isomorphic to
 	$H^A$ for some $A \in \mathcal{A} $. And in that case, the object $A$ along with the isomorphism
 	are called a arepresentation of $F$ .
+\end{definition}
+
+\begin{definition}[$H^f \text{ aka } \mathcal{A} (f, \_)$ ] %{{{ H^f Definition
+	Any morphism in $\mathcal{A}, f:X \rightarrow Y	$ induces a natural transformation $H^Y \implies H^X $:
+	\[ 	\begin{tikzcd}[row sep=large, column sep=huge]
+	\mathcal{ \mathcal{A} } \arrow[r,bend left=50, "H^Y"{name=U, below}]
+	\arrow[r, bend right = 50, "H^X"{name=D, above}]
+	& Set \arrow[Rightarrow, from=U , to=D, "H^f"]
+		\end{tikzcd} \]
+		At $B \in \mathcal{A} $ for $p \in Hom (Y,B) \text{ i.e. } p:Y \rightarrow B $ as
+		$p \mapsto p \circ f$
+\end{definition}
+
+\begin{definition}[$H^\bullet$ ] %{{{ $H^\bullet$ 		Definition
+	A functor, $H^\bullet : \mathcal{A} ^{op} \rightarrow [ \mathcal{A} , Set ] $ defined on
+	\begin{enumerate}[label=\roman*]
+		\item objects $A \in \mathcal{A} $ as $H^\bullet (A) = H^A$
+		\item morphisms $f:X\rightarrow Y$ as $H^\bullet(f)=H^f$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[$H_A$ or $\mathcal{A} (\_,A)$  i.e. dual of $H^A$ ] %{{{ H_A i.e. dual of	Definition
+	A functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined on:
+	\begin{enumerate}[label=\roman*]
+		\item objects $B \in \mathcal{A} $ as $Hom(B,A)$
+		\item on a morphism, $f : X \rightarrow Y $ in $\mathcal{A} $ , $H_A: \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A) $ as, for each $p \in \mathcal{A}(Y,A) $ as $p \mapsto p \circ f$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Representation for contravariant functors] %{{{ Representation for contravariant functors		Definition
+	Functor $X: \mathcal{A} ^{op} \rightarrow Set $ is representable iff there is some object ,$A \in \mathcal{A} $ such that $ X \cong H_A $. And that choice of object and isomorphism is called a representation.
 \end{definition}
 
 
