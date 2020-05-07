@@ -360,6 +360,26 @@ Hereon, only regarding locally small categories.
 	Functor $X: \mathcal{A} ^{op} \rightarrow Set $ is representable iff there is some object ,$A \in \mathcal{A} $ such that $ X \cong H_A $. And that choice of object and isomorphism is called a representation.
 \end{definition}
 
+\begin{definition}[$H_f$ ] %{{{ H_A		Definition
+	Any map, $f:X \rightarrow Y$ in $\mathcal{A}$ induces a natural transformation $H_f$ :
+	\begin{tikzcd}[row sep=large, column sep=huge]
+	\mathcal{A}^{op} \arrow[r,bend left=50, "H_X"{name=U, below}]
+	\arrow[r, bend right = 50, "H_Y"{name=D, above}]
+	& Set
+	\arrow[Rightarrow, from=U , to=D, "H_f"]
+		\end{tikzcd}\\
+		with component for $B \in \mathcal{A} $ being, $p \in \mathcal{A}(B,X) \mapsto f \circ p \in  \mathcal{A}(B,Y)   $
+
+\end{definition}
+
+\begin{definition}[Yoneda embedding] %{{{ Yoneda embedding		Definition
+	A functor, $H_\bullet : \mathcal{A} \rightarrow [ \mathcal{A}^{op} , Set ] $ defined on
+	\begin{enumerate}[label=\roman*]
+		\item objects $A \in \mathcal{A} $ as $H_\bullet (A) := H^A$
+		\item morphisms $f:X\rightarrow Y$ as $H_\bullet(f)=H_f$
+	\end{enumerate}
+\end{definition}
+
 
 
 
