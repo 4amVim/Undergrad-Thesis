@@ -1,0 +1,35 @@
+\documentclass[18pt,a4paper]{extarticle}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,tikz-cd}
+\usepackage{enumitem,amsfonts,extarrows,xcolor}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}[section]
+
+\begin{document}
+\section{}
+\begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
+	If $\mathcal{A} $ be a locally small category, then, \\
+	\[ [ \mathcal{A} ^{op},Set ](H_A,X) \cong X(A) \text{ naturally in } A \in \mathcal{A} \text{ and }
+	X \in [ \mathcal{A}^{op},Set]\]
+\end{theorem}
+\paragraph{Explaination}
+Here, $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes arrows $H_A \rightarrow X$ in $[ \mathcal{A}^{op},Set] $
+i.e. natural transforms $\alpha :$
+\begin{tikzcd}[row sep=large, column sep=huge]
+	A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
+\arrow[r, bend right = 50, "X"{name=D, above}]
+& Set
+\arrow[Rightarrow, from=U , to=D, "\alpha"]
+	\end{tikzcd}
+
+
+
+
+
+
+\end{document}
+
