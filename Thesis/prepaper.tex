@@ -16,15 +16,31 @@
 	\[ [ \mathcal{A} ^{op},Set ](H_A,X) \cong X(A) \text{ naturally in } A \in \mathcal{A} \text{ and }
 	X \in [ \mathcal{A}^{op},Set]\]
 \end{theorem}
-\paragraph{Explaination}
+\textbf{Explaination:} \\
+First of all, we fix any category, $\mathcal{A} $ . Now we choose two things (independent of each other):
+\begin{enumerate}[label=\roman*]
+	\item an object, $A$ from the category $ \mathcal{A}= \mathcal{A} ^{op} $
+	\item an object, $X$ of the category $[ \mathcal{A}^{op},Set] $
+		which is precisely a functor $X: A^{op} \rightarrow Set$
+\end{enumerate}
 Here, $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes arrows $H_A \rightarrow X$ in $[ \mathcal{A}^{op},Set] $
-i.e. natural transforms $\alpha :$
+i.e. natural transformations, $\alpha :$
 \begin{tikzcd}[row sep=large, column sep=huge]
 	A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
 \arrow[r, bend right = 50, "X"{name=D, above}]
 & Set
 \arrow[Rightarrow, from=U , to=D, "\alpha"]
 	\end{tikzcd}
+$X(A)$ is precisely a set. As $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
+
+So, the idea is that our choice of $A \text{ and } X$ completely determines all possible maps
+(i.e. natural transformations) from $H_A \text{ to } X$. This answers out big question of "what are all the maps
+$H_A  \rightarrow X$ " or "how does $H_A$ see other presheaves on $\mathcal{A} $ ".\\
+
+\textit{More than the above must be true, as it's not just that the two are isomorphic, but they're \textbf{naturally} isomorphic.}
+
+This more is supposed to be that both $[ \mathcal{A}^{op},Set] \text{ and } X(A)$ are
+\textit{functorial} in \textit{both} $A \text{ and } X$
 
 
 
