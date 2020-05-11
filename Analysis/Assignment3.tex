@@ -12,7 +12,85 @@
 \begin{document}
 %\paragraph{Question 1}
 %\paragraph{Question 2}
-\paragraph{Question 5}
+\paragraph{Question 4} %{{{ Q4 (b)
+(b) $f(x,y):= \frac{2xy}{\sqrt{x^2+y^2}}$ \\
+For partial derivative along $x$ at $(\delta,0),$
+\begin{equation*}
+	\begin{split}
+		\frac{\partial f}{\partial x}(\delta,0) & =\lim_{h \to 0} \frac{f(\delta +h,0)-f(\delta,0)}{h}	\\
+							&=\lim_{h \to 0} \frac{1}{h} \big( \frac{2(\delta+h) \times 0}
+								{\sqrt{(\delta+h)^2+0}}
+							- \frac{2\delta \times 0}{\sqrt{\delta^2+0}}\big)=0
+	\end{split}
+\end{equation*}
+In particular, if $\delta=0$ then the second term is zero as $f(0,0):=0$. And, due to symmetry,
+$f_y(0,\delta)=0$. As :
+\begin{equation*}
+	\begin{split}
+		\frac{\partial f}{\partial y}(0,\delta) & =\lim_{h \to 0} \frac{f(0,\delta +h)-f(0,\delta)}{h}	\\
+							&=\lim_{h \to 0} \frac{1}{h}\big(\frac{2 \times 0 \times (\delta+h)}
+								{\sqrt{0+(\delta+h)^2}}
+							- \frac{2\times 0 \times \delta}{\sqrt{0+\delta^2}}\big)=0
+	\end{split}
+\end{equation*}
+
+So, not only are the partial derivatives $f_x \text{ and } f_y$ 0 at (0,0), but also along x and y
+axes respectively.\\
+To show the existence of second derivatives ,
+\begin{equation*}
+	f_{xx}(0,0) = \lim_{h \to 0} \frac{f_x(h,0)-f_x(0,0)}{h}=\lim_{h \to 0} \frac{0-0}{h}=0
+\end{equation*}
+Similarly, $f_{yy}(0,0)=0$
+
+Now, if the derivative of f existed at (0,0), then, the following limit must be 0
+\begin{equation*}
+	\begin{split}
+		\lim_{h^2+k^2 \to 0}&\frac{f(0+h,0+k)-f(0,0) -hf_x(0,0)-kf_y(0,0)
+		}{\sqrt{h^2+k^2}} \\
+		&=\lim_{h^2+k^2 \to 0} \frac{2hk}{h^2+k^2}
+	\end{split}
+\end{equation*}
+But this limit is equal to $1$ along the line of slope 1, and thus f isn't differentiable.
+\newpage
+%}}}
+
+%{{{ Q4 (a)
+\[ \text{ (a) } f(x,y):=\frac{(x^2y+xy^2)sin(x-y)}{x^2+y^2}\]
+For partial derivative along $x$ at $(\delta,0),$
+\begin{equation*}
+	\begin{split}
+		&\frac{\partial f}{\partial x}(\delta,0) =\lim_{h \to 0} \frac{f(\delta +h,0)-f(\delta,0)}{h}	\\
+	&=\lim_{h \to 0} \frac{1}{h} \big(
+		\frac{\big( (\delta+h)^2 \times 0 + (\delta+h) \times 0 \big) sin((\delta+h))}
+								{(\delta+h)^2+0}
+							- 0\big)=0
+	\end{split}
+\end{equation*}
+In particular, if $\delta=0$ then the second term is still zero as $f(0,0):=0$.
+And, due to symmetry, $f_y(0,\delta)=0$.
+
+So, not only are the partial derivatives $f_x \text{ and } f_y$ 0 at (0,0), but also along x and y
+axes respectively.\\
+To show the existence of second derivatives ,
+\begin{equation*}
+	f_{xx}(0,0) = \lim_{h \to 0} \frac{f_x(h,0)-f_x(0,0)}{h}=\lim_{h \to 0} \frac{0-0}{h}=0
+\end{equation*}
+Similarly, $f_{yy}(0,0)=0$
+
+Now, if the derivative of f existed at (0,0), then, the following limit must be 0
+\begin{equation*}
+	\begin{split}
+		\lim_{h^2+k^2 \to 0}&\frac{f(0+h,0+k)-f(0,0) -hf_x(0,0)-kf_y(0,0)
+		}{\sqrt{h^2+k^2}} \\
+		&=\lim_{h^2+k^2 \to 0} \frac{2hk}{h^2+k^2}
+	\end{split}
+\end{equation*}
+But this limit is equal to $1$ along the line of slope 1, and thus f isn't differentiable.
+
+
+\newpage
+%{{{ defended already
+\paragraph{Question 5 (Marked)}
 \[ f(x,y)=xy(1-x^2-y^2) \]
 For each partial derivative to be zero,
 \begin{align*}
@@ -62,72 +140,6 @@ Hence, $rt-s^2=2.25-0.25=2>0$ \\
 Thus, $(0.5,-0.5),(-0.5,0.5)$ are minima(as $r=1.5$ ),\\ while $(0.5,0.5),(-0.5,-0.5)$ are maxima(as $r=1.5$ ).
 \pagebreak
 
-\paragraph{Question 4}
-(b) $f(x,y):= \frac{2xy}{\sqrt{x^2+y^2}}$ \\
-\[ \frac{\partial f}{\partial x}=\lim_{h \to 0} \frac{f(h,0)-f(0,0)}{h}=
-\lim_{h \to 0} \frac{1}{h} \big( \frac{2h \times 0}{\sqrt{h^2+0}} - 0 \big)=0\]
-So, the partial derivative along $x$ exists at $(0,0)$. And by symmetry, it also exists along $y$.\\
-And at a point, $(x,y)$ in a strict neighbourhood of $(0,0)$ ,
-\begin{align*}
-	\frac{\partial f}{\partial y}(x,y)&=\lim_{k \to 0} \frac{1}{k} \Big(
-	\frac{2x(y+k)}{\sqrt{x^2+(y+k)^2}}- \frac{2xy}{\sqrt{x^2+y^2}}  \Big) \\
-					  & =\lim_{k \to 0} \frac{1}{k} \Big(
-						  \frac{2x(y+k) \sqrt{x^2+y^2} - 2xy(\sqrt{x^2+(y+k)^2}}
-						  {\sqrt{x^2+y^2}\sqrt{x^2+(y+k)^2}} \Big) \\
-					  & =\lim_{k \to 0} \frac{2x}{k} \Big(
-						  \frac{(y+k)\sqrt{x^2+y^2} - y\sqrt{x^2+(y+k)^2}}
-						  {\sqrt{x^2+y^2}\sqrt{x^2+(y+k)^2}} \Big)\\
-\end{align*}
-If the above derivative is continous,then $ \lim_{(j,0) \to (0,0)}\frac{\partial f}{\partial x} = 0$ \\
-\begin{align*}
-	\label{eq:}
-\frac{\partial f}{\partial y}(j,0) 				  & =\lim_{k \to 0} \frac{2j}{k} \Big(
-						  \frac{(0+k)\sqrt{j^2+0^2} - 0\sqrt{j^2+(0+k)^2}}
-						  {\sqrt{j^2+0^2}\sqrt{j^2+(0+k)^2}} \Big) \\
-						  & =\lim_{k \to 0} \frac{2j}{k} \Big(
-							  \frac{k|j|}{|j|\sqrt{j^2+k^2}} \Big)
-							  =\lim_{k \to 0} \frac{2j}{\sqrt{j^2+k^2}}=2
-\end{align*}
-Thus, $\frac{\partial f}{\partial y}$ is discontinous at (0,0) and by symmetry, so is
-$\frac{\partial f}{\partial x}$. \newpage
-Hence $\frac{\partial^2 f}{\partial x^2} \text{ and }
-\frac{\partial^2 f}{\partial x^2}$ don't exist at $(0,0)$.
-For differentiability at (0,0), consider the following limit along line $i=j$,
-\begin{align*}
-&\lim_{h^2+k^2 \to 0} \frac{f(0+h,0+k)- f(0,0)-h\frac{\partial f}{\partial x}(0,0)
--k\frac{\partial f}{\partial y}(0,0)}{\sqrt{h^2+k^2 }} \\
-&=\lim_{h^2+k^2 \to 0} \frac{\frac{2hk}{\sqrt{h^2+k^2}}- 0-h\times 0-k \times 0)}{\sqrt{h^2+k^2 }}
-=\lim_{j=i \to 0} \frac{1}{\sqrt{2j^2}} \frac{2j^2}{\sqrt{2j^2}}=1
-\end{align*}
-Hence, as aforementioned limit is non-zero for some path through $(0,0)$, the function isn't
-differentiable at $(0,0)$. \\
-
-(a) $f(x,y):=\frac{xy(x+y)sin(x-y)}{x^2+y^2}$\\
-The partial derivative along $x \text{ at } (0,0) $,
-\[ \frac{\partial f}{\partial x} =\lim_{h \to 0} \Big( \frac{f(h,0)-f(0,0)}{h} \Big) \]
-\[=\lim_{h \to 0} \frac{(h\times 0(h+0)sin(h-0)-0)}{h^2+0}=0 \]
-And at a point, $(a,b)$  in the neighbourhood of $(0,0)$ partial derivative along x is,
-\begin{align*}
-	& \lim_{h \to 0} \frac{f(a+h,b)-f(a,b)}{h} = \\ & \lim_{h \to 0} \frac{1}{h} \Big(
-	\frac{(x+h)y(x+h+y)sin(x+h-y)}{(x+h)^2+y^2}- \frac{xy(x+y)sin(x-y)}{x^2+y^2} \Big)
-\end{align*}
-
-(WIP)
-\[ \frac{\partial f}{\partial x} = \frac{y\big( (-x^2y+2xy^2+y^3)sin(x-y)+(x^3+x^3y+x^2y^2+xy^3)cos(x-y) \big)]}{(x^2+y^2)^2} \]
-Thus, for the second partial derivative along x,
-\[ \frac{\partial^2 f}{\partial x^2}=\lim_{h \to 0} \frac{1}{h} \Big( \frac{\partial f (h,0)}{\partial x}
--\frac{\partial f (0,0)}{\partial x} \Big)= \lim_{h \to 0} \frac{(0\times (...))-0}{h}=0 \]
-Similarly, along the y-direction, \\
-\[ \frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(0,h)-f(0,0)}{h}= \lim_{h \to 0}
-\frac{0-0}{h}=0\]
-And,
-\[  \frac{\partial f}{\partial x} = \frac{-x}{(x^2+y^2)^2}[(-x^3-2x^2y+xy^2)sin(x-y)+...]\]
-the second order derivative is,
-\[ \frac{\partial^2 f}{\partial x^2} = \lim_{h \to 0} \frac{f_y(0,h)-f_y(0,0)}{h}=0 \]
-Now, as the second partial derivative exists along x and y directions, the first partial derivatives are continous. Hence, $f$ is differentiable at (0,0).
-\newpage
-
-
 
 \paragraph{Question 3 (Marked)}
 \textbf{(a)} $f(x,y):=\frac{x^2y^2}{x^2y^2+(x-y)^2}=\frac{1}{1+(\frac{x-y}{xy})^2}=\frac{1}{1+(\frac{1}{y}-\frac{1}{x})^2}$\\
@@ -148,7 +160,7 @@ Thus, $f$ is discontinous at $(0,0)$
 \[ \lim_{x \to 0} \lim_{y \to 0}\frac{ye^{\frac{1}{x^2}}}{ 1+(ye^{\frac{1}{x^2}})^2}=\lim_{x \to 0} 0=0\]
 To show the non-existence of simulatenous limit at $(0,0)$, consider the curve $T(t):=(t,e^{-1/t^2})$
 \[\lim_{t\to 0}f(T(t))=\frac{e^{-1/t^2}\times e^{1/t^2}}{1+(e^{-1/t^2}\times e^{1/t^2})^2}=\frac{1}{2} \]
-
 \newpage
+%}}}
 \end{document}
 
