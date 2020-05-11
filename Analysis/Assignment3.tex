@@ -53,7 +53,6 @@ Now, if the derivative of f existed at (0,0), then, the following limit must be 
 But this limit is equal to $1$ along the line of slope 1, and thus f isn't differentiable.
 \newpage
 %}}}
-
 %{{{ Q4 (a)
 \[ \text{ (a) } f(x,y):=\frac{(x^2y+xy^2)sin(x-y)}{x^2+y^2}\]
 For partial derivative along $x$ at $(\delta,0),$
@@ -77,18 +76,41 @@ To show the existence of second derivatives ,
 \end{equation*}
 Similarly, $f_{yy}(0,0)=0$
 
-Now, if the derivative of f existed at (0,0), then, the following limit must be 0
+Now, to show the existence of derivative of f at (0,0), then, the following limit must be 0
 \begin{equation*}
 	\begin{split}
 		\lim_{h^2+k^2 \to 0}&\frac{f(0+h,0+k)-f(0,0) -hf_x(0,0)-kf_y(0,0)
 		}{\sqrt{h^2+k^2}} \\
-		&=\lim_{h^2+k^2 \to 0} \frac{2hk}{h^2+k^2}
+		&=\lim_{h^2+k^2 \to 0} \frac{(h^2k+hk^2)(sin(h-k))}{(h^2+k^2)\sqrt{h^2+k^2)}} \\
 	\end{split}
 \end{equation*}
-But this limit is equal to $1$ along the line of slope 1, and thus f isn't differentiable.
+Now, as we want to evaluate differentiablity at (0,0), it's enough to consider all the lines of the
+form $y=mx$ i.e. $(i,mi) \text{ with } i \in \mathbb{R}$. Also, for points along the x-axis, the limit is zero as,
+\begin{equation*}
+	\begin{split}
+		&\lim_{h^2+k^2 \to 0} \frac{(0 \times k+0 \times k^2)(sin(0-k))}{(0+k^2)\sqrt{0+k^2)}}=0
+	\end{split}
+\end{equation*}
+By symmetry, the limit is zero along y-axis as well, so, let m be some finite, non-zero number,
+and consider the line $(i,mi)$,
+\begin{equation*}
+	\begin{split}
+		&\lim_{i \to 0} \frac{(i^2 \times mi+i \times m^2i^2)
+		(sin(i-mi))}{(i^2+m^2i^2)\sqrt{i^2+m^2i^2)}}\\
+		&=\lim_{i \to 0} \frac{i^3(m+m^2)(sin(i(1-m))}{i^2(1+m^2) |i|\sqrt{1+m^2}}\\
+		&=\lim_{i \to 0} \frac{m+m^2}{(1+m^2) \sqrt{1+m^2}} \times sgn(i) \times sin(i(1-m)) \\
+	\end{split}
+\end{equation*}
+For any particular line, the first term is a constant, second one is $\pm 1$, while the third one goes
+to $0$ as $i \to 0$. Thus, the limit is $0$ for every line going through the origin.
+
+Thus, the differential exists at the origin.
 
 
 \newpage
+%}}}
+
+
 %{{{ defended already
 \paragraph{Question 5 (Marked)}
 \[ f(x,y)=xy(1-x^2-y^2) \]
