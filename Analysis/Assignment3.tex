@@ -48,7 +48,7 @@ Now, if the derivative of f existed at (0,0), then, the following limit must be 
 		\lim_{h^2+k^2 \to 0}&\frac{f(0+h,0+k)-f(0,0) -hf_x(0,0)-kf_y(0,0)
 		}{\sqrt{h^2+k^2}} \\
 		&=\lim_{h^2+k^2 \to 0} \frac{2hk}{h^2+k^2}
-	\end{split}
+\end{split}
 \end{equation*}
 But this limit is equal to $1$ along the line of slope 1, and thus f isn't differentiable.
 \newpage
@@ -59,10 +59,10 @@ For partial derivative along $x$ at $(\delta,0),$
 \begin{equation*}
 	\begin{split}
 		&\frac{\partial f}{\partial x}(\delta,0) =\lim_{h \to 0} \frac{f(\delta +h,0)-f(\delta,0)}{h}	\\
-	&=\lim_{h \to 0} \frac{1}{h} \big(
-		\frac{\big( (\delta+h)^2 \times 0 + (\delta+h) \times 0 \big) sin((\delta+h))}
-								{(\delta+h)^2+0}
-							- 0\big)=0
+		&=\lim_{h \to 0} \frac{1}{h} \big(
+			\frac{\big( (\delta+h)^2 \times 0 + (\delta+h) \times 0 \big) sin((\delta+h))}
+			{(\delta+h)^2+0}
+		- 0\big)=0
 	\end{split}
 \end{equation*}
 In particular, if $\delta=0$ then the second term is still zero as $f(0,0):=0$.
@@ -82,8 +82,42 @@ Now, to show the existence of derivative of f at (0,0), then, the following limi
 		\lim_{h^2+k^2 \to 0}&\frac{f(0+h,0+k)-f(0,0) -hf_x(0,0)-kf_y(0,0)
 		}{\sqrt{h^2+k^2}} \\
 		&=\lim_{h^2+k^2 \to 0} \frac{(h^2k+hk^2)(sin(h-k))}{(h^2+k^2)\sqrt{h^2+k^2)}} \\
+\end{split}
+\end{equation*}
+The above limit goes to zero $iff$ it's modulus goes to zero:
+\begin{equation*}
+	\begin{split}
+		\lim_{h^2+k^2 \to 0}| \frac{(h^2k+hk^2)(sin(h-k))}{(h^2+k^2)\sqrt{h^2+k^2)}} |=0\\
 	\end{split}
 \end{equation*}
+Seperating the numerator and dividing by them , this limit becomes:
+\begin{equation*}
+	\begin{split}
+		&\lim_{h^2+k^2 \to 0}| (sin(h-k))\frac{(h^2k)}{(h^2+k^2)\sqrt{h^2+k^2)}}
+		+\frac{(hk^2)}{(h^2+k^2)\sqrt{h^2+k^2)}} |\\
+		&=\lim_{h^2+k^2 \to 0}
+		|\frac{(sin(h-k))(k)}{(1+( \frac{k}{h} )^2)\sqrt{h^2+k^2)}}+
+		\frac{(sin(h-k))(h)}{(( \frac{h}{k} )^2+1)\sqrt{h^2+k^2)}}|\\
+		&=\lim_{h^2+k^2 \to 0} |\frac{(sin(h-k))}{(1+( \frac{k}{h} )^2)\sqrt{ (\frac{h}{k} )^2+1)}}+
+		\frac{(sin(h-k))}{(( \frac{h}{k})^2+1)\sqrt{ 1+(\frac{k}{h} )^2)}}|
+	\end{split}
+\end{equation*}
+Now, for any given values of $h,k$, by trichotomy, either
+\[ \frac{h}{k} \leq 1 \text{ and } \frac{k}{h} \geq 1  \textbf{ or } \frac{h}{k} \geq 1 \text{ and } \frac{k}{h} \leq 1\]
+Thus, the denominators of
+\begin{equation*}
+	\begin{split}
+					&=\lim_{h^2+k^2 \to 0} |\frac{(sin(h-k))}{(1+( \frac{k}{h} )^2)\sqrt{ (\frac{h}{k} )^2+1)}}+
+					|\frac{(sin(h-k))}{(( \frac{h}{k})^2+1)\sqrt{ 1+(\frac{k}{h} )^2)}}
+	\end{split}
+\end{equation*}
+are always greater than 1. But the numerators tend to 0.
+Thus the differential exists at the origin. And must be equal to the gradient, i.e. a matrix
+containing the partial derivatives at the origin. Hence, the derivative is (0,0).
+
+
+\newpage
+
 Now, as we want to evaluate differentiablity at (0,0), it's enough to consider all the lines of the
 form $y=mx$ i.e. $(i,mi) \text{ with } i \in \mathbb{R}$. Also, for points along the x-axis, the limit is zero as,
 \begin{equation*}
