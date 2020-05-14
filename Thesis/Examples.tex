@@ -352,7 +352,13 @@ Hereon, only regarding locally small categories.
 	A functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined on:
 	\begin{enumerate}[label=\roman*]
 		\item objects $B \in \mathcal{A} $ as $Hom(B,A)$
+<<<<<<< HEAD
+		\item on a morphism, $f : X \rightarrow Y $ in $\mathcal{A}$ ,
+			$H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A) $
+			as, for each $p \in \mathcal{A}(Y,A) $ as $p \mapsto p \circ g$
+=======
 		\item on a morphism, $f : X \rightarrow Y $ in $\mathcal{A}$ , $H_A(f): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A) $ as, for each $p \in \mathcal{A}(Y,A) $ as $p \mapsto p \circ f$
+>>>>>>> f68362a17b34f5bae3c21e7caad9c581299ed10f
 	\end{enumerate}
 \end{definition}
 
@@ -360,7 +366,11 @@ Hereon, only regarding locally small categories.
 	Functor $X: \mathcal{A} ^{op} \rightarrow Set $ is representable iff there is some object ,$A \in \mathcal{A} $ such that $ X \cong H_A $. And that choice of object and isomorphism is called a representation.
 \end{definition}
 
+<<<<<<< HEAD
+\begin{definition}[$H_f$ ] %{{{ H_f		Definition
+=======
 \begin{definition}[$H_f$ or $f \circ \_$ ] %{{{ H_f		Definition
+>>>>>>> f68362a17b34f5bae3c21e7caad9c581299ed10f
 	Any map, $f:X \rightarrow Y$ in $\mathcal{A}$ induces a natural transformation $H_f$ :
 	\begin{tikzcd}[row sep=large, column sep=huge]
 	\mathcal{A}^{op} \arrow[r,bend left=50, "H_X"{name=U, below}]
