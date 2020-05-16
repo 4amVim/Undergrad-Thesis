@@ -27,13 +27,13 @@ Here, $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes arrows $H_A \rightarrow X$ in $
 i.e. natural transformations, $\alpha :$
 \begin{tikzcd}[row sep=large, column sep=huge]
 	A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
-\arrow[r, bend right = 50, "X"{name=D, above}]
+	\arrow[r, bend right = 50, "X"{name=D, above}]
 & Set
 \arrow[Rightarrow, from=U , to=D, "\alpha"]
-	\end{tikzcd}
-	Each of these natural transformations is a collection of maps in $Set$, hence each of their
-	components is exactly a function. i.e.
-	$\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a function :} H_A(K) \to X(K)$\\
+\end{tikzcd}
+Each of these natural transformations is a collection of maps in $Set$, hence each of their
+components is exactly a function. i.e.
+$\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a function :} H_A(K) \to X(K)$\\
 
 $X(A)$ is precisely a set, because $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
 
@@ -60,11 +60,33 @@ Now, the question is wether the set of all natural transformations is a set
 	i.e. $\mathcal{C}:= [ \mathcal{A} ^{op}, Set] $  \\
 
 	Now, fix any object, $A \in \mathcal{A} $, and any object, $X \in \mathcal{C}$.   \\
-
 	Need to show that $\mathcal{C}(H_A,X) $ is naturally isomorphic to $X(A)$.\\
-	As $X$ is a preasheaf, $X(A)$ is a set.
+	Thus, need two mutually inverse natural transformations, such that :
+	\begin{tikzcd}[row sep=3em, column sep=3em]
+		\mathcal{C}(H_A,X) \arrow[r,"\psi"]
+		& \arrow[l, shift right,"\phi"]  X(A)
+	\end{tikzcd}\\
+	\textit{\textbf{Need to show that the RHS is a set, and then,} } As both the RHS and LHS above
+	are sets, the natural transformations between them are maps in $Set$ i.e. functions.
 
-	Thus, two mutually inverse natural transformations between the above functors are required:
+
+	Going to show the following in order,
+	\begin{enumerate}[label=\roman*]
+		\item Define $\phi \text{ and } \psi$
+			\item Show that $\phi \text{ and } \psi$ are mutually inverse
+		\item Show naturality of $\phi$ in $X$
+		\item Show naturality of $\phi$ in $A$
+		\item Show naturality of $\psi$ in $X$
+		\item Show naturality of $\phi$ in $A$
+	\end{enumerate}
+
+	\paragraph{Defining $\phi$ and $\psi$}
+	Define $\phi$ (on natural transformations) as : for $\alpha \in \mathcal{C}(H_A,X) ,
+	\phi(\alpha):= \alpha_A(1_A) $ \\
+
+	Define $\phi$ on an object, $ x \in X(A), $ by defining it's $K$-component for any $K \in \mathcal{A} $:
+	$({\psi(x)})_K$
+
 
 \end{proof}
 
