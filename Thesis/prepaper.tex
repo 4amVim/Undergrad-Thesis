@@ -31,16 +31,42 @@ i.e. natural transformations, $\alpha :$
 & Set
 \arrow[Rightarrow, from=U , to=D, "\alpha"]
 	\end{tikzcd}
-$X(A)$ is precisely a set. As $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
+	Each of these natural transformations is a collection of maps in $Set$, hence each of their
+	components is exactly a function. i.e.
+	$\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a function :} H_A(K) \to X(K)$\\
+
+$X(A)$ is precisely a set, because $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
 
 So, the idea is that our choice of $A \text{ and } X$ completely determines all possible maps
 (i.e. natural transformations) from $H_A \text{ to } X$. This answers out big question of "what are all the maps
 $H_A  \rightarrow X$ " or "how does $H_A$ see other presheaves on $\mathcal{A} $ ".\\
 
-\textit{More than the above must be true, as it's not just that the two are isomorphic, but they're \textbf{naturally} isomorphic.}
+\textit{The theorem says not just that the two are isomorphic, but that they're \textbf{naturally} isomorphic.}
 
-This more is supposed to be that both $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
-\textit{functorial} in \textit{both} $A \text{ and } X$
+This means that $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
+\textit{functorial} in \textit{both} $A \text{ and } X$\\
+
+Also,
+So, the aforementioned collection of natural transformations also must be a set:
+As $\mathcal{A} $ is locally small, for each choice of $K \in \mathcal{A} $ , $H_A(K)=Hom_{\mathcal{A}}(K,A)$ is a set.
+Thus, as $\alpha_K $ is a function,and hence a relation,\\ it's a subset of $Hom_{\mathcal{A} }(K,A)\times X(A)$, which is a set as it's a cartesian product of sets.\\
+Thus, $K$-component of every natural transformation is a set. i.e. $\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a set}$ \\
+
+Now, the question is wether the set of all natural transformations is a set
+
+\begin{proof}Let a locally small category,  $\mathcal{A} $ be given. \\
+
+	Denoting the category of all presheaves on $\mathcal{A} $ by $\mathcal{C}$,
+	i.e. $\mathcal{C}:= [ \mathcal{A} ^{op}, Set] $  \\
+
+	Now, fix any object, $A \in \mathcal{A} $, and any object, $X \in \mathcal{C}$.   \\
+
+	Need to show that $\mathcal{C}(H_A,X) $ is naturally isomorphic to $X(A)$.\\
+	As $X$ is a preasheaf, $X(A)$ is a set.
+
+	Thus, two mutually inverse natural transformations between the above functors are required:
+
+\end{proof}
 
 
 
