@@ -10,7 +10,6 @@
 \newtheorem{definition}{Definiton}[section]
 
 \begin{document}
-\section{}
 \begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
 	If $\mathcal{A} $ be a locally small category, then, \\
 	\[ [ \mathcal{A} ^{op},Set ](H_A,X) \cong X(A) \text{ naturally in } A \in \mathcal{A} \text{ and }
@@ -71,7 +70,7 @@ Now, the question is wether the set of all natural transformations is a set
 
 
 	Going to show the following in order,
-	\begin{enumerate}[label=\roman*]
+	\begin{enumerate}
 		\item Define $\phi \text{ and } \psi$
 			\item Show that $\phi \text{ and } \psi$ are mutually inverse
 		\item Show naturality of $\phi$ in $X$
@@ -80,13 +79,39 @@ Now, the question is wether the set of all natural transformations is a set
 		\item Show naturality of $\phi$ in $A$
 	\end{enumerate}
 
-	\paragraph{Defining $\phi$ and $\psi$}
-	Define $\phi$ (on natural transformations) as : for $\alpha \in \mathcal{C}(H_A,X) ,
+	\paragraph{1. Defining $\phi$ and $\psi$}
+	Define $\phi$ (on natural transformations) as the A-component (of that natural transformation)
+	at the identity of A. i.e. for $\alpha \in \mathcal{C}(H_A,X) ,
 	\phi(\alpha):= \alpha_A(1_A) $ \\
 
-	Define $\phi$ on an object, $ x \in X(A), $ by defining it's $K$-component for any $K \in \mathcal{A} $:
-	$({\psi(x)})_K$
+	Define $\psi$ on an object, $ x \in X(A), $ by defining it's $K$-component for any $K \in \mathcal{A} $:
+	\[({\psi(x)})_K : H_A(K) \to X(K)
+	\text{ as, for each } p\in Hom_{\mathcal{A} }(K,A), p \mapsto \Big(X(p)\Big)(x) \]
+	That is to say that the K-component maps any arrow $p:K \to A$ to the image of x under the map X(p).
 
+	\paragraph {2. Showing inverses} \textbf{Firstly},to show $\psi \circ \phi (\alpha) = \alpha $,
+	for any natural transformation $\alpha: H_A \to X$\\
+
+	\[ \psi \circ \phi (\alpha) = \psi \Big(\alpha_A(1_A) \Big) =  \]
+
+	Secondly, for every $x \in X(A)$, need $\psi \circ \phi (x) = x$
+
+	\paragraph{3. Naturality of $\phi$ in $X$}
+	Need to show that the following square commutes
+
+	i.e.
+	\paragraph{4. Naturality of $\phi$ in $A$}
+	Need to show that the following square commutes
+
+	i.e.
+	\paragraph{5. Naturality of $\psi$ in $X$}
+	Need to show that the following square commutes
+
+	i.e.
+	\paragraph{6. Naturality of $\psi$ in $A$}
+	Need to show that the following square commutes
+
+	i.e.
 
 \end{proof}
 
