@@ -62,7 +62,7 @@ Prove that $\Sigma x^n(1-x)$ converges pointwise on $[0,1]$ but not uniformly.
 While $\Sigma (-1)^nx^n(1-x) $ converges uniformly on $[0,1]$.
 \begin{proof}
 	As $x^n(1-x) = x^n - x^{n+1}$, the first sum telescopes:
-	\[\sum_{i=1}^k x^n(1-x) = (x - x^2) + (x^2 -x^3) +... + (x^k -x^{k+1}) = x- x^{k+1} \]
+	\[\sum_{i=1}^k x^i(1-x) = (x - x^2) + (x^2 -x^3) +... + (x^k -x^{k+1}) = x- x^{k+1} \]
 	So, for $x=1$, every partial sum is 0, and for $0\leq x <1$,
 	\[ \lim_{k \to \infty } \sum_{i=1}^k x^i(1-x) = \lim_{k \to \infty }(x - x^{k+1})=x\]
 	Thus, the series converges pointwise on $[0,1]$. Suppose it also converges uniformly to $f$ .
