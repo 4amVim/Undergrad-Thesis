@@ -16,8 +16,8 @@
 \begin{proof}
 	Fix an $\epsilon > 0$ so, by uniform continuity of $f$,
 	\[ \exists M: p,m \geq M \implies \forall x \in C, |f_p(x) - f_m(x)| < \frac{\epsilon}{3} \]
-	Fix $p,m \geq M$ \\
-	Now, fix a  $k \in \overline{C} \cap D$ thus, $\exists (x_n) \subseteq C$ such that $x_n \to k$ \\
+	Fix $p,m \geq M$.
+	Now, fix a  $k \in \overline{C} \cap D$ thus, $\exists (x_n) \subseteq C$ such that $x_n \to k$.
 	As each $f_i$ is continous ,
 	\[ \exists \delta(i) \text{ s.t. } |x-y|\leq \delta \implies |f_i(x)-f_i(y)|<\frac{\epsilon}{3} \]
 	So, there's $K$ such that
@@ -28,8 +28,7 @@
 					    & \geq |f_p(x_i)-f_m(x_i)+f_p(k)-f_m(k)| \\
 					    & \geq ||f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)||
 	\end{align*}
-	Now, as $|f_p(x_i)-f_m(x_i)|< \frac{\epsilon}{3}$ , $-|f_p(x_i)-f_m(x_i)|> \frac{-\epsilon}{3}$ \\
-	Thus,
+	Now, as $|f_p(x_i)-f_m(x_i)|< \frac{\epsilon}{3}$ , $-|f_p(x_i)-f_m(x_i)|> \frac{-\epsilon}{3}$,
 	\begin{align*}
 		2 \times \frac{\epsilon}{3} & \geq ||f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)|| \\
 					    & \geq |f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)|\\
