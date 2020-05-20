@@ -15,27 +15,48 @@
 \end{eqnarray*}
 \begin{proof}
 	Fix an $\epsilon > 0$ so, by uniform continuity of $f$,
-	\[ \exists M(\epsilon): p,m \geq M \implies \forall x \in C, |f_n(x) - f_m(x)| < \frac{\epsilon}{3} \]
-	Now, let $k \in \overline{C}$ so, $\exists (x_n) \subseteq C $ such that $x_n \rightarrow x$. \\
-	By continuity of each $f_i$,
-	\[ \exists \delta(i,\epsilon) \text{ s.t. } |x-y|\leq \delta \implies |f_i(x)-f_i(y)|<\frac{\epsilon}{3} \]
-	So, there's $K(p,m,\epsilon,(x_n))$ such that
+	\[ \exists M: p,m \geq M \implies \forall x \in C, |f_p(x) - f_m(x)| < \frac{\epsilon}{3} \]
+	Fix $p,m \geq M$ \\
+	Now, fix a  $k \in \overline{C} \cap D$ thus, $\exists (x_n) \subseteq C$ such that $x_n \to k$ \\
+	As each $f_i$ is continous ,
+	\[ \exists \delta(i) \text{ s.t. } |x-y|\leq \delta \implies |f_i(x)-f_i(y)|<\frac{\epsilon}{3} \]
+	So, there's $K$ such that
 	\[ i\geq K \implies |f_p(x_i)-f_p(k)|< \frac{\epsilon}{3} \text{ and } |f_m(x_i)-f_m(k)|< \frac{\epsilon}{3} \]
 	Thus, by triangle inequality,
 	\begin{align*}
-		2 \times \frac{\epsilon}{3} = \epsilon & > |f_p(x_i)-f_p(k)| + |f_m(x_i)-f_m(k)| \\
+		2 \times \frac{\epsilon}{3} & > |f_p(x_i)-f_p(k)| + |f_m(x_i)-f_m(k)| \\
 					    & \geq |f_p(x_i)-f_m(x_i)+f_p(k)-f_m(k)| \\
 					    & \geq ||f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)||
 	\end{align*}
-	Now, as $|f_p(x_i)-f_m(x_i)|< \frac{\epsilon}{3}$, \\
-	If $|f_m(k)-f_p(k)|< \frac{\epsilon}{3}$ then it's shown that $M$ works for any $k$. Else, \\
+	Now, as $|f_p(x_i)-f_m(x_i)|< \frac{\epsilon}{3}$ , $-|f_p(x_i)-f_m(x_i)|> \frac{-\epsilon}{3}$ \\
+	Thus,
 	\begin{align*}
-	|f_m(k)-f_p(k)| \geq \frac{\epsilon}{2} & \implies \frac{2\epsilon}{3} > |f_m(k)-f_p(k)|-\frac{\epsilon}{3} \\
-						& \implies \epsilon > |f_m(k)-f_p(k)|
-\end{align*}
+		2 \times \frac{\epsilon}{3} & \geq ||f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)|| \\
+					    & \geq |f_p(x_i)-f_m(x_i)|-|f_m(k)-f_p(k)|\\
+					    & \geq |f_p(x_i)-f_m(x_i)|- \frac{\epsilon}{3}
+	\end{align*}
+	Therefore, $|f_p(x_i)-f_m(x_i)| \leq \epsilon$
+\end{proof}
+There's a much better way of doing this though,
+\begin{proof}
+	Fix an $\epsilon > 0$ so, by uniform continuity of $f$,
+	\[ \exists M: p,m \geq M \implies \forall x \in C, |f_p(x) - f_m(x)| < \frac{\epsilon}{4} \]
+	Fix $p,m \geq M$ \\
+	Now, fix a  $k \in \overline{C} \cap D$. Going to show that $(f_n)$ uniformly converges at $k$.\\
+	As $f_p \text{ and } f_m$ are continous , in particular at $k$,
+	\[ \exists \delta_1 \text{ s.t. } |x-k|\leq \delta_1 \implies |f_p(x)-f_p(k)|<\frac{\epsilon}{4}\]
+	\[ \exists \delta_2 \text{ s.t. } |x-k|\leq \delta_2 \implies |f_m(x)-f_m(k)|<\frac{\epsilon}{4}\]
+	Take $\delta:=min\{\delta_1,\delta_2\}$ \\
+		Now, if $k \in C$, then by hypothesis,the given sequence uniformly converges at $k$.
+		Else, $k$ is a limit point of $C$.Thus,
+		\[ \exists c \in C \text{ such that } |c-k|< \delta \]
+		Fix this $c$ and consider the following inequality
+	\[|f_p(k)-f_m(k)| \leq |f_p(k)-f_p(c)|+ |f_p(c)-f_m(c)|+ |f_m(c)-f_m(k)|\]
+	Each of the right hand side term is $< \frac{\epsilon}{4} $
+	(1st,3rd term due to continuity, 2nd term due to uniform convergance on $C$), forcing the left side to be $<\epsilon$.
 \end{proof}
 
-	\pagebreak
+\pagebreak
 \paragraph{Question 3}
 \begin{eqnarray*}
 	A \text{ is closed and bounded }; \\
