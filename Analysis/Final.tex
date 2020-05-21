@@ -87,15 +87,43 @@ Prove that $f$ is a constant function.
 \end{proof}
 \newpage
 
+\section*{Question 3}
+$a_n > 0$ need to show that $ \text{ lim sup} \frac{a_{n+1}}{a_n} \geq \text{ lim sup}(a_n)^{1/n} $
+\begin{proof}
+	Case 1: \text{lim sup } $ \frac{a_{n+1}}{a_n}=\infty $\\
+	As \text{lim sup }$(a_n)^ \frac{1}{n} \leq \infty = \text{lim sup }\frac{a_{n+1}}{a_n}$,done\\
+
+	Case 2: \text{lim sup } $ \frac{a_{n+1}}{a_n}= -\infty $\\
+	\[ \text{lim sup }  \frac{a_{n+1}}{a_n}= -\infty \implies \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = -\infty\]
+	But, as all $a_n$ are positive, so is their raito, and hence it cant be unbounded below. \\
+
+	Case 3: \text{lim sup } $ \frac{a_{n+1}}{a_n}= a \in \mathbb{R} $\\
+	So, $ \forall \epsilon > 0,  \exists M \in \mathbb{N}: n > M \implies \frac{a_{n+1}}{a_n} < a+\epsilon$.\\
+	Fix an M. So, as $a \geq 0 \implies (a+\epsilon)>0 $,  for any $n>M$,
+	\[ a_n<(a+\epsilon) a_{n-1}<(a+\epsilon)^2 a_{n-2}<...<(a+\epsilon)^{n-M} a_M \]
+	Now, as $\frac{a_M}{a^M}$ is a constant, it's n-th root goes to 1 i.e.
+	\[   	\exists K \in \mathbb{N}: n \geq K \implies  (\frac{a_M}{a^M})^{ \frac{1}{n} } <1+\epsilon\]
+	Thus, by the previous inequality,
+	\[ (a_n)^{ \frac{1}{n} } < (a+\epsilon)^{1- \frac{M}{n} }(a_M) ^{ \frac{1}{n} }
+		<(a+ \epsilon) (\frac{a_M}{(a+\epsilon)^M})^{ \frac{1}{n} }
+	\]
+	\[\implies (a_n)^\frac{1}{n}<(a+ \epsilon) (\frac{a_M}{a^M})^{ \frac{1}{n} } < (a+\epsilon)(1+\epsilon)=a+(a+1)\epsilon + \epsilon^2 \]
+	Thus,
+	\[\text{lim sup }(a_n)^ \frac{1}{n} \leq a+(a+1) \epsilon + \epsilon^2<a+(a+1)(1+\epsilon)\epsilon, \]
+	but as this holds for every $\epsilon>0$,
+	\[ \text{lim sup }(a_n)^ \frac{1}{n} \leq a= \text{lim sup } \frac{a_{n+1}}{a_n}  \]
+\end{proof}
+\newpage
+
 
 \section*{Question 4}
 Determine whether $x(1+ \frac{1}{n} )$ converges uniformly on $\mathbb{R}$.
 \begin{proof}
-To show pointwise convergance,
-\[ \lim_{n \to \infty} f_n = \lim_{n \to \infty} \big( x + \frac{x}{n} \big) = x \]
-To show that it converges non uniformly,\\
-need an $\epsilon$ for which every $\delta$ fails for some $x \in \mathbb{R}$
-\[ \exists \epsilon : \forall \delta, \exists x \text{ such that }
+	To show pointwise convergance,
+	\[ \lim_{n \to \infty} f_n = \lim_{n \to \infty} \big( x + \frac{x}{n} \big) = x \]
+	To show that it converges non uniformly,\\
+	need an $\epsilon$ for which every $\delta$ fails for some $x \in \mathbb{R}$
+	\[ \exists \epsilon : \forall \delta, \exists x \text{ such that }
 	\Big( \exists n,m> \delta \text{ with } |f_n(x) - f_m(x)| \geq \epsilon \Big) \]
 	Take $\epsilon = 0.5$, and fix any $\delta>0$.
 
@@ -104,9 +132,9 @@ need an $\epsilon$ for which every $\delta$ fails for some $x \in \mathbb{R}$
 	So,
 	\begin{align*}
 		|f_n(x) - f_m(x)|&=|\Big(x(1+ \frac{1}{n} )-x(1+ \frac{1}{m}) \Big)|\\
-			 &=|x\Big((1+ \frac{1}{n} )-(1+ \frac{1}{m} )\Big)|\\
-			 &=|\frac{1}{(\frac{1}{n} - \frac{1}{m})}
-			 \big(\frac{1}{n} -\frac{1}{m} \big)|=1>0.5=\epsilon\\
+				 &=|x\Big((1+ \frac{1}{n} )-(1+ \frac{1}{m} )\Big)|\\
+				 &=|\frac{1}{(\frac{1}{n} - \frac{1}{m})}
+				 \big(\frac{1}{n} -\frac{1}{m} \big)|=1>0.5=\epsilon\\
 	\end{align*}
 \end{proof}
 \newpage
