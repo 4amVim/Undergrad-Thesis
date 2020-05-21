@@ -1,0 +1,118 @@
+\documentclass[20pt,a4paper]{extarticle} %big fontsize
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumitem,amsfonts,extarrows,xcolor}
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}[section]
+
+\begin{document}
+\paragraph{Final Exam}
+
+\section*{Question 1}
+Given that $c \in (a,b)$,with \\(a) $f \in R[a,c]$ and \\(b) $f \in R[b,c]$\\
+Need that $f \in R[a,b]$
+\begin{proof}
+	Need to show that,
+	\[ \forall \epsilon > 0, \exists P \in \mathbb{P}([a,b]) : U(P,f) - L(P,f) < \epsilon \]
+
+	Fix any $\epsilon>0$.\\
+	By (a), have that
+	\[ \exists P \in \mathbb{P}([a,c]) : U(P,f) - L(P,f) < \frac{\epsilon}{2} \]
+	By (b), have that
+	\[ \exists Q \in \mathbb{P}([c,b]) : U(Q,f) - L(Q,f) < \frac{\epsilon}{2}\]
+	Consider
+	\[ U(P,f)+U(Q,f)= \sum_{i=1}^{p}M_i \delta t_i + \sum_{i=1}^{q}M'_i \delta t'_i   \]
+	where $M_i$ and $t_i$ correspond to P, while where $M'_i$ and $t'_i$ correspond to Q.
+	\newpage
+	Taking $S:= P \cup Q$ so that $S \in \mathbb{P}([a,b]) $,\\
+	giving S=$\{a<t_1<t_2<...<c<t'_1<t'_2<...<b\}$
+
+	where $t_i \in P$ and $t'_i \in Q$, so that,\\
+	\begin{align*}
+		U(S,f)&= \sum_{i=1}^{p+q}M''_i \delta t_i=
+		\sum_{i=1}^{p}M_i \delta t_i + \sum_{i=p+1}^{q}M'_{i-p} \delta t'_{i-p} \\
+		      & =U(P,f)+U(Q,f)
+	\end{align*}
+	Repeating the same argument for lower sums,
+	\[ L(P,f)+L(Q,f)= \sum_{i=1}^{p}m_i \delta t_i + \sum_{i=1}^{q}m'_i \delta t'_i   \]
+	where $m_i$ and $t_i$ correspond to P, while where $m'_i$ and $t'_i$ correspond to Q.
+	Taking $S:= P \cup Q$ so that $S \in \mathbb{P}([a,b]) $,\\
+	giving S=$\{a<t_1<t_2<...<c<t'_1<t'_2<...<b\}$
+
+	where $t_i \in P$ and $t'_i \in Q$, so that,\\
+	\begin{align*}
+		L(S,f)&= \sum_{i=1}^{p+q}m''_i \delta t_i=
+		\sum_{i=1}^{p}m_i \delta t_i + \sum_{i=p+1}^{q}m'_{i-p} \delta t'_{i-p} \\
+		      & =L(P,f)+L(Q,f)
+	\end{align*}
+	Hence,
+	\begin{align*}
+		U(S,f) - L(S,f) &= (U(P,f)+U(Q,f)) - (L(P,f)+L(Q,f))\\
+				&= U(P,f)-L(P,f) + U(Q,f)-L(Q,f)\\
+				&< \frac{\epsilon}{2}+\frac{\epsilon}{2}= \epsilon
+	\end{align*}
+\end{proof}
+\newpage
+
+\section*{Question 2}
+Suppose $P \in \mathbb{P}([a,b])$ such that $U(P,f)=L(P,f)$.\\
+Prove that $f$ is a constant function.
+\begin{proof}
+	As $U(P,f)=L(P,f)$,
+	\begin{eqnarray*}
+		\sum_{i=1}^{p}M_i \delta t_i = \sum_{i=1}^{p}m_i \delta t_i
+		\implies \sum_{i=1}^{p}(M_i-m_i) \delta t_i=0
+	\end{eqnarray*}
+	But, as each $\delta_i>0$, it must be that each $M_i-m_i=0$.\\
+	Hence, $f$ is constant in every $\Delta t_i= [t_{i-1},t_i]$.\\
+	So, suppose(if possible) f is not constant over [a,b]  ,\\
+	Then, there must be some $\alpha \in \mathbb{N}$ and $\Delta t_k,\Delta t_{k+\alpha}$
+	such that $f$ takes distinct values in them.\\
+	Then, as $f$ is constant on them, $f(t_k)\neq f(t_{k+\alpha})$\\
+	But, $f$ is constant on $\Delta t_k=[t_{k-1},t_k] \text{ and } \Delta t_{k+1}=[t_k,t_{k+1}]$
+
+	and as, $t_k$, is in both, $f$ attains same value on both.\\
+
+	Now, $\Delta t_{k+1} \text{ and } \Delta t_{k+2}$ share $t_{k+1}$ thus fixing
+	the value of f to be the same over both of them. And, this is the same
+	value as that on $\Delta t_k$, i.e. $f(t_k)$.
+
+	Repeating the above argument $\alpha-2$ more times, the value on  $\Delta t_{k+\alpha}$
+	also becomes $f(t_k)$, i.e. $f(t_k)=f(t_{k+\alpha})$\\
+	Hence, our supposition was incorrect, and $f$ is constant over [a,b].
+\end{proof}
+\newpage
+
+
+\section*{Question 4}
+Determine whether $x(1+ \frac{1}{n} )$ converges uniformly on $\mathbb{R}$.
+\begin{proof}
+To show pointwise convergance,
+\[ \lim_{n \to \infty} f_n = \lim_{n \to \infty} \big( x + \frac{x}{n} \big) = x \]
+To show that it converges non uniformly,\\
+need an $\epsilon$ for which every $\delta$ fails for some $x \in \mathbb{R}$
+\[ \exists \epsilon : \forall \delta, \exists x \text{ such that }
+	\Big( \exists n,m> \delta \text{ with } |f_n(x) - f_m(x)| \geq \epsilon \Big) \]
+	Take $\epsilon = 0.5$, and fix any $\delta>0$.
+
+	Now, take $n=\delta+1$ and $m=\delta+2$.
+	Take $x= \frac{1}{(\frac{1}{n} - \frac{1}{m})}$\\
+	So,
+	\begin{align*}
+		|f_n(x) - f_m(x)|&=|\Big(x(1+ \frac{1}{n} )-x(1+ \frac{1}{m}) \Big)|\\
+			 &=|x\Big((1+ \frac{1}{n} )-(1+ \frac{1}{m} )\Big)|\\
+			 &=|\frac{1}{(\frac{1}{n} - \frac{1}{m})}
+			 \big(\frac{1}{n} -\frac{1}{m} \big)|=1>0.5=\epsilon\\
+	\end{align*}
+\end{proof}
+\newpage
+
+
+
+
+\end{document}
+
