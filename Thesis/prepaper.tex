@@ -3,11 +3,14 @@
 \usepackage{amsmath,amsthm,amssymb,tikz-cd}
 \usepackage{enumitem,amsfonts,extarrows,xcolor}
 
-\theoremstyle{definition}
+\theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}[section]
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
@@ -134,6 +137,25 @@ A category, $\mathcal{A}$  is said to be embedded in another $\mathcal{B}$
 
 \newpage
 \section{Scratchpad}%{{{ Paper		Section
+
+\begin{lemma}{\textbf{Composition of Pro-relations is a Prorelation}} %{{{ Composition of Pro-relations is a Prorelation		Theorem
+	\\
+	If P is a prorelation X to Y, and Q is a prorelation Y to Z, then their composition,
+	$Q \circ P$ is a prorelation X to Z.
+	Where $Q \circ P$ is a set of relations defined as
+	\[Q \circ P := \{ (x,z) \in X \times Z |
+	\exists p \in P , \exists q \in Q \text{ and } \exists y \in Y
+	\text{ such that } (x,y) \in P \text{ and } (y,z) \in Q \} \]
+\end{lemma}
+\begin{proof}
+	Need to show that
+	\begin{enumerate}[label=\roman*]
+		\item  there is a preorder on $Q \circ P$, $\subseteq$
+		\item $Q \circ P$ is a down-directed set (w.r.t $\subseteq$)
+		\item $Q \circ P$ is an up-set (w.r.t $\subseteq$)
+	\end{enumerate}
+
+\end{proof}
 
 
 %}}}
