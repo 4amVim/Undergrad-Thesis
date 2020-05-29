@@ -14,21 +14,31 @@
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
-
-
+\begin{lemma}[$H_A$ or $\mathcal{A} (\_,A)$ ] %{{{ H_A	Definition
+	For any category $\mathcal{A}$, fixing an object, $A \in \mathcal{A} $,\\
+	there's a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
+	\begin{enumerate}[label=\roman*]
+		\item For object $B \in \mathcal{A} $ , $F(B):=Hom(B,A)$
+		\item For any morphism in $\mathcal{A} $ , $g : X \rightarrow Y $,\\
+			 \[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
+			 \text{ , as, } \forall p \in \mathcal{A}(Y,A) \text{ , }
+	 p \mapsto p \circ g \text{ i.e. } \Big( H_A(g) \Big) (p) := p \circ g \]
+	\end{enumerate}
+\end{lemma}
 \begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
-	If $\mathcal{A} $ be a locally small category, then, \\
-	\[ [ \mathcal{A} ^{op},Set ](H_A,X) \cong X(A) \text{ naturally in } A \in \mathcal{A} \text{ and }
-	X \in [ \mathcal{A}^{op},Set]\]
+	If $\mathcal{A} $ is a locally small category, for any object $A \in \mathcal{A} $
+	and $X \in [ \mathcal{A}^{op},Set]$,\\ there's exists a natural isomorphism:
+	\[ [ \mathcal{A} ^{op},Set ](H_A,X) \cong X(A) \text{ naturally in } A \in \mathcal{A} \]
 \end{theorem}
 \textbf{Explaination:} \\
-First of all, we fix any category, $\mathcal{A} $ . Now we choose two things (independent of each other):
+First , fix any category, $\mathcal{A} $ . Now ,choose two things (independent of each other):
 \begin{enumerate}[label=\roman*]
 	\item an object, $A$ from the category $ \mathcal{A}= \mathcal{A} ^{op} $
-	\item an object, $X$ of the category $[ \mathcal{A}^{op},Set] $
-		which is precisely a functor $X: A^{op} \rightarrow Set$
+	\item an object, $X \in [ \mathcal{A}^{op},Set] $, the presheaf category \\
+		i.e. a functor $X: A^{op} \rightarrow Set$
 \end{enumerate}
-Here, $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes arrows $H_A \rightarrow X$ in $[ \mathcal{A}^{op},Set] $
+Here, $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes morphisms
+$H_A \rightarrow X$ in $[ \mathcal{A}^{op},Set] $,
 i.e. natural transformations, $\alpha :$
 \begin{tikzcd}[row sep=large, column sep=huge]
 	A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
@@ -36,128 +46,68 @@ i.e. natural transformations, $\alpha :$
 & Set
 \arrow[Rightarrow, from=U , to=D, "\alpha"]
 \end{tikzcd}
-Each of these natural transformations is a collection of maps in $Set$, hence each of their
-components is exactly a function. i.e.
+Each of these natural transformations is a collection of, morphisms in $Set$,
+hence each of their components is exactly a function. i.e.
 $\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a function :} H_A(K) \to X(K)$\\
 
 $X(A)$ is precisely a set, because $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
 
-So, the idea is that our choice of $A \text{ and } X$ completely determines all possible maps
-(i.e. natural transformations) from $H_A \text{ to } X$. This answers out big question of "what are all the maps
-$H_A  \rightarrow X$ " or "how does $H_A$ see other presheaves on $\mathcal{A} $ ".\\
+The key idea is that the choice of $A$ and $X$ completely determines all possible maps
+(i.e. natural transformations) from $H_A \text{ to } X$.
 
-\textit{The theorem says not just that the two are isomorphic, but that they're \textbf{naturally} isomorphic.}
+Moreover, this isomorphism is \textit{natural} in A and X. \\
+Meaning that $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
+\textit{functorial} in \textit{both} $A \text{ and } X$
 
-This means that $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
-\textit{functorial} in \textit{both} $A \text{ and } X$\\
+\paragraph{Notation:} \begin{itemize}
+\item Denoting the category of all presheaves on $\mathcal{A} $ by $\mathcal{C}$,
+	i.e. $\mathcal{C}:=[ \mathcal{A} ^{op}, Set] $
+\item using $\string ^ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ^} b$
+\item using $\string ~ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ~} b$
+\end{itemize}
 
-Also,
-So, the aforementioned collection of natural transformations also must be a set:
-As $\mathcal{A} $ is locally small, for each choice of $K \in \mathcal{A} $ , $H_A(K)=Hom_{\mathcal{A}}(K,A)$ is a set.
-Thus, as $\alpha_K $ is a function,and hence a relation,\\ it's a subset of $Hom_{\mathcal{A} }(K,A)\times X(A)$, which is a set as it's a cartesian product of sets.\\
-Thus, $K$-component of every natural transformation is a set. i.e. $\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \alpha_K \text{ is a set}$ \\
-
-Now, the question is wether the set of all natural transformations is a set
+To prove the theorem, first,
+going to show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A)$. And then that
+this isomorphism is natural.
 
 \begin{proof}Let a locally small category,  $\mathcal{A} $ be given. \\
-
-	Denoting the category of all presheaves on $\mathcal{A} $ by $\mathcal{C}$,
-	i.e. $\mathcal{C}:= [ \mathcal{A} ^{op}, Set] $  \\
-
-	Now, fix any object, $A \in \mathcal{A} $, and any object, $X \in \mathcal{C}$.   \\
-	Need to show that $\mathcal{C}(H_A,X) $ is naturally isomorphic to $X(A)$.\\
-	Thus, need two mutually inverse natural transformations, such that :
-	\begin{tikzcd}[row sep=3em, column sep=3em]
-		\mathcal{C}(H_A,X) \arrow[r,"\psi"]
-		& \arrow[l, shift right,"\phi"]  X(A)
-	\end{tikzcd}\\
-	\textit{\textbf{Need to show that the RHS is a set, and then,} } As both the RHS and LHS above
-	are sets, the natural transformations between them are maps in $Set$ i.e. functions.
-
-
-	Going to show the following in order,
-	\begin{enumerate}
-		\item Define $\phi \text{ and } \psi$
-			\item Show that $\phi \text{ and } \psi$ are mutually inverse
-		\item Show naturality of $\phi$ in $X$
-		\item Show naturality of $\phi$ in $A$
-		\item Show naturality of $\psi$ in $X$
-		\item Show naturality of $\phi$ in $A$
-	\end{enumerate}
+	Let $A \in \mathcal{A} $ and $X \in [ \mathcal{A} ^{op}, Set]$\\
 
 	\paragraph{1. Defining $\phi$ and $\psi$}
 	Define $\phi$ (on natural transformations) as the A-component (of that natural transformation)
 	at the identity of A. i.e. for $\alpha \in \mathcal{C}(H_A,X) ,
 	\phi(\alpha):= \alpha_A(1_A) $ \\
 
-	Define $\psi$ on an object, $ x \in X(A), $ by defining it's $K$-component for any $K \in \mathcal{A} $:
+	Define $\psi$ on an object, $ x \in X(A), $
+	by defining it's $K$-component for any $K \in \mathcal{A} $:
 	\[({\psi(x)})_K : H_A(K) \to X(K)
 	\text{ as, for each } p\in Hom_{\mathcal{A} }(K,A), p \mapsto \Big(X(p)\Big)(x) \]
-	That is to say that the K-component maps any arrow $p:K \to A$ to the image of x under the map X(p).
-
-	\paragraph {2. Showing inverses} \textbf{Firstly},to show $\psi \circ \phi (\alpha) = \alpha $,
-	for any natural transformation $\alpha: H_A \to X$\\
-
-	\[ \psi \circ \phi (\alpha) = \psi \Big(\alpha_A(1_A) \Big) =  \]
-
-	Secondly, for every $x \in X(A)$, need $\psi \circ \phi (x) = x$
-
-	\paragraph{3. Naturality of $\phi$ in $X$}
-	Need to show that the following square commutes
-
-	i.e.
-	\paragraph{4. Naturality of $\phi$ in $A$}
-	Need to show that the following square commutes
-
-	i.e.
-	\paragraph{5. Naturality of $\psi$ in $X$}
-	Need to show that the following square commutes
-
-	i.e.
-	\paragraph{6. Naturality of $\psi$ in $A$}
-	Need to show that the following square commutes
-
-	i.e.
+	That is to say that the K-component maps any arrow $p:K \to A$
+	to the image of x under the map X(p).
 
 \end{proof}
 %}}}
+
+\section{Cayley's Theorem}%
+
 \section{Embedding of a category in Presheaf category}%{{{ Embedding		Section
 
 \begin{definition}[Embedding of a category] %{{{ Embedding of a category		Definition
-A category, $\mathcal{A}$  is said to be embedded in another $\mathcal{B}$
+A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
+functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
 \end{definition} %}}}
 
-%}}}
-
-\newpage
-\section{THE PAPER}%{{{ Paper		Section
-
-%}}}
-
-
-\newpage
-\section{Scratchpad}%{{{ Paper		Section
-
-\begin{lemma}{\textbf{Composition of Pro-relations is a Prorelation}} %{{{ Composition of Pro-relations is a Prorelation		Theorem
-	\\
-	If P is a prorelation X to Y, and Q is a prorelation Y to Z, then their composition,
-	$Q \circ P$ is a prorelation X to Z.
-	Where $Q \circ P$ is a set of relations defined as
-	\[Q \circ P := \{ (x,z) \in X \times Z |
-	\exists p \in P , \exists q \in Q \text{ and } \exists y \in Y
-	\text{ such that } (x,y) \in P \text{ and } (y,z) \in Q \} \]
-\end{lemma}
 \begin{proof}
-	Need to show that
-	\begin{enumerate}[label=\roman*]
-		\item  there is a preorder on $Q \circ P$, $\subseteq$
-		\item $Q \circ P$ is a down-directed set (w.r.t $\subseteq$)
-		\item $Q \circ P$ is an up-set (w.r.t $\subseteq$)
-	\end{enumerate}
+	Prove that $H_A$ is indeed a functor
 
 \end{proof}
 
 
-%}}}
+
+
+\section{Quasi-Paper}%
+\label{sec:quasi_paper}
+
+
 
 \end{document}
