@@ -7,19 +7,30 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{lemma}{Lemma}[definition]
 \newtheorem{prop}{Proposition}[definition]
 \newtheorem{proop}{Proposition}[section]
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
-\newcommand\MySymb[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
+\newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
+
+\makeatletter
+\newcommand{\carrow}{}% just in case
+\DeclareRobustCommand{\carrow}{%
+  \mathrel{\vphantom{\rightarrow}\mathpalette\circle@arrow\relax}%
+}
+\newcommand{\circle@arrow}[2]{%
+  \m@th
+  \ooalign{%
+    \hidewidth$#1\circ\mkern1mu$\hidewidth\cr
+    $#1\longrightarrow$\cr}%
+}
 
 \begin{document}
 \section{Definitions}%
 \label{sec:definitions}
 
 \begin{definition}[Prorelation] %{{{ Prorelation		Definition
-
 A pre-ordered set of relations $X \to Y$, which is down-directed and an upper set. i.e
 A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
 	\begin{enumerate}[label=(\roman*)]
@@ -29,7 +40,7 @@ A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
 			$t\subseteq r \text{ and } t \subseteq s$
 		\item (Up-set) for any relation $u:X\to Y$, if $\exists p \in P \text{ such that } p\leq u $
 			then $u \in P$
-\end{enumerate} \end{definition}
+\end{enumerate} \end{definition} %}}}
 \begin{definition}[Composition of prorelations] %{{{ Composition of prorelations		Definition
 	Prorelations can be composed by taking all compositions of their elements as relations:
 	for prorelations $P:X\to Y \text{ and } Q:Y\to Z$,
@@ -53,7 +64,7 @@ And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
 	if, $\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f $.
 	meaning that $f.A \leq B.f$ or
 	\begin{tikzcd}
-		X \MySymb{dr} \arrow[swap]{d}{A} \arrow{r}{f}
+		X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
 		& Y \arrow{d}{B}\\
 	X \arrow[swap]{r}{f}
 		& Y
@@ -61,28 +72,28 @@ And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
 
 \end{definition}
 \begin{definition}[Promodule] %{{{ Promodule		Definition
-	A prorelation, $\phi:X \to Y$ is called a promodule $\phi: (X,A) \to (Y,B)$  if it obeys:
-	$ \phi.A \leq \phi \text{ and } B. \phi \leq \phi $
+	A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it obeys:
+	$ \phi.A \leq \phi \text{ and } B. \phi \leq \phi $ where . denotes composition as prorelations.
 \end{definition}
-
-\[ \textbf{ Hereon, work in progress }  \]
-
-\begin{definition}[Composition of Promodules] %{{{ Composition of Promodules		Definition
-
-\end{definition}
-
 \begin{definition}[Comparison of Promodules] %{{{ Comparison of Promodules		Definition
+	Promodules with same domain and co-domain are compared as prorelations, for
+	$\phi,\psi:(X,A)\carrow (Y,B)$, $\phi \sqsubseteq \psi$ , only if $\phi \leq \psi$.
+\end{definition}
+\begin{definition}[Composition of Promodules] %{{{ Composition of Promodules		Definition
+	Promodules are composed as prorelations.\\
+	For promodules $\phi: (X,A) \carrow (Y,B)$ and $\psi:(Y,B)\carrow(Z,C)$,
+	$\psi \phi := \psi.\phi = \{q \circ p :p\in \phi \text{ and } q \in \psi \}$
+\end{definition}
+\begin{definition}[Opposite relation] %{{{ Opposite relation		Definition
+For relation $r:X \to Y$, $r^o$ is defined to be a relation $r^o:Y \to X$ as
+\[ \forall (x,y)\in X \times Y, (x,y)\in r \iff (y,x) \in r^o \]
+\end{definition}
+\begin{definition}[$(-)_*$] %{{{ (-)_*		Definition
 
 \end{definition}
-
-\begin{definition}[ $(-)_*: \text{QUnif} \rightarrow \text{ProMod} $] %{{{ Functor *	Definition
-
-\end{definition}
-
-\begin{definition}[$(-)^*: \text{QUnif}^{op} \rightarrow \text{ProMod} $] %{{{ Functor *op	Definition
+\begin{definition}[$(-)^*$] %{{{ (-)^*		Definition
 
 \end{definition}
-
 \begin{definition}[Fully Faithful] %{{{ Fully Faithful		Definition
 
 \end{definition}
@@ -90,18 +101,40 @@ And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
 \begin{definition}[Fully Dense] %{{{ Fully Faithful		Definition
 
 \end{definition}
-
-%Mention about topology so that below definition makes more sense ??%
-
 \begin{definition}[Topologically Dense] %{{{ Topologically Dense		Definition
 
 \end{definition}
-
 \section{Propositions}
+\begin{definition}[QUnif] %{{{ QUnif		Definition
+QUnif is defined to be the category having quasi-uniform spaces as objects, and uniformly continous
+maps between them as morphisms.
+\end{definition}
+\begin{lemma} QUnif does define a category, as
+	\begin{enumerate}[label=\roman*]
+		\item Composition
+		\item Identity
+	\end{enumerate}
+\end{lemma}
+
+\begin{definition}[ProMod] %{{{ ProMod		Definition
+
+\end{definition}
+
+\begin{lemma} QUnif does define a category, as
+	\begin{enumerate}[label=\roman*]
+		\item Composition
+		\item Identity
+	\end{enumerate}
+\end{lemma}
 
 \begin{proop}[Promodule Category]
 
 \end{proop}
+
+
+%Mention about topology so that below definition makes more sense ??%
+
+
 \begin{proop}[$(-)_*$ is a Functor ]
 
 \end{proop}
@@ -125,5 +158,6 @@ And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
 
 
 
-
+\newpage
+asd
 \end{document}
