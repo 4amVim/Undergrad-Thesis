@@ -1,20 +1,35 @@
-\documentclass[18pt,a4paper]{extarticle}
+\documentclass[18pt,a4paper]{article}
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,tikz-cd}
 \usepackage{enumitem,amsfonts,extarrows,xcolor}
 
-\theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
+\newtheorem{lemma}{Lemma}[definition]
+\newtheorem{prop}{Proposition}[definition]
+\newtheorem{proop}{Proposition}[section]
+\newtheorem{lmma}{Lemma}[definition]
 
-\theoremstyle{lemma}
-\newtheorem{lemma}{Lemma}[section]
+\tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
+\newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
+
+\makeatletter
+\newcommand{\carrow}{}% just in case
+\DeclareRobustCommand{\carrow}{%
+  \mathrel{\vphantom{\rightarrow}\mathpalette\circle@arrow\relax}%
+}
+\newcommand{\circle@arrow}[2]{%
+  \m@th
+  \ooalign{%
+    \hidewidth$#1\circ\mkern1mu$\hidewidth\cr
+    $#1\longrightarrow$\cr}%
+}
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
-\begin{lemma}[$H_A$ or $\mathcal{A} (\_,A)$ ] %{{{ H_A	Definition
+\begin{lmma}[$H_A$ or $\mathcal{A} (\_,A)$ ] %{{{ H_A	Definition
 	For any category $\mathcal{A}$, fixing an object, $A \in \mathcal{A} $,\\
 	there's a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
 	\begin{enumerate}[label=\roman*]
@@ -24,7 +39,7 @@
 			 \text{ , as, } \forall p \in \mathcal{A}(Y,A) \text{ , }
 	 p \mapsto p \circ g \text{ i.e. } \Big( H_A(g) \Big) (p) := p \circ g \]
 	\end{enumerate}
-\end{lemma}
+\end{lmma}
 \begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
 	If $\mathcal{A} $ is a locally small category, for any object $A \in \mathcal{A} $
 	and $X \in [ \mathcal{A}^{op},Set]$,\\ there's exists a natural isomorphism:
@@ -53,9 +68,9 @@ $\forall \alpha \in [ \mathcal{A}^{op},Set](H_A,X), \forall K \in \mathcal{A}, \
 $X(A)$ is precisely a set, because $X(A)$ is the image of (our chosen object,) $A$, under (our chosen functor,) X. \\
 
 The key idea is that the choice of $A$ and $X$ completely determines all possible maps
-(i.e. natural transformations) from $H_A \text{ to } X$.
+(i.e. natural transformations) from functor $H_A \text{ to functor} X$.
 
-Moreover, this isomorphism is \textit{natural} in A and X. \\
+Moreover, that this isomorphism is \textit{natural} in A and X. \\
 Meaning that $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
 \textit{functorial} in \textit{both} $A \text{ and } X$
 
@@ -91,6 +106,15 @@ this isomorphism is natural.
 %}}}
 
 \section{Cayley's Theorem}%
+\begin{definition}[Symmetric group on a set] %{{{ Symmetric group on a set	Definition
+
+\end{definition}
+
+
+
+\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
+Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
+\end{theorem}
 
 \section{Embedding of a category in Presheaf category}%{{{ Embedding		Section
 
