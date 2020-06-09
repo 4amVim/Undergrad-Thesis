@@ -3,31 +3,123 @@
 \usepackage{amsmath,amsthm,amssymb,tikz-cd}
 \usepackage{enumitem,amsfonts,extarrows,xcolor}
 
-\theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
-
-\theoremstyle{lemma}
 \newtheorem{lemma}{Lemma}[section]
+\newtheorem{prop}{Proposition}[definition]
+\newtheorem{proop}{Proposition}[section]
+
+\tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
+\newcommand\MySymb[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
 
 \begin{document}
 \section{Definitions}%
 \label{sec:definitions}
-\begin{definition}[Prorelation] %{{{ Prorelation		Definition
-A pre-ordered set of relations $X \to Y$, which is down-directed and an upper set.
-\end{definition}
-\begin{definition}[Composition of prorelations] %{{{ Composition of prorelations		Definition
 
+\begin{definition}[Prorelation] %{{{ Prorelation		Definition
+
+A pre-ordered set of relations $X \to Y$, which is down-directed and an upper set. i.e
+A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
+	\begin{enumerate}[label=(\roman*)]
+		\item A pre-order defined to be containment as relations, $r \subseteq s$
+			only if $\forall (x,y) \in X \times Y$, $(x,y) \in r \implies (x,y)\in s$
+		\item (Down-directed), $\forall r,s \in P, \exists t \in P $ such that
+			$t\subseteq r \text{ and } t \subseteq s$
+		\item (Up-set) for any relation $u:X\to Y$, if $\exists p \in P \text{ such that } p\leq u $
+			then $u \in P$
+\end{enumerate} \end{definition}
+\begin{definition}[Composition of prorelations] %{{{ Composition of prorelations		Definition
+	Prorelations can be composed by taking all compositions of their elements as relations:
+	for prorelations $P:X\to Y \text{ and } Q:Y\to Z$,
+	\[ Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
+\end{definition}
+\begin{definition}[Comparison of Prorelations] %{{{ Comparison of Prorelations		Definition
+Two prorelations with same domain, co-domain are comparable as
+\[ \text{ for }  P,Q:X \to Y \text{ , } P \leq Q \text{ if } \forall q \in Q, \exists p \in P
+\text{ such that } p \subseteq q    \]
 \end{definition}
 \begin{definition}[Quasi-uniformity] %{{{ Quasi-uniformity		Definition
+A prorelation on a set X, $P:X \to X$ is a quasi-uniformity if it follows :
+\begin{enumerate}[label=\roman*]
+	\item $\forall p \in P $ , for any $x \in X$, $(x,x) \in p$ i.e. $xpx$
+	\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
+\end{enumerate}
+And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
+\end{definition}
+\begin{definition}[Uniformly Continuous function ] %{{{ Uniformly Continuous function 		Definition
+	A function, $f:X \to Y$ is called a uniformly continuous function, $f:(X,A) \to (Y,B)$
+	if, $\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f $.
+	meaning that $f.A \leq B.f$ or
+	\begin{tikzcd}
+		X \MySymb{dr} \arrow[swap]{d}{A} \arrow{r}{f}
+		& Y \arrow{d}{B}\\
+	X \arrow[swap]{r}{f}
+		& Y
+	\end{tikzcd}.
+
+\end{definition}
+\begin{definition}[Promodule] %{{{ Promodule		Definition
+	A prorelation, $\phi:X \to Y$ is called a promodule $\phi: (X,A) \to (Y,B)$  if it obeys:
+	$ \phi.A \leq \phi \text{ and } B. \phi \leq \phi $
+\end{definition}
+
+\[ \textbf{ Hereon, work in progress }  \]
+
+\begin{definition}[Composition of Promodules] %{{{ Composition of Promodules		Definition
 
 \end{definition}
 
+\begin{definition}[Comparison of Promodules] %{{{ Comparison of Promodules		Definition
 
+\end{definition}
 
-\section{Proposition}
+\begin{definition}[ $(-)_*: \text{QUnif} \rightarrow \text{ProMod} $] %{{{ Functor *	Definition
+
+\end{definition}
+
+\begin{definition}[$(-)^*: \text{QUnif}^{op} \rightarrow \text{ProMod} $] %{{{ Functor *op	Definition
+
+\end{definition}
+
+\begin{definition}[Fully Faithful] %{{{ Fully Faithful		Definition
+
+\end{definition}
+
+\begin{definition}[Fully Dense] %{{{ Fully Faithful		Definition
+
+\end{definition}
+
+%Mention about topology so that below definition makes more sense ??%
+
+\begin{definition}[Topologically Dense] %{{{ Topologically Dense		Definition
+
+\end{definition}
+
+\section{Propositions}
+
+\begin{proop}[Promodule Category]
+
+\end{proop}
+\begin{proop}[$(-)_*$ is a Functor ]
+
+\end{proop}
+
+\begin{proop}[$(-)^*$ is a Functor ]
+
+\end{proop}
+
+%Talk about adjointness ??
+
+\begin{proop}[Proposition 1]
+	Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
+	\begin{enumerate}[label=(\alph*)]
+		\item f is fully faithful $\iff A=f^o.B.f$
+		\item f is fully dense $\iff \forall b\in B, \exists b' \in B \text{ such that }  $
+	\end{enumerate}
+\end{proop}
+
 
 
 
