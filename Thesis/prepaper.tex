@@ -18,13 +18,13 @@
 \makeatletter
 \newcommand{\carrow}{}% just in case
 \DeclareRobustCommand{\carrow}{%
-  \mathrel{\vphantom{\rightarrow}\mathpalette\circle@arrow\relax}%
+	\mathrel{\vphantom{\rightarrow}\mathpalette\circle@arrow\relax}%
 }
 \newcommand{\circle@arrow}[2]{%
-  \m@th
-  \ooalign{%
-    \hidewidth$#1\circ\mkern1mu$\hidewidth\cr
-    $#1\longrightarrow$\cr}%
+	\m@th
+	\ooalign{%
+		\hidewidth$#1\circ\mkern1mu$\hidewidth\cr
+	$#1\longrightarrow$\cr}%
 }
 
 \begin{document}
@@ -35,9 +35,9 @@
 	\begin{enumerate}[label=\roman*]
 		\item For object $B \in \mathcal{A} $ , $F(B):=Hom(B,A)$
 		\item For any morphism in $\mathcal{A} $ , $g : X \rightarrow Y $,\\
-			 \[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
-			 \text{ , as, } \forall p \in \mathcal{A}(Y,A) \text{ , }
-	 p \mapsto p \circ g \text{ i.e. } \Big( H_A(g) \Big) (p) := p \circ g \]
+			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
+				\text{ , as, } \forall p \in \mathcal{A}(Y,A) \text{ , }
+			p \mapsto p \circ g \text{ i.e. } \Big( H_A(g) \Big) (p) := p \circ g \]
 	\end{enumerate}
 \end{lmma}
 \begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
@@ -75,10 +75,10 @@ Meaning that $[ \mathcal{A}^{op},Set](H_A,X) \text{ and } X(A)$ are
 \textit{functorial} in \textit{both} $A \text{ and } X$
 
 \paragraph{Notation:} \begin{itemize}
-\item Denoting the category of all presheaves on $\mathcal{A} $ by $\mathcal{C}$,
-	i.e. $\mathcal{C}:=[ \mathcal{A} ^{op}, Set] $
-\item using $\string ^ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ^} b$
-\item using $\string ~ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ~} b$
+	\item Denoting the category of presheaves on $\mathcal{A} $ by $\mathcal{C}$,
+		i.e. $\mathcal{C}:=[ \mathcal{A} ^{op}, Set] $
+	\item using $\string ^ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ^} b$
+	\item using $\string ~ $ as a map i.e. $\hat a = b$ stands for $a \xrightarrow{\string ~} b$
 \end{itemize}
 
 To prove the theorem, first,
@@ -86,21 +86,61 @@ going to show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A)$. A
 this isomorphism is natural.
 
 \begin{proof}Let a locally small category,  $\mathcal{A} $ be given. \\
-	Let $A \in \mathcal{A} $ and $X \in [ \mathcal{A} ^{op}, Set]$\\
+	Now, fix any object $A \in \mathcal{A} $ and a presheaf on $\mathcal{A}$,
+	$X \in \mathcal{C}$
 
-	\paragraph{Showing isomorphism,}
+	\paragraph{Showing isomorphism between $[\mathcal{A}^{op},Set](H_A,X)$ and $X(A)$}\mbox{} \\
 
+	Define $\string ^ :\mathcal{C}(H_A,X) \to X(A) $
+	as the input's A-component, evaluated at the identity of A(in $\mathcal{A}$). i.e.\\
+	\[  \text{ for natural transformation } \alpha:H_A \to X\text{ , define  }
+	\hat{\alpha}:= \alpha_A(1_A) \text{, an element of X(A) } \]
 
-	Define $\phi$ (on natural transformations) as the A-component (of that natural transformation)
-	at the identity of A. i.e. for $\alpha \in \mathcal{C}(H_A,X) ,
-	\phi(\alpha):= \alpha_A(1_A) $ \\
+	Define $\string ~ : X(A) \to [\mathcal{A}^{op}, Set](H_A,X)$ on element, $ x \in X(A), $
+	by defining it's $K$-component for any $K \in \mathcal{A} $ as
+	\[\tilde{x}_K : H_A(K) \to X(K)
+		\text{ as, for each } p\in H_A(K)=\textit{Hom}_{\mathcal{A}^{op}}(A,K) \text{ , }
+	\tilde{x}_K (p):=\Big(X(p)\Big)(x) \]
 
-	Define $\psi$ on an object, $ x \in X(A), $
-	by defining it's $K$-component for any $K \in \mathcal{A} $:
-	\[({\psi(x)})_K : H_A(K) \to X(K)
-	\text{ as, for each } p\in Hom_{\mathcal{A} }(K,A), p \mapsto \Big(X(p)\Big)(x) \]
-	That is to say that the K-component maps any arrow $p:K \to A$
-	to the image of x under the map X(p).
+	Meaning that the $\tilde{x}_K$  maps any arrow $p:K \to A$
+	to the image of x under the function $X(p):X(A)\to X(K)$.\\
+
+	Now, to show that $\tilde{x}=(\tilde{x}_K)_{K\in \mathcal{A}} $ is a natural transformation,\\
+
+	for any $q \in \mathcal{A}^{op}(K,L), \text{ the square }
+	\begin{tikzcd}
+		H_A(K) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{H_A(q)}
+		& H_A(L) \arrow{d}{\tilde{x}_L}\\
+	X(K) \arrow[swap]{r}{X(q)}
+		& X(L)
+	\end{tikzcd} \text{ i.e. }
+	\begin{tikzcd}
+		\mathcal{A}(K,A) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{ - \circ q}
+		& \mathcal{A} (L,A) \arrow{d}{\tilde{x}_L}\\
+	X(K) \arrow[swap]{r}{X(q)}
+		& X(L)
+	\end{tikzcd}\text{ must commute }$.\\
+
+	So, for any $f:K\to A$, need that $\tilde{x}_L(f \circ q)= X(q) \circ \tilde{x}_K(f)$\\
+
+	Now, LHS=$\tilde{x}_L(f \circ q ) =\Big( X(f \circ q)\Big)(x)$
+	while RHS=$X(q) \circ \tilde{x}_K(f) =\Big(X(q)\Big) \big(X(f)(x)\big)
+=\Big(X(q) \circ X(f)\Big) (x) $
+
+And as $X$ is a contravariant functor, $X(f \circ q)= X(q) \circ X(f)$, giving that LHS=RHS.
+
+Finally, to show isomorphism, need to show that $\string ^ $ and $\string ~ $ are mutually inverse,
+
+\[ \text{ for any } x \in X(A),
+\hat{\tilde{x}}=\tilde{x}_A (1_A)=\Big(X(1_A) \Big) (x)=1_{X(A)}(x)=x \]
+
+And, for any $\alpha \in [\mathcal{A}^{op}, Set](H_A,X)$ , $\tilde{\hat{\alpha}}=\alpha$ i.e. that each of their
+components are equal. As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
+between functors that go to the category \textit{Set}, each of the components is a function.
+
+So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
+$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$
+
 
 \end{proof}
 %}}}
@@ -113,14 +153,14 @@ this isomorphism is natural.
 
 
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
-Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
+	Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
 \end{theorem}
 
 \section{Embedding of a category in Presheaf category}%{{{ Embedding		Section
 
 \begin{definition}[Embedding of a category] %{{{ Embedding of a category		Definition
-A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
-functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
+	A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
+	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
 \end{definition} %}}}
 
 \begin{proof}
