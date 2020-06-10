@@ -224,11 +224,16 @@ maps between them as morphisms.
 			$(1_{(X,A)})^*=1_{(X,A)^*}$
 			LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$.
 			\\Now, it's required that $A$ is the identity of $(X,A)$ in ProMod.\\
-			So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$
-			As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,
-			$\forall a\in A, \Delta_X \subseteq a$ \implies
-			\forall a \in A, \forall p \in \phi, p=
-
+			So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$\\
+			As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,\\
+			$\forall a\in A, \Delta_X \subseteq a \implies
+			\forall a \in A, \forall p \in \phi, p=p\Delta_X\subseteq pa \implies
+			\phi \leq \phi.A$\\
+			Also, fix $\psi:(Y,B) \carrow (X,A)$, need to show $A.\psi=\psi$\\
+			As $\psi$ is a promodule, $A.\psi \leq \psi$ and as A is quasi-uniformity on X,\\
+			$\forall a\in A, \Delta_X \subseteq a \implies
+			\forall a \in A, \forall q \in \psi, q=\Delta_X q \subseteq aq \implies
+			\psi \leq \psi.A$
 	\end{enumerate}
 
 
