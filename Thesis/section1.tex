@@ -181,23 +181,21 @@ maps between them as morphisms.
 			 $(x,z) \in l$
 
 	\end{enumerate}
-\item
-	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
+\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
 	\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
 	Fix any $b \in B$ as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
 	\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
 
-	To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B,
-	\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
+	To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
+	$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
 	As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
 	: f \circ a \subseteq b \circ f
 	\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
 	Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
-	(for brevity,omitting $\circ$ to explicitly denote composition  )\\
+	(for brevity, omitting $\circ$ to explicitly denote composition  )\\
 	And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
 	\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
-\item
-	Now, need to show that $(-)^*$ respects composition and identity.
+\item	Now, need to show that $(-)^*$ respects composition and identity.
 	\begin{enumerate}[label=(\roman*)]
 		\item (Composition) let $f,g$ be uniformly continuous,
 			$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
@@ -257,9 +255,47 @@ maps between them as morphisms.
 	\end{enumerate}
 \end{proop}
 \begin{proof}
-
+\item
+	\begin{enumerate}[label=(\alph*)]
+		\item \begin{enumerate}[label=(\roman*)]
+			\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
+				\implies f^o .B.B.f=A $\\
+				Need to show that $A= f^o .B.f$ i.e.
+				$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
+				By hypothesis and quasi-uniformity of B,
+				$A\geq f^o .B.B.f \geq f^o B.f $\\
+				To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
+				\in A : a \subseteq f^o bf$\\
+				Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
+				$\exists a \in A: a \subseteq f^o bbf$ and also, by
+				quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
+				\implies f^o b'b'f \subseteq f^o bf$\\
+				Combining the above two inequalities,
+				$a \subseteq f^o bbf \subseteq f^o bf$\\
+			\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
+				$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
+				To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
+				\exists b,b' \in B : a \supseteq f^o bb'f$\\
+				Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
+				So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
+				and for this b, $\exists b'\in B: b'b' \subseteq b$.
+				 Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
+				 To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
+				 a\in A : a \subseteq f^o bb'f$ \\
+				 So, fix $b,b' \in B $, now, by hypothesis, $A\leq f^o .B.f $
+				 giving\\ $\exists a \in A : a \subseteq f^o bf$ and
+				 $\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
+				 f^o b'	f$.\\
+				 Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
+				 \subseteq f^o bb'f$
+		\end{enumerate}
+	\item \begin{enumerate}[label=(\roman*)]
+		\item
+	\end{enumerate}
+	\end{enumerate}
 \end{proof}
 %}}}
+\newpage
 
 %{{{ A~ is a quasi-uniformity on PX
 \begin{definition}[$PX$] %{{{ PX		Definition
