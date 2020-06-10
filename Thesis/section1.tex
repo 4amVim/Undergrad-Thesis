@@ -290,8 +290,18 @@ Now to show that the other two conditions hold,
 		$\Delta_X \subseteq a \implies p=p.\Delta_X \subseteq p.a$
 	\item Need that $\forall \tilde{a} \in \tilde{A} , \exists \tilde{b}\in \tilde{A}:
 		\tilde{b}\tilde{b} \leq \tilde{a} $\\
+		Before that, showing , for any $x,y \in A, \tilde{x} \tilde{y} \leq \widetilde{xy} $
+		i.e. $\forall \psi, \phi \in PX$ , $\psi(\tilde{x}.\tilde{y})\phi \implies
+		\psi \widetilde{xy} \phi $\\
+		Let $\psi_1(\tilde{a} .\tilde{b} )\psi_3 \implies \exists \psi_2:
+		\psi_1 \tilde{b} \psi_2 \tilde{a} \psi_3 \implies
+		\psi_1 \leq \psi_2.b \text{ and } \psi_2 \leq \psi_3.a
+		\implies \psi_1 \leq \psi_2.b \leq \psi_3.ab \implies \psi_1(\widetilde{ab})\psi_3$
+		\\
 		Fix any $\tilde{a}\in \tilde{A} \implies a\in A \implies \exists b \in A: b \circ b \subseteq
-		a \implies \tilde{bb} \leq \tilde{a} $
+		a \implies \widetilde{bb} \leq \tilde{a} \implies \tilde{b} \tilde{b} \leq
+		\widetilde{bb} \leq \tilde{a}  $
+
 \end{enumerate}
 \end{proof}
 
