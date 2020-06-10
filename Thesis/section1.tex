@@ -135,10 +135,13 @@ maps between them as morphisms.
 
 %Mention about topology so that below definition makes more sense ??%
 
-
+%{{{Two functors
 \begin{proop}[$(-)_*:$QUnif$\to ProMod$ is a Functor ]
 
 \end{proop}
+\begin{proof}
+
+\end{proof}
 
 \begin{proop}[$(-)^*:$QUnif$^{op} \to ProMod$ is a Functor ]
 	Defined as fixing objects and taking morphisms to their image under $(-)^*$
@@ -239,28 +242,34 @@ maps between them as morphisms.
 
 
 \end{proof}
-\newpage
+%}}}
+
 %Talk about adjointness ??
 
+%{{{ Proposition 1
 \begin{proop}[Proposition 1]
 	Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 	\begin{enumerate}[label=(\alph*)]
 		\item f is fully faithful $\iff A=f^o.B.f$
 		\item f is fully dense $\iff \forall b\in B, \exists b' \in B \text{ such that }  $
-
+		\item f is topologically dense $\iff\forall b\in B,\Delta_Y\subseteq b\circ f\circ f^o\circ b$
+		\item f is fully dense $\iff$ f is topologically dense
 	\end{enumerate}
 \end{proop}
+\begin{proof}
 
+\end{proof}
+%}}}
+
+%{{{ A~ is a quasi-uniformity on PX
 \begin{definition}[$PX$] %{{{ PX		Definition
 $PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}$
 \end{definition}
-
-\begin{definition}[$\tilde{a}$] %{{{ $\tilde{a}$		Definition
+\begin{definition}[$\tilde{a}$] %{{{ a~		Definition
 	for any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
 	\[ \text{ for } \phi,\psi \in PX, \phi \tilde{a} \psi \text{ only if } \phi \leq \psi.a \]
 \end{definition}
-
-\begin{proop}[Prorelation $\tilde{A}$] %{{{ $\tilde{A}$		Definition
+\begin{proop}[Prorelation $\tilde{A}$] %{{{ A~		Definition
 	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
 \end{proop}
 \begin{proof}
@@ -304,6 +313,7 @@ Now to show that the other two conditions hold,
 
 \end{enumerate}
 \end{proof}
+%}}}
 
 \begin{proop}[Yoneda Embedding]
 
