@@ -10,7 +10,7 @@
 \newtheorem{lemma}{Lemma}[definition]
 \newtheorem{prop}{Proposition}[definition]
 \newtheorem{proop}{Proposition}[section]
-\newtheorem{lmma}{Lemma}[definition]
+\newtheorem{lmma}{Lemma}[section]
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
 \newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
@@ -29,6 +29,7 @@
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
+
 \begin{lmma}[$H_A$ or $\mathcal{A} (\_,A)$ ] %{{{ H_A	Definition
 	For any category $\mathcal{A}$, fixing an object, $A \in \mathcal{A} $,\\
 	there's a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
@@ -40,6 +41,21 @@
 			p \mapsto p \circ g \text{ i.e. } \Big( H_A(g) \Big) (p) := p \circ g \]
 	\end{enumerate}
 \end{lmma}
+\begin{proof}
+	Prove that $H_A$ is indeed a functor
+
+\end{proof}
+
+\begin{lmma}
+	For a natural transformation $\alpha$, it's a natural isomorphism iff
+	each of its components is an isomorphism.
+\end{lmma}
+
+\begin{lmma}
+	naturality in two variables simultaneously is equivalent to
+	naturalityin each variable independently(1.3.29 pg 39)
+\end{lmma}
+
 \begin{theorem}{\textbf{Yoneda}} %{{{ Yoneda		Theorem
 	If $\mathcal{A} $ is a locally small category, for any object $A \in \mathcal{A} $
 	and $X \in [ \mathcal{A}^{op},Set]$,\\ there's exists a natural isomorphism:
@@ -111,13 +127,13 @@ this isomorphism is natural.
 	\begin{tikzcd}
 		H_A(K) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{H_A(q)}
 		& H_A(L) \arrow{d}{\tilde{x}_L}\\
-	X(K) \arrow[swap]{r}{X(q)}
+		X(K) \arrow[swap]{r}{X(q)}
 		& X(L)
 	\end{tikzcd} \text{ i.e. }
 	\begin{tikzcd}
 		\mathcal{A}(K,A) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{ - \circ q}
 		& \mathcal{A} (L,A) \arrow{d}{\tilde{x}_L}\\
-	X(K) \arrow[swap]{r}{X(q)}
+		X(K) \arrow[swap]{r}{X(q)}
 		& X(L)
 	\end{tikzcd}\text{ must commute }$.\\
 
@@ -125,21 +141,39 @@ this isomorphism is natural.
 
 	Now, LHS=$\tilde{x}_L(f \circ q ) =\Big( X(f \circ q)\Big)(x)$
 	while RHS=$X(q) \circ \tilde{x}_K(f) =\Big(X(q)\Big) \big(X(f)(x)\big)
-=\Big(X(q) \circ X(f)\Big) (x) $
+	=\Big(X(q) \circ X(f)\Big) (x) $
 
-And as $X$ is a contravariant functor, $X(f \circ q)= X(q) \circ X(f)$, giving that LHS=RHS.
+	And as $X$ is a contravariant functor, $X(f \circ q)= X(q) \circ X(f)$, giving that LHS=RHS.
 
-Finally, to show isomorphism, need to show that $\string ^ $ and $\string ~ $ are mutually inverse,
+	Finally, to show isomorphism, need to show that $\string ^ $ and $\string ~ $ are mutually inverse,
 
-\[ \text{ for any } x \in X(A),
-\hat{\tilde{x}}=\tilde{x}_A (1_A)=\Big(X(1_A) \Big) (x)=1_{X(A)}(x)=x \]
+	\[ \text{ for any } x \in X(A),
+	\hat{\tilde{x}}=\tilde{x}_A (1_A)=\Big(X(1_A) \Big) (x)=1_{X(A)}(x)=x \]
 
-And, for any $\alpha \in [\mathcal{A}^{op}, Set](H_A,X)$ , $\tilde{\hat{\alpha}}=\alpha$ i.e. that each of their
-components are equal. As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
-between functors that go to the category \textit{Set}, each of the components is a function.
+	And, for any $\alpha \in [\mathcal{A}^{op}, Set](H_A,X)$ , $\tilde{\hat{\alpha}}=\alpha$ i.e. that each of their
+	components are equal. As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
+	between functors that go to the category \textit{Set}, each of the components is a function.
 
-So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
-$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$
+	So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
+	$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$
+
+	LHS=$\tilde{\hat{\alpha}}_B(f)=\Big(X(f)\Big)(\hat{\alpha})=\Big(X(f)\Big)(\alpha_A(1_A))$
+	and RHS=$\alpha_K(f)= \alpha_K(1_A \circ f)$
+
+	Now, as $\alpha$ is a natural transformation, the square
+	$\begin{tikzcd}
+		\mathcal{A} (A,A) \arrow[swap]{d}{\alpha_A} \arrow{r}{- \circ f}
+	& \mathcal{A} (K,A) \arrow{d}{\alpha_K}\\
+	X(A) \arrow[swap]{r}{X(f)}
+	& X(K)
+	\end{tikzcd}$
+	commutes, for $1_A$, giving that\\
+
+	$\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$ thus, RHS=LHS,
+	and the isomorphism is shown.
+
+	\paragraph{Showing naturality of this isomorphism }\mbox{} \\
+
 
 
 \end{proof}
@@ -149,7 +183,9 @@ $\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$
 \begin{definition}[Symmetric group on a set] %{{{ Symmetric group on a set	Definition
 
 \end{definition}
+\begin{proof}
 
+\end{proof}
 
 
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
@@ -163,16 +199,7 @@ $\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$
 	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
 \end{definition} %}}}
 
-\begin{proof}
-	Prove that $H_A$ is indeed a functor
 
-\end{proof}
-
-
-
-
-\section{Quasi-Paper}%
-\label{sec:quasi_paper}
 
 
 

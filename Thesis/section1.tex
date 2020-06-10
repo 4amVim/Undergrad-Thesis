@@ -31,10 +31,10 @@
 \label{sec:definitions}
 
 \begin{definition}[Prorelation] %{{{ Prorelation		Definition
-A pre-ordered set of relations $X \to Y$, which is down-directed and an upper set. i.e
+A partial-ordered set of relations $X \to Y$, which is down-directed and an upper set. i.e
 A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
 	\begin{enumerate}[label=(\roman*)]
-		\item A pre-order defined to be containment as relations, $r \subseteq s$
+		\item A partial-order defined to be containment as relations, $r \subseteq s$
 			only if $\forall (x,y) \in X \times Y$, $(x,y) \in r \implies (x,y)\in s$
 		\item (Down-directed), $\forall r,s \in P, \exists t \in P $ such that
 			$t\subseteq r \text{ and } t \subseteq s$
@@ -88,6 +88,12 @@ And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
 For relation $r:X \to Y$, $r^o$ is defined to be a relation $r^o:Y \to X$ as
 \[ \forall (x,y)\in X \times Y, (x,y)\in r \iff (y,x) \in r^o \]
 \end{definition}
+\begin{lemma}
+	For any relation $r:X \to Y$, $r^o \circ r = \Delta_X$
+\end{lemma}
+\begin{lemma}
+	For any relation $r:X \to Y$, $r \circ r^o \subseteq \Delta_Y$
+\end{lemma}
 \begin{definition}[$(-)_*$] %{{{ (-)_*		Definition
 
 \end{definition}
@@ -120,29 +126,115 @@ maps between them as morphisms.
 
 \end{definition}
 
-\begin{lemma} QUnif does define a category, as
+\begin{lemma} ProMod does define a category, as
 	\begin{enumerate}[label=\roman*]
 		\item Composition
 		\item Identity
 	\end{enumerate}
 \end{lemma}
 
-\begin{proop}[Promodule Category]
-
-\end{proop}
-
-
 %Mention about topology so that below definition makes more sense ??%
 
 
-\begin{proop}[$(-)_*$ is a Functor ]
+\begin{proop}[$(-)_*:$QUnif$\to ProMod$ is a Functor ]
 
 \end{proop}
 
-\begin{proop}[$(-)^*$ is a Functor ]
-
+\begin{proop}[$(-)^*:$QUnif$^{op} \to ProMod$ is a Functor ]
+	Defined as fixing objects and taking morphisms to their image under $(-)^*$
+		\begin{enumerate}[label=(\alph*)]
+			\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
+			\item for $f:(X,A) \to (Y,B)$ in QUnif,
+				$f^* := f^o .B$
+		\end{enumerate}
 \end{proop}
+\begin{proof}
+	\item \paragraph{Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule } \mbox{} \\
+	So, need to show $f^o .B$ a prorelation $Y \to X$
+	and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
+	To show prorelation, \begin{enumerate}[label=(\roman*)]
+		\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
+			$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
+		\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
+		\text{ such that } l \subseteq k,k'$
 
+		Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
+		k' = f^o \circ b'$
+
+		And as $B$ is a quasi-uniformity, it's down directed so,
+		$\exists c \in B: c \subseteq b,b' \implies l:= f^o \circ c \subseteq k,k'$
+	\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
+		 , need $l \in f^o .B$
+
+		 Let $b\in B$ be such that $k=f^o \circ b$ and define
+		 $b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))$\\
+			 As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
+			 \\ and $range(l) \supseteq range(f^o \circ b)\implies
+			 \forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
+			 Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
+			 $f^o \circ b \subseteq l$ , \\
+			 $(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
+			 (z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
+			 $(x,z) \in l$
+
+	\end{enumerate}
+\item
+	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
+	\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
+	Fix any $b \in B$ as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
+	\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
+
+	To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B,
+	\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
+	As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
+	: f \circ a \subseteq b \circ f
+	\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
+	Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
+	(for brevity,omitting $\circ$ to explicitly denote composition  )\\
+	And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
+	\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
+\item
+	Now, need to show that $(-)^*$ respects composition and identity.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Composition) let $f,g$ be uniformly continuous,
+			$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
+			need that $(g \circ f)^*= f^*.g^* $
+
+			LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
+			RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
+			For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
+
+			To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
+			$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
+			\supseteq f^obgc'$ \\
+			Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
+			\implies f^o g^o c \supseteq f^o g^o (c'c')
+			=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
+			By uniform conntinuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
+			\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
+			f^o (g^o g)bg^o c'=f^o bg^o c'$.
+
+			To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
+			$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
+			\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
+			As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
+			g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
+		\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
+			$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
+			$(1_{(X,A)})^*=1_{(X,A)^*}$
+			LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$.
+			\\Now, it's required that $A$ is the identity of $(X,A)$ in ProMod.\\
+			So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$
+			As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,
+			$\forall a\in A, \Delta_X \subseteq a$ \implies
+			\forall a \in A, \forall p \in \phi, p=
+
+	\end{enumerate}
+
+
+
+\end{proof}
+\newpage
 %Talk about adjointness ??
 
 \begin{proop}[Proposition 1]
