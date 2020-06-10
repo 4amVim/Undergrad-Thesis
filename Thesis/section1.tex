@@ -251,13 +251,49 @@ maps between them as morphisms.
 	\end{enumerate}
 \end{proop}
 
-\begin{definition}[PX] %{{{ PX		Definition
-PX:=$\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}$
+\begin{definition}[$PX$] %{{{ PX		Definition
+$PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}$
+\end{definition}
+
+\begin{definition}[$\tilde{a}$] %{{{ $\tilde{a}$		Definition
+	for any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
+	\[ \text{ for } \phi,\psi \in PX, \phi \tilde{a} \psi \text{ only if } \phi \leq \psi.a \]
 \end{definition}
 
 \begin{proop}[Prorelation $\tilde{A}$] %{{{ $\tilde{A}$		Definition
-	for an $\tilde{A}:=\{\tilde{a}:a \in A\}$
+	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
 \end{proop}
+\begin{proof}
+	First, need to show that $\tilde{A}$ is a prorelation,
+	\begin{enumerate}[label=(\roman*)]
+		\item (Partial order) Define, for any two relations $\tilde{a},\tilde{b}:PX \to PX $,
+			that $ \tilde{a} \leq \tilde{b}$ only if $a \subseteq b$
+		\item(Down-Directed) Need that $\forall \tilde{a} ,\tilde{b} \in \tilde{A} ,
+			\exists \tilde{c} \in A : c \subseteq a,b$\\
+			$\tilde{a} ,\tilde{b} \in A \implies a,b \in A \implies \exists c \in A: c \subseteq
+			a,b \implies \tilde{c} \leq \tilde{a} ,\tilde{b} $
+		\item (Upset) Need that, for any relation $l:PX \to PX$ , if  $\exists \tilde{k} \in
+			\tilde{A} \text{ such that }  l \geq \tilde{k} \text{ , then } l \in \tilde{A} $\\
+			Fix any $k:PX \to PX$, and $\tilde{k} \in \tilde{A}$ such that $l\geq \tilde{k} $\\
+			Now, $k$ is a relation between promodules $X \carrow 1$. Thus, it can be thought
+			of as a relation on X,\\
+			$a:=\{(x,y): x \in domain(\psi) and y \in domain(\phi)
+			\text{ whenever } \exists \psi,\phi \in PX: \psi l \phi\}$ \\
+			So, $l=\tilde{a}$ and thus, $\tilde{a} \geq \tilde{k} \implies a \supseteq k
+			\implies a\in A \implies l \in \tilde{A} $
+	\end{enumerate}
+Now to show that the other two conditions hold,
+\begin{enumerate}[label=(\roman*)]
+	\item need that $\forall \tilde{a} \in \tilde{A} , \forall \psi \in PX, \psi \tilde{a} \psi$\\
+		So, need to show that $\psi \leq \psi.a$ i.e. $\forall p\in \psi, \exists q\in \psi:
+		q \subseteq p.a$. Take $q:=p$, and as A is a quasi-uniformity,
+		$\Delta_X \subseteq a \implies p=p.\Delta_X \subseteq p.a$
+	\item Need that $\forall \tilde{a} \in \tilde{A} , \exists \tilde{b}\in \tilde{A}:
+		\tilde{b}\tilde{b} \leq \tilde{a} $\\
+		Fix any $\tilde{a}\in \tilde{A} \implies a\in A \implies \exists b \in A: b \circ b \subseteq
+		a \implies \tilde{b \circ b} \leq \tilde{a} $
+\end{enumerate}
+\end{proof}
 
 \begin{proop}[Yoneda Embedding]
 
