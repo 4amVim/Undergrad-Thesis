@@ -4,7 +4,7 @@
 \usepackage{enumitem,amsfonts,extarrows,mathtools}
 
 \newtheorem{theorem}{Theorem}[section]
-
+\newtheorem{coro}{Corollary}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}[section]
 \newtheorem{lemma}{Lemma}[definition]
@@ -436,7 +436,6 @@
 	\end{enumerate}
 \end{proof}
 %}}}
-\newpage
 %{{{ Yoneda Embedding
 \begin{proop}[Yoneda Embedding]
 \item For a quasi-uniform space $(X,A)$, function $y_X:X \to PX$ is defined by $x\mapsto x^*$ for $x \in X$.
@@ -503,18 +502,26 @@
 %}}}
 %{{{ Yoneda Lemma
 
-\begin{lemma}
-	A.A = A for any quasi-uniformity
+\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
 \end{lemma}
+\begin{proof}
+		Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
+		we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
+		$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
+\end{proof}
 
 \begin{theorem}[Yoneda Lemma] %{{{ Yoneda Lemma		Theorem
-For every $\psi \in PX$, in the following digram, DRAW THE DIGRAM
-	\begin{enumerate}[label=(\alph*)]
+For every $\psi \in PX$, in the following digram,
+$\begin{tikzcd}[column sep=large ]
+	X \arrow{r}{(y_X)_*}  \arrow{rd}{\psi}
+  & PX \arrow{d}{\psi^*} \\
+    & 1
+\end{tikzcd}$
+\begin{enumerate}[label=(\alph*)]
 		\item $\psi \geq \psi^*.(y_X)^*$
 		\item $\psi \in \overline{y_X(X)} \implies \psi \leq \psi^*.(y_X)_*$
 	\end{enumerate}
 \end{theorem}
-
 \begin{proof}
 \begin{enumerate}[label=(\alph*)]
 	\item By definition, $(y_X)_*=\tilde{A}.y_X$, and $\psi^*=\psi^o.\tilde{A}$. Need that
@@ -577,10 +584,10 @@ For every $\psi \in PX$, in the following digram, DRAW THE DIGRAM
 
 
 %}}}
-
-
-
-
-\newpage
-asd
+%}}}
+%{{{ Yoneda Corollary
+\begin{coro}
+	For $\psi \in PX$, $\psi \in \overline{y_X(X)} \iff \psi$ is a right-adjoint.
+\end{coro}
+%}}}
 \end{document}
