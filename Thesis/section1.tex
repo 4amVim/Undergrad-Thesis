@@ -259,7 +259,7 @@
 		\begin{proop}[Proposition 1]
 			Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 			\begin{enumerate}[label=(\alph*)]
-				\item f is fully faithful $\iff A=f^o.B.f$
+				\item f is fully faithful $\iff A\geq f^o.B.f$
 				\item f is fully dense $\iff \forall b\in B, \exists b' \in B \text{ such that }
 					b' \subseteq bff^o b$
 				\item f is topologically dense $\iff\forall b\in B,\Delta_Y\subseteq b\circ f\circ f^o\circ b$
@@ -294,7 +294,10 @@
 						Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
 						To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
 						a\in A : a \subseteq f^o bb'f$ \\
-						So, fix $b,b' \in B $, now, by hypothesis, $A\leq f^o .B.f $
+						So, fix $b,b' \in B $, now, by hypothesis,
+
+						NOPE, USE UNIFORM CTY OF f HERE
+						$A\leq f^o .B.f $
 						giving\\ $\exists a \in A : a \subseteq f^o bf$ and
 						$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
 						f^o b'	f$.\\
@@ -347,39 +350,37 @@
 				\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
 				$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
 				relation.
-					\[ \Delta_Y \leq bff^ob
-						\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
-					(f^o b(y))\]
-					Using Lemma 1.9.3 on the above statement, gives $y \in (bf)(x)
-					\text{ i.e. } (f(x),y)\in b $.\\
+				\[ \Delta_Y \leq bff^ob
+					\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
+				(f^o b(y))\]
+				Using Lemma 1.9.3 on the above statement, gives $y \in (bf)(x)
+				\text{ i.e. } (f(x),y)\in b $.\\
 				Applying Lemma 1.9.3 to f, and then using Lemma 1.9.4,
 				\begin{equation*}
 					ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
 				\end{equation*}
 				Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
-				 (y,f(x)) \in b$
+				(y,f(x)) \in b$
 		\end{enumerate}
 	\item
 		\begin{enumerate}[label=(\roman*)]
 			\item
-		($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
-		\begin{equation}\exists b' \in B : b'b' \subseteq b \text{ and } \Delta_Y \subseteq b'
-		\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
-	\end{equation}
-	By the characterisation of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
-	Now, using the above statement and Lemma 1.9.2,
-	\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
-	\subseteq bf f^o b\]
-	Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
-\item ($\impliedby$) From (b), we have for $b \in B$, the existstence of $b' \in B$ such that $
-	b' \subseteq bf f^o b$. As B is a quasi-uniformity, $\Delta_Y \subseteq b'$. So,
-	$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense.
-\end{enumerate}
+				($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
+				\begin{equation}\exists b' \in B : b'b' \subseteq b \text{ and } \Delta_Y \subseteq b'
+					\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
+				\end{equation}
+				By the characterisation of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
+				Now, using the (3) and Lemma 1.9.2,
+				\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
+				\subseteq bf f^o b\]
+				Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
+			\item ($\impliedby$) From (b), we have for $b \in B$, the existstence of $b' \in B$ such that $
+				b' \subseteq bf f^o b$. As B is a quasi-uniformity, $\Delta_Y \subseteq b'$. So,
+				$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense.
+		\end{enumerate}
 \end{enumerate}
 \end{proof}
 %}}}
-\newpage
-
 %{{{ A~ is a quasi-uniformity on PX
 \begin{definition}[$PX$] %{{{ PX		Definition
 	$PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}$
@@ -433,11 +434,70 @@
 	\end{enumerate}
 \end{proof}
 %}}}
-
+\newpage
+%{{{ Yoneda Embedding
 \begin{proop}[Yoneda Embedding]
-
+\item For a quasi-uniform space $(X,A)$, function $y_X:X \to PX$ is defined by $x\mapsto x^*$ for $x \in X$.
+	\begin{enumerate}[label=(\alph*)]
+		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is a uniformly continuous map
+		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is fully faithful
+	\end{enumerate}
 \end{proop}
+\begin{proof}
+\item \begin{enumerate}[label=(\alph*)]
+	\item In order to show $y_X$ is uniformly continuous, need to show that $y_X.A \leq \tilde{A}.y_X $.
+		By definition of $\leq$ , need $\forall a\in A, \exists b \in A:
+		y_X \circ b \subseteq \tilde{a} \circ y_X $. Applying the relations
+		to some element, x of the set X:
+		\begin{equation} \big(y_X \circ b\big)(x) \subseteq \big( \tilde{a} \circ y_X\big)(x) \implies
+		y_X(b(x)) \subseteq \tilde{a}(x^*) \end{equation}
 
+		So, for the condition given by (4) to hold, if $y \in b(x)$, then it's required that
+		$y^*=y_X(y) \in \tilde{a} (x^*)$ i.e. $x^* \tilde{a}y^*$. Using the definition of $x^*,y^*$
+		and $\tilde{a}$,
+		\begin{equation} x^* \tilde{a}y^* \iff x^o.A\leq y^o.A.a \iff
+		\forall a' \in A, \exists a'' \in A: x^oa'' \subseteq y^oa'a  \end{equation}
+		Now, fix any $a \in A$, $x\in X$. Thus, quasi-uniformity of A, gives $a'' \in A$ such that
+		$a''a''\subseteq a$.Also, choose some $y \in a''(x)$. Hence, in
+		order to show that the condition from (5) holds, need that
+		$\forall b \in A, x^o a'' \subseteq y^oba$, and by applying the relations to an element z
+		gives the following condition
+		\begin{equation} \forall b \in B, \forall x \in X \text{ , }
+		\big(x^oa''\big)(z) \subseteq \big(y^oba\big)(z) \end{equation}
+		Examining the left side of (6),
+		\[ \big( x^oa''\big)(z)=x^o (a''(z))= \begin{cases}
+			\phi &\text{ if }a''(z)\neq x \\
+			\star & \text{ if } a''(z)=x
+		\end{cases} \]
+		Thus, to show that (6) holds, need to show that (for any $b\in A$ and $z \in X$):
+		\begin{equation} a''(z)=x \implies z(y^oba)\star \text{ i.e. } y\in(ba)(z)
+		\end{equation}
+		To show that (7) holds, fix any $z\in X: a''(z)=x$. Also, by our choice of $y$,
+		have that $y \in a''(x)$. And as $b\in A$, it's reflexive, giving that $y \in b(y)$.
+		So, by composition of relations, we get:
+		\[ za''x \text{ , }  xa''y \text{ and } yby \implies z(a''a''b)y \implies z(ab)y \text{ i.e. }
+		y \in (ba)(z)\]
+	\item By using Proposition2.3(a), need to show that $A\geq y_X^o.\tilde{A}.y_X$ i.e. $\forall
+		a\in A, \exists \tilde{b}\in \tilde{A} :  a \supseteq y_X^o \text{ } \tilde{b} \text{ } y_X $.
+		Applying to an element, $x\in X$ gives the condition
+		\begin{equation}
+			\Big( y_X^o \text{ } \tilde{b} \text{ } y_X \Big)(x) \subseteq a(x)
+			\implies \Big( y_X^o \text{ } \tilde{b} \Big) (x^*)= y_x^o
+			\Big(\tilde{b}(x^*)\Big) \subseteq a(x)
+		\end{equation}
+		Thus, if $y^* \in PX$ such that $x^* \tilde{b} y^*$, then
+		$y \in y_x^o\Big(\tilde{b}(x^*)\Big)$. Now, for (8) to hold, $y \in a(x)$ i.e. $xay$. Thus,
+		need only to show that for any $a\in A, \exists b \in A $ such that $\forall x,y \in X,
+		x^* \tilde{b}y^* \implies xay $. So, fix $a\in A$, and take $b \in A: bb \subseteq a$.
+		Now, let $x^* \tilde{b}y^*$ i.e. $x^o.A \leq y^o .A .b$.
+		Hence, $\exists c \in A: x^oc \subseteq y^o bb$. And as c is reflexive,
+		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay \]
+
+
+
+\end{enumerate}
+\end{proof}
+%}}}
 
 
 
