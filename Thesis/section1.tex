@@ -66,11 +66,11 @@
 		$b:=\{(y,z): z \in range(l) \text{ and } y \in Y\}$.
 		Because there exist $a'\in A$ and $b' \in B$ such that
 		$l \supseteq k = b' \circ a'$, by definition of $a$ and $b$, we get that
-		$b \supseteq b'$ and $a \supseteq a'$. Because $Q$ and $P$ are up-sets,
-		this gives that$b \in B$ and $a \in A$, and hence $b\circ a \in Q.P$.
-		Lastly for $(x,z) \in X \times Z$, if $(x,z) \in l$, then $\forall y \in Y$,
+		$b \supseteq b'$ and $a \supseteq a'$. As $Q$ and $P$ are up-sets,
+		we get that $b \in B$ and $a \in A$, and hence $b\circ a \in Q.P$.
+		Finally, for $(x,z) \in X \times Z$, if $(x,z) \in l$, then $\forall y \in Y$,
 		$(x,y) \in a \text{ and } (y,z) \in b $ gives that $(x,z) \in b \circ a$,
-		giving that $l=b \circ a$.
+		giving that $l=b \circ a \in Q.P$.
 	\end{enumerate}
 \end{proof}
 %}}}
@@ -90,10 +90,9 @@
 \end{lemma}
 \begin{proof}
 	As $f$ is a function, it must be defined on every element of it's domain. So, for every
-	$x \in X$, there exists some $(x,y) \in r$, which, by definition of $f^o$ also gives
-	that $(y,x) \in f^o$. Hence, by
-	definition of composition, for every $x \in X$, $(x,x) \in f^o \,f$ giving that $\Delta_X
-	\subseteq f^o \, f$.
+	$x \in X$, there exists some $(x,y) \in r$, and by definition of $f^o$ this also gives
+	that $(y,x) \in f^o$. Hence, by	definition of composition,
+	for every $x \in X$, $(x,x) \in f^o \,f$.
 \end{proof}
 \begin{lemma}
 	For any relation $r:X \to Y$, $\; r \circ r^o \subseteq \Delta_Y$
@@ -108,11 +107,12 @@
 	 $\;r \subseteq s \implies (t \circ r) \subseteq (t \circ s)$
 \end{lemma}
 \begin{proof}
-	Suppose relations $r,s$ and $t$ are as given above and let $x \in X, z\in Z$ such that
+	Suppose relations $r,s$ and $t$ are as given above, and let $x \in X, z\in Z$ such that
 	$x \,(t \, r)\,z$. By definition of composition, there
 	exists some element, $y$ of $Y$ such that $x\,r\,y$ and $y\,t\,z$.
-	By hypothesis, $x\,r\,y$ gives $x\,s\,y$, and composition with $y \, t \, z $
-	gives $x\,(t\,s)\, z$. We started with any element of $(t \circ r)$ and showed that
+	Using the hypothesis, as $r \subseteq  s $,
+	$x\,r\,y$ gives $x\,s\,y$. And via composition with $y \, t \, z $ we get
+	$x\,(t\,s)\, z$. We started with any element of $(t \circ r)$ and showed that
 	it must also be in $t \circ s$. Thus, $(t \circ r) \subseteq (t \circ s)$.
 \end{proof}
 \begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$,
@@ -120,10 +120,10 @@
 	(t \circ r)$
 \end{lemma}
 \begin{proof}
-	Suppose relations $r,s$ and $t$ are as given above and let $x \in X, z\in Z$ such that
+	Suppose relations $r,s$ and $t$ are as given above, and let $x \in X, z\in Z$ such that
 	$x \,(s \, r)\,z$. By definition of composition of relations, we get that there exists
 	some $y \in Y$ such that $x\,r\,y$ and $y\,s\,z$. Because $s \subseteq t$, $y\,s\,z$
-	implies that $y\,t\,z$. Again, by composition, we get that $x(t\,r)z$.
+	implies that $y\,t\,z$. Using composition again yields $x(t\,r)z$.
 \end{proof}
 %}}}
 
@@ -316,7 +316,17 @@
 	\end{enumerate}
 	Thus, $B.f$ is a promodule. Going to show that $(-)_*$ defines a functor:
 	\begin{enumerate}[label=(\roman*)]
-		\item
+		\item (Composition) Need to show that $(g\circ f)_*=g_*f_*$ i.e. $C.g.f=C.g.B.f$.
+
+	In order to show $C.g.f \leq C.g.B.f$, fix any $b\in B, c\in C$.
+			We will show that $c\,g\,f \subseteq c\,g\,b\,f$. As $f$ is uniformly
+			continuous, $f.A \leq B.f$ gives that there exists $a \in A$ such that
+			$f\,a \subseteq b\,f$. Using Lemma 2.4.3, we get $(c\,g)f\,a \subseteq
+			(c\,g)b\,f$. Now, using reflexiviness of $a$, we get $c\,g\,f \subseteq
+			c\,g\,b\,f$.
+
+			Now, to show that $C.g.f \geq C.g.B.f$.
+
 	\end{enumerate}
 \end{proof}
 \newpage
@@ -331,7 +341,7 @@
 	\end{enumerate}
 \end{proop}
 \begin{proof}
-\item \paragraph{Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule } \mbox{} \\
+Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 	So, need to show $f^o .B$ a prorelation $Y \to X$
 	and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
 	To show prorelation, \begin{enumerate}[label=(\roman*)]
