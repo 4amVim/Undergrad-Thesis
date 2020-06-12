@@ -28,434 +28,437 @@
 
 \begin{document}
 \section{Definitions}
-
 \begin{definition}%{{{ Prorelation		Definition
-	A prorelation is a partial-ordered set of relations $X \to Y$,
-	which is down-directed and an upper set. i.e
-	A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
+	A prorelation is a partially ordered, down-directed, upper set of relations $X \to Y$,\\
+	i.e a set, $P \subseteq \mathcal{P}(X \times Y)$ such that
 	\begin{enumerate}[label=(\roman*)]
-		\item A partial-order defined to be containment as relations, $r \subseteq s$
-			only if $\forall (x,y) \in X \times Y$, $(x,y) \in r \implies (x,y)\in s$
-		\item (Down-directed), $\forall r,s \in P, \exists t \in P $ such that
+		\item(Partial Order)Containment of relations, $r \subseteq s$
+			only if for any $(x,y) \in X \times Y$,\: $(x,y) \in r \implies (x,y)\in s$
+		\item (Down-directed), For any $r,s \in P, \exists t \in P $ such that
 			$t\subseteq r \text{ and } t \subseteq s$
 		\item (Up-set) for any relation $u:X\to Y$, if $\exists p \in P \text{ such that } p\leq u $
 			then $u \in P$
-	\end{enumerate} \end{definition} %}}}
-	\begin{definition}%{{{ Composition of prorelations		Definition
-		Prorelations can be composed by taking all compositions of their elements as relations.
-		\[ \text{ For prorelations } P:X\to Y \text{ and } Q:Y\to Z,
-		\; \; Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
-	\end{definition}
-	\begin{lemma}
-		Prorelations are closed under composition
-	\end{lemma}
-	\begin{definition} %{{{ Comparison of Prorelations		Definition
-		A prorelations with same domain and co-domain are said to be comparable
-		when one of them contains all the relations of the other.
-		\[ \text{ For prorelations }  P,Q:X \to Y, \;\; P \leq Q \;\text{ if }\; \forall q \in Q, \exists p \in P
-		\text{ such that } p \subseteq q    \]
-	\end{definition}
-	\begin{definition} %{{{ Opposite relation		Definition
-		The opposite of a relation $r:X \to Y$, $r^o$ is defined to be a relation $r^o:Y \to X$ as
-		\[ \forall (x,y)\in X \times Y, (x,y)\in r \iff (y,x) \in r^o \]
-	\end{definition}
-	\begin{lemma}
-		For any relation $r:X \to Y$, $r^o \circ r = \Delta_X$
-	\end{lemma}
-	\begin{lemma}
-		For any relation $r:X \to Y$, $r \circ r^o \subseteq \Delta_Y$
-	\end{lemma}
-	\begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$,
-		for any $x,x' \in X$, $r(x)\subseteq s(x') \implies (t \circ r)(x) \subseteq
-		(t \circ s)(x)$
+	\end{enumerate}
+\end{definition}
+\begin{definition}%{{{ Composition of prorelations		Definition
+	Prorelations are composed by taking compositions of the relations belonging to them.
+	\[ \text{ For prorelations } P:X\to Y \text{ and } Q:Y\to Z,
+	\; \; Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
+\end{definition}
+\begin{lemma}
+	Prorelations are closed under composition
+\end{lemma}
+\begin{definition} %{{{ Comparison of Prorelations		Definition
+	Prorelations with same domain and co-domain are said to be comparable
+	when one of them contains all the relations of the other one.
+	\[\text{ For prorelations }  P,Q:X \to Y, \;\; P \leq Q \;\text{ if }\; \forall q \in Q, \exists p \in P
+	\text{ such that } p \subseteq q    \]
+\end{definition}
+\begin{definition} %{{{ Opposite relation		Definition
+	For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
+	\[ \forall (x,y)\in X \times Y, \; \;  (x,y)\in r \text{ if and only if }  (y,x) \in r^o \]
+\end{definition}
+\begin{lemma}
+	For any relation $r:X \to Y$, $ \; r^o \circ r = \Delta_X$
+\end{lemma}
+\begin{lemma}
+	For any relation $r:X \to Y$, $\; r \circ r^o \subseteq \Delta_Y$
+\end{lemma}
+\begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$,
+	for any $x,x' \in X$, $r(x)\subseteq s(x') \implies (t \circ r)(x) \subseteq
+	(t \circ s)(x)$
 
-	\end{lemma}
-	\begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$,
-		$s\subseteq t \implies (s \circ r) \subseteq
-		(t \circ r)(x)$
+\end{lemma}
+\begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$,
+	$s\subseteq t \implies (s \circ r) \subseteq
+	(t \circ r)(x)$
 
-	\end{lemma}
-	\section{Propositions}
-	\begin{definition} %{{{ Uniformly Continuous function 		Definition
-		A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous when $f.A \leq B.f$.
-		\[\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f
-			\;\;\;	\text{ i.e. } \; \; \;
-			\begin{tikzcd}
-				X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
+\end{lemma}
+\section{Propositions}
+\begin{definition} %{{{ Uniformly Continuous function 		Definition
+	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f \; \;$ i.e.
+	\[\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f
+		\;\;\;	\text{ i.e. } \; \; \;
+		\begin{tikzcd}
+			X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
 		& Y \arrow{d}{B}\\
 		X \arrow[swap]{r}{f}
 		& Y
-			\end{tikzcd}
-		\]
-	\end{definition}
-	\begin{definition} %{{{ Quasi-uniformity		Definition
-		A prorelation on a set X, $P:X \to X$ is a quasi-uniformity if it satisfies :
-		\begin{enumerate}[label=(\roman*)]
-			\item $\forall p \in P $ , for any $x \in X$, $(x,x) \in p$ i.e. \text{ p is reflexive }
-			\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
-		\end{enumerate}
-		And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
-	\end{definition}
-	\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
-	\end{lemma}
-	\begin{proof}
-		Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
-		we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
-		$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
-	\end{proof}
-	%{{{ Two categories
-	\begin{proop} QUnif is a category defined as having quasi-uniform spaces as objects,
-		and uniformly continous maps between as morphisms. Composition defined as that of functions.
-	\end{proop}
-	\begin{proof}
-		\begin{enumerate}[label=(\roman*)]
-			\item (Associativity) The composition of functions is associative by definition.
-			\item (Identity) For each object $(X,A)$, define it's identity to be the identity
-				function $\Delta_X:(X,A) \to (X,A)$.
-				This function is uniformly continuous as $\Delta_X.A=A \leq A=A.\Delta_X$.
-		\end{enumerate}
-	\end{proof}
-	\begin{definition}%{{{ Promodule		Definition
-		A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
-		satisfies:
-		\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
-	\end{definition}
-	\begin{definition} %{{{Promodule Containment 		Definition
-		Containment of promodules is defined as that of prorelations.
-	\end{definition}
-	\begin{definition} %{{{ Composition of Promodules		Definition
-		Promodules are composed as prorelations.\\
-		For promodules $\phi: (X,A) \carrow (Y,B)$ and $\psi:(Y,B)\carrow(Z,C)$,
-		$\psi \phi := \psi.\phi = \{q \circ p :p\in \phi \text{ and } q \in \psi \}$
-	\end{definition}
-	\begin{proop}%{{{ ProMod		Definition
-		ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
-		promodules as 1-cells and containment of promodules as 2-cells.
-	\end{proop}
-	\begin{proof} In order to show that ProMod is a 2-category, need the following
-		\begin{enumerate}[label=(\alph*)]
-			\item (1-Identities) For each quasi-uniform space $(X,A)$,
-				define promodule $A:(X,A) \carrow (X,A)$ to be the identity 1-cell for $(X,A)$.
-			\item (1-composition) Need promodules to be closed under composition.\\
-				Let $\phi:(X,A)\carrow (Y,B)$ and $\psi:(Y,B)\carrow (Z,C)$ be promodules.
-				To show that $\psi.\phi:(X,A) \carrow (Z,C)$ is a promodule, need it to be a
-				prorelation that satisfies the two conditions required to be a promodule:
-				\begin{enumerate}[label=(\roman*)]
-					\item By Lemma 1.2.1, prorelations are closed under composition.
-						Hence, $\psi.\phi$ is a prorelation
-					\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
-						$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
-						$\phi.A\leq \phi$ gives that there exists
-						$ q' \in \phi \text{ and } a\in A$ such that
-						$q'\,a \subseteq q$. Thus,
-						$p\,q'\,a \subseteq p\,q$.
-					\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
-						and $q\in \phi$. Because
-						$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
-						there exists $c\in C$ and $p' \in \psi$ such that
-						$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
-				\end{enumerate}
-			\item (2-identities) As the partial order defined on prorelations is reflexive,
-				every promodule, $\psi$ is comparable
-				to itself $\psi \leq \psi$. Define this comparison to be the
-				identity 2-cell for $\psi$ and denote it as $\leq_\psi$
+		\end{tikzcd}
+	\]
+\end{definition}
+\begin{definition} %{{{ Quasi-uniformity		Definition
+	A prorelation on a set, $P:X \to X$ is a quasi-uniformity if it satisfies :
+	\begin{enumerate}[label=(\roman*)]
+		\item $\forall p \in P$,  $\;p$ is reflexive i.e. for any $x \in X$, $(x,x) \in p$
+		\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
+	\end{enumerate}
+	And in that case, $(X,A)$ is called a \textit{quasi-uniform space}.
+\end{definition}
+\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
+\end{lemma}
+\begin{proof}
+	Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
+	we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
+	$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
+\end{proof}
+%{{{ Two categories
+\begin{proop} QUnif is a category defined as having quasi-uniform spaces as objects,
+	and uniformly continuous maps between them as morphisms, with composition defined as that of functions.
+\end{proop}
+\begin{proof}
+	\begin{enumerate}[label=(\roman*)]
+		\item (Associativity) The composition of functions is associative by definition.
+		\item (Identity) For each object $(X,A)$, define it's identity to be the identity
+			function $\Delta_X:(X,A) \to (X,A)$.
+			This function is uniformly continuous as $\Delta_X.A=A \leq A=A.\Delta_X$.
+	\end{enumerate}
+\end{proof}
+\begin{definition}%{{{ Promodule		Definition
+	A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
+	satisfies:
+	\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
+\end{definition}
+\begin{definition} %{{{Promodule Containment 		Definition
+	Comparison of promodules is defined as that of prorelations.
+\end{definition}
+\begin{definition} %{{{ Composition of Promodules		Definition
+	Promodules are composed as prorelations.\\
+\end{definition}
+\begin{proop}%{{{ ProMod		Definition
+	ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
+	promodules as 1-cells and containment of promodules as 2-cells.
+\end{proop}
+\begin{proof} In order to show that ProMod is a 2-category, need the following:
+	\begin{enumerate}[label=(\alph*)]
+		\item (1-Identities) For each quasi-uniform space $(X,A)$,
+			define $A:(X,A) \carrow (X,A)$ to be the identity 1-cell for $(X,A)$. A is a promodule
+			because $A.A=A$ (Lemma 2.2.1)
+		\item (1-Composition) Need promodules to be closed under composition.\\
+			Let $\phi:(X,A)\carrow (Y,B)$ and $\psi:(Y,B)\carrow (Z,C)$ be promodules.
+			To show that $\psi.\phi:(X,A) \carrow (Z,C)$ is a promodule, need it to be a
+			prorelation that satisfies the two conditions required to be a promodule:
+			\begin{enumerate}[label=(\roman*)]
+				\item By Lemma 1.2.1, prorelations are closed under composition.
+					Hence, $\psi.\phi$ is a prorelation
+				\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
+					$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
+					$\phi.A\leq \phi$ gives that there exists
+					$ q' \in \phi \text{ and } a\in A$ such that
+					$q'\,a \subseteq q$. Thus,
+					$p\,q'\,a \subseteq p\,q$.
+				\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
+					and $q\in \phi$. Because
+					$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
+					there exists $c\in C$ and $p' \in \psi$ such that
+					$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
+			\end{enumerate}
+		\item (2-Identities) As every promodule is contained in itself, always have $\psi \leq \psi$.
+			Define this comparison to be the identity 2-cell for $\psi$ and denote it by $\leq_\psi$
 
-			\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \carrow (Y,B)$,
-				if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
-				to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
-				of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
-				$\psi$ to $\delta$.
-			\item (Horizontal 2-composition) If there are promodules
-				$\psi,\psi':(X,A) \carrow (Y,B)$ and
-				$\phi,\phi':(Y,B) \carrow (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
-				\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
-				$q' \in \phi'$. By hypothesis, $\exists p\in \psi: p \subseteq p'$
-				and $\exists q \in \phi: q \subseteq q'$. Thus, $p\,q\subseteq p'\,q'$
-			\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \carrow (Y,B)$,
-				$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
-				reflexive. Thus, for any $p \in \phi$ and $a \in A$,
-				$p=p. \Delta_X \subseteq p \,a$
-				giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
-				$\phi \geq \phi.A$. Hence, $\phi=\phi.A$.
+		\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \carrow (Y,B)$,
+			if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
+			to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
+			of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
+			$\psi$ to $\delta$.
+		\item (Horizontal 2-composition) If there are promodules
+			$\psi,\psi':(X,A) \carrow (Y,B)$ and
+			$\phi,\phi':(Y,B) \carrow (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
+			\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
+			$q' \in \phi'$. As $\psi\leq\psi'$, $\exists p\in \psi: p \subseteq p'$
+			and as $\psi\leq\psi'$, $\exists q \in \phi: q \subseteq q'$.
+			Thus, $p\,q\subseteq p'\,q'$
+		\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \carrow (Y,B)$,
+			$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
+			reflexive. Thus, for any $p \in \phi$ and $a \in A$,
+			$p=p. \Delta_X \subseteq p \,a$
+			giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
+			$\phi \geq \phi.A$. Hence, $\phi=\phi.A$.
 
-				Similarly, By quasi-uniformity of $B$, every $b \in B$, is
-				reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
-				b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
-				$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
-			\item (1-Associativity) As composition of relations is associative, so is the
-				composition of prorelations. Hence composition of promodules i.e. 1-cells
-				is associative.
-			\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
-				$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi \leq_1$
-				means precisely that $\psi \leq \psi \leq \phi $, and this is equivalent to
-				$\psi \leq \phi$. Similarly, $\leq_1 \leq_\phi$ means precisely that $\psi
-				\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
-			\item (Vertical 2-Associativity) Associativity of the partial order on promodules
-				directly gives the associativity of composition of 2-cells in ProMod.
-			\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\carrow (Y,B)$ be promodules.
-				For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
-				by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
-				equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
-				\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
-				direct consequence of (f).
-			\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
-				promodules, horizontal composition of 2-cells is associative as
-				a consequence of composition of promodules being associative.
-			\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
-				$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
-				Both sides of the equality to be shown are 2-cells $\leq:\psi.\phi
-				\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
-				any two 1-cells.
-			\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
-				$\psi',\phi',\delta':(Y,B) \carrow (Z,C)$ be promodules. For
-				2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
-				$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
-				$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
-				Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
-				hence equal.
+			Similarly, By quasi-uniformity of $B$, every $b \in B$, is
+			reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
+			b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
+			$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
+		\item (1-Associativity) As composition of relations is associative, so is the
+			composition of prorelations. Hence composition of promodules i.e. 1-cells
+			is associative.
+		\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
+			$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi \leq_1$
+			means precisely that $\psi \leq \psi \leq \phi $, and this is equivalent to
+			$\psi \leq \phi$. Similarly, $\leq_1 \leq_\phi$ means precisely that $\psi
+			\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
+		\item (Vertical 2-Associativity) Associativity of the partial order on promodules
+			directly gives the associativity of composition of 2-cells in ProMod.
+		\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\carrow (Y,B)$ be promodules.
+			For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
+			by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
+			equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
+			\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
+			direct consequence of (f).
+		\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
+			promodules, horizontal composition of 2-cells is associative as
+			a consequence of composition of promodules being associative.
+		\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
+			$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
+			Both sides of the equality to be shown are 2-cells $\leq:\psi.\phi
+			\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
+			any two 1-cells.
+		\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
+			$\psi',\phi',\delta':(Y,B) \carrow (Z,C)$ be promodules. For
+			2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
+			$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
+			$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
+			Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
+			hence equal.
+	\end{enumerate}
+\end{proof}
+%}}}
+%{{{Two functors
+\begin{proop} Functor, $(-)_*:\text{QUnif} \to \text{ProMod}$ is
+	defined as fixing objects and taking morphisms to their image under $(-)_*$
+	\begin{enumerate}[label=(\alph*)]
+		\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
+		\item for $f:(X,A) \to (Y,B)$ in QUnif,
+			$f_* := f^o .B$
+	\end{enumerate}
+\end{proop}
+\begin{proof}
+
+\end{proof}
+
+\begin{proop} Functor, $(-)^*:\text{QUnif}^{op} \to \text{ProMod}$ is
+	defined as fixing objects and taking morphisms to their image under $(-)^*$
+	\begin{enumerate}[label=(\alph*)]
+		\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
+		\item for $f:(X,A) \to (Y,B)$ in QUnif,
+			$f^* := f^o .B$
+	\end{enumerate}
+\end{proop}
+
+\begin{proof}
+\item \paragraph{Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule } \mbox{} \\
+	So, need to show $f^o .B$ a prorelation $Y \to X$
+	and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
+	To show prorelation, \begin{enumerate}[label=(\roman*)]
+		\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
+			$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
+		\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
+			\text{ such that } l \subseteq k,k'$
+
+			Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
+			k' = f^o \circ b'$
+
+			And as $B$ is a quasi-uniformity, it's down directed so,
+			$\exists c \in B: c \subseteq b,b' \implies l:= f^o \circ c \subseteq k,k'$
+		\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
+			, need $l \in f^o .B$
+
+			Let $b\in B$ be such that $k=f^o \circ b$ and define
+			$b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
+				As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
+				\\ and $range(l) \supseteq range(f^o \circ b)\implies
+				\forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
+				Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
+				$f^o \circ b \subseteq l$ , \\
+				$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
+				(z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
+				$(x,z) \in l$
+
 		\end{enumerate}
+	\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
+		\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
+		Fix any $b \in B$, as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
+		\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
+
+		To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
+		$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
+		As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
+		: f \circ a \subseteq b \circ f
+		\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
+		Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
+		(for brevity, omitting $\circ$ to explicitly denote composition  )\\
+		And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
+		\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
+	\item	Now, need to show that $(-)^*$ respects composition and identity.
+		\begin{enumerate}[label=(\roman*)]
+			\item (Composition) let $f,g$ be uniformly continuous,
+				$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
+				need that $(g \circ f)^*= f^*.g^* $
+
+				LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
+				RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
+				For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
+
+				To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
+				$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
+				\supseteq f^obgc'$ \\
+				Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
+				\implies f^o g^o c \supseteq f^o g^o (c'c')
+				=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
+				By uniform conntinuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
+				\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
+				f^o (g^o g)bg^o c'=f^o bg^o c'$.
+
+				To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
+				$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
+				\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
+				As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
+				g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
+			\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
+				$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
+				$(1_{(X,A)})^*=1_{(X,A)^*}$
+				LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$.
+				\\Now, it's required that $A$ is the identity of $(X,A)$ in ProMod.\\
+				So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$\\
+				As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,\\
+				$\forall a\in A, \Delta_X \subseteq a \implies
+				\forall a \in A, \forall p \in \phi, p=p\Delta_X\subseteq pa \implies
+				\phi \leq \phi.A$\\
+				Also, fix $\psi:(Y,B) \carrow (X,A)$, need to show $A.\psi=\psi$\\
+				As $\psi$ is a promodule, $A.\psi \leq \psi$ and as A is quasi-uniformity on X,\\
+				$\forall a\in A, \Delta_X \subseteq a \implies
+				\forall a \in A, \forall q \in \psi, q=\Delta_X q \subseteq aq \implies
+				\psi \leq \psi.A$
+		\end{enumerate}
+
+
+
 	\end{proof}
 	%}}}
-	%{{{Two functors
+	\begin{definition} %{{{ Fully Faithful and Dense		Definition
+		Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
+		\begin{enumerate}[label=\Roman*]
+			\item f is said to be fully faithful if	$f^* .f_*=A $
+			\item f is said to be fully dense if $f_* .f^*=B $
+		\end{enumerate}
+	\end{definition}
+	%Mention about topology so that below definition makes more sense ??%
+	%{{{ Proposition 1
 	\begin{proop}
-
-	\end{proop}
-	\begin{proof}
-
-	\end{proof}
-
-	\begin{proop}
-		Defined as fixing objects and taking morphisms to their image under $(-)^*$
+		Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 		\begin{enumerate}[label=(\alph*)]
-			\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
-			\item for $f:(X,A) \to (Y,B)$ in QUnif,
-				$f^* := f^o .B$
+			\item f is fully faithful if and only if $A\geq f^o.B.f$
+			\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
+				such that $b' \subseteq b\,f\,f^o \,b$
+			\item f is topologically dense if and only if for any $b\in B$,
+				$\; b \, f\, f^o\,b$ is reflexive
+			\item f is fully dense if and only if f is topologically dense
 		\end{enumerate}
 	\end{proop}
 	\begin{proof}
-	\item \paragraph{Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule } \mbox{} \\
-		So, need to show $f^o .B$ a prorelation $Y \to X$
-		and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
-		To show prorelation, \begin{enumerate}[label=(\roman*)]
-			\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
-				$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
-			\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
-				\text{ such that } l \subseteq k,k'$
-
-				Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
-				k' = f^o \circ b'$
-
-				And as $B$ is a quasi-uniformity, it's down directed so,
-				$\exists c \in B: c \subseteq b,b' \implies l:= f^o \circ c \subseteq k,k'$
-			\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
-				, need $l \in f^o .B$
-
-				Let $b\in B$ be such that $k=f^o \circ b$ and define
-				$b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))$\\
-					As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
-					\\ and $range(l) \supseteq range(f^o \circ b)\implies
-					\forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
-					Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
-					$f^o \circ b \subseteq l$ , \\
-					$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
-					(z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
-					$(x,z) \in l$
-
-			\end{enumerate}
-		\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
-			\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
-			Fix any $b \in B$ as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
-			\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
-
-			To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
-			$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
-			As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
-			: f \circ a \subseteq b \circ f
-			\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
-			Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
-			(for brevity, omitting $\circ$ to explicitly denote composition  )\\
-			And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
-			\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
-		\item	Now, need to show that $(-)^*$ respects composition and identity.
-			\begin{enumerate}[label=(\roman*)]
-				\item (Composition) let $f,g$ be uniformly continuous,
-					$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
-					need that $(g \circ f)^*= f^*.g^* $
-
-					LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
-					RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
-					For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
-
-					To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
-					$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
-					\supseteq f^obgc'$ \\
-					Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
-					\implies f^o g^o c \supseteq f^o g^o (c'c')
-					=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
-					By uniform conntinuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
-					\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
-					f^o (g^o g)bg^o c'=f^o bg^o c'$.
-
-					To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
-					$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
-					\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
-					As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
-					g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
-				\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
-					$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
-					$(1_{(X,A)})^*=1_{(X,A)^*}$
-					LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$.
-					\\Now, it's required that $A$ is the identity of $(X,A)$ in ProMod.\\
-					So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$\\
-					As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,\\
-					$\forall a\in A, \Delta_X \subseteq a \implies
-					\forall a \in A, \forall p \in \phi, p=p\Delta_X\subseteq pa \implies
-					\phi \leq \phi.A$\\
-					Also, fix $\psi:(Y,B) \carrow (X,A)$, need to show $A.\psi=\psi$\\
-					As $\psi$ is a promodule, $A.\psi \leq \psi$ and as A is quasi-uniformity on X,\\
-					$\forall a\in A, \Delta_X \subseteq a \implies
-					\forall a \in A, \forall q \in \psi, q=\Delta_X q \subseteq aq \implies
-					\psi \leq \psi.A$
-			\end{enumerate}
-
-
-
-		\end{proof}
-		%}}}
-		\begin{definition} %{{{ Fully Faithful and Dense		Definition
-			Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
-			\begin{enumerate}[label=\Roman*]
-				\item f is said to be fully faithful if	$f^* .f_*=A $
-				\item f is said to be fully dense if $f_* .f^*=B $
-			\end{enumerate}
-		\end{definition}
-		%Mention about topology so that below definition makes more sense ??%
-		%{{{ Proposition 1
-		\begin{proop}
-			Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
-			\begin{enumerate}[label=(\alph*)]
-				\item f is fully faithful if and only if $A\geq f^o.B.f$
-				\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
-					such that $b' \subseteq b\,f\,f^o \,b$
-				\item f is topologically dense if and only if for any $b\in B$,
-					$\; b \, f\, f^o\,b$ is reflexive
-				\item f is fully dense if and only if f is topologically dense
-			\end{enumerate}
-		\end{proop}
-		\begin{proof}
-		\item
-			\begin{enumerate}[label=(\alph*)]
-				\item \begin{enumerate}[label=(\roman*)]
-					\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
-						\implies f^o .B.B.f=A $\\
-						Need to show that $A= f^o .B.f$ i.e.
-						$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
-						By hypothesis and quasi-uniformity of B,
-						$A\geq f^o .B.B.f \geq f^o B.f $\\
-						To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
-						\in A : a \subseteq f^o bf$\\
-						Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
-						$\exists a \in A: a \subseteq f^o bbf$ and also, by
-						quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
-						\implies f^o b'b'f \subseteq f^o bf$\\
-						Combining the above two inequalities,
-						$a \subseteq f^o bbf \subseteq f^o bf$\\
-					\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
-						$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
-						To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
-						\exists b,b' \in B : a \supseteq f^o bb'f$\\
-						Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
-						So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
-						and for this b, $\exists b'\in B: b'b' \subseteq b$.
-						Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
-						To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
-						a\in A : a \subseteq f^o bb'f$ \\
-						Before that, uniform continuity
-						of f along with Lemma 2.1.1 gives that \\$f.A\leq B.f
-						\implies A=f^o f.A \leq f^o.B.f$ \\
-						So, fix $b,b' \in B $, now, as ,
-
-						$A\leq f^o .B.f $
-						giving\\ $\exists a \in A : a \subseteq f^o bf$ and
-						$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
-						f^o b'	f$.\\
-						Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
-						\subseteq f^o bb'f$
-				\end{enumerate}
-			\item	\begin{enumerate}[label=(\roman*)]
-				\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
-					showing that $\forall b \in B,\exists b'\in B: b'
-					\subseteq bff^ob$:\\
-					So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
-					B$ such that $b' \subseteq bff^ob$.
-				\item $(\impliedby)$ Suppose $\forall b \in B, \exists b' \in B:
-					b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
-					to show equality, also need $B\geq B.f.f^o .B$.
-					By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
-					\subseteq b$. Now, by Lemma 1.9.2,
-					\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
-					\Delta_Y b'=b'b' \subseteq b\]
-
-			\end{enumerate}
-		\item \begin{enumerate}[label=(\roman*)]
-			\item $(\implies)$ Let f be topologically dense, going to show that
-				$\forall b\in B$ , $ (y,y) \in bff^ob$. So, fix any $ b\in B$ and
-				$y \in Y$. Now, by definition of $\overline{f(X)}=Y $ , we get
-				\[\exists x\in X \text{ such that }
-				(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
-				Re-writing the above statement in terms of relations, and
-				considering f as a relation:
-				\begin{align}
-					(f(x),y) \in b &\text{ gives }  x(b \circ f)y \text{ i.e. }
-					y \in (b \circ f)(x)\\
-					(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
-				\end{align}
-				Repeatedly applying Lemma 1.9.3 to (2),
-				\[ f(x) \subseteq b(y) \implies
-					\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
-					\implies \big(f \circ f^o \circ f\big)(x) \subseteq
-				\big(f \circ f^o \circ b \big)(y)\]
-				Applying Lemma 1.9.1 to the above statement gives that
-				\[f(x)=\big(f \circ f^o \circ f\big)(x) \subseteq
-				\big(f \circ f^o \circ b \big)(y)  \]
-				Applying Lemma 1.9.3 and then using (1) to this inequality completes the result:
-				\[ f(x) \subseteq \big(ff^ob \big)(y)
-					\implies \big(b \circ f\big)(x) \subseteq
-				\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
-			\item $(\impliedby)$ Fix any $y \in Y$ and $b \in B$. Also, suppose that
-				$\Delta_Y \leq bff^o b$. As f is a function with domain as X,
-				$f^o :Y \to X$, $\phi \neq (f^o \circ b)(y)
-				\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
-				$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
-				relation.
-				\[ \Delta_Y \leq bff^ob
-					\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
-				(f^o b(y))\]
-				Using Lemma 1.9.3 on the above statement, gives $y \in (bf)(x)
-				\text{ i.e. } (f(x),y)\in b $.\\
-				Applying Lemma 1.9.3 to f, and then using Lemma 1.9.4,
-				\begin{equation*}
-					ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
-				\end{equation*}
-				Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
-				(y,f(x)) \in b$
-		\end{enumerate}
 	\item
-		\begin{enumerate}[label=(\roman*)]
-			\item
-				($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
-				\begin{equation}\exists b' \in B : b'b' \subseteq b \text{ and } \Delta_Y \subseteq b'
-					\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
-				\end{equation}
-				By the characterisation of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
-				Now, using the (3) and Lemma 1.9.2,
-				\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
-				\subseteq bf f^o b\]
-				Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
-			\item ($\impliedby$) From (b), we have for $b \in B$, the existstence of $b' \in B$ such that $
-				b' \subseteq bf f^o b$. As B is a quasi-uniformity, $\Delta_Y \subseteq b'$. So,
-				$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense.
+		\begin{enumerate}[label=(\alph*)]
+			\item \begin{enumerate}[label=(\roman*)]
+				\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
+					\implies f^o .B.B.f=A $\\
+					Need to show that $A= f^o .B.f$ i.e.
+					$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
+					By hypothesis and quasi-uniformity of B,
+					$A\geq f^o .B.B.f \geq f^o B.f $\\
+					To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
+					\in A : a \subseteq f^o bf$\\
+					Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
+					$\exists a \in A: a \subseteq f^o bbf$ and also, by
+					quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
+					\implies f^o b'b'f \subseteq f^o bf$\\
+					Combining the above two inequalities,
+					$a \subseteq f^o bbf \subseteq f^o bf$\\
+				\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
+					$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
+					To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
+					\exists b,b' \in B : a \supseteq f^o bb'f$\\
+					Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
+					So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
+					and for this b, $\exists b'\in B: b'b' \subseteq b$.
+					Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
+					To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
+					a\in A : a \subseteq f^o bb'f$ \\
+					Before that, uniform continuity
+					of f along with Lemma 2.1.1 gives that \\$f.A\leq B.f
+					\implies A=f^o f.A \leq f^o.B.f$ \\
+					So, fix $b,b' \in B $, now, as ,
+
+					$A\leq f^o .B.f $
+					giving\\ $\exists a \in A : a \subseteq f^o bf$ and
+					$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
+					f^o b'	f$.\\
+					Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
+					\subseteq f^o bb'f$
+			\end{enumerate}
+		\item	\begin{enumerate}[label=(\roman*)]
+			\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
+				showing that $\forall b \in B,\exists b'\in B: b'
+				\subseteq bff^ob$:\\
+				So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
+				B$ such that $b' \subseteq bff^ob$.
+			\item $(\impliedby)$ Suppose $\forall b \in B, \exists b' \in B:
+				b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
+				to show equality, also need $B\geq B.f.f^o .B$.
+				By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
+				\subseteq b$. Now, by Lemma 1.9.2,
+				\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
+				\Delta_Y b'=b'b' \subseteq b\]
+
 		\end{enumerate}
+	\item \begin{enumerate}[label=(\roman*)]
+		\item $(\implies)$ Let f be topologically dense, going to show that
+			$\forall b\in B$ , $ (y,y) \in bff^ob$. So, fix any $ b\in B$ and
+			$y \in Y$. Now, by definition of $\overline{f(X)}=Y $ , we get
+			\[\exists x\in X \text{ such that }
+			(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
+			Re-writing the above statement in terms of relations, and
+			considering f as a relation:
+			\begin{align}
+				(f(x),y) \in b &\text{ gives }  x(b \circ f)y \text{ i.e. }
+				y \in (b \circ f)(x)\\
+				(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
+			\end{align}
+			Repeatedly applying Lemma 1.9.3 to (2),
+			\[ f(x) \subseteq b(y) \implies
+				\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
+				\implies \big(f \circ f^o \circ f\big)(x) \subseteq
+			\big(f \circ f^o \circ b \big)(y)\]
+			Applying Lemma 1.9.1 to the above statement gives that
+			\[f(x)=\big(f \circ f^o \circ f\big)(x) \subseteq
+			\big(f \circ f^o \circ b \big)(y)  \]
+			Applying Lemma 1.9.3 and then using (1) to this inequality completes the result:
+			\[ f(x) \subseteq \big(ff^ob \big)(y)
+				\implies \big(b \circ f\big)(x) \subseteq
+			\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
+		\item $(\impliedby)$ Fix any $y \in Y$ and $b \in B$. Also, suppose that
+			$\Delta_Y \leq bff^o b$. As f is a function with domain as X,
+			$f^o :Y \to X$, $\phi \neq (f^o \circ b)(y)
+			\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
+			$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
+			relation.
+			\[ \Delta_Y \leq bff^ob
+				\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
+			(f^o b(y))\]
+			Using Lemma 1.9.3 on the above statement, gives $y \in (bf)(x)
+			\text{ i.e. } (f(x),y)\in b $.\\
+			Applying Lemma 1.9.3 to f, and then using Lemma 1.9.4,
+			\begin{equation*}
+				ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
+			\end{equation*}
+			Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
+			(y,f(x)) \in b$
+	\end{enumerate}
+\item
+	\begin{enumerate}[label=(\roman*)]
+		\item
+			($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
+			\begin{equation}\exists b' \in B : b'b' \subseteq b \text{ and } \Delta_Y \subseteq b'
+				\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
+			\end{equation}
+			By the characterisation of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
+			Now, using the (3) and Lemma 1.9.2,
+			\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
+			\subseteq bf f^o b\]
+			Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
+		\item ($\impliedby$) From (b), we have for $b \in B$, the existstence of $b' \in B$ such that $
+			b' \subseteq bf f^o b$. As B is a quasi-uniformity, $\Delta_Y \subseteq b'$. So,
+			$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense.
+	\end{enumerate}
 \end{enumerate}
 \end{proof}
 %}}}
