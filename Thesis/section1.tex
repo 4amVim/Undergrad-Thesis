@@ -27,7 +27,9 @@
 }
 
 \begin{document}
-\section{Definitions}
+\section{Yoneda}
+
+\section{Prorelations}
 \begin{definition}%{{{ Prorelation		Definition
 	A prorelation is a partially ordered, down-directed, upper set of relations $X \to Y$,\\
 	i.e a set, $P \subseteq \mathcal{P}(X \times Y)$ such that
@@ -45,9 +47,33 @@
 	\[ \text{ For prorelations } P:X\to Y \text{ and } Q:Y\to Z,
 	\; \; Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
 \end{definition}
+%{{{Prorelations closed under composition
 \begin{lemma}
-	Prorelations are closed under composition
+	Prorelations are closed under composition.
 \end{lemma}
+\begin{proof}
+	For prorelations $P:X \to Y$ and $Q:Y \to Z$, need to show that Q.P is a prorelation.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Partial Order) Inclusion of relations gives a partial order.
+		\item (Down-Directed) If $k,k' \in Q.P$ then, $k=q\,p$ and $k'=q'\,p'$ for some
+		$q,q' \in Q$ and $p,p' \in P$. Because $Q$ and $P$ are prorelations,
+		and hence down-directed sets, there exists $a \in Q$ such that
+		$ a\subseteq q,q'$ and $b \in P$ such that $b \subseteq p,p'$. Thus,
+		$a \circ b \subseteq k, k'$.
+	\item (Up-Set) Let $l:X \to Z$ be a relation, and $k \in Q.P$ such that $l \supseteq k$.
+		Define relations $ a:X \to Y $ and $b:Y \to Z$ as
+		$a:=\{(x,y): x \in domain(l) \text{ and } y \in Y\}$ and
+		$b:=\{(y,z): z \in range(l) \text{ and } y \in Y\}$.
+		Because there exist $a'\in A$ and $b' \in B$ such that
+		$l \supseteq k = b' \circ a'$, by definition of $a$ and $b$, we get that
+		$b \supseteq b'$ and $a \supseteq a'$. Because $Q$ and $P$ are up-sets,
+		this gives that$b \in B$ and $a \in A$, and hence $b\circ a \in Q.P$.
+		Lastly for $(x,z) \in X \times Z$, if $(x,z) \in l$, then $\forall y \in Y$,
+		$(x,y) \in a \text{ and } (y,z) \in b $ gives that $(x,z) \in b \circ a$,
+		giving that $l=b \circ a$.
+	\end{enumerate}
+\end{proof}
+%}}}
 \begin{definition} %{{{ Comparison of Prorelations		Definition
 	Prorelations with same domain and co-domain are said to be comparable
 	when one of them contains all the relations of the other one.
@@ -58,22 +84,49 @@
 	For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
 	\[ \forall (x,y)\in X \times Y, \; \;  (x,y)\in r \text{ if and only if }  (y,x) \in r^o \]
 \end{definition}
+%{{{Recurring Lemmas
 \begin{lemma}
-	For any relation $r:X \to Y$, $ \; r^o \circ r = \Delta_X$
+	For any function $f:X \to Y$, $ \; f^o \circ f \supseteq \Delta_X$
 \end{lemma}
+\begin{proof}
+	As $f$ is a function, it must be defined on every element of it's domain. So, for every
+	$x \in X$, there exists some $(x,y) \in r$, which, by definition of $f^o$ also gives
+	that $(y,x) \in f^o$. Hence, by
+	definition of composition, for every $x \in X$, $(x,x) \in f^o \,f$ giving that $\Delta_X
+	\subseteq f^o \, f$.
+\end{proof}
 \begin{lemma}
 	For any relation $r:X \to Y$, $\; r \circ r^o \subseteq \Delta_Y$
 \end{lemma}
+\begin{proof}
+	Suppose there exist $x \in X$ and $y \in Y$ such that
+	$x\,r\,y$. By definition of $r^o$, this
+	gives us that $y\, r^o \,x$. Now, using the definition of composition,
+	$y\, r^o \,x \,r\,y$ gives that	$y\, (r \circ r^o)\, y$.
+\end{proof}
 \begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$,
-	for any $x,x' \in X$, $r(x)\subseteq s(x') \implies (t \circ r)(x) \subseteq
-	(t \circ s)(x)$
-
+	 $\;r \subseteq s \implies (t \circ r) \subseteq (t \circ s)$
 \end{lemma}
+\begin{proof}
+	Suppose relations $r,s$ and $t$ are as given above and let $x \in X, z\in Z$ such that
+	$x \,(t \, r)\,z$. By definition of composition, there
+	exists some element, $y$ of $Y$ such that $x\,r\,y$ and $y\,t\,z$.
+	By hypothesis, $x\,r\,y$ gives $x\,s\,y$, and composition with $y \, t \, z $
+	gives $x\,(t\,s)\, z$. We started with any element of $(t \circ r)$ and showed that
+	it must also be in $t \circ s$. Thus, $(t \circ r) \subseteq (t \circ s)$.
+\end{proof}
 \begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$,
 	$s\subseteq t \implies (s \circ r) \subseteq
-	(t \circ r)(x)$
-
+	(t \circ r)$
 \end{lemma}
+\begin{proof}
+	Suppose relations $r,s$ and $t$ are as given above and let $x \in X, z\in Z$ such that
+	$x \,(s \, r)\,z$. By definition of composition of relations, we get that there exists
+	some $y \in Y$ such that $x\,r\,y$ and $y\,s\,z$. Because $s \subseteq t$, $y\,s\,z$
+	implies that $y\,t\,z$. Again, by composition, we get that $x(t\,r)z$.
+\end{proof}
+%}}}
+
 \section{Propositions}
 \begin{definition} %{{{ Uniformly Continuous function 		Definition
 	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f \; \;$ i.e.
@@ -95,6 +148,7 @@
 	\end{enumerate}
 	And in that case, $(X,A)$ is called a \textit{quasi-uniform space}.
 \end{definition}
+%{{{ A.A=A
 \begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
 \end{lemma}
 \begin{proof}
@@ -102,6 +156,8 @@
 	we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
 	$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
 \end{proof}
+%}}}
+
 %{{{ Two categories
 \begin{proop} QUnif is a category defined as having quasi-uniform spaces as objects,
 	and uniformly continuous maps between them as morphisms, with composition defined as that of functions.
@@ -173,19 +229,20 @@
 			reflexive. Thus, for any $p \in \phi$ and $a \in A$,
 			$p=p. \Delta_X \subseteq p \,a$
 			giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
-			$\phi \geq \phi.A$. Hence, $\phi=\phi.A$.
+			$\phi \geq \phi.A$. Hence, by anti-symmetry of the partial order, $\phi=\phi.A$.
 
 			Similarly, By quasi-uniformity of $B$, every $b \in B$, is
 			reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
 			b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
 			$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
-		\item (1-Associativity) As composition of relations is associative, so is the
-			composition of prorelations. Hence composition of promodules i.e. 1-cells
-			is associative.
+		\item (1-Associativity) As composition of relations is associative, so too is the
+			composition of prorelations directly giving that composition of promodules
+			i.e. 1-cells is associative.
 		\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
-			$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi \leq_1$
-			means precisely that $\psi \leq \psi \leq \phi $, and this is equivalent to
-			$\psi \leq \phi$. Similarly, $\leq_1 \leq_\phi$ means precisely that $\psi
+			$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi.\leq_1$
+			means precisely that $\psi \leq \psi \leq \phi $, and by transitivity,
+			this is equivalent to $\psi \leq \phi$.
+			Similarly, $\leq_1.\leq_\phi$ means exactly that $\psi
 			\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
 		\item (Vertical 2-Associativity) Associativity of the partial order on promodules
 			directly gives the associativity of composition of 2-cells in ProMod.
@@ -196,11 +253,11 @@
 			\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
 			direct consequence of (f).
 		\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
-			promodules, horizontal composition of 2-cells is associative as
-			a consequence of composition of promodules being associative.
+			promodules, and composition of promodules is associative,
+			horizontal composition of 2-cells is associative.
 		\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
 			$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
-			Both sides of the equality to be shown are 2-cells $\leq:\psi.\phi
+			Both sides of the required equality are 2-cells $\leq:\psi.\phi
 			\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
 			any two 1-cells.
 		\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
@@ -395,7 +452,7 @@
 				b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
 				to show equality, also need $B\geq B.f.f^o .B$.
 				By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
-				\subseteq b$. Now, by Lemma 1.9.2,
+				\subseteq b$. Now, by Lemma 2.4.2,
 				\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
 				\Delta_Y b'=b'b' \subseteq b\]
 
@@ -413,15 +470,17 @@
 				y \in (b \circ f)(x)\\
 				(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
 			\end{align}
-			Repeatedly applying Lemma 1.9.3 to (2),
+			Repeatedly applying Lemma 2.4.3 to (2),
 			\[ f(x) \subseteq b(y) \implies
 				\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
 				\implies \big(f \circ f^o \circ f\big)(x) \subseteq
 			\big(f \circ f^o \circ b \big)(y)\]
-			Applying Lemma 1.9.1 to the above statement gives that
-			\[f(x)=\big(f \circ f^o \circ f\big)(x) \subseteq
+			Applying Lemma 2.4.1 to the final inequality
+			in the above statement gives that
+			\[f(x)= (f\circ  \Delta_X) (x)
+				\subseteq \big(f \circ f^o \circ f\big)(x) \subseteq
 			\big(f \circ f^o \circ b \big)(y)  \]
-			Applying Lemma 1.9.3 and then using (1) to this inequality completes the result:
+			Applying Lemma 2.4.3 and then using (1) on the above inequality completes the result:
 			\[ f(x) \subseteq \big(ff^ob \big)(y)
 				\implies \big(b \circ f\big)(x) \subseteq
 			\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
@@ -434,9 +493,9 @@
 			\[ \Delta_Y \leq bff^ob
 				\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
 			(f^o b(y))\]
-			Using Lemma 1.9.3 on the above statement, gives $y \in (bf)(x)
+			Last inequality of the above statement gives $y \in (bf)(x)
 			\text{ i.e. } (f(x),y)\in b $.\\
-			Applying Lemma 1.9.3 to f, and then using Lemma 1.9.4,
+			Applying Lemma 2.4.2 to f, and then using Lemma 2.4.4,
 			\begin{equation*}
 				ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
 			\end{equation*}
@@ -451,7 +510,7 @@
 				\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
 			\end{equation}
 			By the characterisation of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
-			Now, using the (3) and Lemma 1.9.2,
+			Now, using the (3) and Lemma 2.4.3,
 			\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
 			\subseteq bf f^o b\]
 			Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
@@ -502,7 +561,7 @@
 			if $\psi \in PX$ then $\psi \, \tilde{a} \, \psi$.\\
 			By definition of $\tilde{a}$ , need to show that $\psi \leq \psi.a$.
 			So, fix a $p \in \psi$, we will show that $p \subseteq p.a$.
-			Quasi-uniformity of $A$ gives that $\Delta_X \subseteq a$. Hence, by Lemma 1.9.3,
+			Quasi-uniformity of $A$ gives that $\Delta_X \subseteq a$. Hence, by Lemma 2.4.3,
 			$p=p \, \Delta_X \subseteq p \,a$ .
 		\item For all $\tilde{a} \in \tilde{A}$, need to find $\tilde{b}\in \tilde{A}$ such that
 			$\tilde{b}\tilde{b} \leq \tilde{a} $\\
@@ -701,25 +760,31 @@
 				\end{equation}
 				By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
 				we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. Showing
-				$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q$:
+				$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q'$:
 				\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
-				\supseteq x^o\,x\,q'=q'\]
+				\supseteq x^o\,x\,q' \subseteq q'\]
 				Where the first inequality comes from (6) by using reflexiviness of $a''$ and then
-				lef-multiplying by $x^o$. The second inequality comes from (5). Reflexiviness of $b$
-				and $a'$ gives the third inequality. And the equality is given by Lemma 1.9.2.
+				left-multiplying by $x^o$. The second inequality comes from (5),
+				third one from reflexiviness of $b$ and $a'$,
+				and the last one is given by Lemma 2.4.1.
 
-				By definition of $\tilde{a}$, in order to show $x^* \, \tilde{a} \, \psi$,
-				need that $x^o.A=x^* \leq \psi\,a$. We will show, for any $ k\in \psi,
-				k\,a \supseteq x^o \, a''$
-				FOLLOWING IS WRONG APPROACH
+				In order to show $x^* \, \tilde{a} \, \psi$, by definition of $\tilde{a}$,
+				need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will show
+				$k\,a \supseteq x^o \, a''$.
 
-				\begin{equation}a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a'' \supseteq x \,x^o \,a''
-				\supseteq a''\end{equation}
-				Where the first inequality is given by (6) , second is due to reflexiviness
-				of $a'$. The third one is given by (4) and (5) and the last one is by applying
-				Lemma 1.9.2. Using Lemma 1.9.4 on (3) and (7) gives
-				\[ q \supseteq q'\,a'' \implies q\,a \supseteq q' \]
-		\end{enumerate}
+				\begin{equation}
+					a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a''
+					\supseteq p' \,x^o \,a''
+				\end{equation}
+
+				Where the first inequality is given by (6), second one
+				is due to reflexiviness	of $a'$ and the third inequality comes by using (4).
+				Left-multiplying (7) with $k$ gives
+				\begin{equation}
+					ka \supseteq k\,p'\,x^o\,a''
+				\end{equation}
+				FINAL STEP LEFT !!
+\end{enumerate}
 	\end{proof}
 	%}}}
 	\end{document}
