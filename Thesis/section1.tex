@@ -270,28 +270,66 @@
 	\end{enumerate}
 \end{proof}
 %}}}
-%{{{Two functors
+%{{{Two functors FIRST FUNCTOR UP-SET PROBLEM
 \begin{proop} Functor, $(-)_*:\text{QUnif} \to \text{ProMod}$ is
-	defined as fixing objects and taking morphisms to their image under $(-)_*$
+	defined as fixing quasi-uniform spaces (objects) and taking
+	uniformly continuous functions (morphisms) to the it's pre-composition with it's domain space's identity(promodule) i.e.
 	\begin{enumerate}[label=(\alph*)]
 		\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
 		\item for $f:(X,A) \to (Y,B)$ in QUnif,
-			$f_* := f^o .B$
+			$f_* := B.f$
 	\end{enumerate}
 \end{proop}
 \begin{proof}
+	We will first show that $B.f={b \circ f: b \in B}$
+	is a promodule, and then that $(-)_*$ defines a functor.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Partial-Order) Inclusion of relations acts as the partial order.
+		\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
+			$b,b'$ in $B$ such that $k=b\,f$ and $k'=b\,f$. Using down-directedness
+			of $B$, there exists a $c \in B$ such that $c \subseteq b,b'$. Hence,
+			by Lemma 2.4.4, $c\,f \subseteq k,k'$.
+		\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
+			uniformly continous function such that $l \supseteq k$.
+			Define a relation $b':= \{(x,y): \text{ for } d \in domain(l),\, x=f(d)
+			\text{ and } y=l(d)\}$. Fix any $x \in X$ and $z \in Z$.
+			If $(x,z) \in l$, then, definition of $b'$ gives $(f(x),z)\in b'$
+			and $l \supseteq k$ gives that $(x,f(x)) \in f$. Thus, by defniition
+			of composition, $(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
+			By definition of composition, there exists $y\in Y$ such that
+			$(y,z) \in b'.f$ where $y=f(x)$. Again using the definition of
+			$b'$ from $(f(x),z) \in b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$.
 
+			Now we will show that $b'\supseteq b$ so that we get $b' \in B$ which
+			would imply $b'.f \in B.f$. BUT HOW?
+		\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
+			$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
+			By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
+			\subseteq b$. Using Lemma 2.4.3, we get that $b'\,b'\,f \subseteq b\,f$.
+			As $f$ is uniformly continous, $f.A \leq B.f$ gives that there is some
+			$a \in A \text{ such that } f\,a \subseteq b'\,f$. Using this in the
+			previous inequality, we get $b'\,f\,a \subseteq b'\,b'\,f\subseteq  b\,f$.
+		\item Need to show that $B.B.f \leq B.f$. Fix any $b \in B$, we will find
+			$b' \in B$ such that $b'\,b'\,f \subseteq b\,f$.
+			By quasi-uniformity of $B$, there exists $b \in B$ such that
+			$b'\,b' \subseteq  b$. Using Lemma 2.4.4, we get $b'\,b'\,f \subseteq bf$.
+	\end{enumerate}
+	Thus, $B.f$ is a promodule. Going to show that $(-)_*$ defines a functor:
+	\begin{enumerate}[label=(\roman*)]
+		\item
+	\end{enumerate}
 \end{proof}
-
+\newpage
 \begin{proop} Functor, $(-)^*:\text{QUnif}^{op} \to \text{ProMod}$ is
-	defined as fixing objects and taking morphisms to their image under $(-)^*$
+	defined as fixing quasi-uniform spaces and taking
+	uniformly continuous functions to the composition of their opposite
+	relation with it's domain space's identity i.e.
 	\begin{enumerate}[label=(\alph*)]
 		\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
 		\item for $f:(X,A) \to (Y,B)$ in QUnif,
 			$f^* := f^o .B$
 	\end{enumerate}
 \end{proop}
-
 \begin{proof}
 \item \paragraph{Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule } \mbox{} \\
 	So, need to show $f^o .B$ a prorelation $Y \to X$
@@ -305,8 +343,9 @@
 			Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
 			k' = f^o \circ b'$
 
-			And as $B$ is a quasi-uniformity, it's down directed so,
-			$\exists c \in B: c \subseteq b,b' \implies l:= f^o \circ c \subseteq k,k'$
+			By down-directedness of $B$, there exists $c \in B$ such that
+			$ c \subseteq b,b'$, define $l=f^o \circ c$.
+			Now, using Lemma 2.4.3 gives  $l= f^o \circ c \subseteq k,k'$.
 		\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
 			, need $l \in f^o .B$
 
@@ -389,8 +428,9 @@
 			\item f is said to be fully dense if $f_* .f^*=B $
 		\end{enumerate}
 	\end{definition}
+	%NEED TO ADD TOPOLOGICALLY DENSE DEFINITION
 	%Mention about topology so that below definition makes more sense ??%
-	%{{{ Proposition 1
+%{{{ Proposition 1
 	\begin{proop}
 		Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 		\begin{enumerate}[label=(\alph*)]
@@ -458,10 +498,11 @@
 
 		\end{enumerate}
 	\item \begin{enumerate}[label=(\roman*)]
-		\item $(\implies)$ Let f be topologically dense, going to show that
-			$\forall b\in B$ , $ (y,y) \in bff^ob$. So, fix any $ b\in B$ and
-			$y \in Y$. Now, by definition of $\overline{f(X)}=Y $ , we get
-			\[\exists x\in X \text{ such that }
+		\item $(\implies)$ Let f be topologically dense. We will show that
+			for any $b\in B, y \in Y$, $\;(y,y) \in bff^ob$. Fix any $ b\in B$ and
+			$y \in Y$. As f is topologically dense, $\overline{f(X)}=Y $, implying
+			that $y\in \overline{f(X)}$, by definition giving that
+			\[ \exists x\in X \text{ such that }
 			(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
 			Re-writing the above statement in terms of relations, and
 			considering f as a relation:
@@ -502,9 +543,8 @@
 			Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
 			(y,f(x)) \in b$
 	\end{enumerate}
-\item
-	\begin{enumerate}[label=(\roman*)]
-		\item
+\item \begin{enumerate}[label=(\roman*)]
+	\item
 			($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
 			\begin{equation}\exists b' \in B : b'b' \subseteq b \text{ and } \Delta_Y \subseteq b'
 				\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
@@ -722,7 +762,7 @@
 	\end{proof}
 	%}}}
 	%}}}
-	%{{{ Yoneda Corollary
+	%{{{ Yoneda Corollary NOT COMPLETE YET
 	\begin{coro}
 		For $\psi \in PX$, $\psi \in \overline{y_X(X)}$ if and only if $\psi$ is a right-adjoint.
 	\end{coro}
