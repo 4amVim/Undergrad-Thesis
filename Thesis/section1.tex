@@ -30,8 +30,9 @@
 \section{Definitions}%
 \label{sec:definitions}
 
-\begin{definition}[Prorelation] %{{{ Prorelation		Definition
-	A partial-ordered set of relations $X \to Y$, which is down-directed and an upper set. i.e
+\begin{definition}%{{{ Prorelation		Definition
+	A prorelation is a partial-ordered set of relations $X \to Y$,
+	which is down-directed and an upper set. i.e
 	A set, $P \subseteq \mathcal{P}(X \times Y)$ such that
 	\begin{enumerate}[label=(\roman*)]
 		\item A partial-order defined to be containment as relations, $r \subseteq s$
@@ -41,48 +42,19 @@
 		\item (Up-set) for any relation $u:X\to Y$, if $\exists p \in P \text{ such that } p\leq u $
 			then $u \in P$
 	\end{enumerate} \end{definition} %}}}
-	\begin{definition}[Composition of prorelations] %{{{ Composition of prorelations		Definition
-		Prorelations can be composed by taking all compositions of their elements as relations:
-		for prorelations $P:X\to Y \text{ and } Q:Y\to Z$,
-		\[ Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
+	\begin{definition}%{{{ Composition of prorelations		Definition
+		Prorelations can be composed by taking all compositions of their elements as relations.
+	\[ \text{ For prorelations } P:X\to Y \text{ and } Q:Y\to Z,
+	\; \; Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
 	\end{definition}
-	\begin{definition}[Comparison of Prorelations] %{{{ Comparison of Prorelations		Definition
-		Two prorelations with same domain, co-domain are comparable as
-		\[ \text{ for }  P,Q:X \to Y \text{ , } P \leq Q \text{ if } \forall q \in Q, \exists p \in P
+	\begin{lemma}
+		Prorelations are closed under composition
+	\end{lemma}
+	\begin{definition} %{{{ Comparison of Prorelations		Definition
+		A prorelations with same domain and co-domain are said to be comparable
+		when one of them contains all the relations of the other.
+		\[ \text{ For prorelations }  P,Q:X \to Y, \;\; P \leq Q \;\text{ if }\; \forall q \in Q, \exists p \in P
 		\text{ such that } p \subseteq q    \]
-	\end{definition}
-	\begin{definition}[Quasi-uniformity] %{{{ Quasi-uniformity		Definition
-		A prorelation on a set X, $P:X \to X$ is a quasi-uniformity if it follows :
-		\begin{enumerate}[label=\roman*]
-			\item $\forall p \in P $ , for any $x \in X$, $(x,x) \in p$ i.e. $xpx$
-			\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
-		\end{enumerate}
-		And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
-	\end{definition}
-	\begin{definition}[Uniformly Continuous function ] %{{{ Uniformly Continuous function 		Definition
-		A function, $f:X \to Y$ is called a uniformly continuous function, $f:(X,A) \to (Y,B)$
-		if, $\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f $.
-		meaning that $f.A \leq B.f$ or
-		\begin{tikzcd}
-			X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
-		& Y \arrow{d}{B}\\
-		X \arrow[swap]{r}{f}
-		& Y
-		\end{tikzcd}.
-
-	\end{definition}
-	\begin{definition}[Promodule] %{{{ Promodule		Definition
-		A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it obeys:
-		$ \phi.A \leq \phi \text{ and } B. \phi \leq \phi $ where . denotes composition as prorelations.
-	\end{definition}
-	\begin{definition}[Comparison of Promodules] %{{{ Comparison of Promodules		Definition
-		Promodules with same domain and co-domain are compared as prorelations, for
-		$\phi,\psi:(X,A)\carrow (Y,B)$, $\phi \sqsubseteq \psi$ , only if $\phi \leq \psi$.
-	\end{definition}
-	\begin{definition}[Composition of Promodules] %{{{ Composition of Promodules		Definition
-		Promodules are composed as prorelations.\\
-		For promodules $\phi: (X,A) \carrow (Y,B)$ and $\psi:(Y,B)\carrow(Z,C)$,
-		$\psi \phi := \psi.\phi = \{q \circ p :p\in \phi \text{ and } q \in \psi \}$
 	\end{definition}
 	\begin{definition}[Opposite relation] %{{{ Opposite relation		Definition
 		For relation $r:X \to Y$, $r^o$ is defined to be a relation $r^o:Y \to X$ as
@@ -110,17 +82,34 @@
 	\begin{definition}[$(-)^*$] %{{{ (-)^*		Definition
 
 	\end{definition}
-	\begin{definition}[Fully Faithful] %{{{ Fully Faithful		Definition
-
-	\end{definition}
-
-	\begin{definition}[Fully Dense] %{{{ Fully Faithful		Definition
-
-	\end{definition}
-	\begin{definition}[Topologically Dense] %{{{ Topologically Dense		Definition
-
-	\end{definition}
 	\section{Propositions}
+	\begin{definition} %{{{ Uniformly Continuous function 		Definition
+		A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous when $f.A \leq B.f$.
+		\[\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f
+		\;\;\;	\text{ i.e. } \; \; \;
+		\begin{tikzcd}
+			X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
+		& Y \arrow{d}{B}\\
+		X \arrow[swap]{r}{f}
+		& Y
+		\end{tikzcd}
+	\]
+	\end{definition}
+	\begin{definition}[Quasi-uniformity] %{{{ Quasi-uniformity		Definition
+		A prorelation on a set X, $P:X \to X$ is a quasi-uniformity if it satisfies :
+	\begin{enumerate}[label=(\roman*)]
+	\item $\forall p \in P $ , for any $x \in X$, $(x,x) \in p$ i.e. \text{ p is reflexive }
+			\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
+		\end{enumerate}
+		And in this case, $(X,A)$ is called a \textit{quasi-uniform space}.
+	\end{definition}
+\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
+\end{lemma}
+\begin{proof}
+		Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
+		we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
+		$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
+\end{proof}
 	\begin{definition}[QUnif] %{{{ QUnif		Definition
 		QUnif is defined to be the category having quasi-uniform spaces as objects, and uniformly continous
 		maps between them as morphisms.
@@ -131,19 +120,106 @@
 			\item Identity
 		\end{enumerate}
 	\end{lemma}
-
-	\begin{definition}[ProMod] %{{{ ProMod		Definition
-
+	\begin{definition}%{{{ Promodule		Definition
+		A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
+		satisfies:
+		\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
 	\end{definition}
+	\begin{definition} %{{{Promodule Containment 		Definition
+	Containment of promodules is defined as that of prorelations.
+	\end{definition}
+	\begin{definition} %{{{ Composition of Promodules		Definition
+		Promodules are composed as prorelations.\\
+		For promodules $\phi: (X,A) \carrow (Y,B)$ and $\psi:(Y,B)\carrow(Z,C)$,
+		$\psi \phi := \psi.\phi = \{q \circ p :p\in \phi \text{ and } q \in \psi \}$
+	\end{definition}
+	\begin{proop}%{{{ ProMod		Definition
+		ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
+		promodules between them as 1-cells. And containment of promodules as 2-cells.
+	\end{proop}
+	\begin{proof} In order to show that ProMod is a 2-category, need the following
+		\begin{enumerate}[label=(\alph*)]
+			\item (1-Identities) For each quasi-uniform space $(X,A)$,
+				define promodule $A:(X,A) \carrow (X,A)$ to be the identity 1-cell for $(X,A)$.
+			\item (1-composition) Need promodules to be closed under composition.\\
+				Let $\phi:(X,A)\carrow (Y,B)$ and $\psi:(Y,B)\carrow (Z,C)$ be promodules.
+				To show that $\psi.\phi:(X,A) \carrow (Z,C)$ is a promodule, need it to be a
+				prorelation that satisfies the two conditions required to be a promodule:
+				\begin{enumerate}[label=(\roman*)]
+					\item By Lemma 1.2.1, prorelations are closed under composition.
+						Hence, $\psi.\phi$ is a prorelation
+					\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
+						$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
+						$\phi.A\leq \phi$ gives that there exists
+						$ q' \in \phi \text{ and } a\in A$ such that
+						$q'\,a \subseteq q$. Thus,
+						$p\,q'\,a \subseteq p\,q$.
+					\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
+						and $q\in \phi$. Because
+						$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
+						there exists $c\in C$ and $p' \in \psi$ such that
+						$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
+				\end{enumerate}
+			\item (2-identities) As the partial order defined on prorelations is reflexive,
+				every promodule, $\psi$ is comparable
+				to itself $\psi \leq \psi$. Define this comparison to be the
+				identity 2-cell for $\psi$ and denote it as $\leq_\psi$
 
-	\begin{lemma} ProMod does define a category, as
-		\begin{enumerate}[label=\roman*]
-			\item Composition
-			\item Identity
+			\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \carrow (Y,B)$,
+				if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
+				to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
+				of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
+				$\psi$ to $\delta$.
+			\item (Horizontal 2-composition) If there are promodules
+				$\psi,\psi':(X,A) \carrow (Y,B)$ and
+				$\phi,\phi':(Y,B) \carrow (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
+				\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
+				$q' \in \phi'$. By hypothesis, $\exists p\in \psi: p \subseteq p'$
+				and $\exists q \in \phi: q \subseteq q'$. Thus, $p\,q\subseteq p'\,q'$
+			\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \carrow (Y,B)$,
+				$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
+				reflexive. Thus, for any $p \in \phi$ and $a \in A$,
+				$p=p. \Delta_X \subseteq p \,a$
+				giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
+				$\phi \geq \phi.A$. Hence, $\phi=\phi.A$.
+
+				Similarly, By quasi-uniformity of $B$, every $b \in B$, is
+				reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
+				b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
+				$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
+			\item (1-Associativity) As composition of relations is associative, so is the
+				composition of prorelations. Hence composition of promodules i.e. 1-cells
+				is associative.
+			\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
+				$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi \leq_1$
+				means precisely that $\psi \leq \psi \leq \phi $, and this is equivalent to
+				$\psi \leq \phi$. Similarly, $\leq_1 \leq_\phi$ means precisely that $\psi
+				\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
+			\item (Vertical 2-Associativity) Associativity of the partial order on promodules
+				directly gives the associativity of composition of 2-cells in ProMod.
+			\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\carrow (Y,B)$ be promodules.
+				For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
+				by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
+				equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
+				\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
+				direct consequence of (f).
+			\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
+				promodules, horizontal composition of 2-cells is associative as
+				a consequence of composition of promodules being associative.
+			\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
+				$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
+				Both sides of the equality to be shown are 2-cells $\leq:\psi.\phi
+				\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
+				any two 1-cells.
+			\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
+				$\psi',\phi',\delta':(Y,B) \carrow (Z,C)$ be promodules. For
+				2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
+				$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
+				$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
+				Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
+				hence equal.
 		\end{enumerate}
-	\end{lemma}
-
-	%Mention about topology so that below definition makes more sense ??%
+	\end{proof}
 
 	%{{{Two functors
 	\begin{proop}[$(-)_*:$QUnif$\to ProMod$ is a Functor ]
@@ -252,18 +328,24 @@
 		\end{proof}
 		%}}}
 
-		%Talk about adjointness ??
-
-
+	\begin{definition} %{{{ Fully Faithful and Dense		Definition
+		Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
+		\begin{enumerate}[label=\Roman*]
+			\item f is said to be fully faithful if	$f^* .f_*=A $
+			\item f is said to be fully dense if $f_* .f^*=B $
+		\end{enumerate}
+	\end{definition}
+	%Mention about topology so that below definition makes more sense ??%
 		%{{{ Proposition 1
-		\begin{proop}[Proposition 1]
+		\begin{proop}
 			Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 			\begin{enumerate}[label=(\alph*)]
-				\item f is fully faithful $\iff A\geq f^o.B.f$
-				\item f is fully dense $\iff \forall b\in B, \exists b' \in B \text{ such that }
-					b' \subseteq bff^o b$
-				\item f is topologically dense $\iff\forall b\in B,\Delta_Y\subseteq b\circ f\circ f^o\circ b$
-				\item f is fully dense $\iff$ f is topologically dense
+				\item f is fully faithful if and only if $A\geq f^o.B.f$
+				\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
+					such that $b' \subseteq b\,f\,f^o \,b$
+				\item f is topologically dense if and only if for any $b\in B$,
+					 $\; b \, f\, f^o\,b$ is reflexive
+				\item f is fully dense if and only if f is topologically dense
 			\end{enumerate}
 		\end{proop}
 		\begin{proof}
@@ -384,54 +466,64 @@
 \end{proof}
 %}}}
 %{{{ A~ is a quasi-uniformity on PX
-\begin{definition}[$PX$] %{{{ PX		Definition
-	$PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}$
+\begin{definition}%{{{ PX		Definition
+	The set $PX$ is defined to be the collection of all promodules from the quasi-uniform space(X,A)
+	to the quasi-uniform space 1.
+	\[PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}\]
 \end{definition}
-\begin{definition}[$\tilde{a}$] %{{{ a~		Definition
-	for any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
-	\[ \text{ for } \phi,\psi \in PX, \phi \tilde{a} \psi \text{ only if } \phi \leq \psi.a \]
-\end{definition}
-\begin{proop}[Prorelation $\tilde{A}$] %{{{ A~		Definition
+\begin{proop}%{{{ A~		Definition
+	For any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
+	\[ \text{ for } \phi,\psi \in PX, \; \phi \, \tilde{a} \, \psi \; \text{ only if } \;
+	\phi \leq \psi.a \]
 	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
 \end{proop}
 \begin{proof}
-	First, need to show that $\tilde{A}$ is a prorelation,
+	First need to show that $\tilde{A}$ is a prorelation,
 	\begin{enumerate}[label=(\roman*)]
-		\item (Partial order) Define, for any two relations $\tilde{a},\tilde{b}:PX \to PX $,
-			that $ \tilde{a} \leq \tilde{b}$ only if $a \subseteq b$
-		\item(Down-Directed) Need that $\forall \tilde{a} ,\tilde{b} \in \tilde{A} ,
-			\exists \tilde{c} \in A : c \subseteq a,b$\\
-			$\tilde{a} ,\tilde{b} \in A \implies a,b \in A \implies \exists c \in A: c \subseteq
-			a,b \implies \tilde{c} \leq \tilde{a} ,\tilde{b} $
-		\item (Upset) Need that, for any relation $l:PX \to PX$ , if  $\exists \tilde{k} \in
-			\tilde{A} \text{ such that }  l \geq \tilde{k} \text{ , then } l \in \tilde{A} $\\
-			Fix any $k:PX \to PX$, and $\tilde{k} \in \tilde{A}$ such that $l\geq \tilde{k} $\\
-			Now, $k$ is a relation between promodules $X \carrow 1$. Thus, it can be thought
-			of as a relation on X,\\
-			$a:=\{(x,y): x \in domain(\psi) and y \in domain(\phi)
-			\text{ whenever } \exists \psi,\phi \in PX: \psi l \phi\}$ \\
-			So, $l=\tilde{a}$ and thus, $\tilde{a} \geq \tilde{k} \implies a \supseteq k
-			\implies a\in A \implies l \in \tilde{A} $
+		\item (Partial order) For any two relations $\tilde{a},\tilde{b}:PX \to PX $,
+			define $ \tilde{a} \leq \tilde{b}$ to be true only if $a \subseteq b$.
+		\item(Down-Directed) Need for any $\tilde{a} ,\tilde{b} \in \tilde{A}$,
+			the existstence of some $\tilde{c} \in A$ such that $c \subseteq a,b$\\
+			If $\tilde{a} ,\tilde{b} \in A$ then there exist $a,b \in A$. By down-directedness
+			of $A$, there exists a $c \in A$ such that  $c \subseteq a,b$. Now the definition
+			of $\tilde{A}$ gives that $\tilde{c} \in \tilde{A}$. And the definition of the
+		partial order on $\tilde{A}$ ensures $\tilde{c} \leq \tilde{a} ,\tilde{b}$.
+		\item (Upset) For any relation $l:PX \to PX$ , need that if  $\tilde{k}$ belongs to
+			$\tilde{A}$ such that $l \geq \tilde{k}$, then $l \in \tilde{A}$.\\
+			Fix any $k:PX \to PX$, and $\tilde{k} \in \tilde{A}$ such that $l\geq \tilde{k} $.
+			As $k$ is a relation between promodules $X \carrow 1$, it can be thought
+			of as a relation $a$ on X, defined as:
+			\[a:=\{(x,y): x \in domain(\psi) \text{ and }y \in domain(\phi)
+			\text{ whenever } \exists \psi,\phi \in PX: \psi l \phi\}\]
+			So, $l\geq \tilde{k}$ gives that $\tilde{a}\geq \tilde{k}$ i.e. $a \supseteq k.$
+			And as $A$ is an upper-set, we get $a\in A$. Now, by definition of $\tilde{A}$,
+			$l \in \tilde{A}$.
 	\end{enumerate}
-	Now to show that the other two conditions hold,
+	Secondly, need show that the other two conditions hold for $\tilde{A}$,
 	\begin{enumerate}[label=(\roman*)]
-		\item need that $\forall \tilde{a} \in \tilde{A} , \forall \psi \in PX, \psi \tilde{a} \psi$\\
-			So, need to show that $\psi \leq \psi.a$ i.e. $\forall p\in \psi, \exists q\in \psi:
-			q \subseteq p.a$. Take $q:=p$, and as A is a quasi-uniformity,
-			$\Delta_X \subseteq a \implies p=p.\Delta_X \subseteq p.a$
-		\item Need that $\forall \tilde{a} \in \tilde{A} , \exists \tilde{b}\in \tilde{A}:
-			\tilde{b}\tilde{b} \leq \tilde{a} $\\
-			Before that, showing , for any $x,y \in A, \tilde{x} \tilde{y} \leq \widetilde{xy} $
-			i.e. $\forall \psi, \phi \in PX$ , $\psi(\tilde{x}.\tilde{y})\phi \implies
-			\psi \widetilde{xy} \phi $\\
-			Let $\psi_1(\tilde{a} .\tilde{b} )\psi_3 \implies \exists \psi_2:
-			\psi_1 \tilde{b} \psi_2 \tilde{a} \psi_3 \implies
-			\psi_1 \leq \psi_2.b \text{ and } \psi_2 \leq \psi_3.a
-			\implies \psi_1 \leq \psi_2.b \leq \psi_3.ab \implies \psi_1(\widetilde{ab})\psi_3$
-			\\
-			Fix any $\tilde{a}\in \tilde{A} \implies a\in A \implies \exists b \in A: b \circ b \subseteq
-			a \implies \widetilde{bb} \leq \tilde{a} \implies \tilde{b} \tilde{b} \leq
-			\widetilde{bb} \leq \tilde{a}  $
+		\item For all $\tilde{a} \in \tilde{A}$, need $\tilde{a}$ to be reflexive i.e
+			if $\psi \in PX$ then $\psi \, \tilde{a} \, \psi$.\\
+			By definition of $\tilde{a}$ , need to show that $\psi \leq \psi.a$.
+			So, fix a $p \in \psi$, we will show that $p \subseteq p.a$.
+			Quasi-uniformity of $A$ gives that $\Delta_X \subseteq a$. Hence, by Lemma 1.9.3,
+			$p=p \, \Delta_X \subseteq p \,a$ .
+		\item For all $\tilde{a} \in \tilde{A}$, need to find $\tilde{b}\in \tilde{A}$ such that
+			$\tilde{b}\tilde{b} \leq \tilde{a} $\\
+			Before showing the result, proving that for any $x,y \in A$,
+			$\tilde{x} \, \tilde{y} \leq \widetilde{xy}$
+			i.e. $\forall \psi, \phi \in PX$ , $\psi(\tilde{x} \, \tilde{y})\phi \implies
+			\psi \, \widetilde{xy} \, \phi $.
+			If $\psi_1(\tilde{a} .\tilde{b} )\psi_3$, then, the definition of composition
+			gives that $\exists \psi_2$ such that $\psi_1 \, \tilde{b} \, \psi_2 \,
+			\tilde{a} \, \psi_3$. Now, the definition of $\tilde{b}$ gives $\psi_1 \leq \psi_2
+			\,b$ and that of $\tilde{a}$ gives $\psi_2 \leq \psi_3 \, a$. Combining
+			these inequalities, $\psi_1 \leq \psi_2.b \leq \psi_3.ab$.
+			Hence, by definition of	$\widetilde{ab}$, $\psi_1 \,(\widetilde{ab})\,\psi_3$.
+			Now, to show the result, fix any $\tilde{a}\in \tilde{A}$. Therefore,$a\in A$, and
+			by quasi-uniformity of $A$, $\exists b \in A: b \circ b \subseteq
+			a$. Thus, by the partial-order defined on $\tilde{A}$, $\widetilde{bb} \leq \tilde{a}$.
+			Now, transitivity of the partial order gives us the required result,
+			$ \tilde{b} \, \tilde{b} \leq \widetilde{bb} \leq \tilde{a}$.
 
 	\end{enumerate}
 \end{proof}
@@ -501,15 +593,6 @@
 \end{proof}
 %}}}
 %{{{ Yoneda Lemma
-
-\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
-\end{lemma}
-\begin{proof}
-		Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
-		we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
-		$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
-\end{proof}
-
 \begin{theorem}[Yoneda Lemma] %{{{ Yoneda Lemma		Theorem
 For every $\psi \in PX$, in the following digram,
 $\begin{tikzcd}[column sep=large ]
@@ -525,7 +608,7 @@ $\begin{tikzcd}[column sep=large ]
 \begin{proof}
 \begin{enumerate}[label=(\alph*)]
 	\item By definition, $(y_X)_*=\tilde{A}.y_X$, and $\psi^*=\psi^o.\tilde{A}$. Need that
-		$\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$. And applying Lemma 2.4.1 to
+		$\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$. And applying Lemma 2.2.1 to
 		$\tilde{A}$, the required condition becomes $\psi \geq \psi^o .\tilde{A} .y_X$
 		Fix $p \in \psi$,
 		we will find $a \in A: p \supseteq \psi^o a y_X$. Examining the right side of the condition,
@@ -581,13 +664,66 @@ $\begin{tikzcd}[column sep=large ]
 	 $z^* \tilde{b} x^* $.
 \end{enumerate}
 \end{proof}
-
-
 %}}}
 %}}}
 %{{{ Yoneda Corollary
 \begin{coro}
-	For $\psi \in PX$, $\psi \in \overline{y_X(X)} \iff \psi$ is a right-adjoint.
+	For $\psi \in PX$, $\psi \in \overline{y_X(X)}$ if and only if $\psi$ is a right-adjoint.
 \end{coro}
+\begin{proof}
+	\setcounter{equation}{0}
+	\begin{enumerate}[label=(\roman*)]
+		\item ($\implies$)
+		\item ($\impliedby$) Suppose $\psi$ is a right adjoint. Need to show that for any
+			$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
+			\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
+			exists a promodule $\phi: 1 \carrow X$ such that $\phi.\psi \leq A$ and
+			$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that
+			\begin{equation}\exists p \in \phi, q \in \psi \text{ such that }
+				a \supseteq p.q
+			\end{equation}
+			Because $\phi$ and $\psi$ are promodules,
+			\begin{align}
+		A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \\
+		A.\psi \leq \psi & \text{ gives the existence of } q' \in \psi \text{ and } a'' \in A
+		\text{ such that } q \supseteq a''q'
+			\end{align}
+			Now, from $1 \leq \psi.\phi$, we get that $q'\,p'$ is reflexive i.e. $\star (q' \,p')
+			\star$. By the definition of composition we get the existence of an $x \in X$
+			such that $\star \, p' \, x \,q'\,\star$. Now, considering $x$ as a map, $x:1 \to X$
+			defined as $\star \mapsto x$,
+			\begin{align}
+				x \, q' \, \star \text{ i.e. } &\star \in q'(x) \text{ gives that }
+				 q' \supseteq x^o \\
+				\star \,p' \, x \text{ i.e. } &x \in p'(\star) \text{ gives that }
+				p'\supseteq x
+			\end{align}
+			Thus, by using inequalities (1),(2) and (3), we get that
+			\begin{equation}
+				a \supseteq p\,q \supseteq a'\,p'\,q'\,a''
+			\end{equation}
+			By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
+			we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. Showing
+			$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q$:
+			\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
+			 \supseteq x^o\,x\,q'=q'\]
+			 Where the first inequality comes from (6) by using reflexiviness of $a''$ and then
+			 lef-multiplying by $x^o$. The second inequality comes from (5). Reflexiviness of $b$
+			 and $a'$ gives the third inequality. And the equality is given by Lemma 1.9.2.
+
+			 By definition of $\tilde{a}$, in order to show $x^* \, \tilde{a} \, \psi$,
+			 need that $x^o.A=x^* \leq \psi\,a$. We will show, for any $ k\in \psi,
+			 k\,a \supseteq x^o \, a''$
+
+			 FOLLOWING IS WRONG APPROACH
+
+			 \begin{equation}a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a'' \supseteq x \,x^o \,a''
+			 \supseteq a''\end{equation}
+			 Where the first inequality is given by (6) , second is due to reflexiviness
+			 of $a'$. The third one is given by (4) and (5) and the last one is by applying
+			 Lemma 1.9.2. Using Lemma 1.9.4 on (3) and (7) gives
+			 \[ q \supseteq q'\,a'' \implies q\,a \supseteq q' \]
+	\end{enumerate}
+\end{proof}
 %}}}
 \end{document}
