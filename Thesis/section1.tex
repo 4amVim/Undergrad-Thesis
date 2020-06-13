@@ -27,7 +27,218 @@
 }
 
 \begin{document}
-\section{Yoneda}
+\section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
+\begin{definition} %{{{Category A op		Definition
+For any category $\mathcal{A} $, it's opposite category, $\mathcal{A}^{op}$
+is the category having the objects of $\mathcal{A}$.
+And for objects $A,B \in \mathcal{A} $, a morphism $f \in \mathcal{A}^{op} (A,B)$
+only if there is a morphism $g \in \mathcal{A}(B,A)$.
+\end{definition}
+
+\begin{proop} %{{{ H_A	Definition
+	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
+	a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
+	\begin{enumerate}[label=(\roman*)]
+		\item For any object $B \in \mathcal{A} $ , $H_A(B):=Hom_{Set}(B,A)$
+		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
+			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
+				\text{ given by } p \mapsto p \circ g\]
+	\end{enumerate}
+\end{proop}
+\begin{definition} %{{{Presheaf Category 	Definition
+	The category of presheaves on $\mathcal{A} $, denoted by $[\mathcal{A} ^{op},Set]$
+	is defined to have functors from $\mathcal{A} ^{op}$ to $Set$ as objects,
+	and natural transformations between them as morphisms.
+\end{definition}
+
+\begin{lemma}
+	Excercise 1.3.29 A map is natural in pair only if it's natural in each for fixed.
+\end{lemma}
+
+\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
+	If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
+	and $X \in [ \mathcal{A}^{op},Set]$,\\ there's exists an isomorphism,
+	\[ [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{such that it is natural in } A \text{ and } X.\]
+\end{theorem}
+
+The key idea is that the choice of $A$ and $X$ completely determines all possible maps
+(i.e. natural transformations) from functor $H_A \text{ to functor} X$.
+Moreover, that this isomorphism is natural in A and X.
+
+\paragraph{Notation:} \begin{itemize}
+	\item We denote the category of presheaves on $\mathcal{A}$ by $\mathcal{C}$.
+	\item For the map $\string ^ $, that is $\hat a = b$,
+		we use $a \xrightarrow{ \string ^ } b$.
+	\item For the map $\string ~ $, that is $\tilde a = b$,
+		we use $a \xrightarrow{\string ~} b$.
+	\item $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes morphisms $\alpha: \begin{tikzcd}[row sep=large, column sep=huge]
+				A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
+					\arrow[r, bend right = 50, "X"{name=D, above}]
+					& Set
+					\arrow[Rightarrow, from=U , to=D, "\alpha"]
+		\end{tikzcd}$.
+
+\end{itemize}
+
+To prove the theorem,
+first, we show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A)$,
+and then that this isomorphism is natural in $X$ and $A$.
+
+\begin{proof}Let a locally small category $\mathcal{A} $ be given.
+	Fix an object $A \in \mathcal{A} $ and a presheaf,$X$ on $\mathcal{A}$.
+
+\paragraph{Showing isomorphism between $[\mathcal{A}^{op},Set](H_A,X)$ and $X(A)$}\mbox{}\\
+
+
+%{{{
+	Define $\string ^ :\mathcal{C}(H_A,X) \to X(A) $
+	for any $\alpha:H_A \to X,$ as  $\hat{\alpha}:= \alpha_A(1_A)$.\\
+
+	Define $\string ~ : X(A) \to [\mathcal{A}^{op}, Set](H_A,X)$
+	for any $ x \in X(A)$ as the natural transformation $\tilde{x} : H_A \to X$ whose
+	K-component is the function mapping each morphsim $p \in \mathcal{A}(K,A)$
+	to $\Big(X(p)\Big)(x)$. That is, $\tilde{x}_K (p):=\Big(X(p)\Big)(x)$.\\
+
+	We are going to show that $\tilde{x}$ is a natural transformation.
+	Fix objects $K,L \in \mathcal{A} $ and morphism $q \in \mathcal{A}^{op}(K,L)$.
+	$\text{Need to show that the square }
+	\begin{tikzcd}
+		H_A(K) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{H_A(q)}
+		& H_A(L) \arrow{d}{\tilde{x}_L}\\
+		X(K) \arrow[swap]{r}{X(q)}
+		& X(L)
+	\end{tikzcd} \text{, that is }
+	\begin{tikzcd}
+		\mathcal{A}(K,A) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{ - \circ q}
+		& \mathcal{A} (L,A) \arrow{d}{\tilde{x}_L}\\
+		X(K) \arrow[swap]{r}{X(q)}
+		& X(L)
+	\end{tikzcd}\text{ commutes }$.\\
+
+	So, for any $f:K\to A$, need that $\tilde{x}_L(f \circ q)= X(q) \circ \tilde{x}_K(f)$. Using
+	the definition of $\tilde{x} $ gives the following.
+	\begin{align*}
+	LHS &=\tilde{x}_L(f \circ q ) =\Big( X(f \circ q)\Big)(x) \\
+	RHS &=X(q) \circ \tilde{x}_K(f) =\Big(X(q)\Big) \big(X(f)(x)\big)=\Big(X(q) \circ X(f)\Big) (x)
+	\end{align*}
+	And as $X$ is a contravariant functor, $X(f \circ q)= X(q) \circ X(f)$, giving that LHS=RHS.
+
+	Now going to show that $\string ^$ and $\string ~$ define an isomorphism.
+	Need to show that $\string ^ $ and $\string ~ $ are mutually inverse.
+	\begin{enumerate}[label=(\roman*)]
+		\item  For any $x \in X(A)$,
+		$\hat{\tilde{x}}=\tilde{x}_A (1_A)=\Big(X(1_A) \Big) (x)=1_{X(A)}(x)=x$.
+	\item For any $\alpha \in \mathcal{C} (H_A,X)$ , need to show that $\tilde{\hat{\alpha}}=\alpha$.
+		So, it's required that each of their component are equal.
+		As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
+	between functors that go to the category \textit{Set}, each of the components is a function.
+	So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
+	$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$.
+	Using first the definition of $ \string ~$ and then that of $\hat{\alpha}$ gives:
+	\begin{align}
+	LHS=\tilde{\hat{\alpha}}_B(f)=\Big(X(f)\Big)(\hat{\alpha})=\Big(X(f)\Big)(\alpha_A(1_A))
+	\end{align}
+	And as $f:k \to A$, we also have the following.
+	\begin{equation}
+		RHS=\alpha_K(f)= \alpha_K(1_A \circ f)
+	\end{equation}
+	Because $\alpha$ is a natural transformation, the square following square commutes for $1_A$.
+	\[\begin{tikzcd}
+		\mathcal{A} (A,A) \arrow[swap]{d}{\alpha_A} \arrow{r}{- \circ f}
+	& \mathcal{A} (K,A) \arrow{d}{\alpha_K}\\
+	X(A) \arrow[swap]{r}{X(f)}
+	& X(K)
+	\end{tikzcd}\]
+	This gives that $\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$.
+	Hence, we have from (1) and (2), we get that $RHS=LHS$.
+	\end{enumerate}
+	%}}}
+\paragraph{Showing naturality of this isomorphism }\mbox{} \\
+By Using Lemma 1.2.1, it's enough to show that $\string ^$
+is natural in $A$ for any choice of $X$, and that it is natural in $X$ for any $A$.
+
+\begin{enumerate}[label=(\roman*)]
+	\item We are going to show naturality in X. Fix any $A \in \mathcal{A}$. Need that for
+		presheaves $X,Y \in \mathcal{C}$ and
+		natural transformation $\beta \in \mathcal{C} (X,Y)$, the following
+		square commutes.
+		\begin{equation*}
+		\begin{tikzcd}
+			\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
+			\arrow{r}{\beta \circ -}
+			& \mathcal{C}(H_A,Y) \arrow{d}{\string ^}\\
+			X(A) \arrow[swap]{r}{\beta_A}
+			& Y(A)
+		\end{tikzcd}
+		\end{equation*}
+		So, for any $\alpha:H_A \to X$, we need that
+		$\big( \string ^ \circ H_\beta \big)(\alpha) = \big( \beta_A \circ \string ^
+		\big)(\alpha)$. Using definition of $H_\beta$ and $\string ^$ gives:
+		\begin{align}
+			LHS & = \big( \string ^ \circ H_\beta \big)(\alpha) =
+			\widehat{\big(  H_\beta(\alpha)\big)}=
+			\widehat{\big(  \beta \circ \alpha\big)}
+			=\big(  \beta \circ \alpha\big)_A(1_A) \\
+			RHS & = \big( \beta_A \circ \string ^ \big)(\alpha)
+			= \beta_A (\widehat{\alpha}) =\big( \beta_A \circ \alpha_A\big)(1_A)
+		\end{align}
+		As $\alpha \in \mathcal{C} (H_A,X)$ and $\beta \in \mathcal{C}(X,Y)$
+		are morphisms in $\mathcal{C}$, composition in $\mathcal{C}$ gives
+		$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (3) and (4), we
+		directly get that $RHS=LHS$.
+
+	\item We are going to show naturality in $A$. Fix any $X \in \mathcal{C} $ Need that
+		for objects $A,B \in \mathcal{A} $ and morphism $f\in \mathcal{A} ^{op}(A,B)$,
+		the following square commutes.
+		\begin{equation*}
+		\begin{tikzcd}
+			\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
+			\arrow{r}{- \circ H_f}
+			& \mathcal{C}(H_B,Y) \arrow{d}{\string ^}\\
+			X(A) \arrow[swap]{r}{X(f)}
+			& X(B)
+		\end{tikzcd}
+		\end{equation*}
+		So, for any $\alpha:H_A \to X$, we need that
+	$\big( \string ^ \circ H_f \big)(\alpha)=\Big((X(f)) \circ \string ^ \Big)(\alpha) $.
+	Using definition of $H_f$ and $\string ^$, we get:
+	CHECK THIS AGAIN
+	\begin{align}
+		LHS&=\big( \string ^ \circ H_f \big)(\alpha)= \widehat{\alpha \circ H_f}
+		=(\alpha \circ H_f)_B (1_B) = \alpha_B (f \circ 1_B) = \alpha_B(f) \\
+		RHS&=\Big((X(f)) \circ \string ^ \Big)(\alpha)
+		= (X(f))(\hat{\alpha})= \big(X(f) \circ \alpha_A\big)(1_A)
+	\end{align}
+
+
+\end{enumerate}
+
+
+
+\end{proof}
+%}}}
+\subsection{Cayley's Theorem}%
+Informally, Yoneda Lemma gives us a stable proxy
+to study any presheaf on a locally small category.
+In group theory, Cayley's theorem is a result that similarly allows us to study any group by instead
+studying a subgroup of some symmetric group.
+
+\begin{definition}[Symmetric group on a set] %{{{ Symmetric group on a set	Definition
+\end{definition}
+\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
+	Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
+\end{theorem}
+
+\subsection{Embedding of a category in Presheaf category}%{{{ Embedding		Section
+
+\begin{definition}[Embedding of a category] %{{{ Embedding of a category		Definition
+	A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
+	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
+\end{definition} %}}}
+
+
+
+
 
 
 
