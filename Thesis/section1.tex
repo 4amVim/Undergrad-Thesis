@@ -212,11 +212,11 @@ is natural in $X$ and natural in $A$.
 		RHS&=\Big((X(f)) \circ \string ^ \Big)(\alpha)
 		= (X(f))(\hat{\alpha})= \Big(X(f) \Big)\big(\alpha_A(1_A)\big)
 	\end{align}
-	The last equality in (5) is justified because the morphism $f$ goes from $B$ to
+	The last equality in (5) is justified as $f$ goes from $B$ to
 	$A$ in $\mathcal{A} $. By using equality of (1) and (2) from I(i), for
 	$f \in \mathcal{A}(B,A)$, we get that
 	$\Big(X(f) \Big)\big(\alpha_A(1_A)\big)=\alpha_B( 1_A \circ f) $.
-	Hence, $RHS=LHS$.
+	Hence, $RHS=LHS$. \qedhere
 \end{enumerate}
 %}}}
 	\end{enumerate}
@@ -324,7 +324,7 @@ choice of $X$ and $A$.
 		definition of composition, this gives that $(x,z) \in q \circ p$,
 		giving that $l \subseteq q \circ p$. And, by definition
 		of $q \circ p$ we get that $l \supseteq q \circ p$. Finally giving that
-		$l=q \circ p \in Q.P$.
+		$l=q \circ p \in Q.P$. \qedhere
 	\end{enumerate}
 \end{proof}
 %}}}
@@ -378,8 +378,6 @@ choice of $X$ and $A$.
 	implies that $y\,t\,z$. Taking the composition, $x\,r\,y\,s\,z$ yields $x(t\,r)z$.
 	We started with any element of $(s \circ r)$ and showed that it must also be in
 	$t \circ r$ and thus have that $(s \circ r) \subseteq (t \circ r)$.
-
-
 \end{proof}
 %}}}
 
@@ -429,6 +427,7 @@ choice of $X$ and $A$.
 		\item (Identity) For each object $(X,A)$, define it's identity to be the identity
 			function $\Delta_X:(X,A) \to (X,A)$.
 			This function is uniformly continuous as $\Delta_X.A=A \leq A=A.\Delta_X$.
+			\qedhere
 	\end{enumerate}
 \end{proof}
 \begin{definition}%{{{ Promodule		Definition
@@ -527,7 +526,7 @@ choice of $X$ and $A$.
 			$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
 			$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
 			Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
-			hence equal.
+			hence equal. \qedhere
 	\end{enumerate}
 \end{proof}
 %}}}
@@ -595,7 +594,7 @@ choice of $X$ and $A$.
 				Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
 				functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
 				and $RHS=1_{(X,A)_*}=1_{(X,A)}$
-				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$.
+				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
 		\end{enumerate}
 \end{proof}
 \begin{proop} Functor, $(-)^*:\text{QUnif}^{op} \to \text{ProMod}$ is
@@ -682,11 +681,8 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 				$(1_{(X,A)})^*=1_{(X,A)^*}$
 				LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$. \\
 				And as $RHS=1_{(X,A)^*}=1_{(X,A)}$
-				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$.
+				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
 		\end{enumerate}
-
-
-
 	\end{proof}
 	%}}}
 	\begin{definition} %{{{ Fully Faithful and Dense		Definition
@@ -824,7 +820,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 			Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
 		\item ($\impliedby$) From (b), we have for $b \in B$, the existstence of $b' \in B$ such that $
 			b' \subseteq bf f^o b$. As B is a quasi-uniformity, $\Delta_Y \subseteq b'$. So,
-			$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense.
+			$\Delta_Y \subseteq bf f^o b$, and from (c), this gives us that f is topologically dense. \qedhere
 	\end{enumerate}
 \end{enumerate}
 \end{proof}
@@ -887,8 +883,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 			by quasi-uniformity of $A$, $\exists b \in A: b \circ b \subseteq
 			a$. Thus, by the partial-order defined on $\tilde{A}$, $\widetilde{bb} \leq \tilde{a}$.
 			Now, transitivity of the partial order gives us the required result,
-			$ \tilde{b} \, \tilde{b} \leq \widetilde{bb} \leq \tilde{a}$.
-
+			$ \tilde{b} \, \tilde{b} \leq \widetilde{bb} \leq \tilde{a}$. \qedhere
 	\end{enumerate}
 \end{proof}
 %}}}
@@ -948,11 +943,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 		x^* \tilde{b}y^* \implies xay $. So, fix $a\in A$, and take $b \in A: bb \subseteq a$.
 		Now, let $x^* \tilde{b}y^*$ i.e. $x^o.A \leq y^o .A .b$.
 		Hence, $\exists c \in A: x^oc \subseteq y^o bb$. And as c is reflexive,
-		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay \]
-
-
-
-
+		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay \qedhere \]
 \end{enumerate}
 \end{proof}
 %}}}
@@ -1025,7 +1016,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 				Finally, by definition of the partial order on $\tilde{A}$,$a' \subseteq b \implies \tilde{a'}
 				\subseteq \tilde{b} $. Therefore,  $x^* \tilde{a'}\psi \implies x^* \tilde{b}\psi$.
 				Now, using (16), $z^* \tilde{b}x^* \text{ and } x^*\tilde{b}\psi  $ gives the desired result
-				$z^* \tilde{b} x^* $.
+				$z^* \tilde{b} x^* $. \qedhere
 		\end{enumerate}
 	\end{proof}
 	%}}}
@@ -1092,6 +1083,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 					ka \supseteq k\,p'\,x^o\,a''
 				\end{equation}
 				FINAL STEP LEFT !!
+				\qedhere
 \end{enumerate}
 	\end{proof}
 	%}}}
