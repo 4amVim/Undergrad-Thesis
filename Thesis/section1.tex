@@ -29,124 +29,140 @@
 \begin{document}
 \section{Yoneda}
 
+
+
 \section{Prorelations}
+
 \begin{definition}%{{{ Prorelation		Definition
-	A prorelation is a partially ordered, down-directed, upper set of relations $X \to Y$,\\
-	i.e a set, $P \subseteq \mathcal{P}(X \times Y)$ such that
+	A prorelation is a partially ordered, down-directed, up-set of relations $X \to Y$.\\
+	That is, $P \subseteq \mathcal{P}(X \times Y)$ is a prorelation if it satisfies the
+	following conditions:
 	\begin{enumerate}[label=(\roman*)]
-		\item(Partial Order)Containment of relations, $r \subseteq s$
-			only if for any $(x,y) \in X \times Y$,\: $(x,y) \in r \implies (x,y)\in s$
-		\item (Down-directed), For any $r,s \in P, \exists t \in P $ such that
-			$t\subseteq r \text{ and } t \subseteq s$
-		\item (Up-set) for any relation $u:X\to Y$, if $\exists p \in P \text{ such that } p\leq u $
-			then $u \in P$
+		\item Partial Order: Containment of relations defines a partial order.
+			That is, $r \subseteq s$  meaning that for any $(x,y) \in X \times Y$,
+			if  $(x,y)\in r\;$ then $\;(x,y)\in s$.
+		\item Down-directed: For any $r,s \in P$, there exists $t \in P $ such that
+			$t\subseteq r \text{ and } t \subseteq s$.
+		\item Up-set: For any relation $u:X\to Y$, if there exists $p \in P$ such that
+			$p \subseteq u $ then $u \in P$.
 	\end{enumerate}
 \end{definition}
-\begin{definition}%{{{ Composition of prorelations		Definition
-	Prorelations are composed by taking compositions of the relations belonging to them.
-	\[ \text{ For prorelations } P:X\to Y \text{ and } Q:Y\to Z,
-	\; \; Q.P:=\{q \circ p : p \in P \text{ and } q \in Q  \} \]
+\begin{definition}%{{{ Composition of prorelations	Definition
+	A prorelation $P:X \to Y$ can be composed to a prorelation $Q:Y \to Z$ by taking
+	composition of the relations belonging to them. Then, the set $Q.P$ is defined as
+	$\; Q.P=\{q \circ p : p \in P \text{ and } q \in Q  \}$.
 \end{definition}
-%{{{Prorelations closed under composition
+%{{{Composition of prorelations
 \begin{lemma}
-	Prorelations are closed under composition.
+	Composition of two prorelations is a prorelation.
 \end{lemma}
 \begin{proof}
 	For prorelations $P:X \to Y$ and $Q:Y \to Z$, need to show that Q.P is a prorelation.
 	\begin{enumerate}[label=(\roman*)]
 		\item (Partial Order) Inclusion of relations gives a partial order.
-		\item (Down-Directed) If $k,k' \in Q.P$ then, $k=q\,p$ and $k'=q'\,p'$ for some
+		\item (Down-Directed) If $k,k' \in Q.P$, then $k=q\,p$ and $k'=q'\,p'$ for some
 		$q,q' \in Q$ and $p,p' \in P$. Because $Q$ and $P$ are prorelations,
-		and hence down-directed sets, there exists $a \in Q$ such that
+		and hence down-directed sets there exists, $a \in Q$ such that
 		$ a\subseteq q,q'$ and $b \in P$ such that $b \subseteq p,p'$. Thus,
-		$a \circ b \subseteq k, k'$.
+		giving an element, $a\circ b$ of $Q.P$ such that $a \circ b \subseteq k, k'$.
 	\item (Up-Set) Let $l:X \to Z$ be a relation, and $k \in Q.P$ such that $l \supseteq k$.
-		Define relations $ a:X \to Y $ and $b:Y \to Z$ as
-		$a:=\{(x,y): x \in domain(l) \text{ and } y \in Y\}$ and
-		$b:=\{(y,z): z \in range(l) \text{ and } y \in Y\}$.
-		Because there exist $a'\in A$ and $b' \in B$ such that
-		$l \supseteq k = b' \circ a'$, by definition of $a$ and $b$, we get that
-		$b \supseteq b'$ and $a \supseteq a'$. As $Q$ and $P$ are up-sets,
-		we get that $b \in B$ and $a \in A$, and hence $b\circ a \in Q.P$.
-		Finally, for $(x,z) \in X \times Z$, if $(x,z) \in l$, then $\forall y \in Y$,
-		$(x,y) \in a \text{ and } (y,z) \in b $ gives that $(x,z) \in b \circ a$,
-		giving that $l=b \circ a \in Q.P$.
+		Define relations $ p:X \to Y $ and $q:Y \to Z$ as,
+		$p=\{(x,y): x \in domain(l) \text{ and } y \in Y\}$ and
+		$q=\{(y,z):  y \in Y \text{ and } z \in range(l)\}$.
+		Because $k\in Q.P$, there exist $q'\in Q$ and $p' \in P$ such that
+		$k = q' \circ p'$. Thus by definition of $p$ and $q$, we get that
+		$p \supseteq p'$ and $q \supseteq q'$. Hence $p \in P$ and $q \in Q$ because
+		$P$ and $Q$ are up-sets, which gives us that $q\circ p \in Q.P$.
+		For any $(x,z) \in l$, by definition
+		of $p$ and $q$, we get that for every $y \in Y$, $(x,y) \in p$ and
+		$(y,z) \in q $. By
+		definition of composition, this gives that $(x,z) \in q \circ p$,
+		giving that $l \subseteq q \circ p$. And, by definition
+		of $q \circ p$ we get that $l \supseteq q \circ p$. Finally giving that
+		$l=q \circ p \in Q.P$.
 	\end{enumerate}
 \end{proof}
 %}}}
-\begin{definition} %{{{ Comparison of Prorelations		Definition
-	Prorelations with same domain and co-domain are said to be comparable
-	when one of them contains all the relations of the other one.
-	\[\text{ For prorelations }  P,Q:X \to Y, \;\; P \leq Q \;\text{ if }\; \forall q \in Q, \exists p \in P
-	\text{ such that } p \subseteq q    \]
+\begin{definition} %{{{ Containment of Prorelations		Definition
+	For prorelations $P,Q:X\to Y$, if every relation in $Q$ is contained inside some
+	relation in $P$, then $P$ is said to be contained in $Q$.
+	That is $P \leq Q \;\text{ only if }\;
+	\forall q \in Q, \exists p \in P \text{ such that } p \subseteq q$.
 \end{definition}
 \begin{definition} %{{{ Opposite relation		Definition
 	For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
-	\[ \forall (x,y)\in X \times Y, \; \;  (x,y)\in r \text{ if and only if }  (y,x) \in r^o \]
+	\[ \forall (x,y)\in X \times Y, \; (y,x) \in r^o \text{ only if } (x,y)\in r  .\]
 \end{definition}
 %{{{Recurring Lemmas
 \begin{lemma}
-	For any function $f:X \to Y$, $ \; f^o \circ f \supseteq \Delta_X$
+	For any function $f:X \to Y$, $\; \Delta_X$ is contained in the composition $ f^o \circ f$.
 \end{lemma}
 \begin{proof}
-	As $f$ is a function, it must be defined on every element of it's domain. So, for every
-	$x \in X$, there exists some $(x,y) \in r$, and by definition of $f^o$ this also gives
-	that $(y,x) \in f^o$. Hence, by	definition of composition,
-	for every $x \in X$, $(x,x) \in f^o \,f$.
+	As $f$ is a function, it must be defined on every element of it's domain. Thus, for every
+	$x \in X$, there exists some $(x,y)$ in $f$. By definition of $f^o$, $(y,x)$ is in $f^o$.
+	Hence, by definition of composition, $(x,x)$ is in $f^o \,f$.
 \end{proof}
 \begin{lemma}
-	For any relation $r:X \to Y$, $\; r \circ r^o \subseteq \Delta_Y$
+	For any relation $r:X \to Y$, the composition $r\circ r^o$ contains  $\subseteq \Delta_Y$.
 \end{lemma}
 \begin{proof}
 	Suppose there exist $x \in X$ and $y \in Y$ such that
 	$x\,r\,y$. By definition of $r^o$, this
-	gives us that $y\, r^o \,x$. Now, using the definition of composition,
+	gives us that $y\, r^o \,x$. Using definition of composition,
 	$y\, r^o \,x \,r\,y$ gives that	$y\, (r \circ r^o)\, y$.
 \end{proof}
-\begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$,
-	 $\;r \subseteq s \implies (t \circ r) \subseteq (t \circ s)$
+\begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$, if $\;r \subseteq s$ then $(t \circ r) \subseteq (t \circ s)$.
 \end{lemma}
 \begin{proof}
-	Suppose relations $r,s$ and $t$ are as given above, and let $x \in X, z\in Z$ such that
-	$x \,(t \, r)\,z$. By definition of composition, there
-	exists some element, $y$ of $Y$ such that $x\,r\,y$ and $y\,t\,z$.
+	Suppose relations $r,s$ and $t$ are as given above, and let $x \,(t \, r)\,z$.
+	By definition of composition, there
+	exists, $y \in Y$ such that $x\,r\,y$ and $y\,t\,z$.
 	Using the hypothesis, as $r \subseteq  s $,
-	$x\,r\,y$ gives $x\,s\,y$. And via composition with $y \, t \, z $ we get
+	$x\,r\,y$ gives $x\,s\,y$. And via composition of $x\,s\,y$ with $y \, t \, z $, we get
 	$x\,(t\,s)\, z$. We started with any element of $(t \circ r)$ and showed that
-	it must also be in $t \circ s$. Thus, $(t \circ r) \subseteq (t \circ s)$.
+	it must also be in $t \circ s$ and thus have that $(t \circ r) \subseteq (t \circ s)$.
 \end{proof}
-\begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$,
-	$s\subseteq t \implies (s \circ r) \subseteq
-	(t \circ r)$
+\begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$, if $s\subseteq t$ then
+	$(s \circ r) \subseteq (t \circ r)$.
 \end{lemma}
 \begin{proof}
-	Suppose relations $r,s$ and $t$ are as given above, and let $x \in X, z\in Z$ such that
-	$x \,(s \, r)\,z$. By definition of composition of relations, we get that there exists
+	Suppose relations $r,s$ and $t$ are as given above, and let  $x \,(s \, r)\,z$.
+	By definition of composition of relations, we get that there exists
 	some $y \in Y$ such that $x\,r\,y$ and $y\,s\,z$. Because $s \subseteq t$, $y\,s\,z$
-	implies that $y\,t\,z$. Using composition again yields $x(t\,r)z$.
+	implies that $y\,t\,z$. Taking the composition, $x\,r\,y\,s\,z$ yields $x(t\,r)z$.
+	We started with any element of $(s \circ r)$ and showed that it must also be in
+	$t \circ r$ and thus have that $(s \circ r) \subseteq (t \circ r)$.
+
+
 \end{proof}
 %}}}
 
 \section{Propositions}
 \begin{definition} %{{{ Uniformly Continuous function 		Definition
-	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f \; \;$ i.e.
-	\[\forall b \in B, \exists a \in A \text{ such that } f \circ a \subseteq b \circ f
-		\;\;\;	\text{ i.e. } \; \; \;
+	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
+	That is, for each $b \in B$, there exists $a \in A$ such that
+	$f \circ a \subseteq b \circ f$. Meaning that $
 		\begin{tikzcd}
 			X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
 		& Y \arrow{d}{B}\\
 		X \arrow[swap]{r}{f}
 		& Y
 		\end{tikzcd}
-	\]
+		$.
 \end{definition}
+
 \begin{definition} %{{{ Quasi-uniformity		Definition
-	A prorelation on a set, $P:X \to X$ is a quasi-uniformity if it satisfies :
+	A prorelation on a set, $P:X \to X$ is a quasi-uniformity if it satisfies the following
+	conditions:
 	\begin{enumerate}[label=(\roman*)]
-		\item $\forall p \in P$,  $\;p$ is reflexive i.e. for any $x \in X$, $(x,x) \in p$
-		\item $\forall p \in P, \exists p' \in P \text{ such that } p' \circ p' \subseteq p$
+		\item Every relation in $P$ is reflexive. That is,
+			for each $p \in P$, if $x \in X$ then $(x,x) \in p$.
+		\item For each $p$ in $P$, there exists $p'$ in $P$ such that
+			$p' \circ p' \subseteq p$.
 	\end{enumerate}
-	And in that case, $(X,A)$ is called a \textit{quasi-uniform space}.
+\end{definition}
+\begin{definition} %{{{Quasi-uniform space Definition
+	If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
 \end{definition}
 %{{{ A.A=A
 \begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
@@ -176,7 +192,7 @@
 	\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
 \end{definition}
 \begin{definition} %{{{Promodule Containment 		Definition
-	Comparison of promodules is defined as that of prorelations.
+	Containment of promodules is defined as that of prorelations.
 \end{definition}
 \begin{definition} %{{{ Composition of Promodules		Definition
 	Promodules are composed as prorelations.\\
@@ -270,7 +286,7 @@
 	\end{enumerate}
 \end{proof}
 %}}}
-%{{{Two functors FIRST FUNCTOR UP-SET PROBLEM
+%{{{Two functors
 \begin{proop} Functor, $(-)_*:\text{QUnif} \to \text{ProMod}$ is
 	defined as fixing quasi-uniform spaces (objects) and taking
 	uniformly continuous functions (morphisms) to the it's pre-composition with it's domain space's identity(promodule) i.e.
@@ -291,17 +307,20 @@
 			by Lemma 2.4.4, $c\,f \subseteq k,k'$.
 		\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
 			uniformly continous function such that $l \supseteq k$.
-			Define a relation $b':= \{(x,y): \text{ for } d \in domain(l),\, x=f(d)
-			\text{ and } y=l(d)\}$. Fix any $x \in X$ and $z \in Z$.
-			If $(x,z) \in l$, then, definition of $b'$ gives $(f(x),z)\in b'$
-			and $l \supseteq k$ gives that $(x,f(x)) \in f$. Thus, by defniition
-			of composition, $(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
-			By definition of composition, there exists $y\in Y$ such that
-			$(y,z) \in b'.f$ where $y=f(x)$. Again using the definition of
-			$b'$ from $(f(x),z) \in b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$.
-
-			Now we will show that $b'\supseteq b$ so that we get $b' \in B$ which
-			would imply $b'.f \in B.f$. BUT HOW?
+			Define a relation $b':= \{(f(d),l(d)): d \in domain(l) \}$.
+			By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
+			$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $domain(l)  \supseteq domain(f)$
+			giving $(x,f(x)) \in f$. Thus, by defniition of composition,
+			$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
+			By definition of composition, there exists $f(x)\in Y$ such that
+			$(f(x),z) \in b'$. Again using the definition of
+			$b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$. Hence, $l=b'\, f$.
+			Now we will show that $b'\supseteq b$. Because $b'\, f=l \supseteq k=b\, f$, for any
+			$x\in X$ we have that $b'\big(f(x)\big) \supseteq b\big(f(x)\big)$. Thus,
+			$b'|_{f(x)} \supseteq b|_{f(x)}$. By down-directedness of $B$,
+			the restriction $b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
+			Finally, $b' \supseteq b'|_{f(x)} \supseteq b|_{f(x)}$ gives $b' \in B$.
+			Hence, $b'.f \in B.f$.
 		\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
 			$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
 			By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
@@ -325,11 +344,22 @@
 			(c\,g)b\,f$. Now, using reflexiviness of $a$, we get $c\,g\,f \subseteq
 			c\,g\,b\,f$.
 
-			Now, to show that $C.g.f \geq C.g.B.f$.
+			Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in X$, we will find $c' \in C$ and
+			$b \in B$ such that $c\, g\, f\, \supseteq c\, g\, b\, f\, $. By quasi-uniformity of C,
+			there exists $c' \in C$ such that $c \subseteq  c'\, c'$. Using Lemma 2.4.4
+			gives that $c\, (g\, f)\supseteq c'\, c'\, (g\, f) $. Because $g$ is uniformly
+			continuous, $C.g \geq g.B$ gives us $b\in B$ such that $g\, c' \supseteq b\, g$.
+			Using this in the previous inequality gives that $c\, g\, f \supseteq c'\, g\, b\, f$.
 
-	\end{enumerate}
+			\item(Identity) let $(X,A)$ be in object of QUnif and
+				$1_{(X,A)}:(X,A)\to(X,A)$ be the identity funtion on $(X,A)$. That is,
+				$1_{(X,A)}$ is defined as $x\mapsto x$.
+				Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
+				functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
+				and $RHS=1_{(X,A)_*}=1_{(X,A)}$
+				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$.
+		\end{enumerate}
 \end{proof}
-\newpage
 \begin{proop} Functor, $(-)^*:\text{QUnif}^{op} \to \text{ProMod}$ is
 	defined as fixing quasi-uniform spaces and taking
 	uniformly continuous functions to the composition of their opposite
@@ -382,7 +412,6 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 		: f \circ a \subseteq b \circ f
 		\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
 		Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
-		(for brevity, omitting $\circ$ to explicitly denote composition  )\\
 		And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
 		\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
 	\item	Now, need to show that $(-)^*$ respects composition and identity.
@@ -413,18 +442,9 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 			\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
 				$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
 				$(1_{(X,A)})^*=1_{(X,A)^*}$
-				LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$.
-				\\Now, it's required that $A$ is the identity of $(X,A)$ in ProMod.\\
-				So, fix $\phi:(X,A) \carrow (Y,B)$, need to show $\phi.A=\phi$\\
-				As $\phi$ is a promodule, $\phi.A \leq \phi$ and as A is quasi-uniformity on X,\\
-				$\forall a\in A, \Delta_X \subseteq a \implies
-				\forall a \in A, \forall p \in \phi, p=p\Delta_X\subseteq pa \implies
-				\phi \leq \phi.A$\\
-				Also, fix $\psi:(Y,B) \carrow (X,A)$, need to show $A.\psi=\psi$\\
-				As $\psi$ is a promodule, $A.\psi \leq \psi$ and as A is quasi-uniformity on X,\\
-				$\forall a\in A, \Delta_X \subseteq a \implies
-				\forall a \in A, \forall q \in \psi, q=\Delta_X q \subseteq aq \implies
-				\psi \leq \psi.A$
+				LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$. \\
+				And as $RHS=1_{(X,A)^*}=1_{(X,A)}$
+				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$.
 		\end{enumerate}
 
 
