@@ -222,14 +222,46 @@ is natural in $A$ for any choice of $X$, and that it is natural in $X$ for any $
 	\end{enumerate}
 \end{proof}
 \subsection{Cayley's Theorem}%
-In group theory, Cayley's theorem is a result that similarly allows us to study any group by instead
-studying a subgroup of some symmetric group.
+%{{{Cayley Write-up
+Informally, given a locally small category$\mathcal{A} $, we can fix a presheaf $X$ on $\mathcal{A}$,
+and for any object $A \in \mathcal{A} $, study the set $X(A)$ and gain information
+about all possible natural transformations between $H_A$ and $X$. Moreover, by part I(ii) of the
+proof of Yoneda Lemma, each of the natural transformations are determined by their action
+on the identity morphisms in $\mathcal{A}$. Thus, no matter how complicated $\mathcal{A}$ is, if we choose $X$ carefully, we can hope to understand the structure of $\mathcal{A} $
+by looking at how $X(A)$ changes as we vary the chosen
+presheaf and object.
 
+In group theory, Cayley's theorem says every group $G$ is isomorphic to a subgroup of the symmetric
+group on G. Thus, instead of having to study a complicated group directly, we can study a subgroup of
+the symmetric group on it.
+
+Cayley's theorem and Yoneda Lemma are similar in the sense that both allow us to change the environment
+that we study in by putting few restrictions on what we are allowed to study. Cayley allows us to
+change setting for groups, and Yoneda does that for locally small categories.
+
+Also, as groups themselves can be considered as small categories, we can apply Yoneda Lemma to any
+group. And in fact, we can get Cayley's theorem as a consequence of Yoneda Lemma by a suitable
+choice of $X$ and $A$
+%}}}
 \begin{definition}[Symmetric group on a set] %{{{ Symmetric group on a set	Definition
+	Symmetric group on a set is the set of all bijections on X, with the binary operation
+	defined as composition of bijections.
 \end{definition}
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
 	Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
 \end{theorem}
+\begin{proof} Let a group $G$ be given.
+	Define category $\mathcal{A} ^{op}$ as having: $\star$ as it's only object, one
+	morphism for each element of $G$ and composition being as elements of $G$.
+	Thus, by definition of $\mathcal{A} ^{op}$, $G\cong Hom_{\mathcal{A}^{op} }^{}(\star, \star).$
+	And using the definition of $H_\star(\star)$, we get that $G \cong H_\star(\star)$.
+
+	As $G$ is a group, $\mathcal{A}^{op}$ becomes a locally small category. Using Yoneda Lemma,
+	for $\star \in \mathcal{A} ^{op}$ and functor $H_\star$, we get
+	\[ [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star,\star) \cong G .\]
+	where the above isomorphisms are as sets.
+\end{proof}
+\newpage
 
 \subsection{Embedding of a category in Presheaf category}%{{{ Embedding		Section
 
@@ -1012,6 +1044,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 	\begin{proof}	Fix any $\psi \in PX$. \setcounter{equation}{0}
 		\begin{enumerate}[label=(\roman*)]
 			\item ($\implies$)
+
 			\item ($\impliedby$) Suppose $\psi$ is a right adjoint. Need to show that for any
 				$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
 				\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
