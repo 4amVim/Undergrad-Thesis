@@ -4,12 +4,12 @@
 \usepackage{enumitem,amsfonts,extarrows,mathtools}
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{coro}{Corollary}[section]
+\newtheorem{coro}[theorem]{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}{Definiton}[section]
-\newtheorem{lemma}{Lemma}[definition]
-\newtheorem{prop}{Proposition}[definition]
-\newtheorem{proop}{Proposition}[section]
+\newtheorem{definition}[theorem]{Definiton}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proop}[theorem]{Proposition}
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
 \newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
@@ -42,7 +42,7 @@ only if there is a morphism $g \in \mathcal{A}(B,A)$.
 		\item For any object $B \in \mathcal{A} $ , $H_A(B):=Hom_{Set}^{}(B,A)$
 		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
 			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
-				\text{ is given by } p \mapsto p \circ g\]
+				\text{ is given by } p \mapsto p \circ g.\]
 	\end{enumerate}
 \end{proop}
 \begin{definition} %{{{Presheaf Category 	Definition
@@ -68,11 +68,11 @@ only if there is a morphism $g \in \mathcal{A}(B,A)$.
 
 \paragraph{Notation:} \begin{itemize}
 	\item We denote the category of presheaves on $\mathcal{A}$ by $\mathcal{C}$.
-	\item For the map $\string ^$, instead of writing $\string ^ (a)$,
-		we use $\hat{a} = b$ to denote $a \xrightarrow{ \string ^ } b$.
+	\item For the map $\string ^$, instead of writing $\string ^ (a)=b$,
+		we use $\hat{a} = b$ to denote $a \mapsto b$.
 
-	\item For the map $\string ~$, instead of writing $\string ~ (a)$,
-		we use $\tilde{a} = b$ to denote $a \xrightarrow{ \string ~ } b$.
+	\item For the map $\string ~$, instead of writing $\string ~ (a)=b$,
+		we use $\tilde{a} = b$ to denote $a \mapsto b$.
 	\item $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes the collection of morphisms $\alpha: \begin{tikzcd}[row sep=large, column sep=huge]
 				A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
 					\arrow[r, bend right = 50, "X"{name=D, above}]
@@ -92,7 +92,7 @@ and then that this isomorphism is natural in $X$ and $A$.
 	Define $\string ^ :\mathcal{C}(H_A,X) \to X(A) $
 	for any $\alpha:H_A \to X,$ as  $\hat{\alpha}:= \alpha_A(1_A)$.
 	As $1_A \in Hom_{Set}(A,A)=H_A(A)$,
-	definition of $\alpha_A$ gives that $\alpha_A(1_A)\in X(A)$
+	definition of $\alpha_A$ gives that $\alpha_A(1_A)\in X(A)$.
 %{{{Define ~
 
 	Define $\string ~ : X(A) \to [\mathcal{A}^{op}, Set](H_A,X)$
@@ -159,7 +159,7 @@ and then that this isomorphism is natural in $X$ and $A$.
 %{{{Naturality
 \item \textbf{Showing naturality of this isomorphism }\\
 By Using Lemma 1.2.1, it's enough to show that $\string ^$
-is natural in $A$ for any choice of $X$, and that it is natural in $X$ for any $A$.
+is natural in $X$ and natural in $A$.
 
 \begin{enumerate}[label=(\roman*)]
 	\item We are going to show naturality in X. Fix any $A \in \mathcal{A}$. Need that for
@@ -243,8 +243,8 @@ Also, as groups themselves can be considered as small categories, we can apply Y
 group. In fact, we can get Cayley's theorem as a consequence of Yoneda Lemma by a suitable
 choice of $X$ and $A$.
 %}}}
-\begin{definition}[Symmetric group on a set] %{{{ Symmetric group on a set	Definition
-	Symmetric group on a set is the set of all bijections on X, with the binary operation
+\begin{definition} %{{{ Symmetric group on a set	Definition
+	Symmetric group on a set $X$ is the set of all bijections on $X$, with the binary operation
 	defined as composition of bijections.
 \end{definition}
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
@@ -252,13 +252,13 @@ choice of $X$ and $A$.
 \end{theorem}
 \begin{proof} Let a group $G$ be given.
 	Define category $\mathcal{A} ^{op}$ as having: $\star$ as it's only object, one
-	morphism for each element of $G$ and composition being as elements of $G$.
+	morphism for each element of $G$ and composition being as that of elements of $G$.
 	Thus, by definition of $\mathcal{A} ^{op}$, $G\cong Hom_{\mathcal{A}^{op} }^{}(\star, \star).$
 	And using the definition of $H_\star(\star)$, we get that $G \cong H_\star(\star)$.
 
 	As $G$ is a group, $\mathcal{A}^{op}$ becomes a locally small category. Using Yoneda Lemma,
 	for $\star \in \mathcal{A} ^{op}$ and functor $H_\star$, we get
-	\[ [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star,\star) \cong G .\]
+	\[ [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star) \cong G .\]
 	where the above isomorphisms are as sets.
 \end{proof}
 \newpage
@@ -336,7 +336,8 @@ choice of $X$ and $A$.
 \end{definition}
 \begin{definition} %{{{ Opposite relation		Definition
 	For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
-	\[ \forall (x,y)\in X \times Y, \; (y,x) \in r^o \text{ only if } (x,y)\in r  .\]
+	\[ (y,x) \in r^o \text{ if and only if } (x,y)\in r  \text{ for } x\in X \text{ and }
+	y \in Y.\]
 \end{definition}
 %{{{Recurring Lemmas
 \begin{lemma}
@@ -382,7 +383,20 @@ choice of $X$ and $A$.
 \end{proof}
 %}}}
 
-\section{Propositions}
+\section{Quasi-Uniform Spaces}
+\begin{definition} %{{{ Quasi-uniformity		Definition
+	A prorelation on a set, $P:X \to X$ is said to be a quasi-uniformity
+	if it satisfies the following conditions:
+	\begin{enumerate}[label=(\roman*)]
+		\item Every relation in $P$ is reflexive. That is,
+			for each $p \in P$, if $x \in X$ then $(x,x) \in p$.
+		\item For each $p$ in $P$, there exists $p'$ in $P$ such that
+			$p' \circ p' \subseteq p$.
+	\end{enumerate}
+\end{definition}
+\begin{definition} %{{{Quasi-uniform space Definition
+	If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
+\end{definition}
 \begin{definition} %{{{ Uniformly Continuous function 		Definition
 	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
 	That is, for each $b \in B$, there exists $a \in A$ such that
@@ -394,20 +408,6 @@ choice of $X$ and $A$.
 		& Y
 		\end{tikzcd}
 		$.
-\end{definition}
-
-\begin{definition} %{{{ Quasi-uniformity		Definition
-	A prorelation on a set, $P:X \to X$ is a quasi-uniformity if it satisfies the following
-	conditions:
-	\begin{enumerate}[label=(\roman*)]
-		\item Every relation in $P$ is reflexive. That is,
-			for each $p \in P$, if $x \in X$ then $(x,x) \in p$.
-		\item For each $p$ in $P$, there exists $p'$ in $P$ such that
-			$p' \circ p' \subseteq p$.
-	\end{enumerate}
-\end{definition}
-\begin{definition} %{{{Quasi-uniform space Definition
-	If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
 \end{definition}
 %{{{ A.A=A
 \begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
@@ -532,14 +532,7 @@ choice of $X$ and $A$.
 \end{proof}
 %}}}
 %{{{Two functors
-\begin{proop} Functor, $(-)_*:\text{QUnif} \to \text{ProMod}$ is
-	defined as fixing quasi-uniform spaces (objects) and taking
-	uniformly continuous functions (morphisms) to the it's pre-composition with it's domain space's identity(promodule) i.e.
-	\begin{enumerate}[label=(\alph*)]
-		\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
-		\item for $f:(X,A) \to (Y,B)$ in QUnif,
-			$f_* := B.f$
-	\end{enumerate}
+\begin{proop} $(\string _ )_*:\text{QUnif} \to \text{ProMod}$ defined above is indeed a functor.
 \end{proop}
 \begin{proof}
 	We will first show that $B.f={b \circ f: b \in B}$
@@ -578,7 +571,7 @@ choice of $X$ and $A$.
 			By quasi-uniformity of $B$, there exists $b \in B$ such that
 			$b'\,b' \subseteq  b$. Using Lemma 2.4.4, we get $b'\,b'\,f \subseteq bf$.
 	\end{enumerate}
-	Thus, $B.f$ is a promodule. Going to show that $(-)_*$ defines a functor:
+	Thus, $B.f$ is a promodule. We now proceed to show that $(\string _)_*$ defines a functor.
 	\begin{enumerate}[label=(\roman*)]
 		\item (Composition) Need to show that $(g\circ f)_*=g_*f_*$ i.e. $C.g.f=C.g.B.f$.
 
