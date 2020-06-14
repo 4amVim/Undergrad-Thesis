@@ -63,7 +63,7 @@ only if there is a morphism $g \in \mathcal{A}(B,A)$.
 \begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
 	If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
 	and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism,
-	\[ [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{ which is natural in } A \text{ and } X.\]
+	\begin{equation} [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{ which is natural in } A \text{ and } X.\end{equation}
 \end{theorem}
 
 \paragraph{Notation:} \begin{itemize}
@@ -153,12 +153,12 @@ and then that this isomorphism is natural in $X$ and $A$.
 	& X(K)
 	\end{tikzcd}\]
 	This gives that $\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$.
-	Hence, we have from (1) and (2), we get that $RHS=LHS$.
+	Hence, we have from (2) and (3), we get that $RHS=LHS$.
 	\end{enumerate}
 %}}}
 %{{{Naturality
 \item \textbf{Showing naturality of this isomorphism }\\
-By Using Lemma 1.2.1, it's enough to show that $\string ^$
+By Using Lemma 1.4 and 1.5, it's enough to show that $\string ^$
 is natural in $X$ and natural in $A$.
 
 \begin{enumerate}[label=(\roman*)]
@@ -188,7 +188,7 @@ is natural in $X$ and natural in $A$.
 		\end{align}
 		As $\alpha \in \mathcal{C} (H_A,X)$ and $\beta \in \mathcal{C}(X,Y)$
 		are morphisms in $\mathcal{C}$, composition in $\mathcal{C}$ gives
-		$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (3) and (4), we
+		$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (4) and (5), we
 		directly get that $RHS=LHS$.
 
 	\item We are going to show naturality in $A$. Fix any $X \in \mathcal{C} $ Need that
@@ -212,8 +212,8 @@ is natural in $X$ and natural in $A$.
 		RHS&=\Big((X(f)) \circ \string ^ \Big)(\alpha)
 		= (X(f))(\hat{\alpha})= \Big(X(f) \Big)\big(\alpha_A(1_A)\big)
 	\end{align}
-	The last equality in (5) is justified as $f$ goes from $B$ to
-	$A$ in $\mathcal{A} $. By using equality of (1) and (2) from I(i), for
+	The last equality in (6) is justified as $f$ goes from $B$ to
+	$A$ in $\mathcal{A} $. By using equality of (2) and (3) from I(i), for
 	$f \in \mathcal{A}(B,A)$, we get that
 	$\Big(X(f) \Big)\big(\alpha_A(1_A)\big)=\alpha_B( 1_A \circ f) $.
 	Hence, $RHS=LHS$. \qedhere
@@ -250,25 +250,83 @@ choice of $X$ and $A$.
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
 	Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
 \end{theorem}
-\begin{proof} Let a group $G$ be given.
-	Define category $\mathcal{A} ^{op}$ as having: $\star$ as it's only object, one
+\begin{proof} \setcounter{equation}{0} Let a group $(G,.)$ be given.
+	Define category $\mathcal{A}$ as having: $\star$ as it's only object, one
 	morphism for each element of $G$ and composition being as that of elements of $G$.
-	Thus, by definition of $\mathcal{A} ^{op}$, $G\cong Hom_{\mathcal{A}^{op} }^{}(\star, \star).$
-	And using the definition of $H_\star(\star)$, we get that $G \cong H_\star(\star)$.
-
-	As $G$ is a group, $\mathcal{A}^{op}$ becomes a locally small category. Using Yoneda Lemma,
-	for $\star \in \mathcal{A} ^{op}$ and functor $H_\star$, we get
-	\[ [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star) \cong G .\]
-	where the above isomorphisms are as sets.
+	That is, for morphisms $f$ and $g$ in $\mathcal{A}$, the morphism $f \circ g$ is defined to
+	be $f.g$.
+	Thus, by definition of $\mathcal{A}$, $G$ and $Hom_{\mathcal{A}}^{}(\star, \star)$ are
+	isomorphic as groups, becuase they have the same elements and rule of composition.
+	And as $H_\star(\star)=\mathcal{A} (\star,\star)$ by definition, we get that as groups,
+	$G \cong H_\star(\star)$. Hence, $G$ being a set gives us that $\mathcal{A}$ is a locally
+	small category. Because $\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
+	it is also a locally small category, and we may apply Yoneda Lemma. Taking $A=\star
+	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
+	\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star).\end{equation}
+	where the above isomorphism is between sets. As $\mathcal{A} ^{op}$ has only one object,
+	each natural transformation $\alpha:H_\star^{} \to H_\star^{}$ has only one component,
+	$\alpha_\star$, which is a funtion $\mathcal{A} (\star,\star) \to \mathcal{A} (\star,\star)$.
+	Using naturality of alpha, we get that
+	\begin{equation}
+		\text{ the square }
+		\begin{tikzcd}
+		H_\star(\star) \arrow[swap]{d}{\alpha_\star} \arrow{r}{H_\star(f)}
+			& H_\star(\star) \arrow{d}{\alpha_\star}\\
+		H_\star(\star) \arrow[swap]{r}{H_\star(f)}
+			& H_\star(\star)
+		\end{tikzcd}
+		, \text{ that is }
+		\begin{tikzcd}
+			\mathcal{A} (\star,\star) \arrow[swap]{d}{\alpha_\star} \arrow{r}{\string _ \circ f}
+			& \mathcal{A} (\star,\star) \arrow{d}{\alpha_\star}\\
+			\mathcal{A} (\star,\star) \arrow[swap]{r}{ \string _ \circ f}
+			& \mathcal{A} (\star,\star)
+		\end{tikzcd}
+		\text{ commutes for any } f \in \mathcal{A}(\star,\star).
+	\end{equation}
+	Applying (2) to the identity $1_\star$ of $\star \in \mathcal{A} $
+	gives us the following.
+	\begin{equation}
+		\big( (\string _ . f) \circ \alpha_\star \big)(1_\star) =
+		\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
+		\implies \alpha_*(1_\star).f=\alpha_\star(f)
+	\end{equation}
+	Therefore, $\mathcal{A} (\star,\star)$ is actually G viewed as a right G-set. Thus, the only
+	component of every natural transformation $\alpha:H_\star \to H_\star$,
+	is exactly an automorphism on group $G$ obtained by right multiplication with an element of
+	$G$. Hence, if we equate each $\alpha$ with $\alpha_\star$, then the left hand side
+	of (1) becomes the group of automorphisms on $G$, which is a subgroup
+	of the symmetric group on G. Now we will show that the isomorphism in (1) is also a
+	homomorphism. The map $\string ^$, defined in Theorem 1.1 will act here as $\alpha
+	\mapsto \alpha_\star (1_\star)$. Hence, for any natural transformations $\alpha,\beta:H_\star
+	\to H_\star$,
+	\begin{equation}
+		\widehat {\alpha \circ \beta}= (\alpha \circ \beta)_\star(1_\star)
+		=(\alpha)_\star \Big( (\beta)_\star (1_\star) \Big)=
+		\Big((\alpha)_\star(1_\star) \Big) . \Big( (\beta)_\star (1_\star) \Big).
+	\end{equation}
+	Where the last equality is due to $(\beta)_\star (1_\star)$ being an element of $\mathcal{A}
+	(\star,\star)$, and hence corresponding to some element of G. \qedhere
 \end{proof}
-\newpage
-
 \subsection{Embedding of a category in Presheaf category}%{{{ Embedding		Section
-
-\begin{definition}[Embedding of a category] %{{{ Embedding of a category		Definition
+\begin{definition} %{{{ Embedding of a category		Definition
 	A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
 	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
 \end{definition} %}}}
+
+
+We define a functor from locally small category $\mathcal{A}$ to the presheaf category on
+$\mathcal{A} $ as taking any oject $A \in \mathcal{A} $ to $H_A$ and
+\begin{proop} %{{{H.		Definition
+\end{proop}
+
+\begin{theorem}
+	Any locally small category can be embedded in the presheaf category.
+\end{theorem}
+\begin{proof}
+	We will show that the functor from Proposition 1.10 is
+	full, faithful and injective on any category.
+\end{proof}
 
 
 
