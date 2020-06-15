@@ -29,9 +29,11 @@
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
-In this section, we will
+In this section, we set forth some basic definitions, state and prove Yoneda lemma, and then
+show Cayley's Theorem and Yoneda Embedding as it's consequences.
 
-
+For any category $\mathcal{A}$, and it's objects $X,Y\in \mathcal{A} $,
+we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 
 \begin{definition} %{{{Category A op		Definition
 For any category $\mathcal{A} $, it's opposite category, $\mathcal{A}^{op}$
@@ -39,16 +41,47 @@ is the category having the objects of $\mathcal{A}$.
 And for objects $A,B \in \mathcal{A} $, a morphism $f \in \mathcal{A}^{op} (A,B)$
 only if there is a morphism $g \in \mathcal{A}(B,A)$.
 \end{definition}
+
+We denote composition in categories with the usual symbol $\circ $. And whenever we mention composition
+of morphism in any opposite category $\mathcal{A} ^{op}$, we adjust it to
+become composition in $\mathcal{A}$ instead. Similarly, whenever we talk about contravariant
+functors, we adjust composition to proceed in the covariant version without changing implications.
+
 \begin{proop} %{{{ H_A	Definition
 	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
 	a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
 	\begin{enumerate}[label=(\roman*)]
-		\item For any object $B \in \mathcal{A} $ , $H_A(B):=\mathcal{A} (B,A)$
+		\item For any object $B \in \mathcal{A} $ , $H_A(B):=\mathcal{A} (B,A)$.
 		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
 			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
 				\text{ is given by } p \mapsto p \circ g.\]
 	\end{enumerate}
 \end{proop}
+\begin{proof}\setcounter{equation}{0}
+	Fix any objects $K,L,M \in \mathcal{A} $.
+	\begin{enumerate}[label=\Roman*]
+		\item \textbf{ (Composition) } As $H_A$ is a contravariant functor, for
+			any morphisms $f\in \mathcal{A} (K,L)$ and $g \in
+			\mathcal{A}(L,M)$, we need to show that
+			$H_A(g \circ f)=H_A(f) \circ H_A(g)$.
+			Hence, using the definition of $H_A$ gives us that for any $k \in H_A(M) $, we must have
+			\begin{align*}
+			LHS&=\Big( H_A(g \circ f) \Big) (k)=k\circ g\circ f \\
+		\text{ and } RHS&=\Big( H_A(f)\circ H_A(g) \Big) (k)=\Big( H_A(f) \Big) (k \circ g)
+	=(k\circ g)\circ f. \end{align*}
+\item \textbf{ (Identity) } We will show that for any $k \in \mathcal{A} (K,L)$, $H_A$ respects the identities
+	of $K$ and $L$ in $\mathcal{A}$ (as they're equal to the identities in $\mathcal{A} ^{op}$). Using the definition of $H_A$, for any object $L\in \mathcal{A} $ and
+	morphism $p \in H_A(L)$:
+	\begin{align*}
+		\text{ Right Identity: }& \Big( \big( H_A(1_K) \big) \circ \big( H_A(k) \big) \Big)(p)
+		=\big( H_A(1_K) \big) (p \circ k) = p \circ k \circ 1_K=p \circ k = \big( H_A(k) \big)(p)\\
+		\text{ Left Identity: }& \Big( \big( H_A(k) \big) \circ \big( H_A(1_L) \big) \Big)(p)
+		=\big( H_A(k) \big) (p \circ 1_L) = \big( H_A(k) \big) (p)
+	\end{align*}
+
+	\end{enumerate}
+	Hence, $H_A$ is indeed a functor.
+\end{proof}
 \begin{definition} %{{{Presheaf Category 	Definition
 	For a locally small category $\mathcal{A} $, the category of presheaves on $\mathcal{A} $, denoted by $[\mathcal{A} ^{op},Set]$
 	is defined to have functors from $\mathcal{A} ^{op}$ to $Set$ as objects,
@@ -87,7 +120,8 @@ only if there is a morphism $g \in \mathcal{A}(B,A)$.
 To prove the theorem,
 first, we show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A) $ as set,
 and then that this isomorphism is natural in $X$ and $A$.
-\begin{proof}Let $\mathcal{A} $ be a locally small category.
+\begin{proof}\setcounter{equation}{0}
+	Let $\mathcal{A} $ be a locally small category.
 	Fix an object $A \in \mathcal{A} $ and a presheaf $X$ on $\mathcal{A}$.
 
 	\begin{enumerate}[label=\Roman*]
@@ -343,22 +377,52 @@ choice of $X$ and $A$.
 \end{definition} %}}}
 
 We define a functor from locally small category $\mathcal{A}$ to the presheaf category on
-$\mathcal{A} $ as taking any oject $A \in \mathcal{A} $ to the functor $H_A$.
+$\mathcal{A} $ as taking any object $A \in \mathcal{A} $ to the functor $H_A$.
 And for any $X,Y,K \in \mathcal{A}$, taking morphism $f\in \mathcal{A} (X,Y)$
 to the natural transformation $f^*$, whose $K$-component is defined as taking any $k \in H_X(K)$
 to $f \circ k \in \mathcal{A} (K,Y)$.
 
-%{{{ H.		Definition
-\begin{proop} For a locally small category $\mathcal{A} $, the map defined above is a functor
-	from $\mathcal{A} $ to $[\mathcal{A} ^{op},Set]$. Henceforth, we denote it by $H_\bullet$.
+%{{{ H.		Proposition
+\begin{proop} The map defined above is a functor from $\mathcal{A}$ to $[\mathcal{A} ^{op},Set]$.
+	Henceforth, we denote it by $H_\bullet$.
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+		Fix any objects $K,L,M \in \mathcal{A} $.
+	\begin{enumerate}[label=\Roman*]
+		\item \textbf{ (Composition) }
+			Let $f \in \mathcal{A} (K,L)$ and $g \in \mathcal{A} (L,M)$.
+			As $(g \circ f)^*$ and $g^* \circ f^* $ are natural transformations from
+			$H_K$ to $H_M$, need to show that for any $X\in \mathcal{A} ^{op}$, $X$-components
+			of $(g \circ f)^*$ and $g^* \circ f^* $ are equal. So, fix $k \in H_K(X)$,
+			and using the definition of $(\string _)^*$, we get that
+			\begin{align*}
+				LHS&=\Big( (g \circ f)^* \Big) (k)=g\circ f \circ k \\
+				\text{ and } RHS&=\Big( f^* \circ g^* \Big) (k)=g^* \big(f \circ k\big)
+			=g\circ f \circ k. \end{align*}
+\item \textbf{ (Identity) } We will show that for any $g \in \mathcal{A} (K,L)$, $H_\bullet$
+	respects the identities	of $K$ and $L$ in $\mathcal{A}$.
+	Thus, for any object $X \in \mathcal{A} $, we need to show that
+	$\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X = \Big( H_\bullet(g)\Big) _X
+	=\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X $. So, fix any morphism $p \in H_A(L)$.
+	Using the definition of $(\string _)^*$, we get the following equations.
+	\begin{align*}
+		\text{ Right Identity: }& \Big( \big( H_\bullet(g) \big) \circ \big( H_\bullet(1_K)
+		\big) \Big)(p)
+		=\big( H_A(g) \big) (1_K \circ p) =
+		\big( H_A(g) \big) (p) \\
+		\text{ Left Identity: }& \Big( \big( H_\bullet(1_L) \big) \circ \big( H_\bullet(g)\big) \Big)(p)
+		=\big( H_\bullet(1_L) \big) (g \circ p) = g \circ p \circ 1_L=g \circ p
+		= \big( H_\bullet(g) \big)(p)
+	\end{align*}
 
+	\end{enumerate}
+	Hence, $H_\bullet$ is indeed a functor.
 \end{proof}
 %}}}
 
 \begin{theorem}
-	Any locally small category can be embedded in the presheaf category.
+	Any locally small category $\mathcal{A}$ can be embedded in the presheaf category on
+	$\mathcal{A}$.
 \end{theorem}
 \begin{proof} \setcounter{equation}{0}
 	We will show that the functor from Proposition 1.10 is
@@ -440,7 +504,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{lemma}
 	Composition of two prorelations is a prorelation.
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	For prorelations $P:X \to Y$ and $Q:Y \to Z$, need to show that Q.P is a prorelation.
 	\begin{enumerate}[label=(\roman*)]
 		\item (Partial Order) Inclusion of relations gives a partial order.
@@ -482,7 +547,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{lemma}
 	For any function $f:X \to Y$, $\; \Delta_X$ is contained in the composition $ f^o \circ f$.
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	As $f$ is a function, it must be defined on every element of it's domain. Thus, for every
 	$x \in X$, there exists some $(x,y)$ in $f$. By definition of $f^o$, $(y,x)$ is in $f^o$.
 	Hence, by definition of composition, $(x,x)$ is in $f^o \,f$.
@@ -490,7 +556,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{lemma}
 	For any relation $r:X \to Y$, the composition $r\circ r^o$ contains  $\subseteq \Delta_Y$.
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	Suppose there exist $x \in X$ and $y \in Y$ such that
 	$x\,r\,y$. By definition of $r^o$, this
 	gives us that $y\, r^o \,x$. Using definition of composition,
@@ -498,7 +565,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \end{proof}
 \begin{lemma} For relations $r,s:X\to Y$ and $t:Y\to Z$, if $\;r \subseteq s$ then $(t \circ r) \subseteq (t \circ s)$.
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	Suppose relations $r,s$ and $t$ are as given above, and let $x \,(t \, r)\,z$.
 	By definition of composition, there
 	exists, $y \in Y$ such that $x\,r\,y$ and $y\,t\,z$.
@@ -510,7 +578,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{lemma} For relations $r:X\to Y$ and $s,t:Y\to Z$, if $s\subseteq t$ then
 	$(s \circ r) \subseteq (t \circ r)$.
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	Suppose relations $r,s$ and $t$ are as given above, and let  $x \,(s \, r)\,z$.
 	By definition of composition of relations, we get that there exists
 	some $y \in Y$ such that $x\,r\,y$ and $y\,s\,z$. Because $s \subseteq t$, $y\,s\,z$
@@ -549,7 +618,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 %{{{ A.A=A
 \begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
 \end{lemma}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
 	we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
 	$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
@@ -560,7 +630,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{proop} QUnif is a category defined as having quasi-uniform spaces as objects,
 	and uniformly continuous maps between them as morphisms, with composition defined as that of functions.
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	\begin{enumerate}[label=(\roman*)]
 		\item (Associativity) The composition of functions is associative by definition.
 		\item (Identity) For each object $(X,A)$, define it's identity to be the identity
@@ -584,7 +655,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 	ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
 	promodules as 1-cells and containment of promodules as 2-cells.
 \end{proop}
-\begin{proof} In order to show that ProMod is a 2-category, need the following:
+\begin{proof}\setcounter{equation}{0}
+	In order to show that ProMod is a 2-category, need the following:
 	\begin{enumerate}[label=(\alph*)]
 		\item (1-Identities) For each quasi-uniform space $(X,A)$,
 			define $A:(X,A) \carrow (X,A)$ to be the identity 1-cell for $(X,A)$. A is a promodule
@@ -672,7 +744,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 %{{{Two functors
 \begin{proop} $(\string _ )_*:\text{QUnif} \to \text{ProMod}$ defined above is indeed a functor.
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	We will first show that $B.f={b \circ f: b \in B}$
 	is a promodule, and then that $(-)_*$ defines a functor.
 	\begin{enumerate}[label=(\roman*)]
@@ -746,7 +819,8 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 			$f^* := f^o .B$
 	\end{enumerate}
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 	So, need to show $f^o .B$ a prorelation $Y \to X$
 	and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
@@ -845,7 +919,8 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 			\item f is fully dense if and only if f is topologically dense
 		\end{enumerate}
 	\end{proop}
-	\begin{proof}
+	\begin{proof}\setcounter{equation}{0}
+
 	\item
 		\begin{enumerate}[label=(\alph*)]
 			\item \begin{enumerate}[label=(\roman*)]
@@ -977,7 +1052,8 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 	\phi \leq \psi.a \]
 	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	First need to show that $\tilde{A}$ is a prorelation,
 	\begin{enumerate}[label=(\roman*)]
 		\item (Partial order) For any two relations $\tilde{a},\tilde{b}:PX \to PX $,
@@ -1031,11 +1107,12 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 \begin{proop}[Yoneda Embedding]
 \item For a quasi-uniform space $(X,A)$, function $y_X:X \to PX$ is defined by $x\mapsto x^*$ for $x \in X$.
 	\begin{enumerate}[label=(\alph*)]
-		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is a uniformly continuous map
-		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is fully faithful
+		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is a uniformly continuous map.
+		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is fully faithful.
 	\end{enumerate}
 \end{proop}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 \item \begin{enumerate}[label=(\alph*)]
 	\item In order to show $y_X$ is uniformly continuous, need to show that $y_X.A \leq \tilde{A}.y_X $.
 		By definition of $\leq$ , need $\forall a\in A, \exists b \in A:
@@ -1069,7 +1146,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 		So, by composition of relations, we get:
 		\[ za''x \text{ , }  xa''y \text{ and } yby \implies z(a''a''b)y \implies z(ab)y \text{ i.e. }
 		y \in (ba)(z)\]
-	\item By using Proposition2.3(a), need to show that $A\geq y_X^o.\tilde{A}.y_X$ i.e. $\forall
+	\item By using Proposition2.3 (a), need to show that $A\geq y_X^o.\tilde{A}.y_X$ i.e. $\forall
 		a\in A, \exists \tilde{b}\in \tilde{A} :  a \supseteq y_X^o \text{ } \tilde{b} \text{ } y_X $.
 		Applying to an element, $x\in X$ gives the condition
 		\begin{equation}
@@ -1090,17 +1167,13 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 %{{{ Yoneda Lemma
 \begin{theorem}[Yoneda Lemma] %{{{ Yoneda Lemma		Theorem
 	For every $\psi \in PX$, in the following digram,
-	$\begin{tikzcd}[column sep=large ]
-		X \arrow{r}{(y_X)_*}  \arrow{rd}{\psi}
-  & PX \arrow{d}{\psi^*} \\
-  & 1
-	\end{tikzcd}$
 	\begin{enumerate}[label=(\alph*)]
 		\item $\psi \geq \psi^*.(y_X)^*$
 		\item $\psi \in \overline{y_X(X)} \implies \psi \leq \psi^*.(y_X)_*$
 	\end{enumerate}
 \end{theorem}
-\begin{proof}
+\begin{proof}\setcounter{equation}{0}
+
 	\begin{enumerate}[label=(\alph*)]
 		\item By definition, $(y_X)_*=\tilde{A}.y_X$, and $\psi^*=\psi^o.\tilde{A}$. Need that
 			$\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$. And applying Lemma 2.2.1 to
@@ -1165,7 +1238,8 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 	\begin{coro}
 		For $\psi \in PX$, $\psi \in \overline{y_X(X)}$ if and only if $\psi$ is a right-adjoint.
 	\end{coro}
-	\begin{proof}	Fix any $\psi \in PX$. \setcounter{equation}{0}
+	\begin{proof}\setcounter{equation}{0}
+		Fix any $\psi \in PX$. \setcounter{equation}{0}
 		\begin{enumerate}[label=(\roman*)]
 			\item ($\implies$)
 
