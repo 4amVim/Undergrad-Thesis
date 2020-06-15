@@ -29,6 +29,10 @@
 
 \begin{document}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
+In this section, we will
+
+
+
 \begin{definition} %{{{Category A op		Definition
 For any category $\mathcal{A} $, it's opposite category, $\mathcal{A}^{op}$
 is the category having the objects of $\mathcal{A}$.
@@ -39,7 +43,7 @@ only if there is a morphism $g \in \mathcal{A}(B,A)$.
 	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
 	a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
 	\begin{enumerate}[label=(\roman*)]
-		\item For any object $B \in \mathcal{A} $ , $H_A(B):=Hom_{Set}^{}(B,A)$
+		\item For any object $B \in \mathcal{A} $ , $H_A(B):=\mathcal{A} (B,A)$
 		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
 			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
 				\text{ is given by } p \mapsto p \circ g.\]
@@ -91,7 +95,7 @@ and then that this isomorphism is natural in $X$ and $A$.
 			and $X(A)$}\\
 	Define $\string ^ :\mathcal{C}(H_A,X) \to X(A) $
 	for any $\alpha:H_A \to X,$ as  $\hat{\alpha}:= \alpha_A(1_A)$.
-	As $1_A \in Hom_{Set}(A,A)=H_A(A)$,
+	As $1_A \in Set(A,A)=H_A(A)$,
 	definition of $\alpha_A$ gives that $\alpha_A(1_A)\in X(A)$.
 %{{{Define ~
 
@@ -255,18 +259,9 @@ choice of $X$ and $A$.
 	morphism for each element of $G$ and composition being as that of elements of $G$.
 	That is, for morphisms $f$ and $g$ in $\mathcal{A}$, the morphism $f \circ g$ is defined to
 	be $f.g$.
-	Thus, by definition of $\mathcal{A}$, $G$ and $Hom_{\mathcal{A}}^{}(\star, \star)$ are
+	Thus, by definition of $\mathcal{A}$, $G$ and $\mathcal{A}(\star, \star)$ are
 	isomorphic as groups, becuase they have the same elements and rule of composition.
-	And as $H_\star(\star)=\mathcal{A} (\star,\star)$ by definition, we get that as groups,
-	$G \cong H_\star(\star)$. Hence, $G$ being a set gives us that $\mathcal{A}$ is a locally
-	small category. Because $\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
-	it is also a locally small category, and we may apply Yoneda Lemma. Taking $A=\star
-	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
-	\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star).\end{equation}
-	where the above isomorphism is between sets. As $\mathcal{A} ^{op}$ has only one object,
-	each natural transformation $\alpha:H_\star^{} \to H_\star^{}$ has only one component,
-	$\alpha_\star$, which is a funtion $\mathcal{A} (\star,\star) \to \mathcal{A} (\star,\star)$.
-	Using naturality of alpha, we get that
+	Using naturality of $\alpha$, we get that
 	\begin{equation}
 		\text{ the square }
 		\begin{tikzcd}
@@ -284,48 +279,134 @@ choice of $X$ and $A$.
 		\end{tikzcd}
 		\text{ commutes for any } f \in \mathcal{A}(\star,\star).
 	\end{equation}
-	Applying (2) to the identity $1_\star$ of $\star \in \mathcal{A} $
-	gives us the following.
+	Using (1) for the identity $1_\star$ of $\star$ in $\mathcal{A}$,
+	gives us the following equation.
 	\begin{equation}
-		\big( (\string _ . f) \circ \alpha_\star \big)(1_\star) =
+		\big( (\string _ \circ f) \circ \alpha_\star \big)(1_\star) =
 		\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
-		\implies \alpha_*(1_\star).f=\alpha_\star(f)
+		\implies \alpha_\star(1_\star) \circ f=\alpha_\star(f)
 	\end{equation}
-	Therefore, $\mathcal{A} (\star,\star)$ is actually G viewed as a right G-set. Thus, the only
-	component of every natural transformation $\alpha:H_\star \to H_\star$,
-	is exactly an automorphism on group $G$ obtained by right multiplication with an element of
-	$G$. Hence, if we equate each $\alpha$ with $\alpha_\star$, then the left hand side
-	of (1) becomes the group of automorphisms on $G$, which is a subgroup
-	of the symmetric group on G. Now we will show that the isomorphism in (1) is also a
-	homomorphism. The map $\string ^$, defined in Theorem 1.1 will act here as $\alpha
-	\mapsto \alpha_\star (1_\star)$. Hence, for any natural transformations $\alpha,\beta:H_\star
+	As $\mathcal{A} ^{op}$ has only one object, each natural transformation
+	$\alpha:H_\star^{} \to H_\star^{}$ has only one component,
+	that is $\alpha_\star$. which is a funtion from $\mathcal{A} (\star,\star)$ to
+	$\mathcal{A} (\star,\star)$. Thus, from (2), we get that every natural transformation,
+	$\alpha$ is determined by it's action on the identity of $\star$. And as $\mathcal{A}
+	(\star, \star)$ is isomorphic to the group $G$, we can write the final equation from (2)
+	with the product being in $G$ as, $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
+	multiplying every element of a group by a fixed element gives us a bijection on the
+	group, each $\alpha_\star$, and hence each $\alpha$ can be thought of as a bijection on
+	$G$.
+
+	Now we will show that the collection, $[\mathcal{A} ^{op},Set](H_\star, H_\star)$ is a
+	group. As $[\mathcal{A} ^{op},Set]$ is a category, we get that the composition of
+	natural transformations $\alpha$ is associative, and has an identity. Also,
+	because the aforementioned collection contains morphisms with the same source and
+	destination, that is $\star$, we get that it is closed under composition. In order
+	to show inverses, we use the group isomorphism between $\mathcal{A} (\star,\star)$ and
+	$\alpha:H_\star \to H_\star$ defined as mapping each element $g\in G$ to the natural
+	transformation $\alpha$ such that $\alpha_\star(1_\star)=g \in \mathcal{A} $.
+	Giving us that for $\beta:H_\star \to H_\star$ corresponding to $j\in G$ has, as it's
+	inverse, $\gamma:H_\star \to H_\star$ corresponding to $j^{-1} \in G$. Thus, the
+	collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group, and each of it's
+	members is a bijection on $G$, giving us that it's a subgroup of the symmetric group
+	on the underlying set of $G$.
+
+	Also, $G$ being a set gives us that the collection of morphisms of$\mathcal{A}$
+	is a set, that is, $\mathcal{A} $ is a locally small category. Because
+	$\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
+	it is also a locally small category, and we may apply Yoneda Lemma. Taking $A=\star
+	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
+	\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star)
+	= \mathcal{A} (\star,\star) \cong G.\end{equation}
+	where the first isomorphism above is between sets. We will show that this
+	isomorphism is also a homomorphism.
+	The map $\string ^$, defined in Theorem 1.1 will act here as $\alpha
+	\mapsto \alpha_\star (1_\star)$. Hence, for any $\alpha,\beta:H_\star
 	\to H_\star$,
 	\begin{equation}
 		\widehat {\alpha \circ \beta}= (\alpha \circ \beta)_\star(1_\star)
 		=(\alpha)_\star \Big( (\beta)_\star (1_\star) \Big)=
 		\Big((\alpha)_\star(1_\star) \Big) . \Big( (\beta)_\star (1_\star) \Big).
 	\end{equation}
-	Where the last equality is due to $(\beta)_\star (1_\star)$ being an element of $\mathcal{A}
-	(\star,\star)$, and hence corresponding to some element of G. \qedhere
+	Where the last equality is due to (2) being applicable
+	as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$,
+	and hence corresponds to some element of G.
+	Finally, we have shown that in statement (3), the isomorphism is between groups,
+	with the left most expression being a subgroup of symmetric group on $G$. This is
+	precisely the statement of Cayley's theorem.
+	\[ Sym(G) \geq [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong G \qedhere \]
 \end{proof}
-\subsection{Embedding of a category in Presheaf category}%{{{ Embedding		Section
+\subsection{Yoneda Embedding}%{{{ Embedding		Section
 \begin{definition} %{{{ Embedding of a category		Definition
 	A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
-	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full, faithful and injective (on objects).
+	functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full and faithful.
 \end{definition} %}}}
 
-
 We define a functor from locally small category $\mathcal{A}$ to the presheaf category on
-$\mathcal{A} $ as taking any oject $A \in \mathcal{A} $ to $H_A$ and
-\begin{proop} %{{{H.		Definition
+$\mathcal{A} $ as taking any oject $A \in \mathcal{A} $ to the functor $H_A$.
+And for any $X,Y,K \in \mathcal{A}$, taking morphism $f\in \mathcal{A} (X,Y)$
+to the natural transformation $f^*$, whose $K$-component is defined as taking any $k \in H_X(K)$
+to $f \circ k \in \mathcal{A} (K,Y)$.
+
+%{{{ H.		Definition
+\begin{proop} For a locally small category $\mathcal{A} $, the map defined above is a functor
+	from $\mathcal{A} $ to $[\mathcal{A} ^{op},Set]$. Henceforth, we denote it by $H_\bullet$.
 \end{proop}
+\begin{proof}
+
+\end{proof}
+%}}}
 
 \begin{theorem}
 	Any locally small category can be embedded in the presheaf category.
 \end{theorem}
-\begin{proof}
+\begin{proof} \setcounter{equation}{0}
 	We will show that the functor from Proposition 1.10 is
-	full, faithful and injective on any category.
+	full and faithful. Fix any objects $X,Y \in \mathcal{A}$.
+	\begin{enumerate}[label=\Roman*]
+		\item To show that $H_\bullet$ is a full, we need to show that for every $\alpha
+			\in [\mathcal{A} ^{op},Set](H_X,H_Y)$, there exists a morphism
+			$f\in \mathcal{A} (X,Y)$ such that $H_\bullet(f)=\alpha$. Thus, we need
+			to show that their $K$-components are equal for every $K \in \mathcal{A}$.
+			Using the definition of $H_\bullet(f)$, this amounts to showing that
+			\begin{equation}  \text{ for any morphism } k \in H_X(K),
+				\Big(H_\bullet(f)\Big)_K^{}(k)=\alpha_K(k), \text{ that is }
+				f\circ k=\alpha_K(k).
+		\end{equation}
+		Because $\alpha_X$ goes from $H_X(X)$ to $H_Y(X)$, $\alpha_X(1_X)$ is a morphism
+		in $\mathcal{A}(X,Y)$. We will show that choosing this morphism to be $f$
+		will give us the required result, that is $\big( \alpha_X(1_X) \big) \circ
+		k=\alpha_K(k)$. Using the naturality of $\alpha$,
+		\[ \text{ we get that }
+		\begin{tikzcd}
+		H_X(X) \arrow[swap]{d}{\alpha_X} \arrow{r}{H_X(k)}
+			& H_X(K) \arrow{d}{\alpha_K}\\
+		H_Y(X) \arrow[swap]{r}{H_Y(k)}
+			& H_Y(K)
+		\end{tikzcd}
+		\text{, that is }
+		\begin{tikzcd}
+			\mathcal{A} (X,X) \arrow[swap]{d}{\alpha_X} \arrow{r}{\string _ \circ k}
+			& \mathcal{A} (K,X) \arrow{d}{\alpha_K}\\
+			\mathcal{A} (X,Y) \arrow[swap]{r}{\string _ \circ k}
+			& \mathcal{A} (K,Y)
+		\end{tikzcd}
+		\text{ commutes. }\]
+		Thus, for the identity morphism $1_X \in \mathcal{A} (X,X)$, we get the following
+		\[ \Big(H_Y(k) \circ \alpha_X\Big)(1_X)=\Big(\alpha_K \circ H_X(k)\Big)(1_X)
+			\implies  \alpha_X(1_X) \circ k \implies
+		\alpha_K(1_X) \circ k=\alpha_K(k)\]
+		Thus, we have that $H_\bullet$ is a full functor.
+
+	\item  Fix any morphisms $f,g$ in $\mathcal{A} (X,Y)$ and suppose
+		$H_\bullet(f)=H_\bullet(g)$. In order to show $H_\bullet$ is faithfull,
+		we need to show that $f=g$. As $H_\bullet(f)$ and $H_\bullet(g)$ are equal natural
+		transformations, we have that the action of their $X$-components is equal. Thus,
+		in particular, for the identity of $X$, $\big(H_\bullet(f) \big)_X (1_X)
+		= \big(H_\bullet(g) \big)_X (1_X)$. Using the difinition of $H_\bullet$, we get
+		that $f \circ 1_X = g \circ 1_X$. And as both $g$ and $f$ are morphisms
+		from $X$, we get that $f=g$.
+	\end{enumerate}
 \end{proof}
 
 
@@ -883,11 +964,12 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 \end{enumerate}
 \end{proof}
 %}}}
+\section{Yoneda Lemma in Quasi-Uniform Spaces}
 %{{{ A~ is a quasi-uniformity on PX
 \begin{definition}%{{{ PX		Definition
 	The set $PX$ is defined to be the collection of all promodules from the quasi-uniform space(X,A)
 	to the quasi-uniform space 1.
-	\[PX:=\{\psi : \psi:(X,A) \carrow 1 \text{ is a promodule} \}\]
+	\[PX:=\{\psi :(X,A) \carrow 1 \text{ is a promodule} \}\]
 \end{definition}
 \begin{proop}%{{{ A~		Definition
 	For any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
