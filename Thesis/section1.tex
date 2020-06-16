@@ -10,6 +10,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{proop}[theorem]{Proposition}
+\newtheorem{ex}[theorem]{Example}
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
 \newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
@@ -296,9 +297,9 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		in $\mathcal{A} $ for each element of $G$, with the composition of said morphisms
 		being as that of elements of $G$.
 		That is, for morphisms $f$ and $g$ in $\mathcal{A}$, $f \circ g$ is defined to
-		be $f.g$.
-		Thus, by definition of $\mathcal{A}$, we have that $G$ and $\mathcal{A}(\star, \star)$
-		are isomorphic as groups, because they have the same elements and rule of composition.
+		be the morphism $(f.g)$. Then, $G$ and $\mathcal{A}(\star, \star)$ have the
+		same elements
+		and rule of composition, so they're isomorphic as groups.
 
 		As $\mathcal{A} ^{op}$ is a category with single object,
 		 each natural transformation $\alpha:
@@ -346,18 +347,25 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		group, each $\alpha_\star$, and hence each $\alpha$ can be thought of as a bijection on
 		$G$.
 
-		Now we will show that the collection $[\mathcal{A} ^{op},Set](H_\star, H_\star)$ of
-		natural transformations forms a group, with composition being as morphisms of
-		$[\mathcal{A} ^{op},Set]$. As $[\mathcal{A} ^{op},Set]$ is a category, we get that
+		Now we will show that the collection $[\mathcal{A} ^{op},Set](H_\star, H_\star)$
+		forms a group, with composition being as morphisms.
+		As $[\mathcal{A} ^{op},Set]$ is a category, we get that
 		this composition is associative. Also, because the aforementioned collection contains
 		morphisms with the same source and destination, that is $\star$, we get that it is
-		closed under composition, and has an identity, that is, $1_\star$.
+		closed under composition, and has an identity, that is $1_\star$.
 		In order to show inverses, we use the group isomorphism between
 		$\mathcal{A} (\star,\star)$ and	the property of $\alpha$ from (2),
 		to bijectively map each element $g\in G$ to the natural transformation $\alpha$
 		such that $\alpha_\star(1_\star)$ corresponds to $g \in \mathcal{A}$.
-		Giving us that for any $\alpha$ corresponding to $j\in G$, there will exist a
+		Hence, for any $\alpha$ corresponding to $j\in G$, there will exist a
 		$\beta \in [\mathcal{A} ^{op},Set](H_\star, H_\star)$ corresponding to $j^{-1} \in G$.
+		Using (2) gives us that $\alpha$ and $\beta$ are inverses.
+		\[ \text{ For any } k \in \mathcal{A} (\star,\star), \; \;
+			\big( \alpha \circ \beta\big)_\star
+			(k)
+		= \alpha_\star\big(\beta_\star(k)\big)=\alpha_\star \big( \beta_\star(1_\star).k \big)
+	=\alpha_\star \big( j^{-1}\,. k \big) = \alpha_\star(1_\star)\,.  j^{-1}\,. k=j\,. j^{-1}\,.
+k=k\]
 		Thus, the collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
 
 		As the collection of elements of $G$ forms a set, we get that $\mathcal{A}(\star,\star)$
@@ -388,12 +396,21 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 	\end{proof}
 	\subsection{Yoneda Embedding}%{{{ Embedding		Section
 	\begin{definition} %{{{ Embedding of a category		Definition
-		A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if there exists a
-		functor $F: \mathcal{A} \to \mathcal{B} $ such that $F$ is full and faithful.
+		A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if
+		and only if there exists a functor $F: \mathcal{A} \to \mathcal{B}$
+		such that $F$ is full and faithful.
 	\end{definition} %}}}
 
-	We define a functor from locally small category $\mathcal{A}$ to the presheaf category on
-	$\mathcal{A} $ as taking any object $A \in \mathcal{A} $ to the functor $H_A$.
+	Note that a functor being fully faithful gives us that the functor is injective on objects upto
+	isomorphism. Because fullness along with $F(A)=F(B)$ gives us the existence of morphisms
+	$f\in \mathcal{A} (A,B)$ and $g \in \mathcal{A} (B,A)$ such that $F(f)=1_{FA}$ and
+	$F(g)=1_{FB}$. Thus faithfullness gives us that $F(f \circ g)=F(1_B)$ and $F(g \circ f)=F(1_A)$
+	imply $f \circ g=1_B$ and $g \circ f = 1_A$, giving that $A\cong B$.\\
+
+
+
+	We are going to define a functor from locally small category $\mathcal{A}$ to the presheaf category on
+	$\mathcal{A} $, as taking any object $A \in \mathcal{A} $ to the functor $H_A$.
 	And for any $X,Y,K \in \mathcal{A}$, taking morphism $f\in \mathcal{A} (X,Y)$
 	to the natural transformation $f^*$, whose $K$-component is defined as taking any $k \in H_X(K)$
 	to $f \circ k \in \mathcal{A} (K,Y)$.
@@ -512,7 +529,21 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 			\end{enumerate}
 		\end{definition}
 
-		EXAMPLES
+\begin{ex} %{{{ 		Example
+	\begin{enumerate}[label=(\alph*)]
+		\item For any positive real number $\epsilon$, define a relation $A_\epsilon$ on real numbers as
+			$A_\epsilon=\{ (x,y) | x-y<\epsilon \}$. The set $K=\{A_\epsilon | \epsilon>0\}$
+			forms a prorelation. $K$ is down-directed, as $\delta \geq \epsilon > 0$
+			implies $A_\delta \supseteq A_\epsilon$. It's an up-set because for any relation
+			$B$ such that $B \supseteq A_\epsilon$, for each $(x,y)\in B$,
+		we take $\delta>|x-y| \geq x-y$. Thus, each element of $K$ is in some
+	$A_{\delta_i}$,	and as the supremum of all such $\delta_i$ is also a positive real number,
+	$B\in K$ by down-directedness of $K$.
+
+\item
+	\end{enumerate}
+\end{ex}
+
 
 		\begin{definition}%{{{ Composition of prorelations	Definition
 			A prorelation $P:X \to Y$ can be composed to a prorelation $Q:Y \to Z$ by taking
