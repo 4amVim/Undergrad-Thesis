@@ -39,13 +39,8 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 	For any category $\mathcal{A} $, it's opposite category, $\mathcal{A}^{op}$
 	is the category having the objects of $\mathcal{A}$.
 	And for objects $A,B \in \mathcal{A} $, a morphism $f \in \mathcal{A}^{op} (A,B)$
-	only if there is a morphism $g \in \mathcal{A}(B,A)$.
+	if and only if there is a morphism $g \in \mathcal{A}(B,A)$.
 \end{definition}
-
-We denote composition in categories with the usual symbol $\circ $. And whenever we mention composition
-of morphism in any opposite category $\mathcal{A} ^{op}$, we adjust it to
-become composition in $\mathcal{A}$ instead. Similarly, whenever we talk about contravariant
-functors, we adjust composition to proceed in the covariant version without changing implications.
 
 \begin{proop} %{{{ H_A	Definition
 	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
@@ -63,15 +58,18 @@ functors, we adjust composition to proceed in the covariant version without chan
 		\item \textbf{ (Composition) } As $H_A$ is a contravariant functor, for
 			any morphisms $f\in \mathcal{A} (K,L)$ and $g \in
 			\mathcal{A}(L,M)$, we need to show that
-			$H_A(g \circ f)=H_A(f) \circ H_A(g)$.
+			$H_A(g \circ f)=H_A(f) \circ H_A(g)$. Note,
+			the composition $g\circ f$ on the left hand side is in $\mathcal{A} ^{op}$.
 			Hence, using the definition of $H_A$ gives us that for any $k \in H_A(M) $, we must have
 			\begin{align*}
 				LHS&=\Big( H_A(g \circ f) \Big) (k)=k\circ g\circ f \\
 				\text{ and } RHS&=\Big( H_A(f)\circ H_A(g) \Big) (k)=\Big( H_A(f) \Big) (k \circ g)
 			=(k\circ g)\circ f. \end{align*}
 		\item \textbf{ (Identity) } We will show that for any $k \in \mathcal{A} (K,L)$, $H_A$ respects the identities
-			of $K$ and $L$ in $\mathcal{A}$ (as they're equal to the identities in $\mathcal{A} ^{op}$). Using the definition of $H_A$, for any object $L\in \mathcal{A} $ and
-			morphism $p \in H_A(L)$:
+			of $K$ and $L$ in $\mathcal{A}$ (as they're equal to the identities of $K$ and
+			$L$ in $\mathcal{A} ^{op}$. Using the definition of $H_A$,
+			for any object $L\in \mathcal{A} $ and
+			morphism $p \in H_A(L)$, we get the following equations.
 			\begin{align*}
 				\text{ Right Identity: }& \Big( \big( H_A(1_K) \big) \circ \big( H_A(k) \big) \Big)(p)
 				=\big( H_A(1_K) \big) (p \circ k) = p \circ k \circ 1_K=p \circ k = \big( H_A(k) \big)(p)\\
@@ -85,7 +83,7 @@ functors, we adjust composition to proceed in the covariant version without chan
 	\begin{definition} %{{{Presheaf Category 	Definition
 		For a locally small category $\mathcal{A} $, the category of presheaves on $\mathcal{A} $, denoted by $[\mathcal{A} ^{op},Set]$
 		is defined to have functors from $\mathcal{A} ^{op}$ to $Set$ as objects,
-		and natural transformations between them as morphisms.
+		and the natural transformations between them as morphisms.
 	\end{definition}
 
 	%{{{ 2 Lemmas
@@ -288,17 +286,30 @@ functors, we adjust composition to proceed in the covariant version without chan
 	\end{definition}
 	We will now use parts of proof of Theorem 1.6 in to prove Cayley's theorem. The notation $(\string _)$
 	occurs as a placeholder for the element a map is applied to, that is, $(\string _ \circ f)(k)$ is
-	defined to be $k \circ f$.
+	defined to be $k \circ f$. And we use the notation $g.f$ to mean the composition of $g$ and $f$
+	in the group.
 	\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
 		Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
 	\end{theorem}
-	\begin{proof} \setcounter{equation}{0} Let a group $(G,.)$ be given.
-		Define category $\mathcal{A}$ to have single object $\star$. Precisely one
-		morphism for each element of $G$, with their composition being as that of elements of $G$.
+	\begin{proof} \setcounter{equation}{0} Let a group $G$ be given.
+		Define category $\mathcal{A}$ with a single object $\star$. And precisely one morphism
+		in $\mathcal{A} $ for each element of $G$, with the composition of said morphisms
+		being as that of elements of $G$.
 		That is, for morphisms $f$ and $g$ in $\mathcal{A}$, $f \circ g$ is defined to
 		be $f.g$.
-		Thus, by definition of $\mathcal{A}$, as group $G$ and $\mathcal{A}(\star, \star)$
-		have the same elements and rule of composition, they're isomorphic as groups.
+		Thus, by definition of $\mathcal{A}$, we have that $G$ and $\mathcal{A}(\star, \star)$
+		are isomorphic as groups, because they have the same elements and rule of composition.
+
+		As $\mathcal{A} ^{op}$ is a category with single object,
+		 each natural transformation $\alpha:
+		\begin{tikzcd}[row sep=small, column sep=large]
+			\mathcal{A} ^{op} \arrow[r,bend left=50, "H_\star"{name=U, below}]
+			\arrow[r, bend right = 50, "H_\star"{name=D, above}]
+& Set
+\arrow[Rightarrow, from=U , to=D, "\alpha"]
+		\end{tikzcd}$
+		has only one component, that is $\alpha_\star$. Therefore, we can
+		identify $\alpha$ with $\alpha_\star$.
 		Using naturality of $\alpha$, we get that
 		\begin{equation}
 			\text{ the square }
@@ -325,45 +336,39 @@ functors, we adjust composition to proceed in the covariant version without chan
 			\implies \alpha_\star(1_\star) \circ f=\alpha_\star(f)
 		\end{equation}
 		Thus, we get that we get that every natural transformation,
-		$\alpha$ is determined by it's action on $1_\star$. As $\mathcal{A} ^{op}$ is a category with single object,
-		$ \text{ each natural transformation } \alpha:
-		\begin{tikzcd}[row sep=small, column sep=large]
-			\mathcal{A} ^{op} \arrow[r,bend left=50, "H_\star"{name=U, below}]
-			\arrow[r, bend right = 50, "H_\star"{name=D, above}]
-& Set
-\arrow[Rightarrow, from=U , to=D, "\alpha"]
-		\end{tikzcd} \text{ has only one component, that is } \alpha_\star$. Therefore, we can
-		identify $\alpha$ with $\alpha_\star$. Also, $\alpha_\star$ is a function
-		from $\mathcal{A} (\star,\star)$ to $\mathcal{A} (\star,\star)$.
-		And as $\mathcal{A} (\star, \star)$ is isomorphic to the group $G$, we can write
-		the final equation from (2) with the product being in $G$
-		as, $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
+		$\alpha$ is determined by it's action on $1_\star$.
+		As $\mathcal{A} (\star, \star)$ is isomorphic to the group $G$, and
+		$\alpha_\star$ is a function from $\mathcal{A} (\star,\star)$
+		to $\mathcal{A} (\star,\star)$, we can write
+		the final equation from (2) with the product being in $G$, that is,
+		 $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
 		multiplying every element of a group by a fixed element gives us a bijection on the
 		group, each $\alpha_\star$, and hence each $\alpha$ can be thought of as a bijection on
 		$G$.
 
-		Now we will show that the collection, $[\mathcal{A} ^{op},Set](H_\star, H_\star)$ is a
-		group. As $[\mathcal{A} ^{op},Set]$ is a category, with these natural transformations
-		as it's morphisms, we already have that the composition of is associative,
-		and has an identity. Also, because the aforementioned collection contains
+		Now we will show that the collection $[\mathcal{A} ^{op},Set](H_\star, H_\star)$ of
+		natural transformations forms a group, with composition being as morphisms of
+		$[\mathcal{A} ^{op},Set]$. As $[\mathcal{A} ^{op},Set]$ is a category, we get that
+		this composition is associative. Also, because the aforementioned collection contains
 		morphisms with the same source and destination, that is $\star$, we get that it is
-		closed under composition. In order
-		to show inverses, we use the group isomorphism between $\mathcal{A} (\star,\star)$ and
-		the property of $\alpha$ from (2), to bijectively map each element $g\in G$ to the natural
-		transformation $\alpha$ such that $\alpha_\star(1_\star) \leftrightarrow g \in \mathcal{A} $.
-		Giving us that for any natural transformation $\alpha \leftrightarrow j\in G$ has, it's
-		inverse will be $\beta \leftrightarrow j^{-1} \in G$. Thus, the
-		collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
+		closed under composition, and has an identity, that is, $1_\star$.
+		In order to show inverses, we use the group isomorphism between
+		$\mathcal{A} (\star,\star)$ and	the property of $\alpha$ from (2),
+		to bijectively map each element $g\in G$ to the natural transformation $\alpha$
+		such that $\alpha_\star(1_\star)$ corresponds to $g \in \mathcal{A}$.
+		Giving us that for any $\alpha$ corresponding to $j\in G$, there will exist a
+		$\beta \in [\mathcal{A} ^{op},Set](H_\star, H_\star)$ corresponding to $j^{-1} \in G$.
+		Thus, the collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
 
-		Also, $G$ being a set gives us that the collection of morphisms of $\mathcal{A}$
-		is a set, that is, $\mathcal{A} $ is a locally small category. Because
+		As the collection of elements of $G$ forms a set, we get that $\mathcal{A}(\star,\star)$
+		is a set. Hence, $\mathcal{A}$ is a locally small category. Because
 		$\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
-		it is also a locally small category, and we may apply Yoneda Lemma. Taking $A=\star
-		\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
+		it is also a locally small category, and we may apply Yoneda Lemma to it.
+		Taking $A=\star	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
 		\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star)
 		= \mathcal{A} (\star,\star) \cong G\end{equation}
-		where the first isomorphism above is between sets. We will show that this
-		isomorphism is also a homomorphism.
+		where the first isomorphism above is between sets, and second one between groups.
+		We will show that this isomorphism is also a homomorphism.
 		The map $\string ^$, defined in Theorem 1.6 will act here as $\alpha
 		\mapsto \alpha_\star (1_\star)$. Hence, for any $\alpha,\beta:H_\star
 		\to H_\star$,
@@ -375,7 +380,7 @@ functors, we adjust composition to proceed in the covariant version without chan
 		Where the last equality is due to (2) being applicable
 		as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$,
 		and hence corresponds to some element of G.
-		Finally, we have shown that in statement (3), the isomorphism is between groups,
+		We have shown that in statement (3), the isomorphism is between groups,
 		with the left most expression being a group whose elements are bijections
 		on $G$. This is
 		precisely the statement of Cayley's theorem.
@@ -1327,89 +1332,88 @@ of the quasi-uniform space 1.
 						$\psi^*$ is a right adjoint to $\psi_*$,
 						we need to show that
 						$\tilde{A} \geq \psi_\star.\psi^\star $ and
-$\psi_\star.\psi^\star \geq 1$.
-\begin{itemize}
-	\item To show that $\tilde{A}\geq \psi_*.\psi^*=\psi_*.\psi^o.\tilde{A} $,
-		fix any $a\in A$. We will show that $\psi_*.\psi^o.\tilde{a} \subseteq \tilde{a}$.
-		Using definition of $\psi_*$, for any $\phi \in \overline{y_X^{}(X)}$, we get that
-		\[\big(\psi_*.\psi^o.\tilde{a}\big)(\phi)=
-	\psi_*.\psi^o(\tilde{a}(\phi))= \begin{cases}
-		\phi &\text{ if }\tilde{a} (\phi)\neq \psi \\
-		\psi=\psi_*.\psi^o(\psi) &\text{ if } \tilde{a} (\phi)=\psi
-	\end{cases}\]
-	The above equation gives that $\phi\big(\psi_*.\psi^o.\tilde{a}\big)\psi$ implies
-	$\phi \tilde{a} \psi$.
-\item We will show that $\psi_\star.\psi^\star \geq 1$, that is
-	$\star(\psi^o.\tilde{a} .\psi_*)\star$. Using definition of $\psi_*$,
-	\[\big(\psi^o.\tilde{a} .\psi_*\big)(\star)=\big(\psi^o.\tilde{a}\big) (\psi_*(\star))
-	= \big( \psi^o.\tilde{a} \big) (\psi)=\psi^o \big( \tilde{a}(\psi)  \big) \]
-	By the quasi-uniformity of $\tilde{A}$, we get that $\tilde{a}$ is reflexive, and hence,
-	$\psi \tilde{a} \psi$. So, from the above equation, we have that
-	$\star \in \psi^o(\psi) \subseteq \big(\psi^o.\tilde{a} .\psi_*\big)(\star) $.
-\end{itemize}
-				\end{enumerate}
-				\newpage
+						$\psi_\star.\psi^\star \geq 1$.
+						\begin{itemize}
+							\item To show that $\tilde{A}\geq \psi_*.\psi^*=\psi_*.\psi^o.\tilde{A} $,
+								fix any $a\in A$. We will show that $\psi_*.\psi^o.\tilde{a} \subseteq \tilde{a}$.
+								Using definition of $\psi_*$, for any $\phi \in \overline{y_X^{}(X)}$, we get that
+								\[\big(\psi_*.\psi^o.\tilde{a}\big)(\phi)=
+									\psi_*.\psi^o(\tilde{a}(\phi))= \begin{cases}
+										\phi &\text{ if }\tilde{a} (\phi)\neq \psi \\
+										\psi=\psi_*.\psi^o(\psi) &\text{ if } \tilde{a} (\phi)=\psi
+									\end{cases}\]
+									The above equation gives that $\phi\big(\psi_*.\psi^o.\tilde{a}\big)\psi$ implies
+									$\phi \tilde{a} \psi$.
+								\item We will show that $\psi_\star.\psi^\star \geq 1$, that is
+									$\star(\psi^o.\tilde{a} .\psi_*)\star$. Using definition of $\psi_*$,
+									\[\big(\psi^o.\tilde{a} .\psi_*\big)(\star)=\big(\psi^o.\tilde{a}\big) (\psi_*(\star))
+									= \big( \psi^o.\tilde{a} \big) (\psi)=\psi^o \big( \tilde{a}(\psi)  \big) \]
+									By the quasi-uniformity of $\tilde{A}$, we get that $\tilde{a}$ is reflexive, and hence,
+									$\psi \tilde{a} \psi$. So, from the above equation, we have that
+									$\star \in \psi^o(\psi) \subseteq \big(\psi^o.\tilde{a} .\psi_*\big)(\star) $.
+							\end{itemize}
+					\end{enumerate}
 
-			\item ($\impliedby$) Suppose $\psi$ is a right adjoint. Need to show that for any
-				$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
-				\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
-				exists a promodule $\phi: 1 \carrow X$ such that $\phi.\psi \leq A$ and
-				$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that
-				\begin{equation}\exists p \in \phi, q \in \psi \text{ such that }
-					a \supseteq p.q
-				\end{equation}
-				Because $\phi$ and $\psi$ are promodules,
-				\begin{align}
-					A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \\
-					A.\psi \leq \psi & \text{ gives the existence of } q' \in \psi \text{ and } a'' \in A
-					\text{ such that } q \supseteq a''q'
-				\end{align}
-				Now, from $1 \leq \psi.\phi$, we get that $q'\,p'$ is reflexive i.e. $\star (q' \,p')
-				\star$. By the definition of composition we get the existence of an $x \in X$
-				such that $\star \, p' \, x \,q'\,\star$. Now, considering $x$ as a map, $x:1 \to X$
-				defined as $\star \mapsto x$,
-				\begin{align}
-					x \, q' \, \star \text{ i.e. } &\star \in q'(x) \text{ gives that }
-					q' \supseteq x^o \\
-					\star \,p' \, x \text{ i.e. } &x \in p'(\star) \text{ gives that }
-					p'\supseteq x
-				\end{align}
-				Thus, by using inequalities (1),(2) and (3), we get that
-				\begin{equation}
-					a \supseteq p\,q \supseteq a'\,p'\,q'\,a''
-				\end{equation}
-				By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
-				we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. Showing
-				$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q'$:
-				\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
-				\supseteq x^o\,x\,q' \subseteq q'\]
-				Where the first inequality comes from (6) by using reflexiviness of $a''$ and then
-				left-multiplying by $x^o$. The second inequality comes from (5),
-				third one from reflexiviness of $b$ and $a'$,
-				and the last one is given by Lemma 2.4.1.
+				\item ($\impliedby$) Suppose $\psi$ is a right adjoint. Need to show that for any
+					$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
+					\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
+					exists a promodule $\phi: 1 \carrow X$ such that $\phi.\psi \leq A$ and
+					$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that
+					\begin{equation}\exists p \in \phi, q \in \psi \text{ such that }
+						a \supseteq p.q
+					\end{equation}
+					Because $\phi$ and $\psi$ are promodules,
+					\begin{align}
+						A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \\
+						A.\psi \leq \psi & \text{ gives the existence of } q' \in \psi \text{ and } a'' \in A
+						\text{ such that } q \supseteq a''q'
+					\end{align}
+					Now, from $1 \leq \psi.\phi$, we get that $q'\,p'$ is reflexive i.e. $\star (q' \,p')
+					\star$. By the definition of composition we get the existence of an $x \in X$
+					such that $\star \, p' \, x \,q'\,\star$. Now, considering $x$ as a map, $x:1 \to X$
+					defined as $\star \mapsto x$,
+					\begin{align}
+						x \, q' \, \star \text{ i.e. } &\star \in q'(x) \text{ gives that }
+						q' \supseteq x^o \\
+						\star \,p' \, x \text{ i.e. } &x \in p'(\star) \text{ gives that }
+						p'\supseteq x
+					\end{align}
+					Thus, by using inequalities (1),(2) and (3), we get that
+					\begin{equation}
+						a \supseteq p\,q \supseteq a'\,p'\,q'\,a''
+					\end{equation}
+					By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
+					we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. Showing
+					$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q'$:
+					\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
+					\supseteq x^o\,x\,q' \subseteq q'\]
+					Where the first inequality comes from (6) by using reflexiviness of $a''$ and then
+					left-multiplying by $x^o$. The second inequality comes from (5),
+					third one from reflexiviness of $b$ and $a'$,
+					and the last one is given by Lemma 2.4.1.
 
-				In order to show $x^* \, \tilde{a} \, \psi$, by definition of $\tilde{a}$,
-				need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will show
-				$k\,a \supseteq x^o \, a''$.
+					In order to show $x^* \, \tilde{a} \, \psi$, by definition of $\tilde{a}$,
+					need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will show
+					$k\,a \supseteq x^o \, a''$.
 
-				\begin{equation}
-					a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a''
-					\supseteq p' \,x^o \,a''
-				\end{equation}
+					\begin{equation}
+						a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a''
+						\supseteq p' \,x^o \,a''
+					\end{equation}
 
-				Where the first inequality is given by (6), second one
-				is due to reflexiviness	of $a'$ and the third inequality comes by using (4).
-				Left-multiplying (7) with $k$ gives the following.
-				\begin{equation}
-					ka \supseteq k\,p'\,x^o\,a'' \text{ that is, for any } z\in X,
-					\; \; z (k\, a) \star \implies z ( k\,p'\,x^o\,a'') \star
-				\end{equation}
-				As $\psi$ is a right adjoint to $\phi$, we have $1\leq \psi.\phi$, giving that
-				$\star (k \, p' )\star $. So, using the implication in(8), we get that
-				$z(k\, a) \star $ implies $z ( x^o\,a'') \star (k\,p') \star$, which in turn
-				gives that $z(x^o \, a'')\star$. Hence, we get that $ka \supseteq x^o\, a''$
-				\qedhere
-		\end{enumerate}
-	\end{proof}
-	%}}}
-	\end{document}
+					Where the first inequality is given by (6), second one
+					is due to reflexiviness	of $a'$ and the third inequality comes by using (4).
+					Left-multiplying (7) with $k$ gives the following.
+					\begin{equation}
+						ka \supseteq k\,p'\,x^o\,a'' \text{ that is, for any } z\in X,
+						\; \; z (k\, a) \star \implies z ( k\,p'\,x^o\,a'') \star
+					\end{equation}
+					As $\psi$ is a right adjoint to $\phi$, we have $1\leq \psi.\phi$, giving that
+					$\star (k \, p' )\star $. So, using the implication in(8), we get that
+					$z(k\, a) \star $ implies $z ( x^o\,a'') \star (k\,p') \star$, which in turn
+					gives that $z(x^o \, a'')\star$. Hence, we get that $ka \supseteq x^o\, a''$
+					\qedhere
+			\end{enumerate}
+		\end{proof}
+		%}}}
+		\end{document}
