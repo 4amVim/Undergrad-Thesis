@@ -200,7 +200,8 @@ By Using Lemma 1.4 and 1.5, it's enough to show that $\string ^$
 is natural in $X$ and natural in $A$.
 
 \begin{enumerate}[label=(\roman*)]
-	\item We are going to show naturality in X. Fix any $A \in \mathcal{A}$. Need that for
+	\item We are going to show the above isomorphism to be natural in X.
+		Fix any $A \in \mathcal{A}$. Need that for
 		presheaves $X,Y \in \mathcal{C}$ and
 		natural transformation $\beta \in \mathcal{C} (X,Y)$, the following
 		square commutes.
@@ -229,7 +230,7 @@ is natural in $X$ and natural in $A$.
 		$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (4) and (5), we
 		directly get that $RHS=LHS$.
 
-	\item We are going to show naturality in $A$. Fix any $X \in \mathcal{C} $ Need that
+	\item We are going to show natural in $A$. Fix any $X \in \mathcal{C} $ Need that
 		for objects $A,B \in \mathcal{A} $ and morphism $f\in \mathcal{A} ^{op}(A,B)$,
 		the following square commutes.
 		\begin{equation*}
@@ -285,16 +286,19 @@ choice of $X$ and $A$.
 	Symmetric group on a set $X$ is the set of all bijections on $X$, with the binary operation
 	defined as composition of bijections.
 \end{definition}
+We will now use parts of proof of Theorem 1.6 in to prove Cayley's theorem. The notation $(\string _)$
+occurs as a placeholder for the element a map is applied to, that is, $(\string _ \circ f)(k)$ is
+defined to be $k \circ f$.
 \begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
 	Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
 \end{theorem}
 \begin{proof} \setcounter{equation}{0} Let a group $(G,.)$ be given.
-	Define category $\mathcal{A}$ as having: $\star$ as it's only object, one
-	morphism for each element of $G$ and composition being as that of elements of $G$.
-	That is, for morphisms $f$ and $g$ in $\mathcal{A}$, the morphism $f \circ g$ is defined to
+	Define category $\mathcal{A}$ to have single object $\star$. Precisely one
+	morphism for each element of $G$, with their composition being as that of elements of $G$.
+	That is, for morphisms $f$ and $g$ in $\mathcal{A}$, $f \circ g$ is defined to
 	be $f.g$.
-	Thus, by definition of $\mathcal{A}$, $G$ and $\mathcal{A}(\star, \star)$ are
-	isomorphic as groups, becuase they have the same elements and rule of composition.
+	Thus, by definition of $\mathcal{A}$, as group $G$ and $\mathcal{A}(\star, \star)$
+	have the same elements and rule of composition, they're isomorphic as groups.
 	Using naturality of $\alpha$, we get that
 	\begin{equation}
 		\text{ the square }
@@ -313,48 +317,54 @@ choice of $X$ and $A$.
 		\end{tikzcd}
 		\text{ commutes for any } f \in \mathcal{A}(\star,\star).
 	\end{equation}
-	Using (1) for the identity $1_\star$ of $\star$ in $\mathcal{A}$,
-	gives us the following equation.
+	Using the identity of $\star$ in $\mathcal{A}$, that is $1_\star$ as the starting morphism
+	in (1) gives us the following equation.
 	\begin{equation}
 		\big( (\string _ \circ f) \circ \alpha_\star \big)(1_\star) =
 		\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
 		\implies \alpha_\star(1_\star) \circ f=\alpha_\star(f)
 	\end{equation}
-	As $\mathcal{A} ^{op}$ has only one object, each natural transformation
-	$\alpha:H_\star^{} \to H_\star^{}$ has only one component,
-	that is $\alpha_\star$. which is a funtion from $\mathcal{A} (\star,\star)$ to
-	$\mathcal{A} (\star,\star)$. Thus, from (2), we get that every natural transformation,
-	$\alpha$ is determined by it's action on the identity of $\star$. And as $\mathcal{A}
-	(\star, \star)$ is isomorphic to the group $G$, we can write the final equation from (2)
-	with the product being in $G$ as, $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
+	Thus, we get that we get that every natural transformation,
+		$\alpha$ is determined by it's action on $1_\star$. As $\mathcal{A} ^{op}$ is a category with single object,
+$ \text{ each natural transformation } \alpha:
+	\begin{tikzcd}[row sep=small, column sep=large]
+	\mathcal{A} ^{op} \arrow[r,bend left=50, "H_\star"{name=U, below}]
+\arrow[r, bend right = 50, "H_\star"{name=D, above}]
+& Set
+\arrow[Rightarrow, from=U , to=D, "\alpha"]
+	\end{tikzcd} \text{ has only one component, that is } \alpha_\star$. Therefore, we can
+	identify $\alpha$ with $\alpha_\star$. Also, $\alpha_\star$ is a function
+	from $\mathcal{A} (\star,\star)$ to $\mathcal{A} (\star,\star)$.
+	And as $\mathcal{A} (\star, \star)$ is isomorphic to the group $G$, we can write
+	the final equation from (2) with the product being in $G$
+	as, $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
 	multiplying every element of a group by a fixed element gives us a bijection on the
 	group, each $\alpha_\star$, and hence each $\alpha$ can be thought of as a bijection on
 	$G$.
 
 	Now we will show that the collection, $[\mathcal{A} ^{op},Set](H_\star, H_\star)$ is a
-	group. As $[\mathcal{A} ^{op},Set]$ is a category, we get that the composition of
-	natural transformations $\alpha$ is associative, and has an identity. Also,
-	because the aforementioned collection contains morphisms with the same source and
-	destination, that is $\star$, we get that it is closed under composition. In order
+	group. As $[\mathcal{A} ^{op},Set]$ is a category, with these natural transformations
+	as it's morphisms, we already have that the composition of is associative,
+	and has an identity. Also, because the aforementioned collection contains
+	morphisms with the same source and destination, that is $\star$, we get that it is
+	closed under composition. In order
 	to show inverses, we use the group isomorphism between $\mathcal{A} (\star,\star)$ and
-	$\alpha:H_\star \to H_\star$ defined as mapping each element $g\in G$ to the natural
-	transformation $\alpha$ such that $\alpha_\star(1_\star)=g \in \mathcal{A} $.
-	Giving us that for $\beta:H_\star \to H_\star$ corresponding to $j\in G$ has, as it's
-	inverse, $\gamma:H_\star \to H_\star$ corresponding to $j^{-1} \in G$. Thus, the
-	collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group, and each of it's
-	members is a bijection on $G$, giving us that it's a subgroup of the symmetric group
-	on the underlying set of $G$.
+	the property of $\alpha$ from (2), to bijectively map each element $g\in G$ to the natural
+	transformation $\alpha$ such that $\alpha_\star(1_\star) \leftrightarrow g \in \mathcal{A} $.
+	Giving us that for any natural transformation $\alpha \leftrightarrow j\in G$ has, it's
+	inverse will be $\beta \leftrightarrow j^{-1} \in G$. Thus, the
+	collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
 
-	Also, $G$ being a set gives us that the collection of morphisms of$\mathcal{A}$
+	Also, $G$ being a set gives us that the collection of morphisms of $\mathcal{A}$
 	is a set, that is, $\mathcal{A} $ is a locally small category. Because
 	$\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
 	it is also a locally small category, and we may apply Yoneda Lemma. Taking $A=\star
 	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
 	\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star)
-	= \mathcal{A} (\star,\star) \cong G.\end{equation}
+	= \mathcal{A} (\star,\star) \cong G\end{equation}
 	where the first isomorphism above is between sets. We will show that this
 	isomorphism is also a homomorphism.
-	The map $\string ^$, defined in Theorem 1.1 will act here as $\alpha
+	The map $\string ^$, defined in Theorem 1.6 will act here as $\alpha
 	\mapsto \alpha_\star (1_\star)$. Hence, for any $\alpha,\beta:H_\star
 	\to H_\star$,
 	\begin{equation}
@@ -366,7 +376,8 @@ choice of $X$ and $A$.
 	as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$,
 	and hence corresponds to some element of G.
 	Finally, we have shown that in statement (3), the isomorphism is between groups,
-	with the left most expression being a subgroup of symmetric group on $G$. This is
+	with the left most expression being a group whose elements are bijections
+	on $G$. This is
 	precisely the statement of Cayley's theorem.
 	\[ Sym(G) \geq [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong G \qedhere \]
 \end{proof}
@@ -495,6 +506,9 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 			$p \subseteq u $ then $u \in P$.
 	\end{enumerate}
 \end{definition}
+
+EXAMPLES
+
 \begin{definition}%{{{ Composition of prorelations	Definition
 	A prorelation $P:X \to Y$ can be composed to a prorelation $Q:Y \to Z$ by taking
 	composition of the relations belonging to them. Then, the set $Q.P$ is defined as
@@ -533,10 +547,9 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \end{proof}
 %}}}
 \begin{definition} %{{{ Containment of Prorelations		Definition
-	For prorelations $P,Q:X\to Y$, if every relation in $Q$ is contained inside some
-	relation in $P$, then $P$ is said to be contained in $Q$.
-	That is $P \leq Q \;\text{ only if }\;
-	\forall q \in Q, \exists p \in P \text{ such that } p \subseteq q$.
+
+	For prorelations $P,Q:X\to Y$, if for each $q \in Q$, there exists $p \in P$ such that
+	$p \subseteq q$, then we write $Q\geq P$.
 \end{definition}
 \begin{definition} %{{{ Opposite relation		Definition
 	For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
@@ -554,7 +567,7 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 	Hence, by definition of composition, $(x,x)$ is in $f^o \,f$.
 \end{proof}
 \begin{lemma}
-	For any relation $r:X \to Y$, the composition $r\circ r^o$ contains  $\subseteq \Delta_Y$.
+	For any relation $r:X \to Y$, the composition $r\circ r^o$ is contained in $\Delta_Y$.
 \end{lemma}
 \begin{proof}\setcounter{equation}{0}
 
@@ -591,7 +604,7 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 
 \section{Quasi-Uniform Spaces}
 \begin{definition} %{{{ Quasi-uniformity		Definition
-	A prorelation on a set, $P:X \to X$ is said to be a quasi-uniformity
+	A prorelation $P$ on a set $X$ is said to be a quasi-uniformity
 	if it satisfies the following conditions:
 	\begin{enumerate}[label=(\roman*)]
 		\item Every relation in $P$ is reflexive. That is,
@@ -603,6 +616,9 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{definition} %{{{Quasi-uniform space Definition
 	If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
 \end{definition}
+
+EXAMPLES
+
 \begin{definition} %{{{ Uniformly Continuous function 		Definition
 	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
 	That is, for each $b \in B$, there exists $a \in A$ such that
@@ -651,6 +667,10 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \begin{definition} %{{{ Composition of Promodules		Definition
 	Promodules are composed as prorelations.\\
 \end{definition}
+
+DEFINE PROMODULE CATEGORY HERE, BY COMBINING THE ABOVE TWO DEFINITIONS DONT FORGET TO WRITE ABOUT LEQ
+ALSO LOOK AT CITE
+
 \begin{proop}%{{{ ProMod		Definition
 	ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
 	promodules as 1-cells and containment of promodules as 2-cells.
@@ -742,12 +762,21 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 \end{proof}
 %}}}
 %{{{Two functors
-\begin{proop} $(\string _ )_*:\text{QUnif} \to \text{ProMod}$ defined above is indeed a functor.
+We now define a functor from the category QUnif to ProMod, as fixing objects and taking uniformly
+continuous maps $f:(X,A)\to(Y,B)$ to $f.B$.
+
+\begin{proop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
+	\begin{enumerate}[label=(\alph*)]
+		\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
+		\item for $f:(X,A) \to (Y,B)$ in QUnif,
+			$f^* := B.f$
+	\end{enumerate}
+	is indeed a functor.
 \end{proop}
 \begin{proof}\setcounter{equation}{0}
 
 	We will first show that $B.f={b \circ f: b \in B}$
-	is a promodule, and then that $(-)_*$ defines a functor.
+	is a promodule, and then that $(\string _)_*$ defines a functor.
 	\begin{enumerate}[label=(\roman*)]
 		\item (Partial-Order) Inclusion of relations acts as the partial order.
 		\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
@@ -809,15 +838,18 @@ to $f \circ k \in \mathcal{A} (K,Y)$.
 				Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
 		\end{enumerate}
 \end{proof}
-\begin{proop} Functor, $(-)^*:\text{QUnif}^{op} \to \text{ProMod}$ is
-	defined as fixing quasi-uniform spaces and taking
-	uniformly continuous functions to the composition of their opposite
-	relation with it's domain space's identity i.e.
+
+
+Similar to the above functor, we define a contravariant functor from the category QUnif to ProMod,
+as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $B.f^o$.
+
+\begin{proop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
 	\begin{enumerate}[label=(\alph*)]
 		\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
 		\item for $f:(X,A) \to (Y,B)$ in QUnif,
 			$f^* := f^o .B$
 	\end{enumerate}
+	is indeed a functor.
 \end{proop}
 \begin{proof}\setcounter{equation}{0}
 
@@ -864,7 +896,7 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 		Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
 		And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
 		\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
-	\item	Now, need to show that $(-)^*$ respects composition and identity.
+	\item	Now, need to show that $(\string _)^*$ respects composition and identity.
 		\begin{enumerate}[label=(\roman*)]
 			\item (Composition) let $f,g$ be uniformly continuous,
 				$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
@@ -905,8 +937,12 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 			\item f is said to be fully dense if $f_* .f^*=B $
 		\end{enumerate}
 	\end{definition}
-	%NEED TO ADD TOPOLOGICALLY DENSE DEFINITION
-	%Mention about topology so that below definition makes more sense ??%
+
+	NEED TO ADD TOPOLOGICALLY DENSE DEFINITION
+
+	Mention about topology so that below definition makes more sense
+	Might as well put an example as well
+
 %{{{ Proposition 1
 	\begin{proop}
 		Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
@@ -1040,11 +1076,16 @@ Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 \end{proof}
 %}}}
 \section{Yoneda Lemma in Quasi-Uniform Spaces}
+
+In this section, we will look at Yoneda Lemma and Yoneda Embedding for Quasi-Uniform Spaces.
+We use $1$ to denote the quasi-uniform space with one element, that is, the quasi-uniform space
+$(\{\star\},\{(\star,\star)\})$.
+
 %{{{ A~ is a quasi-uniformity on PX
 \begin{definition}%{{{ PX		Definition
 	The set $PX$ is defined to be the collection of all promodules from the quasi-uniform space(X,A)
 	to the quasi-uniform space 1.
-	\[PX:=\{\psi :(X,A) \carrow 1 \text{ is a promodule} \}\]
+	\[PX:=\{\psi :(X,A) \carrow 1 | \psi \text{ is a promodule} \}\]
 \end{definition}
 \begin{proop}%{{{ A~		Definition
 	For any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
