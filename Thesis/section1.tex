@@ -33,7 +33,7 @@
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 This undergraduate thesis aims to explain the interpretation of Yoneda Lemma as
-described in $CITE$.
+described in \cite{Clementino_Hofmann_2011}.
 
 We prove Yoneda Lemma, then derive Cayley's Theorem and Yoneda Embedding as consequences of its proof.
 Then we define the categories QUnif and ProMod, and show functors between them.
@@ -47,8 +47,8 @@ Finally, we show Yoneda Embedding and Yoneda Lemma for ProMod.
 \tableofcontents
 \section{Introduction}
 
-In this section, we set forth some basic definitions, state and prove Yoneda lemma, and then
-show Cayley's Theorem and Yoneda Embedding as it's consequences.
+In this section, we set forth some basic definitions, and prove some lemmas that we will require in
+order to prove Yoneda lemma.
 
 For any category $\mathcal{A}$, and it's objects $X,Y\in \mathcal{A} $,
 we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
@@ -245,6 +245,8 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		\end{proof}
 		%}}}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
+This section starts with a proof of Yoneda Lemma, and then goes on to use it to derive Cayley's Theorem.
+After that, we mention Yoneda Embedding as it's consequences.
 		\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
 			\setcounter{equation}{0}
 			If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
@@ -488,20 +490,20 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 						\big( (\string _ \circ f) \circ \alpha_\star \big)(1_\star) =
 						\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
 						\implies \alpha_\star(f)=\alpha_\star(1_\star) \circ f
-						\implies \alpha_\star(f)=\alpha_\star(1_\star).f \; .
+						\implies \alpha_\star(f)=\alpha_\star(1_\star).f \; ,
 					\end{equation}
-					Where the last implication is given by the definition of composition in $\mathcal{A} $.
-					Where, $\alpha_\star(1_\star)$ is a morphism in $A$ because $\alpha_\star$ is a function to $\mathcal{A} (\star,\star)$.
-					Thus, every natural transformation $\alpha$ is defined in terms of
-					its value at $1_\star$.
+					where the $RHS$ of last implication is given by the definition
+					of composition in $\mathcal{A}$.
+					Thus, every natural transformation $\alpha$ is defined in
+					terms of its value at $1_\star$.
 					This can be considered as left multiplication by
 					$\alpha_\star(1_\star)$ in $G$, which
-					we know to be an automorphism of $G$. Thus, $\alpha_\star$, and hence $\alpha$
+					we know is an automorphism of $G$. Thus, $\alpha_\star$, and hence $\alpha$
 					can be thought of as a bijection on $G$.
 
-					So far we have shown we have that shown that the collection of
-					all $\alpha:H_\star \to H_\star$,
-					which is $[\mathcal{A} ^{op},Set](H_\star,H_\star)$ is a
+					So far we have shown that
+					the collection $[\mathcal{A} ^{op},Set](H_\star,H_\star)$ of
+					all $\alpha:H_\star \to H_\star$ is a
 					collection of bijections on $G$.
 				\item\textbf{The collection $[\mathcal{A}^{op},Set](H_\star,H_\star)$ is a group.}
 
@@ -511,25 +513,28 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 					$[\mathcal{A} ^{op},Set]$.
 					As $[\mathcal{A} ^{op},Set]$ is a category, we have that
 					the composition is associative. Also, because this collection contains
-					morphisms with the same source and destination, which is $H_\star$,
-					we get that it is closed under composition, and has an identity.
+					morphisms with the same source and destination,
+					it is closed under composition. Also, identity of
+					$[ \mathcal{A} ^{op},Set ] (H_\star,H_\star)$ will act as
+					the identity for its group structure.
 
 					We will now show closure under inverses.
 					Fix any $\gamma:H_\star \to H_\star$.
-					Using I gives us the existence of $j\in G$ such that
-					$j=\psi \big( \gamma_\star(1_\star) \big)$, which implies
-					there exists $j^{-1}\in G$.
-
-					From I, we know that each natural transformation
-					is defined in terms of it's value
-					at $1_\star$. That value is a morphism in $\mathcal{A}(\star,\star)$,
-					and hence, gives an element of $G$.
-					Thus, every element of $G$ gives us
-					at least one natural transformation.
-					Hence, as $j^{-1} \in G$, there exists $\delta:H_\star \to H_\star$ such that
-					$j^{-1}=\psi \big(\delta_\star(1_\star) $.	And as $\psi$ is a group
-					isomorphism,
-					\[ 1_\star = \psi^{-1}(j.j^{-1})=\psi^{-1}(j)\,. \psi^{-1}(j^{-1})
+					Since $\gamma_\star(1_\star)$ belongs to $A(\star,\star)$,
+					let us call $\psi(\gamma_\star(1_\star))=h \in G$. Thus,
+					there exists $h^{-1}\in G$. As $\psi$ is onto,
+					there exists $a\in \mathcal{A} (\star,\star)$ such that
+					$\psi(a)=h^{-1}$.
+					From (2), we know that any natural transformation $\alpha$
+					is defined in terms of $\alpha_\star(1_\star) \in
+					\mathcal{A}(\star,\star)$. Hence, every morphism in
+					$ \mathcal{A} (H_\star,H_\star)$ gives us a natural
+					transformation. Thus, we can define
+					$\delta:H_\star \to H_\star$ with $\delta_\star(1_\star)=a$.
+					Giving us that
+					$h^{-1}=\psi \big(\delta_\star(1_\star) \big) $.
+						And as $\psi$ is a group isomorphism,
+					\[ 1_\star = \psi^{-1}(h.h^{-1})=\psi^{-1}(h)\,. \psi^{-1}(h^{-1})
 					=\big(\gamma_\star(1_\star)\big).\big(\delta_\star(1_\star)\big).\]
 This gives us that $\delta$ and $\gamma$ are inverses, as
 					\[ \text{ For any } k \in \mathcal{A} (\star,\star), \; \;
@@ -583,7 +588,6 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			and only if there exists a functor $F: \mathcal{A} \to \mathcal{B}$
 			such that $F$ is full and faithful.
 		\end{definition} %}}}
-
 		\begin{lemma}
 			If a functor is fully faithful, then it is injective on objects upto isomorphism.
 		\end{lemma}
@@ -654,7 +658,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\end{proof}
 			%}}}
 
-			\begin{theorem}
+			\begin{theorem}{ \textbf{Yoneda Embedding}}
 				Any locally small category $\mathcal{A}$ can be embedded in the presheaf category on
 				$\mathcal{A}$.
 			\end{theorem}
@@ -903,7 +907,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			Let promodules $P,Q: (X,A) \carrow (Y,B)$. Then, there
 			is a 2-cell from $P$ to $Q$ if and only if $P \leq Q$ as prorelations.
 			Thus, the identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
-			For the definition of 2-category, we have referred to $CITE$.
+			For the definition of 2-category, we have referred to \cite{Riehl_2016}.
 
 			\begin{prop}%{{{ ProMod		Definition
 				ProMod, as described above is a 2-category.
@@ -1163,7 +1167,17 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\end{enumerate}
 			\end{proof}
 			%}}}
-			A quasi-uniformity on
+
+			A quasi-uniform space $(X,A)$ defines a topological space as given by the
+			following proposition that we borrow from \cite{Fletcher_Lindgren_1982}.
+			\begin{prop}
+				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$.That is,
+				every relation in $A$ contains a relation in $\mathbb{B}$.
+				For $x \in X$, define $B(x)=\{B(x) | B \in \mathbb{B}\}$.
+				Then there is a unique topology on $X$ such that for each $x\in X$,
+				$B(x)$ is a base for the neighborhood of x in this topology.
+			\end{prop}
+
 			\begin{definition} %{{{Topologically Dense		Definition
 				For any quasi-uniform space $(X,A)$, an element $x \in X$ is said to belong in the
 				topological closure of set $M\subseteq X$ if and only if for each $a\in A$,
@@ -1647,5 +1661,7 @@ of the quasi-uniform space 1.
 			\end{enumerate}
 		\end{proof}
 		%}}}
-
+\newpage
+\nocite{Leinster_2014}
+		\printbibliography
 		\end{document}
