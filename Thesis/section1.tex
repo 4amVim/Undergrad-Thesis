@@ -32,10 +32,9 @@
 \begin{document}
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
-This undergraduate thesis aims to explain the interpretation of Yoneda Lemma as
-described in \cite{Clementino_Hofmann_2011}.
-
-We prove Yoneda Lemma, then derive Cayley's Theorem and Yoneda Embedding as consequences of its proof.
+This undergraduate thesis aims to build up to the interpretation of Yoneda Lemma and Yoneda Embedding
+as described in \cite{Clementino_Hofmann_2011}.
+We first prove Yoneda Lemma and discuss some of its consequences. Then we define
 Then we define the categories QUnif and ProMod, and show functors between them.
 
 %THE BELOW IS wrong and short, fix it
@@ -520,16 +519,15 @@ After that, we mention Yoneda Embedding as it's consequences.
 
 					We will now show closure under inverses.
 					Fix any $\gamma:H_\star \to H_\star$.
-					Since $\gamma_\star(1_\star)$ belongs to $A(\star,\star)$,
+					Since $\gamma_\star(1_\star)$ belongs to
+					$ \mathcal{A} (\star,\star)$,
 					let us call $\psi(\gamma_\star(1_\star))=h \in G$. Thus,
 					there exists $h^{-1}\in G$. As $\psi$ is onto,
 					there exists $a\in \mathcal{A} (\star,\star)$ such that
 					$\psi(a)=h^{-1}$.
 					From (2), we know that any natural transformation $\alpha$
 					is defined in terms of $\alpha_\star(1_\star) \in
-					\mathcal{A}(\star,\star)$. Hence, every morphism in
-					$ \mathcal{A} (\star,\star)$ gives us a natural
-					transformation. Thus, we can define
+					\mathcal{A}(\star,\star)$. Thus, we define
 					$\delta:H_\star \to H_\star$ with $\delta_\star(1_\star)=a$.
 					Giving us that
 					$h^{-1}=\psi \big(\delta_\star(1_\star) \big) $.
@@ -537,7 +535,7 @@ After that, we mention Yoneda Embedding as it's consequences.
 					\[ 1_\star = \psi^{-1}(h.h^{-1})=\psi^{-1}(h)\,. \psi^{-1}(h^{-1})
 					=\big(\gamma_\star(1_\star)\big).\big(\delta_\star(1_\star)\big).\]
 This gives us that $\delta$ and $\gamma$ are inverses, as
-					\[ \text{ For any } k \in \mathcal{A} (\star,\star), \; \;
+					\[ \text{ for any } k \in \mathcal{A} (\star,\star), \; \;
 						\big( \gamma \circ \delta\big)_\star
 						(k)
 						= \gamma_\star\big(\delta_\star(k)\big)
@@ -551,24 +549,24 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 					As the collection of elements of $G$ form a set, we get that $\mathcal{A}(\star,\star)$
 					is a set. Hence, $\mathcal{A}$ is a locally small category. Because
-					$\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
+					$\mathcal{A} ^{op}$ has the same number of morphisms as $\mathcal{A}$,
 					it is also a locally small category, and we may apply Yoneda Lemma to it.
-					Taking $A=\star$ and $X=H_\star$ in Theorem 2.6 (1), we get:
+					Taking $A=\star$ and $X=H_\star$ in Theorem 2.1 (1), we get:
 					\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star)
-						\hat{\cong} H_\star(\star), \end{equation}
+						\; \hat{\cong} \; H_\star(\star), \end{equation}
 					where the isomorphism $\string ^$ is between sets.
 				\item \textbf{Showing that $\string ^$ is a group isomorphism.}
 
-					From the proof of Theorem 1.6, we know that the map
+					From the proof of Theorem 2.1, we know that the map
 					$\string ^$ acts as $\alpha \mapsto \alpha_\star (1_\star)$.
 					Hence, for any $\alpha,\beta:H_\star \to H_\star$,
 					\begin{equation}
 						\widehat {\alpha \circ \beta}= (\alpha \circ \beta)_\star(1_\star)
 						=(\alpha)_\star \Big( (\beta)_\star (1_\star) \Big)=
 						\Big((\alpha)_\star(1_\star) \Big) . \Big( (\beta)_\star (1_\star) \Big)
-						=\hat{\alpha} . \hat{\beta}\;.
+						=\hat{\alpha} . \hat{\beta}\;,
 					\end{equation}
-					Where the second-last equality is due to (2) being applicable
+					where the second-last equality is due to (2) being applicable
 					as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$.
 			\end{enumerate}
 
@@ -577,10 +575,11 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			Thus, it is a subgroup of the symmetric group on G.
 			Using III we have shown that, the isomorphism $\string ^$ in (3) is between groups,
 			with the $LHS$ being the above mentioned subgroup.
-			And $RHS$ being $\mathcal{A} (\star, \star)$, which is isomorphic to group $G$.
-			This is	precisely the statement of Cayley's theorem:
-		\[ Sym(G) \geq [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \hat{\cong}
-		\mathcal{A} (\star,\star) \overset{\psi}{\cong} G .\qedhere \]
+			And $RHS$ being $\mathcal{A} (\star, \star)$, which is further
+			isomorphic to group $G$:
+		\[ G \; \overset{\psi}{\cong} \; \mathcal{A} (\star,\star) \; \hat{\cong} \;
+			[ \mathcal{A} ^{op}, Set](H_\star,H_\star)\; \leq Sym(G).\]
+			This is	precisely the statement of Cayley's theorem.\qedhere
 		\end{proof}
 		\subsection{Yoneda Embedding}%{{{ Embedding		Section
 		\begin{definition} %{{{ Embedding of a category		Definition
