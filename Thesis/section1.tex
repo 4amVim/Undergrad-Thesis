@@ -10,7 +10,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{proop}[theorem]{Proposition}
-\newtheorem{ex}[theorem]{Example}
+\newtheorem{example}[theorem]{Example}
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
 \newcommand\cen[2][\leq]{\arrow[mysymbol]{#2}[description]{#1}}
@@ -89,11 +89,135 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 
 	%{{{ 2 Lemmas
 	\begin{lemma}
-		Lemma 1.3.11
+		Let $ 	\begin{tikzcd}[row sep=small, column sep=large]
+		\mathcal{A}  \arrow[r,bend left=50, "F"{name=U, below}]
+		\arrow[r, bend right = 50, "G"{name=D, above}]
+		& \mathcal{B}
+		\arrow[Rightarrow, from=U , to=D, "\alpha"]
+			\end{tikzcd}$
+			be a natural transformation. If for every $A \in \mathcal{A} $,
+			 $\alpha_A:F(A) \to G(A)$ is an isomorphism
+			then $\alpha$ is a natural isomorphism.
 	\end{lemma}
+	\begin{proof}\setcounter{equation}{0}
+		We are going to show that there exists a natural transformation $\beta:G \to F$.
+		Fix any objects $A,B\in \mathcal{A} $ and morphism $k \in \mathcal{A}(A,B)$. As
+		$\alpha$ is a natural transformation,
+		\begin{equation}
+			\alpha_B \circ F(k) = G(k) \circ \alpha_A.
+		\end{equation}
+		Because $\alpha_A$ is an isomorphism, we get that
+			there exists
+			$\beta_A:G(A)\to F(A)$ such that
+		\begin{align}
+			\alpha_A \circ \beta_A = 1_{G(A)} \text{ and }
+			\beta_A \circ \alpha_A = 1_{F(A)}.
+		\end{align}
+		Similarly, $\alpha_B$ gives us the existence of $\beta_B:G(B)\to F(B)$
+		such that $\beta_B \circ \alpha_B = 1_{F(B)}$. Multiplying (1) with $\beta_B$ and
+		$\beta_A$,
+		\begin{equation}
+			\beta_B^{} \circ \alpha_B^{} \circ F(k) \circ \beta_A^{} =
+			\beta_B^{} \circ G(k) \circ \alpha_A^{} \circ \beta_A^{}
+			\implies  F(k) \circ \beta_A^{} =\beta_B^{} \circ G(k).
+		\end{equation}
+		Thus, $\beta$ is a natural transformation from $F$ to $G$. Using (2) gives us
+		that $\big( \alpha \circ \beta \big)_A = 1_{G(A)}$ and
+		$\big( \beta \circ \alpha \big)_A = 1_{F(A)}$ for any object $A\in \mathcal{A} $.
+		Therefore,$\alpha \circ \beta = 1_G$ and $\beta \circ \alpha =1_F$.
+		Hence, $\alpha$ and $\beta$ together give an isomorphism between $F$ and $G$
+		in the functor category
+		$[\mathcal{A},\mathcal{B}]$.
+	\end{proof}
 	\begin{lemma}
-		Excercise 1.3.29
+		Let $\mathcal{A},\mathcal{B}$ and $\mathcal{C}$ be categories. And suppose there
+		are functors $F,G:\mathcal{A} \times \mathcal{B} \to \mathcal{C}$.
+		Thus, there are functors, $F^A,G^A:\mathcal{B} \to \mathcal{C}$ defined as
+		taking $B \in \mathcal{B}$ to $F(A,B),\, G(A,B)$ and
+		morphism $f$ to $F((1_A,f)),\, G((1_A,f)) $. And functors
+		$F_B,G_B:\mathcal{A} \to \mathcal{C}$ defined as
+		taking $A \in \mathcal{A} $ to $F(A,B),\, G(A,B)$ and
+		morphism $g$ to $F((g,1_B)),\, F((g,1_B))$.
+		A family of maps, $\big( \alpha_{A,B}: F(A,B) \to G(A,B)
+		\big)_{A \in \mathcal{A} , B \in \mathcal{B} } $, is a natural transformation
+		$F \to G$ if the following conditions are satisfied:
+		\begin{enumerate}[label=(\roman*)]
+			\item For each $A \in \mathcal{A}$, the family
+		$\big( \alpha_{A,B}: F^A(B) \to G^A(B) \big)_{ B \in \mathcal{B} } $ is
+		a natural transformation $F^A \to G^A$;
+			\item For each $B \in \mathcal{B}$, the family
+		$\big( \alpha_{A,B}: F_B(A) \to G_B(A) \big)_{ A \in \mathcal{A} } $ is
+		a natural transformation $F_B \to G_B$.
+		\end{enumerate}
 	\end{lemma}
+	\begin{proof} \setcounter{equation}{0}
+	In order to show naturality of $\alpha_{(A,B)}$,
+	\[ \text{ we need to show that
+		for any }(f,g) \in \mathcal{A} \times \mathcal{B} \; (X,Y), \text{ the square }
+	\begin{tikzcd}
+	F(X) \arrow[swap]{d}{\alpha_X} \arrow{r}{F((f,g))}
+		& F(Y) \arrow{d}{\alpha_Y}\\
+	G(X) \arrow[swap]{r}{G((f,g))}
+		& G(Y)
+	\end{tikzcd} \text{ commutes.}\]
+	Fix any objects $A,A' \in \mathcal{A} $ and $B,B' \in \mathcal{B} $.
+	Fix any morphism $(g,f) \in \mathcal{A} \times \mathcal{B} \; ((A,B),(A',B'))$,
+	where $g \in \mathcal{A} (A,A')$ and $f \in \mathcal{B} (B,B')$.
+		\begin{enumerate}[label=(\Roman*)]
+			\item The condition (ii) gives us that
+				$ \text { for any } g \in \mathcal{A}(A,A'), \text{ the square }
+				\begin{tikzcd}
+					F_A(B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F_A(g)}
+					& F_A(B') \arrow{d}{\alpha_{A,B'}}\\
+				G_A(B) \arrow[swap]{r}{G_A(g)}
+					& G_A(B')
+				\end{tikzcd}
+				\text{ commutes}$. By the definition of $F_A$ and $G_A$,
+				this square can be written as
+				$
+				\begin{tikzcd}
+					F(A,B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F((g,1_B))}
+					& F(A,B') \arrow{d}{\alpha_{A,B'}}\\
+					G(A,B) \arrow[swap]{r}{G((g,1_B))}
+					& G(A,B')
+				\end{tikzcd}
+				$.
+			\item The condition (i) gives us that
+				$ \text { for any } f \in \mathcal{B}(B,B'), \text{ the square }
+				\begin{tikzcd}
+					F^{A'}(B) \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F^{A'}(f)}
+					& F^{A'}(B') \arrow{d}{\alpha_{A',B'}}\\
+					G^{A'}(B) \arrow[swap]{r}{G_{A'}(f)}
+					& G^{A'}(B')
+				\end{tikzcd}
+				\text{ commutes}$. By the definition of $F^A$ and $G^A$,
+				this square can be written as
+				$
+				\begin{tikzcd}
+					F(A',B) \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F((1_{A'},f))}
+					& F(A',B') \arrow{d}{\alpha_{A',B'}}\\
+					G(A',B) \arrow[swap]{r}{G((1_{A'},f))}
+					& G(A',B')
+				\end{tikzcd}
+				$.
+			\item Composing the squares from (I) and (II), we get that the following
+				rectangle commutes:
+				\begin{equation}	\begin{tikzcd}[row sep=large, column sep=huge]
+					F(A,B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F((g,1_B))}
+					& F(A,B') \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F((1_{A'},f))}
+										& F(A',B') \arrow{d}{\alpha_{A',B'}}\\
+					G(A,B) \arrow[swap]{r}{G((g,1_B))}
+				& G(A,B')\arrow[swap]{r}{G((1_{A'},f))}	& G(A',B')
+				\end{tikzcd}.\end{equation}
+				 Using (1), we get that:
+				\begin{equation} \alpha_{A',B'} \circ \big( F((1_{A'},f))\circ F((g,1_B))\big)
+				=\big( G((1_{A'},f))\circ G((g,1_B)) \circ \alpha_{A',B'} .\end{equation}
+					As $F$ and $G$ are functors, from (2), we have that
+					\[ \alpha_{A',B'} \circ F\big((g,f)\big)
+					=G\big((g,f)\big) \circ \alpha_{A',B'}. \qedhere \]
+		\end{enumerate}
+
+	\end{proof}
 	%}}}
 
 	\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
@@ -297,7 +421,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		in $\mathcal{A} $ for each element of $G$, with the composition of said morphisms
 		being as that of elements of $G$.
 		That is, for morphisms $f$ and $g$ in $\mathcal{A}$, $f \circ g$ is defined to
-		be the morphism $(f.g)$. Then, $G$ and $\mathcal{A}(\star, \star)$ have the
+		be the morphism $f.g$. Then, $G$ and $\mathcal{A}(\star, \star)$ have the
 		same elements
 		and rule of composition, so they're isomorphic as groups.
 
@@ -329,30 +453,33 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 			\end{tikzcd}
 			\text{ commutes for any } f \in \mathcal{A}(\star,\star).
 		\end{equation}
-		Using the identity of $\star$ in $\mathcal{A}$, that is $1_\star$ as the starting morphism
-		in (1) gives us the following equation.
+		Applying the identity of $\star$ in $\mathcal{A}$ in (1)
+		gives us the following equation:
 		\begin{equation}
 			\big( (\string _ \circ f) \circ \alpha_\star \big)(1_\star) =
 			\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
-			\implies \alpha_\star(1_\star) \circ f=\alpha_\star(f)
+			\implies \alpha_\star(f)=\alpha_\star(1_\star) \circ f.
 		\end{equation}
-		Thus, we get that we get that every natural transformation,
-		$\alpha$ is determined by it's action on $1_\star$.
+		Thus, we get that every natural transformation
+		$\alpha$ is defined in terms of it's value at $1_\star$.
 		As $\mathcal{A} (\star, \star)$ is isomorphic to the group $G$, and
 		$\alpha_\star$ is a function from $\mathcal{A} (\star,\star)$
 		to $\mathcal{A} (\star,\star)$, we can write
 		the final equation from (2) with the product being in $G$, that is,
-		 $\alpha_\star(1_\star).f=\alpha_\star(f)$. Because
-		multiplying every element of a group by a fixed element gives us a bijection on the
-		group, each $\alpha_\star$, and hence each $\alpha$ can be thought of as a bijection on
-		$G$.
+		 $\alpha_\star(f)=\alpha_\star(1_\star).f$.
+		 This can be considered as left multiplication by $\alpha_\star(1_\star)$ in $G$, which
+		 we know is an automorphism of F. Thus, $\alpha_\star$, and hence $\alpha$
+		 can be thought of as a bijection on $G$.
 
-		Now we will show that the collection $[\mathcal{A} ^{op},Set](H_\star, H_\star)$
-		forms a group, with composition being as morphisms.
+		 So far we have shown we have that shown that the collection of all such $\alpha$,
+		 which is $[\mathcal{A} ^{op},Set](H_\star,H_\star)$ is indeed a
+		 collection of bijections on $G$.
+		 Moreover, the collection $[\mathcal{A} ^{op},Set](H_\star, H_\star)$
+		forms a group with the usual composition of the category.
 		As $[\mathcal{A} ^{op},Set]$ is a category, we get that
-		this composition is associative. Also, because the aforementioned collection contains
-		morphisms with the same source and destination, that is $\star$, we get that it is
-		closed under composition, and has an identity, that is $1_\star$.
+		this composition is associative. Also, because this collection contains
+		morphisms with the same source and destination, which is $H_\star$, we get that it is
+		closed under composition, and has an identity.
 		In order to show inverses, we use the group isomorphism between
 		$\mathcal{A} (\star,\star)$ and	the property of $\alpha$ from (2),
 		to bijectively map each element $g\in G$ to the natural transformation $\alpha$
@@ -368,17 +495,18 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 k=k\]
 		Thus, the collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
 
-		As the collection of elements of $G$ forms a set, we get that $\mathcal{A}(\star,\star)$
+		As the collection of elements of $G$ form a set, we get that $\mathcal{A}(\star,\star)$
 		is a set. Hence, $\mathcal{A}$ is a locally small category. Because
 		$\mathcal{A} ^{op}$ has the same number of morphism as $\mathcal{A}$,
 		it is also a locally small category, and we may apply Yoneda Lemma to it.
 		Taking $A=\star	\in \mathcal{A} ^{op}$ and $X=H_\star$ in Thm 1.6 (1), we get:
-		\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong H_\star(\star)
-		= \mathcal{A} (\star,\star) \cong G\end{equation}
+		\begin{equation} [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \hat{\cong} H_\star(\star)
+		= \mathcal{A} (\star,\star) \cong G, \end{equation}
 		where the first isomorphism above is between sets, and second one between groups.
 		We will show that this isomorphism is also a homomorphism.
-		The map $\string ^$, defined in Theorem 1.6 will act here as $\alpha
-		\mapsto \alpha_\star (1_\star)$. Hence, for any $\alpha,\beta:H_\star
+		From the proof of Theorem 1.6, we know that the map
+	$\string ^$, acts as $\alpha \mapsto \alpha_\star (1_\star)$. Hence, for any $\alpha
+	\beta:H_\star
 		\to H_\star$,
 		\begin{equation}
 			\widehat {\alpha \circ \beta}= (\alpha \circ \beta)_\star(1_\star)
@@ -386,58 +514,77 @@ k=k\]
 			\Big((\alpha)_\star(1_\star) \Big) . \Big( (\beta)_\star (1_\star) \Big).
 		\end{equation}
 		Where the last equality is due to (2) being applicable
-		as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$,
-		and hence corresponds to some element of G.
+		as $\Big((\beta)_\star (1_\star)\Big)$ is an element of $\mathcal{A} (\star,\star)$.
 		We have shown that in statement (3), the isomorphism is between groups,
-		with the left most expression being a group whose elements are bijections
+		with the left most term being a group whose elements are bijections
 		on $G$. This is
 		precisely the statement of Cayley's theorem.
+
+
 		\[ Sym(G) \geq [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \cong G \qedhere \]
 	\end{proof}
 	\subsection{Yoneda Embedding}%{{{ Embedding		Section
 	\begin{definition} %{{{ Embedding of a category		Definition
-		A category, $\mathcal{A}$  is said to be embedded in a category, $\mathcal{B}$ if
+		A category $\mathcal{A}$  is said to be embedded in a category $\mathcal{B}$ if
 		and only if there exists a functor $F: \mathcal{A} \to \mathcal{B}$
 		such that $F$ is full and faithful.
 	\end{definition} %}}}
 
-	Note that a functor being fully faithful gives us that the functor is injective on objects upto
-	isomorphism. Because fullness along with $F(A)=F(B)$ gives us the existence of morphisms
-	$f\in \mathcal{A} (A,B)$ and $g \in \mathcal{A} (B,A)$ such that $F(f)=1_{FA}$ and
-	$F(g)=1_{FB}$. Thus faithfullness gives us that $F(f \circ g)=F(1_B)$ and $F(g \circ f)=F(1_A)$
-	imply $f \circ g=1_B$ and $g \circ f = 1_A$, giving that $A\cong B$.\\
+	\begin{lemma}
+		If a functor is fully faithful, then it is injective on objects upto isomorphism.
+	\end{lemma}
+	\begin{proof}
+		Let functor $F:\mathcal{A} \to \mathcal{B} $ be fully faithful. Suppose, for
+		objects $A,B\in \mathcal{A} $ that $F(A)=F(B)$. We are going to show that
+		$A\cong B$. As $F$ is full, there exists $f \in \mathcal{A} (A,B)$ such that
+		$F(f)=1_{F(A)}\in \mathcal{B} \big(F(A),F(B)\big)$. Similarly, we also have that
+		there exists $g \in \mathcal{A} (B,A)$ such that
+		$F(g)=1_{F(B)}\in \mathcal{B} \big(F(B),F(A)\big)$. Because $F$ is a functor,
+		\begin{align}
+			F\big( g \circ f \big)&=F(g) \circ F(f) = 1_{F(B)} \circ 1_{F(A)}=
+	1_{F(A)} \circ 1_{F(A)}=1_{F(A)}=F(1_A); \\
+			F\big( f \circ g \big)&=F(f) \circ F(g) = 1_{F(A)} \circ 1_{F(B)}=
+	1_{F(B)} \circ 1_{F(B)}=1_{F(B)}=F(1_B).
+		\end{align}
+		As $F$ is faithful, (5) gives us that $g\circ f=1_A$ and (6) gives us
+		$f \circ g = 1_B$. Hence, $A\cong B$.
 
+	\end{proof}
 
-
-	We are going to define a functor from locally small category $\mathcal{A}$ to the presheaf category on
+	We are going to define a functor $H_\bullet$, from locally small category $\mathcal{A}$ to the presheaf category on
 	$\mathcal{A} $, as taking any object $A \in \mathcal{A} $ to the functor $H_A$.
 	And for any $X,Y,K \in \mathcal{A}$, taking morphism $f\in \mathcal{A} (X,Y)$
-	to the natural transformation $f^*$, whose $K$-component is defined as taking any $k \in H_X(K)$
+	to the natural transformation whose $K^{th}$-component is defined as taking any $k \in H_X(K)$
 	to $f \circ k \in \mathcal{A} (K,Y)$.
 
 	%{{{ H.		Proposition
-	\begin{proop} The map defined above is a functor from $\mathcal{A}$ to $[\mathcal{A} ^{op},Set]$.
-		Henceforth, we denote it by $H_\bullet$.
+	\begin{proop} $H_\bullet$ is a functor from $\mathcal{A}$ to $[\mathcal{A} ^{op},Set]$.
 	\end{proop}
 	\begin{proof}\setcounter{equation}{0}
 		Fix any objects $K,L,M \in \mathcal{A} $.
 		\begin{enumerate}[label=\Roman*]
 			\item \textbf{ (Composition) }
 				Let $f \in \mathcal{A} (K,L)$ and $g \in \mathcal{A} (L,M)$.
-				As $(g \circ f)^*$ and $g^* \circ f^* $ are natural transformations from
-				$H_K$ to $H_M$, need to show that for any $X\in \mathcal{A} ^{op}$, $X$-components
-				of $(g \circ f)^*$ and $g^* \circ f^* $ are equal. So, fix $k \in H_K(X)$,
-				and using the definition of $(\string _)^*$, we get that
+				As $H_\bullet(g \circ f)$ and $H_\bullet(g) \circ H_\bullet(f)$
+				are natural transformations from $H_K$ to $H_M$,
+			need to show that their	$X$-components are equal
+			for any $X\in \mathcal{A} ^{op}$. Fix $X\in \mathcal{A} ^{op}$ and
+			$k \in H_K(X)$,	and using the definition of $H_\bullet$, we get that
 				\begin{align*}
-					LHS&=\Big( (g \circ f)^* \Big) (k)=g\circ f \circ k \\
-					\text{ and } RHS&=\Big( f^* \circ g^* \Big) (k)=g^* \big(f \circ k\big)
+					LHS&=\big( H_\bullet(g \circ f) \big) (k)=
+					g\circ f \circ k \\
+					\text{ and } RHS&=
+					\Big( H_\bullet(f) \circ H_\bullet(g) \Big) (k)
+					=\Big(H_\bullet(g)\Big) \big(f \circ k\big)
 				=g\circ f \circ k. \end{align*}
 			\item \textbf{ (Identity) } We will show that for any $g \in \mathcal{A} (K,L)$, $H_\bullet$
 				respects the identities	of $K$ and $L$ in $\mathcal{A}$.
 				Thus, for any object $X \in \mathcal{A} $, we need to show that
 				$\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X = \Big( H_\bullet(g)\Big) _X
-				=\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X $. So, fix any morphism $p \in H_A(L)$.
-				Using the definition of $(\string _)^*$, we get the following equations.
+				=\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X $.
+				Fix any morphism $p \in H_A(L)$.
+				Using the definition of $H_\bullet$,
+				we get the following equations.
 				\begin{align*}
 					\text{ Right Identity: }& \Big( \big( H_\bullet(g) \big) \circ \big( H_\bullet(1_K)
 					\big) \Big)(p)
@@ -528,23 +675,17 @@ k=k\]
 					$p \subseteq u $ then $u \in P$.
 			\end{enumerate}
 		\end{definition}
-
-\begin{ex} %{{{ 		Example
-	\begin{enumerate}[label=(\alph*)]
-		\item For any positive real number $\epsilon$, define a relation $A_\epsilon$ on real numbers as
-			$A_\epsilon=\{ (x,y) | x-y<\epsilon \}$. The set $K=\{A_\epsilon | \epsilon>0\}$
-			forms a prorelation. $K$ is down-directed, as $\delta \geq \epsilon > 0$
-			implies $A_\delta \supseteq A_\epsilon$. It's an up-set because for any relation
-			$B$ such that $B \supseteq A_\epsilon$, for each $(x,y)\in B$,
-		we take $\delta>|x-y| \geq x-y$. Thus, each element of $K$ is in some
-	$A_{\delta_i}$,	and as the supremum of all such $\delta_i$ is also a positive real number,
-	$B\in K$ by down-directedness of $K$.
-
-\item
-	\end{enumerate}
-\end{ex}
-
-
+\begin{example} %{{{ 		Example
+	We will define a prorelation on real numbers.
+	For any positive real number $\epsilon$, define a relation on $\mathbb{R}$ as
+	$A_\epsilon=\{ (x,y) |\; |x-y|<\epsilon \}$.
+	The collection of all relations on $\mathbb{R}$ such that each of them contains some
+	$A_\epsilon$, is a prorelation, $K$ on $\mathbb{R}$.
+	That is, $K=\{ a:\mathbb{R} \to \mathbb{R} \, | \; a \supseteq A_\epsilon \text{ for some } \epsilon>0 \; \}$ forms a prorelation.
+	If $k,l \in K$, then there exist $\delta ,\, \epsilon > 0$ such that
+	$k \supseteq A_\delta$ and $l \supseteq A_\epsilon$. Thus, the relation $A_{
+	\frac{\delta+\epsilon}{2}}$ is in both $k$ and $l$.
+\end{example}
 		\begin{definition}%{{{ Composition of prorelations	Definition
 			A prorelation $P:X \to Y$ can be composed to a prorelation $Q:Y \to Z$ by taking
 			composition of the relations belonging to them. Then, the set $Q.P$ is defined as
@@ -585,7 +726,7 @@ k=k\]
 		\begin{definition} %{{{ Containment of Prorelations		Definition
 
 			For prorelations $P,Q:X\to Y$, if for each $q \in Q$, there exists $p \in P$ such that
-			$p \subseteq q$, then we write $Q\geq P$.
+			$p \subseteq q$, then we write $P\leq Q$.
 		\end{definition}
 		\begin{definition} %{{{ Opposite relation		Definition
 			For a relation $r:X \to Y$, it's opposite relation $r^o:Y \to X$ is defined as
@@ -649,451 +790,464 @@ k=k\]
 					$p' \circ p' \subseteq p$.
 			\end{enumerate}
 		\end{definition}
+\begin{example} %{{{ 		Example
+	We will show that the prorelation defined in Example 2.2 is a quasi-uniformity.
+	The definition $A_\epsilon=\{ (x,y) |\;	|x-y|<\epsilon \}$ implies that each $A_\epsilon$
+	is reflexive. And as every relation in $K$ contains some $A_\epsilon$,
+	it must be reflexive as well, hence definition 3.1 (i) holds for $K$.
+	Now we are going to show that definition 3.1 (ii) holds for $K$. Fix any
+	relation $a \in K$, so, by definition of $K$, there exists $\epsilon$ such that
+	$b\supseteq A_\epsilon$. Using $|x-y|=|y-x|$ we get that $A_\epsilon$ is symmetric.
+	Thus, for any $\epsilon$, $A_\epsilon \circ A_\epsilon \subseteq A_\epsilon \subseteq b$.
+\end{example}
 		\begin{definition} %{{{Quasi-uniform space Definition
 			If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
 		\end{definition}
-
-		EXAMPLES
-
-		\begin{definition} %{{{ Uniformly Continuous function 		Definition
-			A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
-			That is, for each $b \in B$, there exists $a \in A$ such that
-			$f \circ a \subseteq b \circ f$. Meaning that $
-			\begin{tikzcd}
-				X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
+\begin{definition} %{{{ Uniformly Continuous function 		Definition
+	A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
+	That is, for each $b \in B$, there exists $a \in A$ such that
+	$f \circ a \subseteq b \circ f$. Meaning that $
+	\begin{tikzcd}
+		X \cen{dr} \arrow[swap]{d}{A} \arrow{r}{f}
 		& Y \arrow{d}{B}\\
 		X \arrow[swap]{r}{f}
 		& Y
-			\end{tikzcd}
-			$.
-		\end{definition}
-		%{{{ A.A=A
-		\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
-		\end{lemma}
-		\begin{proof}\setcounter{equation}{0}
+	\end{tikzcd}
+	$.
+\end{definition}
+%{{{ A.A=A
+\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
+\end{lemma}
+\begin{proof}\setcounter{equation}{0}
 
-			Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
-			we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
-			$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
-		\end{proof}
-		%}}}
+	Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
+	we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
+	$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
+\end{proof}
+%}}}
 
-		%{{{ Two categories
-		\begin{proop} QUnif is a category defined as having quasi-uniform spaces as objects,
-			and uniformly continuous maps between them as morphisms, with composition defined as that of functions.
-		\end{proop}
-		\begin{proof}\setcounter{equation}{0}
+%{{{ Two categories
+We define a category called QUnif as having quasi-uniform spaces as objects
+and uniformly continuous maps between them as morphisms.
+With the composition of morphisms defined as that of functions, and identity of object $(X,A)$
+defined to be the identity function on set $X$.
+\begin{proop} QUnif is a category.\end{proop}
+\begin{proof}\setcounter{equation}{0}
+	\begin{enumerate}[label=(\roman*)]
+		\item (Associativity) The composition of functions is associative by definition.
+		\item (Identity) For each object $(X,A)$, the identity function
+			$\Delta_X:(X,A) \to (X,A)$ is uniformly continuous as
+			$\Delta_X.A=A \leq A=A.\Delta_X$.
+			\qedhere
+	\end{enumerate}
+\end{proof}
+\begin{definition}%{{{ Promodule		Definition
+	A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
+	satisfies:
+	\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
+\end{definition}
 
+
+	Containment of promodules is defined as that of prorelations.
+	Promodules are composed as prorelations.\\
+
+Now, we define a 2-category called ProMod as having quasi-uniform spaces as 0-cells and the
+promodules between them being 1-cells. The identity 1-cell of $(X,A)$ is defined to be the
+promodule $A$.
+For promodules $P,Q: (X,A) \carrow (Y,B)$,
+we define there to be a 2-cell from $P$ to $Q$ if and only if as prorelations, $P \leq Q$.
+Thus, the identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
+We use the definition of a 2-category given in $CITE$.
+
+\begin{proop}%{{{ ProMod		Definition
+	ProMod, as described above is a 2-category.
+\end{proop}
+\begin{proof}\setcounter{equation}{0}
+	In order to show that ProMod is a 2-category, need the following:
+	\begin{enumerate}[label=(\alph*)]
+		\item (1-Identities) For each quasi-uniform space $(X,A)$,
+			 $A:(X,A) \carrow (X,A)$ a promodule because $A.A=A$ by Lemma 2.2.1.
+		\item (1-Composition) Need composition of promodules to be a promodule.\\
+			Let $\phi:(X,A)\carrow (Y,B)$ and $\psi:(Y,B)\carrow (Z,C)$ be promodules.
+			To show that $\psi.\phi:(X,A) \carrow (Z,C)$ is a promodule, need it to be a
+			prorelation that satisfies the two conditions required to be a promodule:
 			\begin{enumerate}[label=(\roman*)]
-				\item (Associativity) The composition of functions is associative by definition.
-				\item (Identity) For each object $(X,A)$, define it's identity to be the identity
-					function $\Delta_X:(X,A) \to (X,A)$.
-					This function is uniformly continuous as $\Delta_X.A=A \leq A=A.\Delta_X$.
-					\qedhere
+				\item By Lemma 1.2.1, prorelations are closed under composition.
+					Hence, $\psi.\phi$ is a prorelation
+				\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
+					$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
+					$\phi.A\leq \phi$ gives that there exists
+					$ q' \in \phi \text{ and } a\in A$ such that
+					$q'\,a \subseteq q$. Thus,
+					$p\,q'\,a \subseteq p\,q$.
+				\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
+					and $q\in \phi$. Because
+					$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
+					there exists $c\in C$ and $p' \in \psi$ such that
+					$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
 			\end{enumerate}
-		\end{proof}
-		\begin{definition}%{{{ Promodule		Definition
-			A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
-			satisfies:
-			\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
-		\end{definition}
-		\begin{definition} %{{{Promodule Containment 		Definition
-			Containment of promodules is defined as that of prorelations.
-		\end{definition}
-		\begin{definition} %{{{ Composition of Promodules		Definition
-			Promodules are composed as prorelations.\\
-		\end{definition}
+		\item (2-Identities) As every promodule is contained in itself, always have $\psi \leq \psi$.
+			Define this comparison to be the identity 2-cell for $\psi$ and denote it by $\leq_\psi$
 
-		DEFINE PROMODULE CATEGORY HERE, BY COMBINING THE ABOVE TWO DEFINITIONS DONT FORGET TO WRITE ABOUT LEQ
-		ALSO LOOK AT CITE
+		\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \carrow (Y,B)$,
+			if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
+			to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
+			of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
+			$\psi$ to $\delta$.
+		\item (Horizontal 2-composition) If there are promodules
+			$\psi,\psi':(X,A) \carrow (Y,B)$ and
+			$\phi,\phi':(Y,B) \carrow (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
+			\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
+			$q' \in \phi'$. As $\psi\leq\psi'$, $\exists p\in \psi: p \subseteq p'$
+			and as $\psi\leq\psi'$, $\exists q \in \phi: q \subseteq q'$.
+			Thus, $p\,q\subseteq p'\,q'$
+		\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \carrow (Y,B)$,
+			$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
+			reflexive. Thus, for any $p \in \phi$ and $a \in A$,
+			$p=p. \Delta_X \subseteq p \,a$
+			giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
+			$\phi \geq \phi.A$. Hence, by anti-symmetry of the partial order, $\phi=\phi.A$.
 
-		\begin{proop}%{{{ ProMod		Definition
-			ProMod is a 2-category defined as having quasi-uniform spaces as its 0-cells,
-			promodules as 1-cells and containment of promodules as 2-cells.
-		\end{proop}
-		\begin{proof}\setcounter{equation}{0}
-			In order to show that ProMod is a 2-category, need the following:
-			\begin{enumerate}[label=(\alph*)]
-				\item (1-Identities) For each quasi-uniform space $(X,A)$,
-					define $A:(X,A) \carrow (X,A)$ to be the identity 1-cell for $(X,A)$. A is a promodule
-					because $A.A=A$ (Lemma 2.2.1)
-				\item (1-Composition) Need promodules to be closed under composition.\\
-					Let $\phi:(X,A)\carrow (Y,B)$ and $\psi:(Y,B)\carrow (Z,C)$ be promodules.
-					To show that $\psi.\phi:(X,A) \carrow (Z,C)$ is a promodule, need it to be a
-					prorelation that satisfies the two conditions required to be a promodule:
-					\begin{enumerate}[label=(\roman*)]
-						\item By Lemma 1.2.1, prorelations are closed under composition.
-							Hence, $\psi.\phi$ is a prorelation
-						\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
-							$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
-							$\phi.A\leq \phi$ gives that there exists
-							$ q' \in \phi \text{ and } a\in A$ such that
-							$q'\,a \subseteq q$. Thus,
-							$p\,q'\,a \subseteq p\,q$.
-						\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
-							and $q\in \phi$. Because
-							$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
-							there exists $c\in C$ and $p' \in \psi$ such that
-							$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
-					\end{enumerate}
-				\item (2-Identities) As every promodule is contained in itself, always have $\psi \leq \psi$.
-					Define this comparison to be the identity 2-cell for $\psi$ and denote it by $\leq_\psi$
+			Similarly, By quasi-uniformity of $B$, every $b \in B$, is
+			reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
+			b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
+			$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
+		\item (1-Associativity) As composition of relations is associative, so too is the
+			composition of prorelations directly giving that composition of promodules
+			i.e. 1-cells is associative.
+		\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
+			$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi.\leq_1$
+			means precisely that $\psi \leq \psi \leq \phi $, and by transitivity,
+			this is equivalent to $\psi \leq \phi$.
+			Similarly, $\leq_1.\leq_\phi$ means exactly that $\psi
+			\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
+		\item (Vertical 2-Associativity) Associativity of the partial order on promodules
+			directly gives the associativity of composition of 2-cells in ProMod.
+		\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\carrow (Y,B)$ be promodules.
+			For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
+			by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
+			equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
+			\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
+			direct consequence of (f).
+		\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
+			promodules, and composition of promodules is associative,
+			horizontal composition of 2-cells is associative.
+		\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
+			$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
+			Both sides of the required equality are 2-cells $\leq:\psi.\phi
+			\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
+			any two 1-cells.
+		\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
+			$\psi',\phi',\delta':(Y,B) \carrow (Z,C)$ be promodules. For
+			2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
+			$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
+			$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
+			Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
+			hence equal. \qedhere
+	\end{enumerate}
+\end{proof}
+%}}}
+%{{{Two functors
+We now define a functor from the category QUnif to ProMod, as fixing objects and taking uniformly
+continuous maps $f:(X,A)\to(Y,B)$ to $f.B$.
 
-				\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \carrow (Y,B)$,
-					if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
-					to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
-					of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
-					$\psi$ to $\delta$.
-				\item (Horizontal 2-composition) If there are promodules
-					$\psi,\psi':(X,A) \carrow (Y,B)$ and
-					$\phi,\phi':(Y,B) \carrow (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
-					\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
-					$q' \in \phi'$. As $\psi\leq\psi'$, $\exists p\in \psi: p \subseteq p'$
-					and as $\psi\leq\psi'$, $\exists q \in \phi: q \subseteq q'$.
-					Thus, $p\,q\subseteq p'\,q'$
-				\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \carrow (Y,B)$,
-					$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
-					reflexive. Thus, for any $p \in \phi$ and $a \in A$,
-					$p=p. \Delta_X \subseteq p \,a$
-					giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
-					$\phi \geq \phi.A$. Hence, by anti-symmetry of the partial order, $\phi=\phi.A$.
+\begin{proop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
+	\begin{enumerate}[label=(\alph*)]
+		\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
+		\item for $f:(X,A) \to (Y,B)$ in QUnif,
+			$f^* := B.f$
+	\end{enumerate}
+	is indeed a functor.
+\end{proop}
+\begin{proof}\setcounter{equation}{0}
 
-					Similarly, By quasi-uniformity of $B$, every $b \in B$, is
-					reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
-					b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
-					$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
-				\item (1-Associativity) As composition of relations is associative, so too is the
-					composition of prorelations directly giving that composition of promodules
-					i.e. 1-cells is associative.
-				\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
-					$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi.\leq_1$
-					means precisely that $\psi \leq \psi \leq \phi $, and by transitivity,
-					this is equivalent to $\psi \leq \phi$.
-					Similarly, $\leq_1.\leq_\phi$ means exactly that $\psi
-					\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
-				\item (Vertical 2-Associativity) Associativity of the partial order on promodules
-					directly gives the associativity of composition of 2-cells in ProMod.
-				\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\carrow (Y,B)$ be promodules.
-					For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
-					by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
-					equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
-					\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
-					direct consequence of (f).
-				\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
-					promodules, and composition of promodules is associative,
-					horizontal composition of 2-cells is associative.
-				\item (2-Identity) For promodules $\psi:(X,A)\carrow (Y,B)$ and
-					$:\phi(Y,B) \carrow (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
-					Both sides of the required equality are 2-cells $\leq:\psi.\phi
-					\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
-					any two 1-cells.
-				\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \carrow (Y,B)$ and
-					$\psi',\phi',\delta':(Y,B) \carrow (Z,C)$ be promodules. For
-					2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
-					$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
-					$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
-					Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
-					hence equal. \qedhere
-			\end{enumerate}
-		\end{proof}
-		%}}}
-		%{{{Two functors
-		We now define a functor from the category QUnif to ProMod, as fixing objects and taking uniformly
-		continuous maps $f:(X,A)\to(Y,B)$ to $f.B$.
+	We will first show that $B.f={b \circ f: b \in B}$
+	is a promodule, and then that $(\string _)_*$ defines a functor.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Partial-Order) Inclusion of relations acts as the partial order.
+		\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
+			$b,b'$ in $B$ such that $k=b\,f$ and $k'=b\,f$. Using down-directedness
+			of $B$, there exists a $c \in B$ such that $c \subseteq b,b'$. Hence,
+			by Lemma 2.4.4, $c\,f \subseteq k,k'$.
+		\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
+			uniformly continous function such that $l \supseteq k$.
+			Define a relation $b':= \{(f(d),l(d)): d \in domain(l) \}$.
+			By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
+			$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $domain(l)  \supseteq domain(f)$
+			giving $(x,f(x)) \in f$. Thus, by defniition of composition,
+			$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
+			By definition of composition, there exists $f(x)\in Y$ such that
+			$(f(x),z) \in b'$. Again using the definition of
+			$b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$. Hence, $l=b'\, f$.
+			Now we will show that $b'\supseteq b$. Because $b'\, f=l \supseteq k=b\, f$, for any
+			$x\in X$ we have that $b'\big(f(x)\big) \supseteq b\big(f(x)\big)$. Thus,
+			$b'|_{f(x)} \supseteq b|_{f(x)}$. By down-directedness of $B$,
+			the restriction $b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
+			Finally, $b' \supseteq b'|_{f(x)} \supseteq b|_{f(x)}$ gives $b' \in B$.
+			Hence, $b'.f \in B.f$.
+		\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
+			$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
+			By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
+			\subseteq b$. Using Lemma 2.4.3, we get that $b'\,b'\,f \subseteq b\,f$.
+			As $f$ is uniformly continous, $f.A \leq B.f$ gives that there is some
+			$a \in A \text{ such that } f\,a \subseteq b'\,f$. Using this in the
+			previous inequality, we get $b'\,f\,a \subseteq b'\,b'\,f\subseteq  b\,f$.
+		\item Need to show that $B.B.f \leq B.f$. Fix any $b \in B$, we will find
+			$b' \in B$ such that $b'\,b'\,f \subseteq b\,f$.
+			By quasi-uniformity of $B$, there exists $b \in B$ such that
+			$b'\,b' \subseteq  b$. Using Lemma 2.4.4, we get $b'\,b'\,f \subseteq bf$.
+	\end{enumerate}
+	Thus, $B.f$ is a promodule. We now proceed to show that $(\string _)_*$ defines a functor.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Composition) Need to show that $(g\circ f)_*=g_*f_*$ i.e. $C.g.f=C.g.B.f$.
 
-		\begin{proop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
-			\begin{enumerate}[label=(\alph*)]
-				\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
-				\item for $f:(X,A) \to (Y,B)$ in QUnif,
-					$f^* := B.f$
-			\end{enumerate}
-			is indeed a functor.
-		\end{proop}
-		\begin{proof}\setcounter{equation}{0}
+			In order to show $C.g.f \leq C.g.B.f$, fix any $b\in B, c\in C$.
+			We will show that $c\,g\,f \subseteq c\,g\,b\,f$. As $f$ is uniformly
+			continuous, $f.A \leq B.f$ gives that there exists $a \in A$ such that
+			$f\,a \subseteq b\,f$. Using Lemma 2.4.3, we get $(c\,g)f\,a \subseteq
+			(c\,g)b\,f$. Now, using reflexiviness of $a$, we get $c\,g\,f \subseteq
+			c\,g\,b\,f$.
 
-			We will first show that $B.f={b \circ f: b \in B}$
-			is a promodule, and then that $(\string _)_*$ defines a functor.
-			\begin{enumerate}[label=(\roman*)]
-				\item (Partial-Order) Inclusion of relations acts as the partial order.
-				\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
-					$b,b'$ in $B$ such that $k=b\,f$ and $k'=b\,f$. Using down-directedness
-					of $B$, there exists a $c \in B$ such that $c \subseteq b,b'$. Hence,
-					by Lemma 2.4.4, $c\,f \subseteq k,k'$.
-				\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
-					uniformly continous function such that $l \supseteq k$.
-					Define a relation $b':= \{(f(d),l(d)): d \in domain(l) \}$.
-					By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
-					$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $domain(l)  \supseteq domain(f)$
-					giving $(x,f(x)) \in f$. Thus, by defniition of composition,
-					$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
-					By definition of composition, there exists $f(x)\in Y$ such that
-					$(f(x),z) \in b'$. Again using the definition of
-					$b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$. Hence, $l=b'\, f$.
-					Now we will show that $b'\supseteq b$. Because $b'\, f=l \supseteq k=b\, f$, for any
-					$x\in X$ we have that $b'\big(f(x)\big) \supseteq b\big(f(x)\big)$. Thus,
-					$b'|_{f(x)} \supseteq b|_{f(x)}$. By down-directedness of $B$,
-					the restriction $b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
-					Finally, $b' \supseteq b'|_{f(x)} \supseteq b|_{f(x)}$ gives $b' \in B$.
-					Hence, $b'.f \in B.f$.
-				\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
-					$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
-					By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
-					\subseteq b$. Using Lemma 2.4.3, we get that $b'\,b'\,f \subseteq b\,f$.
-					As $f$ is uniformly continous, $f.A \leq B.f$ gives that there is some
-					$a \in A \text{ such that } f\,a \subseteq b'\,f$. Using this in the
-					previous inequality, we get $b'\,f\,a \subseteq b'\,b'\,f\subseteq  b\,f$.
-				\item Need to show that $B.B.f \leq B.f$. Fix any $b \in B$, we will find
-					$b' \in B$ such that $b'\,b'\,f \subseteq b\,f$.
-					By quasi-uniformity of $B$, there exists $b \in B$ such that
-					$b'\,b' \subseteq  b$. Using Lemma 2.4.4, we get $b'\,b'\,f \subseteq bf$.
-			\end{enumerate}
-			Thus, $B.f$ is a promodule. We now proceed to show that $(\string _)_*$ defines a functor.
-			\begin{enumerate}[label=(\roman*)]
-				\item (Composition) Need to show that $(g\circ f)_*=g_*f_*$ i.e. $C.g.f=C.g.B.f$.
+			Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in X$, we will find $c' \in C$ and
+			$b \in B$ such that $c\, g\, f\, \supseteq c\, g\, b\, f\, $. By quasi-uniformity of C,
+			there exists $c' \in C$ such that $c \subseteq  c'\, c'$. Using Lemma 2.4.4
+			gives that $c\, (g\, f)\supseteq c'\, c'\, (g\, f) $. Because $g$ is uniformly
+			continuous, $C.g \geq g.B$ gives us $b\in B$ such that $g\, c' \supseteq b\, g$.
+			Using this in the previous inequality gives that $c\, g\, f \supseteq c'\, g\, b\, f$.
 
-					In order to show $C.g.f \leq C.g.B.f$, fix any $b\in B, c\in C$.
-					We will show that $c\,g\,f \subseteq c\,g\,b\,f$. As $f$ is uniformly
-					continuous, $f.A \leq B.f$ gives that there exists $a \in A$ such that
-					$f\,a \subseteq b\,f$. Using Lemma 2.4.3, we get $(c\,g)f\,a \subseteq
-					(c\,g)b\,f$. Now, using reflexiviness of $a$, we get $c\,g\,f \subseteq
-					c\,g\,b\,f$.
-
-					Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in X$, we will find $c' \in C$ and
-					$b \in B$ such that $c\, g\, f\, \supseteq c\, g\, b\, f\, $. By quasi-uniformity of C,
-					there exists $c' \in C$ such that $c \subseteq  c'\, c'$. Using Lemma 2.4.4
-					gives that $c\, (g\, f)\supseteq c'\, c'\, (g\, f) $. Because $g$ is uniformly
-					continuous, $C.g \geq g.B$ gives us $b\in B$ such that $g\, c' \supseteq b\, g$.
-					Using this in the previous inequality gives that $c\, g\, f \supseteq c'\, g\, b\, f$.
-
-				\item(Identity) let $(X,A)$ be in object of QUnif and
-					$1_{(X,A)}:(X,A)\to(X,A)$ be the identity funtion on $(X,A)$. That is,
-					$1_{(X,A)}$ is defined as $x\mapsto x$.
-					Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
-					functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
-					and $RHS=1_{(X,A)_*}=1_{(X,A)}$
-					Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
-			\end{enumerate}
-		\end{proof}
+		\item(Identity) let $(X,A)$ be in object of QUnif and
+			$1_{(X,A)}:(X,A)\to(X,A)$ be the identity funtion on $(X,A)$. That is,
+			$1_{(X,A)}$ is defined as $x\mapsto x$.
+			Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
+			functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
+			and $RHS=1_{(X,A)_*}=1_{(X,A)}$
+			Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
+	\end{enumerate}
+\end{proof}
 
 
-		Similar to the above functor, we define a contravariant functor from the category QUnif to ProMod,
-		as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $B.f^o$.
+Similar to the above functor, we define a contravariant functor from the category QUnif to ProMod,
+as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $B.f^o$.
 
-		\begin{proop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
-			\begin{enumerate}[label=(\alph*)]
-				\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
-				\item for $f:(X,A) \to (Y,B)$ in QUnif,
-					$f^* := f^o .B$
-			\end{enumerate}
-			is indeed a functor.
-		\end{proop}
-		\begin{proof}\setcounter{equation}{0}
+\begin{proop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
+	\begin{enumerate}[label=(\alph*)]
+		\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
+		\item for $f:(X,A) \to (Y,B)$ in QUnif,
+			$f^* := f^o .B$
+	\end{enumerate}
+	is indeed a functor.
+\end{proop}
+\begin{proof}\setcounter{equation}{0}
 
-			Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
-			So, need to show $f^o .B$ a prorelation $Y \to X$
-			and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
-			To show prorelation, \begin{enumerate}[label=(\roman*)]
-				\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
-					$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
-				\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
-					\text{ such that } l \subseteq k,k'$
+	Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
+	So, need to show $f^o .B$ a prorelation $Y \to X$
+	and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
+	To show prorelation, \begin{enumerate}[label=(\roman*)]
+		\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
+			$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
+		\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
+			\text{ such that } l \subseteq k,k'$
 
-					Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
-					k' = f^o \circ b'$
+			Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
+			k' = f^o \circ b'$
 
-					By down-directedness of $B$, there exists $c \in B$ such that
-					$ c \subseteq b,b'$, define $l=f^o \circ c$.
-					Now, using Lemma 2.4.3 gives  $l= f^o \circ c \subseteq k,k'$.
-				\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
-					, need $l \in f^o .B$
+			By down-directedness of $B$, there exists $c \in B$ such that
+			$ c \subseteq b,b'$, define $l=f^o \circ c$.
+			Now, using Lemma 2.4.3 gives  $l= f^o \circ c \subseteq k,k'$.
+		\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
+			, need $l \in f^o .B$
 
-					Let $b\in B$ be such that $k=f^o \circ b$ and define
-					$b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
-					As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
-					\\ and $range(l) \supseteq range(f^o \circ b)\implies
-					\forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
-					Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
-					$f^o \circ b \subseteq l$ , \\
-					$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
-					(z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
-					$(x,z) \in l$
+			Let $b\in B$ be such that $k=f^o \circ b$ and define
+			$b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
+			As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
+			\\ and $range(l) \supseteq range(f^o \circ b)\implies
+			\forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
+			Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
+			$f^o \circ b \subseteq l$ , \\
+			$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
+			(z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
+			$(x,z) \in l$
 
-			\end{enumerate}
-		\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
-			\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
-			Fix any $b \in B$, as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
-			\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
+	\end{enumerate}
+\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
+	\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
+	Fix any $b \in B$, as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
+	\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
 
-			To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
-			$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
-			As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
-			: f \circ a \subseteq b \circ f
-			\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
-			Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
-			And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
-			\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
-		\item	Now, need to show that $(\string _)^*$ respects composition and identity.
-			\begin{enumerate}[label=(\roman*)]
-				\item (Composition) let $f,g$ be uniformly continuous,
-					$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
-					need that $(g \circ f)^*= f^*.g^* $
+	To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
+	$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
+	As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
+	: f \circ a \subseteq b \circ f
+	\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
+	Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
+	And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
+	\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
+\item	Now, need to show that $(\string _)^*$ respects composition and identity.
+	\begin{enumerate}[label=(\roman*)]
+		\item (Composition) let $f,g$ be uniformly continuous,
+			$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
+			need that $(g \circ f)^*= f^*.g^* $
 
-					LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
-					RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
-					For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
+			LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
+			RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
+			For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
 
-					To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
-					$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
-					\supseteq f^obgc'$ \\
-					Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
-					\implies f^o g^o c \supseteq f^o g^o (c'c')
-					=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
-					By uniform conntinuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
-					\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
-					f^o (g^o g)bg^o c'=f^o bg^o c'$.
+			To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
+			$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
+			\supseteq f^obgc'$ \\
+			Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
+			\implies f^o g^o c \supseteq f^o g^o (c'c')
+			=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
+			By uniform conntinuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
+			\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
+			f^o (g^o g)bg^o c'=f^o bg^o c'$.
 
-					To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
-					$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
-					\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
-					As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
-					g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
-				\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
-					$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
-					$(1_{(X,A)})^*=1_{(X,A)^*}$
-					LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$. \\
-					And as $RHS=1_{(X,A)^*}=1_{(X,A)}$
-					Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
-			\end{enumerate}
-		\end{proof}
-		%}}}
-		\begin{definition} %{{{ Fully Faithful and Dense		Definition
-			Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
-			\begin{enumerate}[label=\Roman*]
-				\item f is said to be fully faithful if	$f^* .f_*=A $
-				\item f is said to be fully dense if $f_* .f^*=B $
-			\end{enumerate}
-		\end{definition}
+			To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
+			$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
+			\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
+			As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
+			g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
+		\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
+			$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
+			$(1_{(X,A)})^*=1_{(X,A)^*}$
+			LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$. \\
+			And as $RHS=1_{(X,A)^*}=1_{(X,A)}$
+			Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
+	\end{enumerate}
+\end{proof}
+%}}}
+\begin{definition} %{{{Topologically Dense		Definition
+	For any quasi-uniform space $(X,A)$, an element $x \in X$ is said to belong in the
+	topological closure of set $M\subseteq X$ if and only if for each $a\in A$,
+	there exists $y\in M$ such that $x\, a\, y$ and $y\, a\, x$.
+\end{definition}
 
-		NEED TO ADD TOPOLOGICALLY DENSE DEFINITION
+\begin{definition} %{{{ Fully Faithful and Dense		Definition
+	Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
+	\begin{enumerate}[label=\Roman*]
+		\item f is said to be fully faithful if and only if $f^* .f_*=A$.
+		\item f is said to be fully dense if and only if $f_* .f^*=B $.
+		\item f is said to be topologically dense of and only if $\overline{f(X)}=Y$.
+	\end{enumerate}
+\end{definition}
+%Mention about topology so that below definition makes more sense ??
+%Might as well put an example as well ???
 
-		Mention about topology so that below definition makes more sense
-		Might as well put an example as well
+%{{{ Proposition 1
+\begin{proop}
+	Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
+	\begin{enumerate}[label=(\alph*)]
+		\item f is fully faithful if and only if $A= f^o.B.f$, that is
+			$A\geq f^o.B.f$
+		\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
+			such that $b' \subseteq b\,f\,f^o \,b$
+		\item f is topologically dense if and only if for any $b\in B$,
+			$\; b \, f\, f^o\,b$ is reflexive
+		\item f is fully dense if and only if f is topologically dense
+	\end{enumerate}
+\end{proop}
+\begin{proof}\setcounter{equation}{0}
 
-		%{{{ Proposition 1
-		\begin{proop}
-			Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
-			\begin{enumerate}[label=(\alph*)]
-				\item f is fully faithful if and only if $A= f^o.B.f$, that is
-					$A\geq f^o.B.f$
-				\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
-					such that $b' \subseteq b\,f\,f^o \,b$
-				\item f is topologically dense if and only if for any $b\in B$,
-					$\; b \, f\, f^o\,b$ is reflexive
-				\item f is fully dense if and only if f is topologically dense
-			\end{enumerate}
-		\end{proop}
-		\begin{proof}\setcounter{equation}{0}
-
-		\item
-			\begin{enumerate}[label=(\alph*)]
-				\item \begin{enumerate}[label=(\roman*)]
-					\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
-						\implies f^o .B.B.f=A $\\
-						Need to show that $A= f^o .B.f$ i.e.
-						$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
-						By hypothesis and quasi-uniformity of B,
-						$A\geq f^o .B.B.f \geq f^o B.f $\\
-						To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
-						\in A : a \subseteq f^o bf$\\
-						Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
-						$\exists a \in A: a \subseteq f^o bbf$ and also, by
-						quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
-						\implies f^o b'b'f \subseteq f^o bf$\\
-						Combining the above two inequalities,
-						$a \subseteq f^o bbf \subseteq f^o bf$\\
-					\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
-						$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
-						To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
-						\exists b,b' \in B : a \supseteq f^o bb'f$\\
-						Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
-						So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
-						and for this b, $\exists b'\in B: b'b' \subseteq b$.
-						Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
-						To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
-						a\in A : a \subseteq f^o bb'f$ \\
-						Before that, uniform continuity
-						of f along with Lemma 2.1.1 gives that \\$f.A\leq B.f
-						\implies A=f^o f.A \leq f^o.B.f$ \\
-						So, fix $b,b' \in B $, now, as ,
-
-						$A\leq f^o .B.f $
-						giving\\ $\exists a \in A : a \subseteq f^o bf$ and
-						$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
-						f^o b'	f$.\\
-						Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
-						\subseteq f^o bb'f$
-				\end{enumerate}
-			\item	\begin{enumerate}[label=(\roman*)]
-				\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
-					showing that $\forall b \in B,\exists b'\in B: b'
-					\subseteq bff^ob$:\\
-					So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
-					B$ such that $b' \subseteq bff^ob$.
-				\item $(\impliedby)$ Suppose $\forall b \in B, \exists b' \in B:
-					b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
-					to show equality, also need $B\geq B.f.f^o .B$.
-					By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
-					\subseteq b$. Now, by Lemma 2.4.2,
-					\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
-					\Delta_Y b'=b'b' \subseteq b\]
-
-			\end{enumerate}
+\item
+	\begin{enumerate}[label=(\alph*)]
 		\item \begin{enumerate}[label=(\roman*)]
-			\item $(\implies)$ Let f be topologically dense. We will show that
-				for any $b\in B, y \in Y$, $\;(y,y) \in bff^ob$. Fix any $ b\in B$ and
-				$y \in Y$. As f is topologically dense, $\overline{f(X)}=Y $, implying
-				that $y\in \overline{f(X)}$, by definition giving that
-				\[ \exists x\in X \text{ such that }
-				(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
-				Re-writing the above statement in terms of relations, and
-				considering f as a relation:
-				\begin{align}
-					(f(x),y) \in b &\text{ gives }  x(b \circ f)y \text{ i.e. }
-					y \in (b \circ f)(x)\\
-					(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
-				\end{align}
-				Repeatedly applying Lemma 2.4.3 to (2),
-				\[ f(x) \subseteq b(y) \implies
-					\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
-					\implies \big(f \circ f^o \circ f\big)(x) \subseteq
-				\big(f \circ f^o \circ b \big)(y)\]
-				Applying Lemma 2.4.1 to the final inequality
-				in the above statement gives that
-				\[f(x)= (f\circ  \Delta_X) (x)
-					\subseteq \big(f \circ f^o \circ f\big)(x) \subseteq
-				\big(f \circ f^o \circ b \big)(y)  \]
-				Applying Lemma 2.4.3 and then using (1) on the above inequality completes the result:
-				\[ f(x) \subseteq \big(ff^ob \big)(y)
-					\implies \big(b \circ f\big)(x) \subseteq
-				\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
-			\item $(\impliedby)$ Fix any $y \in Y$ and $b \in B$. Also, suppose that
-				$\Delta_Y \leq bff^o b$. As f is a function with domain as X,
-				$f^o :Y \to X$, $\phi \neq (f^o \circ b)(y)
-				\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
-				$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
-				relation.
-				\[ \Delta_Y \leq bff^ob
-					\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
-				(f^o b(y))\]
-				Last inequality of the above statement gives $y \in (bf)(x)
-				\text{ i.e. } (f(x),y)\in b $.\\
-				Applying Lemma 2.4.2 to f, and then using Lemma 2.4.4,
-				\begin{equation*}
-					ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
-				\end{equation*}
-				Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
-				(y,f(x)) \in b$
+			\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
+				\implies f^o .B.B.f=A $\\
+				Need to show that $A= f^o .B.f$ i.e.
+				$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
+				By hypothesis and quasi-uniformity of B,
+				$A\geq f^o .B.B.f \geq f^o B.f $\\
+				To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
+				\in A : a \subseteq f^o bf$\\
+				Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
+				$\exists a \in A: a \subseteq f^o bbf$ and also, by
+				quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
+				\implies f^o b'b'f \subseteq f^o bf$\\
+				Combining the above two inequalities,
+				$a \subseteq f^o bbf \subseteq f^o bf$\\
+			\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
+				$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
+				To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
+				\exists b,b' \in B : a \supseteq f^o bb'f$\\
+				Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
+				So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
+				and for this b, $\exists b'\in B: b'b' \subseteq b$.
+				Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
+				To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
+				a\in A : a \subseteq f^o bb'f$ \\
+				Before that, uniform continuity
+				of f along with Lemma 2.1.1 gives that \\$f.A\leq B.f
+				\implies A=f^o f.A \leq f^o.B.f$ \\
+				So, fix $b,b' \in B $, now, as ,
+
+				$A\leq f^o .B.f $
+				giving\\ $\exists a \in A : a \subseteq f^o bf$ and
+				$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
+				f^o b'	f$.\\
+				Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
+				\subseteq f^o bb'f$
 		\end{enumerate}
+	\item	\begin{enumerate}[label=(\roman*)]
+		\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
+			showing that $\forall b \in B,\exists b'\in B: b'
+			\subseteq bff^ob$:\\
+			So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
+			B$ such that $b' \subseteq bff^ob$.
+		\item $(\impliedby)$ Suppose $\forall b \in B, \exists b' \in B:
+			b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
+			to show equality, also need $B\geq B.f.f^o .B$.
+			By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
+			\subseteq b$. Now, by Lemma 2.4.2,
+			\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
+			\Delta_Y b'=b'b' \subseteq b\]
+
+	\end{enumerate}
+\item \begin{enumerate}[label=(\roman*)]
+	\item $(\implies)$ Let f be topologically dense. We will show that
+		for any $b\in B, y \in Y$, $\;(y,y) \in bff^ob$. Fix any $ b\in B$ and
+		$y \in Y$. As f is topologically dense, $\overline{f(X)}=Y $, implying
+		that $y\in \overline{f(X)}$, by definition giving that
+		\[ \exists x\in X \text{ such that }
+		(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
+		Re-writing the above statement in terms of relations, and
+		considering f as a relation:
+		\begin{align}
+			(f(x),y) \in b &\text{ gives }  x(b \circ f)y \text{ i.e. }
+			y \in (b \circ f)(x)\\
+			(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
+		\end{align}
+		Repeatedly applying Lemma 2.4.3 to (2),
+		\[ f(x) \subseteq b(y) \implies
+			\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
+			\implies \big(f \circ f^o \circ f\big)(x) \subseteq
+		\big(f \circ f^o \circ b \big)(y)\]
+		Applying Lemma 2.4.1 to the final inequality
+		in the above statement gives that
+		\[f(x)= (f\circ  \Delta_X) (x)
+			\subseteq \big(f \circ f^o \circ f\big)(x) \subseteq
+		\big(f \circ f^o \circ b \big)(y)  \]
+		Applying Lemma 2.4.3 and then using (1) on the above inequality completes the result:
+		\[ f(x) \subseteq \big(ff^ob \big)(y)
+			\implies \big(b \circ f\big)(x) \subseteq
+		\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
+	\item $(\impliedby)$ Fix any $y \in Y$ and $b \in B$. Also, suppose that
+		$\Delta_Y \leq bff^o b$. As f is a function with domain as X,
+		$f^o :Y \to X$, $\phi \neq (f^o \circ b)(y)
+		\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
+		$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
+		relation.
+		\[ \Delta_Y \leq bff^ob
+			\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
+		(f^o b(y))\]
+		Last inequality of the above statement gives $y \in (bf)(x)
+		\text{ i.e. } (f(x),y)\in b $.\\
+		Applying Lemma 2.4.2 to f, and then using Lemma 2.4.4,
+		\begin{equation*}
+			ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
+		\end{equation*}
+		Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
+		(y,f(x)) \in b$
+\end{enumerate}
 	\item \begin{enumerate}[label=(\roman*)]
 		\item
 			($\implies $) Let f be topologically dense. As B is a quasi-uniformity, for any $b \in B$,
