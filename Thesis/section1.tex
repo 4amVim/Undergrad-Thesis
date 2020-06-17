@@ -30,43 +30,64 @@
 }
 \begin{document}
 \begin{titlepage}
-   \begin{center}
-       \vspace*{1cm}
+    \begin{center}
+        \vspace*{1cm}
 
-       \textbf{Yoneda Lemma and Quasi-Uniform Spaces}
+        \Huge
+        \textbf{Yoneda Lemma and Quasi-Uniform Spaces}
 
-       \vspace{0.5cm}
-        Thesis Subtitle
+        \vspace{0.5cm}
+        \LARGE
+	by
+        \vspace{1.5cm}
 
-       \vspace{1.5cm}
+        \textbf{Ayush Rawat}
 
-       \textbf{Author Name}
+        \vfill
 
-       \vfill
+	Thesis submitted to Shiv Nadar University in partial fulfillment of the requirement
+	for the award of Degree of Bachelor of Science (Research)
+        \vspace{0.8cm}
 
-       A thesis presented for the degree of\\
-       Doctor of Philosophy
 
-       \vspace{0.8cm}
+        \Large
+	June 2020
 
-       Department Name\\
-       University Name\\
-       Date
-
-   \end{center}
+    \end{center}
 \end{titlepage}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\Huge
+
+		\textbf{Acknowledgements}
+
+	\end{center}
+		\vspace{2cm}
+		\LARGE
+		I would like to acknowledge my immense thankfulness to my supervisor,
+		Dr. Neha Gupta, for making this work possible.
+		Her patience, guidance and motivation were invaluable throughout all stages of the work.
+		\vfill
+\end{titlepage}
+\thispagestyle{empty}
+\newpage
 \begin{abstract}
-\addcontentsline{toc}{section}{Abstract}
-This undergraduate thesis aims to build up to the interpretation of Yoneda Lemma and Yoneda Embedding
+	We detail a proof of Yoneda Lemma from \cite{Tom} and show Cayley's theorem and
+	Yoneda Embedding as its consequences. Following \cite{Clementino_Hofmann_2011}, we define a
+	categorical structure on quasi-uniform spaces and promodules. Then we establish Yoneda
+	Embedding for quasi-uniform spaces. And prove a weak version of Yoneda Lemma for them.
+
+
+
+	This undergraduate thesis \cite{Tom} aims to build up to the interpretation of Yoneda Lemma and Yoneda Embedding
 as described in \cite{Clementino_Hofmann_2011}.
 We first prove Yoneda Lemma and discuss some of its consequences. Then we define
 Then we define the categories QUnif and ProMod, and show functors between them.
-
-%THE BELOW IS wrong and short, fix it
 Finally, we show Yoneda Embedding and Yoneda Lemma for ProMod.
 
 \end{abstract}
-%\section*{Acknowledgments}
 %\addcontentsline{toc}{section}{Acknowledgement}
 \tableofcontents
 \section{Introduction}
@@ -603,7 +624,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			And $RHS$ being $\mathcal{A} (\star, \star)$, which is further
 			isomorphic to group $G$:
 		\[ G \; \overset{\psi}{\cong} \; \mathcal{A} (\star,\star) \; \hat{\cong} \;
-			[ \mathcal{A} ^{op}, Set](H_\star,H_\star)\; \leq Sym(G).\]
+			[ \mathcal{A} ^{op}, Set](H_\star,H_\star)\, \leq Sym(G).\]
 			This is	precisely the statement of Cayley's theorem.\qedhere
 		\end{proof}
 		\subsection{Yoneda Embedding}%{{{ Embedding		Section
@@ -783,7 +804,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						giving an element, $a\circ b$ of $Q.P$ such that $a \circ b \subseteq k, k'$.
 					\item (Up-Set) Let $l:X \to Z$ be a relation, and $k \in Q.P$ such that $l \supseteq k$.
 						Define relations $ p:X \to Y $ and $q:Y \to Z$ as,
-						$p=\{(x,y): x \in domain(l) \text{ and } y \in Y\}$ and
+						$p=\{(x,y): x \in Dom(l) \text{ and } y \in Y\}$ and
 						$q=\{(y,z):  y \in Y \text{ and } z \in range(l)\}$.
 						Because $k\in Q.P$, there exist $q'\in Q$ and $p' \in P$ such that
 						$k = q' \circ p'$. Thus by definition of $p$ and $q$, we get that
@@ -930,7 +951,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 			Let promodules $P,Q: (X,A) \carrow (Y,B)$. Then, there
 			is a 2-cell from $P$ to $Q$ if and only if $P \leq Q$ as prorelations.
-			Thus, the identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
+			The identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
 			For the definition of 2-category, we have referred to \cite{Riehl_2016}.
 
 			\begin{prop}%{{{ ProMod		Definition
@@ -1046,9 +1067,9 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						by Lemma 2.4.4, $c\,f \subseteq k,k'$.
 					\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
 						uniformly continuous function such that $l \supseteq k$.
-						Define a relation $b':= \{(f(d),l(d)): d \in domain(l) \}$.
+						Define a relation $b':= \{(f(d),l(d)): d \in Dom(l) \}$.
 						By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
-						$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $domain(l)  \supseteq domain(f)$
+						$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $Dom(l)  \supseteq Dom(f)$
 						giving $(x,f(x)) \in f$. Thus, by definition of composition,
 						$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
 						By definition of composition, there exists $f(x)\in Y$ such that
@@ -1133,14 +1154,14 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						, need $l \in f^o .B$
 
 						Let $b\in B$ be such that $k=f^o \circ b$ and define
-						$b':=\{(y,y'): y \in domain(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
-						As $l\supseteq k=f^o \circ b$, $domain(b')=domain(l)\supseteq domain(b)$
+						$b':=\{(y,y'): y \in Dom(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
+						As $l\supseteq k=f^o \circ b$, $Dom(b')=Dom(l)\supseteq Dom(b)$
 						\\ and $range(l) \supseteq range(f^o \circ b)\implies
-						\forall y \in domain(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
+						\forall y \in Dom(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
 						Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
 						$f^o \circ b \subseteq l$ , \\
 						$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
-						(z,y) \in f^o \implies x \in domain(l) \text{ and } z \in l(x)$ i.e.
+						(z,y) \in f^o \implies x \in Dom(l) \text{ and } z \in l(x)$ i.e.
 						$(x,z) \in l$
 
 				\end{enumerate}
@@ -1194,13 +1215,16 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 			A quasi-uniform space $(X,A)$ defines a topological space as given by the
 			following proposition that we borrow from \cite{Fletcher_Lindgren_1982}.
-		Base $\mathbb{B}$ is a subset of $A$ contains a relation in $\mathbb{B}$.
-	DEFINE BASE HERE
+		A subfamily $\mathbb{B}$ of quasi-uniformity $A$ is called a base for $A$
+		if each relation in $A$ contains a relation in $\mathbb{B}$.
 			\begin{prop}
-				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$. 				For $x \in X$, define $Ball(x)=\{B(x) | B \in \mathbb{B}\}$.
+				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$.
+				For $x \in X$, define $\mathbb{B}(x)=\{B(x) | B \in \mathbb{B}\}$.
 				Then there is a unique topology on $X$ such that for each $x\in X$,
-				$Ball(x)$ is a base for the neighborhood of x in this topology.
+				$\mathbb{B}(x)$ is a base for the neighborhood of $x$ in this topology.
 			\end{prop}
+			We skip the proof as we have no requirement of it. But refer the interested reader to
+\cite{Fletcher_Lindgren_1982} for similar results.
 
 			\begin{definition} %{{{Topologically Dense		Definition
 				For any quasi-uniform space $(X,A)$, an element $x \in X$ is said to belong in the
@@ -1386,7 +1410,7 @@ of the quasi-uniform space 1.
 			Fix any $k:PX \to PX$, and $\tilde{k} \in \tilde{A}$ such that $l\geq \tilde{k} $.
 			As $k$ is a relation between promodules $X \carrow 1$, it can be thought
 			of as a relation $a$ on X, defined as:
-			\[a:=\{(x,y): x \in domain(\psi) \text{ and }y \in domain(\phi)
+			\[a:=\{(x,y): x \in Dom(\psi) \text{ and }y \in Dom(\phi)
 			\text{ whenever } \exists \psi,\phi \in PX: \psi l \phi\}\]
 			So, $l\geq \tilde{k}$ gives that $\tilde{a}\geq \tilde{k}$ i.e. $a \supseteq k.$
 			And as $A$ is an upper-set, we get $a\in A$. Now, by definition of $\tilde{A}$,
@@ -1518,7 +1542,7 @@ of the quasi-uniform space 1.
 				\begin{equation} \big(x^o b \big)(x) \subseteq (qa)(x) \implies x^ox \subseteq (qa)(x) \implies \star \in (qa)(x) \end{equation}
 				But, as $qa \subseteq p$ , (11) gives that $xp\star$.
 			\item Suppose $\psi \in \overline{y_X(X)}$, need to show $\psi \leq \psi^*.(y_X)_*=\psi^o.\tilde{A}.y_X$ i.e.
-				for $a \in A,$ $\exists p \in \psi: p \subseteq \psi^o.\tilde{a}.y_X$. For any $x \in domain(p)$,
+				for $a \in A,$ $\exists p \in \psi: p \subseteq \psi^o.\tilde{a}.y_X$. For any $x \in Dom(p)$,
 				the condition requires:
 				\begin{equation}
 					p(x) \subseteq  \psi^o.\tilde{a} .y_X(x)=\psi^o\big(\tilde{a} (x^*)\big)
