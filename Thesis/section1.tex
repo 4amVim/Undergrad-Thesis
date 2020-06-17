@@ -427,7 +427,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		That is, $(\string _ \circ f)(k)$ is defined to be $k \circ f$.
 		And we use the notation $g.f$ to mean the composition of $g$ and $f$ in the group.
 		\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
-			Every group, (G,.) is isomorphic to a subgroup of symmetric group on G.
+			Every group, $G$ is isomorphic to a subgroup of symmetric group on $G$.
 		\end{theorem}
 		\begin{proof} \setcounter{equation}{0} Let a group $G$ be given.
 			Define category $\mathcal{A}$ with a single object $\star$. And precisely one morphism
@@ -442,7 +442,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 				\item \textbf{Natural transformations from $H_\star$
 					to $H_\star$ are bijections on G.}
 
-					As $\mathcal{A} ^{op}$ is a category with single object,
+					As $\mathcal{A} ^{op}$ is a category with a single object,
 					each natural transformation $\alpha:
 					\begin{tikzcd}[row sep=small, column sep=large]
 						\mathcal{A} ^{op} \arrow[r,bend left=50, "H_\star"{name=U, below}]
@@ -479,13 +479,12 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 						\implies \alpha_\star(f)=\alpha_\star(1_\star).f \; .
 					\end{equation}
 					Where the last implication is given by the definition of composition in $\mathcal{A} $.
-					That is because $\alpha_\star$ is a function to $\mathcal{A} (\star,\star)$ gives that
-					$\alpha_\star(1_\star)\in \mathcal{A} (\star,\star)$.
+					Where, $\alpha_\star(1_\star)$ is a morphism in $A$ because $\alpha_\star$ is a function to $\mathcal{A} (\star,\star)$.
 					Thus, every natural transformation $\alpha$ is defined in terms of
 					its value at $1_\star$.
 					This can be considered as left multiplication by
 					$\alpha_\star(1_\star)$ in $G$, which
-					we know is an automorphism of F. Thus, $\alpha_\star$, and hence $\alpha$
+					we know to be an automorphism of $G$. Thus, $\alpha_\star$, and hence $\alpha$
 					can be thought of as a bijection on $G$.
 
 					So far we have shown we have that shown that the collection of
@@ -505,16 +504,16 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 
 					We will now show closure under inverses.
 					Fix any $\gamma:H_\star \to H_\star$.
-					I gives us the existence of $j\in G$ such that
+					Using I gives us the existence of $j\in G$ such that
 					$j=\psi \big( \gamma_\star(1_\star) \big)$, which implies
 					there exists $j^{-1}\in G$.
 
 					From I, we know that each natural transformation
 					is defined in terms of it's value
-					at $1_\star$, which is a morphism in $\mathcal{A}(\star,\star)$,
+					at $1_\star$. That value is a morphism in $\mathcal{A}(\star,\star)$,
 					and hence, an element of $G$. Thus, every element of $G$ gives us
 					at least one natural transformation.
-					Hence, there exists $\delta:H_\star \to H_\star$ such that
+					Hence, as $j^{-1} \in G$, there exists $\delta:H_\star \to H_\star$ such that
 					$j^{-1}=\delta_\star(1_\star)$.	And as $\psi$ is a group
 					isomorphism,
 					\[ 1_\star = \psi^{-1}(j.j^{-1})=\psi^{-1}(j)\,. \psi^{-1}(j^{-1})
