@@ -1,7 +1,9 @@
-\documentclass[18pt,a4paper]{article}
+\documentclass[a4paper]{article}
 \usepackage[margin=0.7in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,tikz-cd}
 \usepackage{enumitem,amsfonts,extarrows,mathtools}
+\usepackage{biblatex}
+\addbibresource{references.bib}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{coro}[theorem]{Corollary}
@@ -9,7 +11,6 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
-\newtheorem{proop}[theorem]{Proposition}
 \newtheorem{example}[theorem]{Example}
 
 \tikzset{commutative diagrams/.cd,mysymbol/.style={start anchor=center,end anchor=center,draw=none}}
@@ -29,13 +30,23 @@
 }
 
 \begin{document}
-\section{Abstract}
-This paper attempts to explain the interpretation of Yoneda Lemma as described in $CITE$.
+\begin{abstract}
+\addcontentsline{toc}{section}{Abstract}
+This undergraduate thesis aims to explain the interpretation of Yoneda Lemma as
+described in $CITE$.
+
 We prove Yoneda Lemma, then derive Cayley's Theorem and Yoneda Embedding as consequences of its proof.
 Then we define the categories QUnif and ProMod, and show functors between them.
+
+%THE BELOW IS wrong and short, fix it
 Finally, we show Yoneda Embedding and Yoneda Lemma for ProMod.
 
-\section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
+\end{abstract}
+%\section*{Acknowledgments}
+%\addcontentsline{toc}{section}{Acknowledgement}
+\tableofcontents
+\section{Introduction}
+
 In this section, we set forth some basic definitions, state and prove Yoneda lemma, and then
 show Cayley's Theorem and Yoneda Embedding as it's consequences.
 
@@ -48,7 +59,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 	And for objects $A,B \in \mathcal{A} $, a morphism $f \in \mathcal{A}^{op} (A,B)$
 	if and only if there is a morphism $g \in \mathcal{A}(B,A)$.
 \end{definition}
-\begin{proop} %{{{ H_A	Definition
+\begin{prop} %{{{ H_A	Definition
 	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
 	a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
 	\begin{enumerate}[label=(\roman*)]
@@ -57,7 +68,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
 			\text{ is given by } p \mapsto p \circ g.\]
 	\end{enumerate}
-\end{proop}
+\end{prop}
 \begin{proof}\setcounter{equation}{0}
 	Fix any objects $K,L,M \in \mathcal{A} $.
 	\begin{enumerate}[label=\Roman*]
@@ -233,6 +244,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 			\mbox{}
 		\end{proof}
 		%}}}
+\section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
 		\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
 			\setcounter{equation}{0}
 			If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
@@ -511,10 +523,11 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 					From I, we know that each natural transformation
 					is defined in terms of it's value
 					at $1_\star$. That value is a morphism in $\mathcal{A}(\star,\star)$,
-					and hence, an element of $G$. Thus, every element of $G$ gives us
+					and hence, gives an element of $G$.
+					Thus, every element of $G$ gives us
 					at least one natural transformation.
 					Hence, as $j^{-1} \in G$, there exists $\delta:H_\star \to H_\star$ such that
-					$j^{-1}=\delta_\star(1_\star)$.	And as $\psi$ is a group
+					$j^{-1}=\psi \big(\delta_\star(1_\star) $.	And as $\psi$ is a group
 					isomorphism,
 					\[ 1_\star = \psi^{-1}(j.j^{-1})=\psi^{-1}(j)\,. \psi^{-1}(j^{-1})
 					=\big(\gamma_\star(1_\star)\big).\big(\delta_\star(1_\star)\big).\]
@@ -562,7 +575,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			And $RHS$ being $\mathcal{A} (\star, \star)$, which is isomorphic to group $G$.
 			This is	precisely the statement of Cayley's theorem:
 		\[ Sym(G) \geq [ \mathcal{A} ^{op}, Set](H_\star,H_\star) \hat{\cong}
-		\mathcal{A} (\star,\star) \cong^\psi G .\qedhere \]
+		\mathcal{A} (\star,\star) \overset{\psi}{\cong} G .\qedhere \]
 		\end{proof}
 		\subsection{Yoneda Embedding}%{{{ Embedding		Section
 		\begin{definition} %{{{ Embedding of a category		Definition
@@ -599,8 +612,8 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 		to $f \circ k \in \mathcal{A} (K,Y)$.
 
 		%{{{ H.		Proposition
-		\begin{proop} $H_\bullet$ is a functor from $\mathcal{A}$ to $[\mathcal{A} ^{op},Set]$.
-		\end{proop}
+		\begin{prop} $H_\bullet$ is a functor from $\mathcal{A}$ to $[\mathcal{A} ^{op},Set]$.
+		\end{prop}
 		\begin{proof}\setcounter{equation}{0}
 			Fix any objects $K,L,M \in \mathcal{A} $.
 			\begin{enumerate}[label=\Roman*]
@@ -694,14 +707,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\end{enumerate}
 			\end{proof}
 
-
-
-
-
-
-
 			\section{Prorelations}
-
 			\begin{definition}%{{{ Prorelation		Definition
 				A prorelation is a partially ordered, down-directed, up-set of relations $X \to Y$.\\
 				That is, $P \subseteq \mathcal{P}(X \times Y)$ is a prorelation if it satisfies the
@@ -720,12 +726,13 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				We will define a prorelation on real numbers.
 				For any positive real number $\epsilon$, define a relation on $\mathbb{R}$ as
 				$A_\epsilon=\{ (x,y) |\; |x-y|<\epsilon \}$.
-				The collection of all relations on $\mathbb{R}$ such that each of them contains some
-				$A_\epsilon$, is a prorelation, $K$ on $\mathbb{R}$.
+				The collection of all relations on $\mathbb{R}$ that contains some
+				$A_\epsilon$ will be a prorelation, $K$ on $\mathbb{R}$.
 				That is, $K=\{ a:\mathbb{R} \to \mathbb{R} \, | \; a \supseteq A_\epsilon \text{ for some } \epsilon>0 \; \}$ forms a prorelation.
 				If $k,l \in K$, then there exist $\delta ,\, \epsilon > 0$ such that
 				$k \supseteq A_\delta$ and $l \supseteq A_\epsilon$. Thus, the relation $A_{
-				\frac{\delta+\epsilon}{2}}$ is in both $k$ and $l$.
+				\frac{\delta+\epsilon}{2}}$ is in both $k$ and $l$. Moreover,
+				$K$ is an up-set by definition.
 			\end{example}
 			\begin{definition}%{{{ Composition of prorelations	Definition
 				A prorelation $P:X \to Y$ can be composed to a prorelation $Q:Y \to Z$ by taking
@@ -832,11 +839,11 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\end{enumerate}
 			\end{definition}
 			\begin{example} %{{{ 		Example
-				We will show that the prorelation defined in Example 2.2 is a quasi-uniformity.
+				We will show that the prorelation $K$, defined in Example 3.2 is a quasi-uniformity.
 				The definition $A_\epsilon=\{ (x,y) |\;	|x-y|<\epsilon \}$ implies that each $A_\epsilon$
 				is reflexive. And as every relation in $K$ contains some $A_\epsilon$,
-				it must be reflexive as well, hence definition 3.1 (i) holds for $K$.
-				Now we are going to show that definition 3.1 (ii) holds for $K$. Fix any
+				it must be reflexive as well, hence definition 4.1 (i) holds for $K$.
+				Now we are going to show that definition 4.1 (ii) holds for $K$. Fix any
 				relation $a \in K$, so, by definition of $K$, there exists $\epsilon$ such that
 				$b\supseteq A_\epsilon$. Using $|x-y|=|y-x|$ we get that $A_\epsilon$ is symmetric.
 				Thus, for any $\epsilon$, $A_\epsilon \circ A_\epsilon \subseteq A_\epsilon \subseteq b$.
@@ -867,12 +874,13 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\end{proof}
 			%}}}
 
+			\subsection{Categories QUnif and ProMod}
 			%{{{ Two categories
 			We define a category called QUnif as having quasi-uniform spaces as objects
 			and uniformly continuous maps between them as morphisms.
-			With the composition of morphisms defined as that of functions, and identity of object $(X,A)$
-			defined to be the identity function on set $X$.
-			\begin{proop} QUnif is a category.\end{proop}
+			With the composition of morphisms defined as that of functions,
+			and identity of object $(X,A)$ is the identity function on set $X$.
+			\begin{prop} QUnif is a category.\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 				\begin{enumerate}[label=(\roman*)]
 					\item (Associativity) The composition of functions is associative by definition.
@@ -888,21 +896,18 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
 			\end{definition}
 
-
-			Containment of promodules is defined as that of prorelations.
-			Promodules are composed as prorelations.\\
-
 			Now, we define a 2-category called ProMod as having quasi-uniform spaces as 0-cells and the
-			promodules between them being 1-cells. The identity 1-cell of $(X,A)$ is defined to be the
-			promodule $A$.
-			For promodules $P,Q: (X,A) \carrow (Y,B)$,
-			we define there to be a 2-cell from $P$ to $Q$ if and only if as prorelations, $P \leq Q$.
-			Thus, the identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
-			We use the definition of a 2-category given in $CITE$.
+			promodules between them being 1-cells.
+			The promodule $A$ will work as the identity of $(X,A)$.
 
-			\begin{proop}%{{{ ProMod		Definition
+			Let promodules $P,Q: (X,A) \carrow (Y,B)$. Then, there
+			is a 2-cell from $P$ to $Q$ if and only if $P \leq Q$ as prorelations.
+			Thus, the identity 2-cell of $P$ is the 2-cell corresponding to $P\leq P$.
+			For the definition of 2-category, we have referred to $CITE$.
+
+			\begin{prop}%{{{ ProMod		Definition
 				ProMod, as described above is a 2-category.
-			\end{proop}
+			\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 				In order to show that ProMod is a 2-category, need the following:
 				\begin{enumerate}[label=(\alph*)]
@@ -988,18 +993,19 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\end{enumerate}
 			\end{proof}
 			%}}}
+			\subsection{Functors between QUnif and ProMod}
 			%{{{Two functors
 			We now define a functor from the category QUnif to ProMod, as fixing objects and taking uniformly
 			continuous maps $f:(X,A)\to(Y,B)$ to $f.B$.
 
-			\begin{proop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
+			\begin{prop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
 				\begin{enumerate}[label=(\alph*)]
 					\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
 					\item for $f:(X,A) \to (Y,B)$ in QUnif,
 						$f^* := B.f$
 				\end{enumerate}
 				is indeed a functor.
-			\end{proop}
+			\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 
 				We will first show that $B.f={b \circ f: b \in B}$
@@ -1070,14 +1076,14 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			Similar to the above functor, we define a contravariant functor from the category QUnif to ProMod,
 			as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $B.f^o$.
 
-			\begin{proop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
+			\begin{prop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
 				\begin{enumerate}[label=(\alph*)]
 					\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
 					\item for $f:(X,A) \to (Y,B)$ in QUnif,
 						$f^* := f^o .B$
 				\end{enumerate}
 				is indeed a functor.
-			\end{proop}
+			\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 
 				Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
@@ -1157,6 +1163,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\end{enumerate}
 			\end{proof}
 			%}}}
+			A quasi-uniformity on
 			\begin{definition} %{{{Topologically Dense		Definition
 				For any quasi-uniform space $(X,A)$, an element $x \in X$ is said to belong in the
 				topological closure of set $M\subseteq X$ if and only if for each $a\in A$,
@@ -1171,11 +1178,9 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 					\item f is said to be topologically dense of and only if $\overline{f(X)}=Y$.
 				\end{enumerate}
 			\end{definition}
-			%Mention about topology so that below definition makes more sense ??
-			%Might as well put an example as well ???
 
 			%{{{ Proposition 1
-			\begin{proop}
+			\begin{prop}
 				Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
 				\begin{enumerate}[label=(\alph*)]
 					\item f is fully faithful if and only if $A= f^o.B.f$, that is
@@ -1186,7 +1191,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						$\; b \, f\, f^o\,b$ is reflexive
 					\item f is fully dense if and only if f is topologically dense
 				\end{enumerate}
-			\end{proop}
+			\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 
 			\item
@@ -1320,12 +1325,12 @@ of the quasi-uniform space 1.
 	to the quasi-uniform space 1.
 	\[PX:=\{\psi :(X,A) \carrow 1 | \psi \text{ is a promodule} \}\]
 \end{definition}
-\begin{proop}%{{{ A~		Definition
+\begin{prop}%{{{ A~		Definition
 	For any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
 	\[ \text{ for } \phi,\psi \in PX, \; \phi \, \tilde{a} \, \psi \; \text{ only if } \;
 	\phi \leq \psi.a \]
 	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
-\end{proop}
+\end{prop}
 \begin{proof}\setcounter{equation}{0}
 
 	First need to show that $\tilde{A}$ is a prorelation,
@@ -1378,13 +1383,13 @@ of the quasi-uniform space 1.
 \end{proof}
 %}}}
 %{{{ Yoneda Embedding
-\begin{proop}[Yoneda Embedding]
+\begin{prop}[Yoneda Embedding]
 \item For a quasi-uniform space $(X,A)$, function $y_X:X \to PX$ is defined by $x\mapsto x^*$ for $x \in X$.
 	\begin{enumerate}[label=(\alph*)]
 		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is a uniformly continuous map.
 		\item $y_X:(X,A) \rightarrow (PX,\tilde{A})$ is fully faithful.
 	\end{enumerate}
-\end{proop}
+\end{prop}
 \begin{proof}\setcounter{equation}{0}
 
 \item \begin{enumerate}[label=(\alph*)]
@@ -1508,7 +1513,7 @@ of the quasi-uniform space 1.
 	\end{proof}
 	%}}}
 	%}}}
-	%{{{ Yoneda Corollary NOT COMPLETE YET
+	%{{{ Yoneda Corollary
 	%\begin{lemma}
 	%	Composition of a right-adjoint and an equivalence is a right adjoint.
 	%\end{lemma}
