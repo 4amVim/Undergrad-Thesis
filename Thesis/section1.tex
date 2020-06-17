@@ -28,8 +28,33 @@
 		\hidewidth$#1\circ\mkern1mu$\hidewidth\cr
 	$#1\longrightarrow$\cr}%
 }
-
 \begin{document}
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+
+       \textbf{Yoneda Lemma and Quasi-Uniform Spaces}
+
+       \vspace{0.5cm}
+        Thesis Subtitle
+
+       \vspace{1.5cm}
+
+       \textbf{Author Name}
+
+       \vfill
+
+       A thesis presented for the degree of\\
+       Doctor of Philosophy
+
+       \vspace{0.8cm}
+
+       Department Name\\
+       University Name\\
+       Date
+
+   \end{center}
+\end{titlepage}
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 This undergraduate thesis aims to build up to the interpretation of Yoneda Lemma and Yoneda Embedding
@@ -46,7 +71,7 @@ Finally, we show Yoneda Embedding and Yoneda Lemma for ProMod.
 \tableofcontents
 \section{Introduction}
 
-In this section, we set forth some basic definitions, and prove some lemmas that we will require in
+In this section, we set forth some basic definitions, and prove some lemmas that will be required in
 order to prove Yoneda lemma.
 
 For any category $\mathcal{A}$, and it's objects $X,Y\in \mathcal{A} $,
@@ -1169,12 +1194,12 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 			A quasi-uniform space $(X,A)$ defines a topological space as given by the
 			following proposition that we borrow from \cite{Fletcher_Lindgren_1982}.
+		Base $\mathbb{B}$ is a subset of $A$ contains a relation in $\mathbb{B}$.
+	DEFINE BASE HERE
 			\begin{prop}
-				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$.That is,
-				every relation in $A$ contains a relation in $\mathbb{B}$.
-				For $x \in X$, define $B(x)=\{B(x) | B \in \mathbb{B}\}$.
+				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$. 				For $x \in X$, define $Ball(x)=\{B(x) | B \in \mathbb{B}\}$.
 				Then there is a unique topology on $X$ such that for each $x\in X$,
-				$B(x)$ is a base for the neighborhood of x in this topology.
+				$Ball(x)$ is a base for the neighborhood of x in this topology.
 			\end{prop}
 
 			\begin{definition} %{{{Topologically Dense		Definition
