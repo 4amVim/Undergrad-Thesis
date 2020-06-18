@@ -43,25 +43,32 @@
 
         \textbf{Ayush Rawat}
 
-	(1510110103)
-
-
         \vspace{1.5cm}
         \LARGE
 	supervised by
-        \vspace{0.7cm}
+        \vspace{0.5cm}
 
 	\textbf{Dr. Neha Gupta}
 
-        \vfill
-
-	Thesis submitted to Shiv Nadar University in fulfillment of the requirement
-	for the award of Degree of Bachelor of Science (Research)
-        \vspace{0.8cm}
-
+        \vspace{2cm}
 
         \Large
 	June 2020
+
+        \vfill
+
+	Thesis submitted to
+
+	Shiv Nadar University
+
+	Department of Mathematics
+
+	for the completion of
+
+	Bachelor of Science (Research) in Mathematics
+        \vspace{0.8cm}
+
+
 
     \end{center}
 \end{titlepage}
@@ -101,13 +108,9 @@
 \tableofcontents
 \section{Introduction}
 
-Informally, Yoneda Lemma can be understood as giving us a way to study, one by one,
-objects of a locally small category $ \mathcal{A} $ by looking at how they interact with different functors from
-the presheaf category on $ \mathcal{A} $. In a crude sense, one may consider Yoneda Lemma to be
-akin to a math flavored particle accelerator, in order to figure out a mystery category, we
-put an object of it in the Lemma, and see how it reacts to being moved representable functors
-from $ \mathcal{A}$ to $Set$. Once we have exhaustively tested it, we learn a lot about it's
-structure.
+An informal way of understanding Yoneda Lemma can be found in a Dutch saying, "Tell me who your
+friends are, and I will tell you who you are.". The main way of thinking about Yoneda Lemma is
+that any object of a category is determined by $H_A$ (introduced in our first proposition).
 
 In this section, we set forth basic definitions and lemmas that we will require in
 order to prove Yoneda lemma.
@@ -323,7 +326,7 @@ Throughout this work, the notation $(\string _)$ occurs as a placeholder for the
 			\item For the map $\string ~$, instead of writing $\string ~ (a)=b$,
 				we use $\tilde{a} = b$ to denote $a \mapsto b$.
 			\item $[ \mathcal{A}^{op},Set](	H_A,X) $ denotes the collection of morphisms $\alpha: \begin{tikzcd}[row sep=large, column sep=huge]
-					A^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
+					\mathcal{A} ^{op} \arrow[r,bend left=50, "H_A"{name=U, below}]
 					\arrow[r, bend right = 50, "X"{name=D, above}]
 					& Set
 					\arrow[Rightarrow, from=U , to=D, "\alpha"]
@@ -488,6 +491,18 @@ Throughout this work, the notation $(\string _)$ occurs as a placeholder for the
 					%}}}
 			\end{enumerate}
 		\end{proof}
+		A non-technical way of thinking about Yoneda Lemma can be as follows.
+		There are things that are so small, that we can't directly observe them. So,
+		physicists use particle accelerators, to collide observable things with the particles
+		that they wish to study. In a similar manner,locally small categories
+		can also have a very complicated structure. They could have objects, that
+		are extremely hard to study directly.
+		So, mathematicians use Yoneda Lemma to find out properties such objects
+		by looking at what various functors do to them. As the above proof
+		indicates, for an object $A$, $H_A$ turns out to be a very useful functor (we
+		will see an illustration of this in the next theorem as well). Hence,
+		in a sense, the way a physicist uses a particle accelerator is similar
+		to the way a mathematician uses Yoneda Lemma.
 		\subsection{Cayley's Theorem}%
 		%{{{Cayley Write-up
 		Informally, given a locally small category$\mathcal{A} $, we can fix a presheaf $X$ on $\mathcal{A}$,
@@ -1758,4 +1773,10 @@ quasi-uniformity of the quasi-uniform space 1.
 		%}}}
 \nocite{Leinster_2014}
 		\printbibliography
+
+		\vfill
+
+		\begin{center}
+			Author: Ayush Rawat \hfill SNU ID: 1510110103 \hfill Email: rawatayush1997@gmail.com
+		\end{center}
 		\end{document}
