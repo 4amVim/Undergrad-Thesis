@@ -73,28 +73,21 @@
 \thispagestyle{empty}
 \newpage
 \begin{abstract}
-	We detail a proof of Yoneda Lemma from \cite{Tom} and show Cayley's theorem and
-	Yoneda Embedding as its consequences. Following \cite{Clementino_Hofmann_2011}, we define a
-	categorical structure on quasi-uniform spaces and promodules. Then we establish Yoneda
-	Embedding for quasi-uniform spaces. And prove a weak version of Yoneda Lemma for them.
-
-
-
-	This undergraduate thesis \cite{Tom} aims to build up to the interpretation of Yoneda Lemma and Yoneda Embedding
-as described in \cite{Clementino_Hofmann_2011}.
-We first prove Yoneda Lemma and discuss some of its consequences. Then we define
-Then we define the categories QUnif and ProMod, and show functors between them.
-Finally, we show Yoneda Embedding and Yoneda Lemma for ProMod.
-
+	We detail a proof of Yoneda Lemma from \cite{Tom}, showing Cayley's theorem and
+	Yoneda Embedding as its consequences. We define a
+	categorical structure on quasi-uniform spaces and on promodules as described in
+	\cite{Clementino_Hofmann_2011}, in order to establish Yoneda
+	Embedding for quasi-uniform spaces. Further, we prove a weak version of Yoneda Lemma
+	for quasi-uniform spaces.
 \end{abstract}
 %\addcontentsline{toc}{section}{Acknowledgments}
 \tableofcontents
 \section{Introduction}
 
-In this section, we set forth some basic definitions, and prove some lemmas that will be required in
+In this section, we set forth basic definitions and lemmas that we will require in
 order to prove Yoneda lemma.
 
-For any category $\mathcal{A}$, and it's objects $X,Y\in \mathcal{A} $,
+For any category $\mathcal{A}$, and its objects $X,Y\in \mathcal{A} $,
 we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 
 \begin{definition} %{{{Category A op		Definition
@@ -114,21 +107,21 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 	\end{enumerate}
 \end{prop}
 \begin{proof}\setcounter{equation}{0}
-	Fix any objects $K,L,M \in \mathcal{A} $.
+	Fix objects $K,L,M$ in category $\mathcal{A}$.
 	\begin{enumerate}[label=\Roman*]
 		\item \textbf{ (Composition) } As $H_A$ is a contravariant functor, for
 			any morphisms $f\in \mathcal{A} (K,L)$ and $g \in
 			\mathcal{A}(L,M)$, we need to show that
 			$H_A(g \circ f)=H_A(f) \circ H_A(g)$. Note,
 			the composition $g\circ f$ on the left hand side is in $\mathcal{A} ^{op}$.
-			Hence, using the definition of $H_A$ gives us that for any $k \in H_A(M) $, we must have
+			Using the definition of $H_A$ gives us that for any $k \in H_A(M) $, we must have:
 			\begin{align*}
 				LHS&=\Big( H_A(g \circ f) \Big) (k)=k\circ g\circ f \\
 				\text{ and } RHS&=\Big( H_A(f)\circ H_A(g) \Big) (k)=\Big( H_A(f) \Big) (k \circ g)
 			=(k\circ g)\circ f. \end{align*}
-		\item \textbf{ (Identity) } We will show that for any $k \in \mathcal{A} (K,L)$, $H_A$ respects the identities
-			of $K$ and $L$ in $\mathcal{A}$ (as they're equal to the identities of $K$ and
-			$L$ in $\mathcal{A} ^{op}$. Using the definition of $H_A$,
+		\item \textbf{ (Identity) } We will show that for any
+			$k \in \mathcal{A} (K,L)$, $H_A$ respects the identities
+			of $K$ and $L$ in $\mathcal{A}^{op}$. Using the definition of $H_A$,
 			for any object $L\in \mathcal{A} $ and
 			morphism $p \in H_A(L)$, we get the following equations.
 			\begin{align*}
@@ -159,7 +152,8 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		then $\alpha$ is a natural isomorphism.
 	\end{lemma}
 	\begin{proof}\setcounter{equation}{0}
-		We are going to show that there exists a natural transformation $\beta:G \to F$.
+		We will first show that there exists a natural transformation $\beta:G \to F$
+		and then that $\alpha$ and $\beta$ are mutually inverse.
 		Fix any objects $A,B\in \mathcal{A} $ and morphism $k \in \mathcal{A}(A,B)$. As
 		$\alpha$ is a natural transformation,
 		\begin{equation}
@@ -167,7 +161,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		\end{equation}
 		Because $\alpha_A$ is an isomorphism, we get that
 		there exists
-		$\beta_A:G(A)\to F(A)$ such that
+		$\beta_A:G(A)\to F(A)$ such that:
 		\begin{align}
 			\alpha_A \circ \beta_A = 1_{G(A)} \text{ and }
 			\beta_A \circ \alpha_A = 1_{F(A)}.
@@ -176,17 +170,18 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		such that $\beta_B \circ \alpha_B = 1_{F(B)}$. Multiplying (1) with $\beta_B$ and
 		$\beta_A$,
 		\begin{equation}
-			\beta_B^{} \circ \alpha_B^{} \circ F(k) \circ \beta_A^{} =
-			\beta_B^{} \circ G(k) \circ \alpha_A^{} \circ \beta_A^{}
+			\beta_B^{} \circ \big( \alpha_B^{} \circ F(k) \big) \circ \beta_A^{} =
+			\beta_B^{} \circ \big( G(k) \circ \alpha_A^{} \big) \circ \beta_A^{}
 			\implies  F(k) \circ \beta_A^{} =\beta_B^{} \circ G(k).
 		\end{equation}
-		Thus, $\beta$ is a natural transformation from $F$ to $G$. Using (2) gives us
-		that $\big( \alpha \circ \beta \big)_A = 1_{G(A)}$ and
-		$\big( \beta \circ \alpha \big)_A = 1_{F(A)}$ for any object $A\in \mathcal{A} $.
+		Thus, $\beta$ is a natural transformation from $F$ to $G$. Now, using (2) gives us
+		that for any object $A\in \mathcal{A} $, $\big( \alpha \circ \beta \big)_A = 1_{G(A)}$ and
+		$\big( \beta \circ \alpha \big)_A = 1_{F(A)}$.
 		Therefore,$\alpha \circ \beta = 1_G$ and $\beta \circ \alpha =1_F$.
-		Hence, $\alpha$ and $\beta$ together give an isomorphism between $F$ and $G$
+		Thus, $\alpha$ and $\beta$ together give an isomorphism between $F$ and $G$
 		in the functor category
-		$[\mathcal{A},\mathcal{B}]$.
+		$[\mathcal{A},\mathcal{B}]$. Hence, $\alpha$ is a natural isomorphism between $F$
+		and $G$.
 	\end{proof}
 	\begin{lemma}
 		Let $\mathcal{A},\mathcal{B}$ and $\mathcal{C}$ be categories. Suppose there
@@ -196,8 +191,7 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		defined as taking $B \in \mathcal{B}$ to $F(A,B),\, G(A,B)$ and
 		morphism $f$ to $F((1_A,f)),\, G((1_A,f)) $. And, for every $B\in \mathcal{B}$,
 		there are functors $F_B,G_B:\mathcal{A} \to \mathcal{C}$ defined as
-		taking $A \in \mathcal{A} $ to $F(A,B),\, G(A,B)$ and morphism $g$ to $F((g,1_B)),\, F((g,1_B))$.
-
+		in Proposition 1.2.
 
 		A family of maps, $\big( \alpha_{A,B}: F(A,B) \to G(A,B)
 		\big)_{A \in \mathcal{A} , B \in \mathcal{B} } $ is a natural transformation
@@ -218,8 +212,8 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		the square
 		$\begin{tikzcd}
 			F\big((A,B)\big) \arrow[swap]{d}{\alpha_{(A,B)}} \arrow{r}{F\big((f,g)\big)}
-		& F\big((A',B')\big) \arrow{d}{\alpha_Y}\\
-		G(\big((A,B)\big)) \arrow[swap]{r}{G((f,g))}
+		& F\big((A',B')\big) \arrow{d}{\alpha_{(A',B')}}\\
+		G\big((A,B)\big) \arrow[swap]{r}{G((f,g))}
 		& G\big((A',B')\big)
 		\end{tikzcd} \text{ commutes.}$
 		Fix any objects $A,A' \in \mathcal{A} $ and $B,B' \in \mathcal{B} $.
@@ -229,37 +223,34 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 			\item We will show that $F^A$ is a functor from $\mathcal{B} $ to $\mathcal{C}$.
 				It respects composition:
 				\[F^A(f)\circ F^A(g)=(1_A,f)\circ(1_A,g)=(1_A,f\circ g)=F^A(f\circ g).\]
-				And respects identity:
+				And it respects identity as:
 				\[F^A(1_B)=F(1_A,1_B)=1_{F_{(A,B)}}=1_{F^A(B)}.\]
 				$G^A$ is shown a functor in the same manner.
 
-			\item Condition (ii) gives us that
-				$ \text { for any } g \in \mathcal{A}(A,A'), \text{ the square }
-				\begin{tikzcd}
-					F_A(B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F_A(g)}
-					& F_A(B') \arrow{d}{\alpha_{A,B'}}\\
-					G_A(B) \arrow[swap]{r}{G_A(g)}
-					& G_A(B')
-				\end{tikzcd}
-				\text{ commutes}$. By the definition of $F_A$ and $G_A$,
+			\item Condition (ii) gives us that the square
+				$\begin{tikzcd}
+					F_B(A) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F_B(g)}
+					& F_B(A') \arrow{d}{\alpha_{A',B}}\\
+					G_B(A) \arrow[swap]{r}{G_B(g)}
+					& G_B(A')
+				\end{tikzcd}$
+				 commutes. By the definition of $F_B$ and $G_B$,
 				this square can be written as
-				$
-				\begin{tikzcd}
+				$\begin{tikzcd}
 					F(A,B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F((g,1_B))}
-					& F(A,B') \arrow{d}{\alpha_{A,B'}}\\
+					& F(A',B) \arrow{d}{\alpha_{A',B}}\\
 					G(A,B) \arrow[swap]{r}{G((g,1_B))}
-					& G(A,B')
+					& G(A',B)
 				\end{tikzcd}
 				$.
-			\item Condition (i) gives us that
-				$ \text { for any } f \in \mathcal{B}(B,B'), \text{ the square }
-				\begin{tikzcd}
+			\item Condition (i) gives us that the square
+				$\begin{tikzcd}
 					F^{A'}(B) \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F^{A'}(f)}
 					& F^{A'}(B') \arrow{d}{\alpha_{A',B'}}\\
 					G^{A'}(B) \arrow[swap]{r}{G_{A'}(f)}
 					& G^{A'}(B')
-				\end{tikzcd}
-				\text{ commutes}$. By the definition of $F^A$ and $G^A$,
+				\end{tikzcd}$
+				commutes. By the definition of $F^A$ and $G^A$,
 				this square can be written as
 				$
 				\begin{tikzcd}
@@ -273,15 +264,15 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 				rectangle commutes:
 				\begin{equation}	\begin{tikzcd}[row sep=large, column sep=huge]
 					F(A,B) \arrow[swap]{d}{\alpha_{A,B}} \arrow{r}{F((g,1_B))}
-					& F(A,B') \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F((1_{A'},f))}
+					& F(A',B) \arrow[swap]{d}{\alpha_{A',B}} \arrow{r}{F((1_{A'},f))}
 					& F(A',B') \arrow{d}{\alpha_{A',B'}}\\
 					G(A,B) \arrow[swap]{r}{G((g,1_B))}
-					& G(A,B')\arrow[swap]{r}{G((1_{A'},f))}	& G(A',B')
+					& G(A',B)\arrow[swap]{r}{G((1_{A'},f))}	& G(A',B')
 				\end{tikzcd}.\end{equation}
 				Using (1), we get that:
 				\begin{equation} \alpha_{A',B'} \circ \big( F((1_{A'},f))\circ F((g,1_B))\big)
-				=\big( G((1_{A'},f))\circ G((g,1_B)) \circ \alpha_{A',B'} .\end{equation}
-					As $F$ and $G$ are functors, from (2), we have that
+				=\big( G((1_{A'},f))\circ G((g,1_B)) \circ \alpha_{A',B'} ,\end{equation}
+					And as $F$ and $G$ are functors, (2) gives us that:
 					\[ \alpha_{A',B'} \circ F\big((g,f)\big)
 					=G\big((g,f)\big) \circ \alpha_{A',B'}. \qedhere \]
 			\end{enumerate}
@@ -289,12 +280,16 @@ we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 		\end{proof}
 		%}}}
 \section{Yoneda Lemma} %{{{ Yoneda Lemma		Section
-This section starts with a proof of Yoneda Lemma, and then goes on to use it to derive Cayley's Theorem.
-After that, we mention Yoneda Embedding as it's consequences.
+This section starts with a proof of Yoneda Lemma, and then uses it to derive Cayley's Theorem.
+After that, we mention a proof of Yoneda Embedding.
+
+Throughout this work, the notation $(\string _)$ occurs as a placeholder for the element a map is applied to.
+		That is, $(\string _ \circ f)(k)$ is defined to be $k \circ f$.
 		\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
 			\setcounter{equation}{0}
 			If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
-			and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism,
+			and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism
+			(of sets),
 			\begin{equation} [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{ which is natural in } A \text{ and } X.\end{equation}
 		\end{theorem}
 		\paragraph{Notation:} \begin{itemize}
@@ -312,7 +307,7 @@ After that, we mention Yoneda Embedding as it's consequences.
 				\end{tikzcd}$.
 		\end{itemize}
 		To prove the theorem,
-		first, we show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A) $ as set,
+		first, we show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A) $ as a set,
 		and then that this isomorphism is natural in $X$ and $A$.
 		\begin{proof}\setcounter{equation}{0}
 			Let $\mathcal{A} $ be a locally small category.
@@ -327,10 +322,11 @@ After that, we mention Yoneda Embedding as it's consequences.
 					definition of $\alpha_A$ gives that $\alpha_A(1_A)\in X(A)$.
 					%{{{Define ~
 
-					Define $\string ~ : X(A) \to [\mathcal{A}^{op}, Set](H_A,X)$
+					Define $\string ~ : X(A) \to \mathcal{C}(H_A,X)$
 					for any $ x \in X(A)$ as the natural transformation $\tilde{x} : H_A \to X$ whose
 					K-component is the function mapping each morphism $p \in \mathcal{A}(K,A)$
-					to $\Big(X(p)\Big)(x)$. That is, $\tilde{x}_K (p):=\Big(X(p)\Big)(x)$.\\
+					to $\Big(X(p)\Big)(x)$. That is, $\tilde{x}_K^{}
+					(p):=\Big(X(p)\Big)(x)$.\\
 
 					We are going to show that $\tilde{x}$ is a natural transformation.
 					Fix objects $K,L \in \mathcal{A} $ and morphism $q \in \mathcal{A}^{op}(K,L)$.
@@ -366,26 +362,26 @@ After that, we mention Yoneda Embedding as it's consequences.
 						\item For any $\alpha \in \mathcal{C} (H_A,X)$ , need to show that $\tilde{\hat{\alpha}}=\alpha$.
 							So, it's required that each of their component are equal.
 							As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
-							between functors that go to the category \textit{Set}, each of the components is a function.
+							between functors that go to the category \textit{Set}, each of their components is a function.
 							So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
 							$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$.
 							Using first the definition of $ \string ~$ and then that of $\hat{\alpha}$ gives:
 							\begin{align}
-								LHS=\tilde{\hat{\alpha}}_B(f)=\Big(X(f)\Big)(\hat{\alpha})=\Big(X(f)\Big)(\alpha_A(1_A))
+								LHS=\tilde{\hat{\alpha}}_K(f)=\Big(X(f)\Big)(\hat{\alpha})=\Big(X(f)\Big)(\alpha_A(1_A))
 							\end{align}
 							And as $f\in \mathcal{A} (K,A)$, we also have the following.
 							\begin{equation}
 								RHS=\alpha_K(f)= \alpha_K(1_A \circ f)
 							\end{equation}
-							Because $\alpha$ is a natural transformation, the square following square commutes for $1_A$.
-							\[\begin{tikzcd}
+							Because $\alpha$ is a natural transformation, the following square commutes for $1_A$:
+							\begin{equation}\begin{tikzcd}
 								\mathcal{A} (A,A) \arrow[swap]{d}{\alpha_A} \arrow{r}{- \circ f}
 	& \mathcal{A} (K,A) \arrow{d}{\alpha_K}\\
 	X(A) \arrow[swap]{r}{X(f)}
 	& X(K)
-							\end{tikzcd}\]
-							This gives that $\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$.
-							Hence, we have from (2) and (3), we get that $RHS=LHS$.
+							\end{tikzcd},\end{equation}
+							which gives that $\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$.
+							Hence, from (2) and (3), we get that $RHS=LHS$.
 					\end{enumerate}
 					%}}}
 					%{{{Naturality
@@ -395,10 +391,9 @@ After that, we mention Yoneda Embedding as it's consequences.
 
 					\begin{enumerate}[label=(\roman*)]
 						\item We are going to show the above isomorphism to be natural in X.
-							Fix any $A \in \mathcal{A}$. Need that for
+							Fix any $A \in \mathcal{A}$. Need, for
 							presheaves $X,Y \in \mathcal{C}$ and
-							natural transformation $\beta \in \mathcal{C} (X,Y)$, the following
-							square commutes.
+							natural transformation $\beta \in \mathcal{C} (X,Y)$, the following square to commute:
 							\begin{equation*}
 								\begin{tikzcd}
 									\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
@@ -406,14 +401,15 @@ After that, we mention Yoneda Embedding as it's consequences.
 			& \mathcal{C}(H_A,Y) \arrow{d}{\string ^}\\
 			X(A) \arrow[swap]{r}{\beta_A}
 			& Y(A)
-								\end{tikzcd}
+								\end{tikzcd}.
 							\end{equation*}
 							So, for any $\alpha:H_A \to X$, we need that
-							$\big( \string ^ \circ H_\beta \big)(\alpha) = \big( \beta_A \circ \string ^
-							\big)(\alpha)$. Using definition of $H_\beta$ and $\string ^$ gives:
+							$\big( \string ^ \circ (\beta \circ \string _ )\big)(\alpha) = \big( \beta_A \circ \string ^
+							\big)(\alpha)$. Using the definition of
+							$(\beta \circ \string _ )$ and $\string ^$ gives:
 							\begin{align}
-								LHS & = \big( \string ^ \circ H_\beta \big)(\alpha) =
-								\widehat{\big(  H_\beta(\alpha)\big)}=
+								LHS & = \big( \string ^ \circ (\beta \circ \string _ ) \big)(\alpha) =
+								\widehat{\big(  (\beta \circ \string _ )(\alpha)\big)}=
 								\widehat{\big(  \beta \circ \alpha\big)}
 								=\big(  \beta \circ \alpha\big)_A(1_A) \\
 								RHS & = \big( \beta_A \circ \string ^ \big)(\alpha)
@@ -421,12 +417,13 @@ After that, we mention Yoneda Embedding as it's consequences.
 							\end{align}
 							As $\alpha \in \mathcal{C} (H_A,X)$ and $\beta \in \mathcal{C}(X,Y)$
 							are morphisms in $\mathcal{C}$, composition in $\mathcal{C}$ gives
-							$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (4) and (5), we
+							$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$. From (3) and (4), we
 							directly get that $RHS=LHS$.
 
-						\item We are going to show natural in $A$. Fix any $X \in \mathcal{C} $ Need that
+						\item We are going to show that the isomorphism
+							defined in I is natural in $A$. Fix any $X \in \mathcal{C} $ Need that
 							for objects $A,B \in \mathcal{A} $ and morphism $f\in \mathcal{A} ^{op}(A,B)$,
-							the following square commutes.
+							the following square commutes:
 							\begin{equation*}
 								\begin{tikzcd}
 									\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
@@ -434,9 +431,10 @@ After that, we mention Yoneda Embedding as it's consequences.
 			& \mathcal{C}(H_B,Y) \arrow{d}{\string ^}\\
 			X(A) \arrow[swap]{r}{X(f)}
 			& X(B)
-								\end{tikzcd}
+								\end{tikzcd},
 							\end{equation*}
-							So, for any $\alpha:H_A \to X$, we need that
+							Where $H_f$ denotes
+							$(f \circ \string _ )$. So, for any $\alpha:H_A \to X$, we need that
 							$\big( \string ^ \circ H_f \big)(\alpha)=\Big((X(f)) \circ \string ^ \Big)(\alpha) $.
 							Using definition of $H_f$ and $\string ^$, we get:
 							\begin{align}
@@ -445,8 +443,7 @@ After that, we mention Yoneda Embedding as it's consequences.
 								RHS&=\Big((X(f)) \circ \string ^ \Big)(\alpha)
 								= (X(f))(\hat{\alpha})= \Big(X(f) \Big)\big(\alpha_A(1_A)\big)
 							\end{align}
-							The last equality in (6) is justified as $f$ goes from $B$ to
-							$A$ in $\mathcal{A} $. By using equality of (2) and (3) from I(i), for
+							By using equality of (1) and (2), for
 							$f \in \mathcal{A}(B,A)$, we get that
 							$\Big(X(f) \Big)\big(\alpha_A(1_A)\big)=\alpha_B( 1_A \circ f) $.
 							Hence, $RHS=LHS$. \qedhere
@@ -460,7 +457,7 @@ After that, we mention Yoneda Embedding as it's consequences.
 		and for any object $A \in \mathcal{A} $, study the set $X(A)$ and gain information
 		about all possible natural transformations between $H_A$ and $X$. Moreover, by part I(ii) of the
 		proof of Yoneda Lemma, each of the natural transformations is determined by its action
-		on the identity morphisms in $\mathcal{A}$. Thus, no matter how complicated $\mathcal{A}$ is, if we choose $X$ carefully, we can hope to understand the structure of $\mathcal{A} $
+		on the identity of $A$ in $\mathcal{A}$. Thus, no matter how complicated $\mathcal{A}$ is, if we choose $X$ carefully, we can hope to understand the structure of $\mathcal{A} $
 		by looking at how $X(A)$ changes as we vary the chosen
 		presheaf and object.
 
@@ -470,7 +467,7 @@ After that, we mention Yoneda Embedding as it's consequences.
 
 		Cayley's theorem and Yoneda Lemma are similar in the sense that both allow us to change the environment
 		that we study in by putting few restrictions on what we are allowed to study. Cayley allows us to
-		change setting for groups, and Yoneda does that for locally small categories.
+		change setting for groups, and Yoneda allows us to do that for locally small categories.
 
 		Also, as groups themselves can be considered as small categories, we can apply Yoneda Lemma to any
 		group. In fact, we can get Cayley's theorem as a consequence of Yoneda Lemma by a suitable
@@ -480,21 +477,20 @@ After that, we mention Yoneda Embedding as it's consequences.
 			Symmetric group on a set $X$ is the set of all bijections on $X$, with the binary operation
 			defined as composition of bijections.
 		\end{definition}
-		We will now use Theorem 2.6 and parts of its proof to prove Cayley's theorem.
-		The notation $(\string _)$ occurs as a placeholder for the element a map is applied to.
-		That is, $(\string _ \circ f)(k)$ is defined to be $k \circ f$.
-		And we use the notation $g.f$ to mean the composition of $g$ and $f$ in the group.
+		We will now use Theorem 2.1 and parts of its proof to prove Cayley's theorem.
+		We use the notation $g.f$ to mean the composition of $g$ and $f$ in the group.
 		\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
 			Every group, $G$ is isomorphic to a subgroup of symmetric group on $G$.
 		\end{theorem}
-		\begin{proof} \setcounter{equation}{0} Let group $G$ be a group.
+		\begin{proof} \setcounter{equation}{0} Let $G$ be a group.
 			Define category $\mathcal{A}$ with a single object $\star$. And precisely one morphism
 			in $\mathcal{A} $ for each element of $G$, with the composition of said morphisms
 			being as that of elements of $G$.
 			That is, for morphisms $f$ and $g$ in $\mathcal{A}$, $f \circ g$ is defined to
 			be the morphism $f.g$. Then, $G$ and $\mathcal{A}(\star, \star)$ have the
 			same elements
-			and rule of composition, so there exists a group isomorphism $\psi:A(\star,\star) \to G$.
+			and rule of composition, so there exists a group isomorphism $\psi:
+			\mathcal{A} (\star,\star) \to G$.
 
 			\begin{enumerate}[label=\Roman*]
 				\item \textbf{Natural transformations from $H_\star$
@@ -592,8 +588,8 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 				\item \textbf{Applying Yoneda Lemma.}
 
-					As the collection of elements of $G$ form a set, we get that $\mathcal{A}(\star,\star)$
-					is a set. Hence, $\mathcal{A}$ is a locally small category. Because
+					As the collection of elements of $G$ form a set, $\mathcal{A}(\star,\star)$
+					is also a set. Hence, $\mathcal{A}$ is a locally small category. Because
 					$\mathcal{A} ^{op}$ has the same number of morphisms as $\mathcal{A}$,
 					it is also a locally small category, and we may apply Yoneda Lemma to it.
 					Taking $A=\star$ and $X=H_\star$ in Theorem 2.1 (1), we get:
@@ -633,10 +629,10 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			such that $F$ is full and faithful.
 		\end{definition} %}}}
 		\begin{lemma}
-			If a functor is fully faithful, then it is injective on objects upto isomorphism.
+			If a functor is full and faithful, then it is injective on objects upto isomorphism.
 		\end{lemma}
-		\begin{proof}
-			Let functor $F:\mathcal{A} \to \mathcal{B} $ be fully faithful. Suppose, for
+		\begin{proof} \setcounter{equation}{0}
+			Let functor $F:\mathcal{A} \to \mathcal{B} $ be full and faithful. Suppose, for
 			objects $A,B\in \mathcal{A} $ that $F(A)=F(B)$. We are going to show that
 			$A\cong B$. As $F$ is full, there exists $f \in \mathcal{A} (A,B)$ such that
 			$F(f)=1_{F(A)}\in \mathcal{B} \big(F(A),F(B)\big)$. Similarly, we also have that
@@ -648,7 +644,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				F\big( f \circ g \big)&=F(f) \circ F(g) = 1_{F(A)} \circ 1_{F(B)}=
 				1_{F(B)} \circ 1_{F(B)}=1_{F(B)}=F(1_B).
 			\end{align}
-			As $F$ is faithful, (5) gives us that $g\circ f=1_A$ and (6) gives us
+			As $F$ is faithful, (1) gives us that $g\circ f=1_A$ and (2) gives us
 			$f \circ g = 1_B$. Hence, $A\cong B$.
 
 		\end{proof}
@@ -676,24 +672,24 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						LHS&=\big( H_\bullet(g \circ f) \big) (k)=
 						g\circ f \circ k \\
 						\text{ and } RHS&=
-						\Big( H_\bullet(f) \circ H_\bullet(g) \Big) (k)
+						\Big( H_\bullet(g) \circ H_\bullet(f) \Big) (k)
 						=\Big(H_\bullet(g)\Big) \big(f \circ k\big)
 					=g\circ f \circ k. \end{align*}
 				\item \textbf{ (Identity) } We will show that for any $g \in \mathcal{A} (K,L)$, $H_\bullet$
 					respects the identities	of $K$ and $L$ in $\mathcal{A}$.
 					Thus, for any object $X \in \mathcal{A} $, we need to show that
 					$\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X = \Big( H_\bullet(g)\Big) _X
-					=\Big( H_\bullet(g) \circ H_\bullet(1_K) \Big)_X $.
-					Fix any morphism $p \in H_A(L)$.
+					=\Big( H_\bullet(1_L) \circ H_\bullet(g) \Big)_X $.
+					Fix any morphism $p \in H_K(X)$.
 					Using the definition of $H_\bullet$,
 					we get the following equations.
 					\begin{align*}
 						\text{ Right Identity: }& \Big( \big( H_\bullet(g) \big) \circ \big( H_\bullet(1_K)
 						\big) \Big)(p)
-						=\big( H_A(g) \big) (1_K \circ p) =
-						\big( H_A(g) \big) (p) \\
+						=\big( H_\bullet(g) \big) (1_K \circ p) =
+						\big( H_\bullet(g) \big) (p) \\
 								\text{ Left Identity: }& \Big( \big( H_\bullet(1_L) \big) \circ \big( H_\bullet(g)\big) \Big)(p)
-								=\big( H_\bullet(1_L) \big) (g \circ p) = g \circ p \circ 1_L=g \circ p
+								=\big( H_\bullet(1_L) \big) (g \circ p) =1_L \circ g \circ p =g \circ p
 								= \big( H_\bullet(g) \big)(p)
 							\end{align*}
 
@@ -703,12 +699,11 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			%}}}
 
 			\begin{theorem}{ \textbf{Yoneda Embedding}}
-				Any locally small category $\mathcal{A}$ can be embedded in the presheaf category on
-				$\mathcal{A}$.
+				Any locally small category can be embedded in the presheaf category on it.
 			\end{theorem}
 			\begin{proof} \setcounter{equation}{0}
 				We will show that the functor from Proposition 1.10 is
-				full and faithful. Fix any objects $X,Y \in \mathcal{A}$.
+				full and faithful. Fix any objects $X,Y$ in a locally small category $\mathcal{A}$.
 				\begin{enumerate}[label=\Roman*]
 					\item To show that $H_\bullet$ is a full, we need to show that for every $\alpha
 						\in [\mathcal{A} ^{op},Set](H_X,H_Y)$, there exists a morphism
@@ -723,7 +718,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						in $\mathcal{A}(X,Y)$. We will show that choosing this morphism to be $f$
 						will give us the required result, that is $\big( \alpha_X(1_X) \big) \circ
 						k=\alpha_K(k)$. Using the naturality of $\alpha$,
-						\[ \text{ we get that }
+						$ \text{ we get that }
 							\begin{tikzcd}
 								H_X(X) \arrow[swap]{d}{\alpha_X} \arrow{r}{H_X(k)}
 			& H_X(K) \arrow{d}{\alpha_K}\\
@@ -737,11 +732,11 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\mathcal{A} (X,Y) \arrow[swap]{r}{\string _ \circ k}
 			& \mathcal{A} (K,Y)
 							\end{tikzcd}
-						\text{ commutes. }\]
-						Thus, for the identity morphism $1_X \in \mathcal{A} (X,X)$, we get the following
+						\text{ commutes. }$
+						Thus, for the identity morphism $1_X \in \mathcal{A} (X,X)$, we get the following:
 						\[ \Big(H_Y(k) \circ \alpha_X\Big)(1_X)=\Big(\alpha_K \circ H_X(k)\Big)(1_X)
-							\implies  \alpha_X(1_X) \circ k \implies
-						\alpha_K(1_X) \circ k=\alpha_K(k)\]
+							 \implies
+						\alpha_K(1_X) \circ k=\alpha_K(k).\]
 						Thus, we have that $H_\bullet$ is a full functor.
 
 					\item  Fix any morphisms $f,g$ in $\mathcal{A} (X,Y)$ and suppose
@@ -804,7 +799,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 					\item (Up-Set) Let $l:X \to Z$ be a relation, and $k \in Q.P$ such that $l \supseteq k$.
 						Define relations $ p:X \to Y $ and $q:Y \to Z$ as,
 						$p=\{(x,y): x \in Dom(l) \text{ and } y \in Y\}$ and
-						$q=\{(y,z):  y \in Y \text{ and } z \in range(l)\}$.
+						$q=\{(y,z):  y \in Y \text{ and } z \in Ran(l)\}$.
 						Because $k\in Q.P$, there exist $q'\in Q$ and $p' \in P$ such that
 						$k = q' \circ p'$. Thus by definition of $p$ and $q$, we get that
 						$p \supseteq p'$ and $q \supseteq q'$. Hence $p \in P$ and $q \in Q$ because
@@ -831,7 +826,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\end{definition}
 			%{{{Recurring Lemmas
 			\begin{lemma}
-				For any function $f:X \to Y$, $\; \Delta_X$ is contained in the composition $ f^o \circ f$.
+				For any function $f:X \to Y$, $\; f^o \circ f=\Delta_X$.
 			\end{lemma}
 			\begin{proof}\setcounter{equation}{0}
 
@@ -869,7 +864,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				Suppose relations $r,s$ and $t$ are as given above, and let  $x \,(s \, r)\,z$.
 				By definition of composition of relations, we get that there exists
 				some $y \in Y$ such that $x\,r\,y$ and $y\,s\,z$. Because $s \subseteq t$, $y\,s\,z$
-				implies that $y\,t\,z$. Taking the composition, $x\,r\,y\,s\,z$ yields $x(t\,r)z$.
+				implies that $y\,t\,z$. Taking the composition, $x\,r\,y\,t\,z$ yields $x(t\,r)z$.
 				We started with any element of $(s \circ r)$ and showed that it must also be in
 				$t \circ r$ and thus have that $(s \circ r) \subseteq (t \circ r)$.
 			\end{proof}
@@ -900,7 +895,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
 			\end{definition}
 			\begin{definition} %{{{ Uniformly Continuous function 		Definition
-				A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if $f.A \leq B.f$.
+				A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if and only if $f.A \leq B.f$.
 				That is, for each $b \in B$, there exists $a \in A$ such that
 				$f \circ a \subseteq b \circ f$. Meaning that $
 				\begin{tikzcd}
@@ -912,13 +907,13 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				$.
 			\end{definition}
 			%{{{ A.A=A
-			\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$
+			\begin{lemma} If $A$ is a quasi-uniformity on a set X, then $A.A=A$.
 			\end{lemma}
 			\begin{proof}\setcounter{equation}{0}
 
 				Fix any $a \in A$, as A is a quasi-uniformity, $\exists b \in A: bb \subseteq a$,
 				we get that $A.A \leq A$. And as $A$ is a prorelation, and is hence down-directed,
-				$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$
+				$\exists c \in A : a.a \supseteq c$, giving that $A.A \geq A$.
 			\end{proof}
 			%}}}
 
@@ -927,7 +922,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			We define a category called QUnif as having quasi-uniform spaces as objects
 			and uniformly continuous maps between them as morphisms.
 			With the composition of morphisms defined as that of functions,
-			and identity of object $(X,A)$ is the identity function on set $X$.
+			and identity of object $(X,A)$ being the identity function on set $X$.
 			\begin{prop} QUnif is a category.\end{prop}
 			\begin{proof}\setcounter{equation}{0}
 				\begin{enumerate}[label=(\roman*)]
@@ -941,7 +936,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\begin{definition}%{{{ Promodule		Definition
 				A prorelation, $\phi:X \carrow Y$ is called a promodule $\phi: (X,A) \carrow (Y,B)$  if it
 				satisfies:
-				\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi \]
+				\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi .\]
 			\end{definition}
 
 			Now, we define a 2-category called ProMod as having quasi-uniform spaces as 0-cells and the
@@ -1044,13 +1039,13 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 			\subsection{Functors between QUnif and ProMod}
 			%{{{Two functors
 			We now define a functor from the category QUnif to ProMod, as fixing objects and taking uniformly
-			continuous maps $f:(X,A)\to(Y,B)$ to $f.B$.
+			continuous maps $f:(X,A)\to(Y,B)$ to $B.f$.
 
-			\begin{prop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as
+			\begin{prop} The mapping defined above, $(\string _)_*:\text{QUnif}^{op} \to \text{ProMod}$ as:
 				\begin{enumerate}[label=(\alph*)]
-					\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$
+					\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$,
 					\item for $f:(X,A) \to (Y,B)$ in QUnif,
-						$f^* := B.f$
+						$f^* := B.f$,
 				\end{enumerate}
 				is indeed a functor.
 			\end{prop}
@@ -1062,14 +1057,14 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 					\item (Partial-Order) Inclusion of relations acts as the partial order.
 					\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
 						$b,b'$ in $B$ such that $k=b\,f$ and $k'=b\,f$. Using down-directedness
-						of $B$, there exists a $c \in B$ such that $c \subseteq b,b'$. Hence,
-						by Lemma 2.4.4, $c\,f \subseteq k,k'$.
+						of $B$, there exists $c \in B$ such that $c \subseteq b,b'$. Hence,
+						by Lemma 3.10, $c\,f \subseteq k,k'$.
 					\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
 						uniformly continuous function such that $l \supseteq k$.
-						Define a relation $b':= \{(f(d),l(d)): d \in Dom(l) \}$.
+						Define a relation $b'= \{(f(d),l(d)): d \in Dom(l) \}$.
 						By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
-						$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $Dom(l)  \supseteq Dom(f)$
-						giving $(x,f(x)) \in f$. Thus, by definition of composition,
+						$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $Dom(l)  \supseteq Dom(f)$,
+						giving $(x,f(x)) \in f$. Therefore, by definition of composition,
 						$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
 						By definition of composition, there exists $f(x)\in Y$ such that
 						$(f(x),z) \in b'$. Again using the definition of
@@ -1077,20 +1072,20 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						Now we will show that $b'\supseteq b$. Because $b'\, f=l \supseteq k=b\, f$, for any
 						$x\in X$ we have that $b'\big(f(x)\big) \supseteq b\big(f(x)\big)$. Thus,
 						$b'|_{f(x)} \supseteq b|_{f(x)}$. By down-directedness of $B$,
-						the restriction $b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
+						$b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
 						Finally, $b' \supseteq b'|_{f(x)} \supseteq b|_{f(x)}$ gives $b' \in B$.
 						Hence, $b'.f \in B.f$.
 					\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
 						$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
 						By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
-						\subseteq b$. Using Lemma 2.4.3, we get that $b'\,b'\,f \subseteq b\,f$.
+						\subseteq b$. Using Lemma 3.10, we get that $b'\,b'\,f \subseteq b\,f$.
 						As $f$ is uniformly continuous, $f.A \leq B.f$ gives that there is some
 						$a \in A \text{ such that } f\,a \subseteq b'\,f$. Using this in the
 						previous inequality, we get $b'\,f\,a \subseteq b'\,b'\,f\subseteq  b\,f$.
 					\item Need to show that $B.B.f \leq B.f$. Fix any $b \in B$, we will find
 						$b' \in B$ such that $b'\,b'\,f \subseteq b\,f$.
 						By quasi-uniformity of $B$, there exists $b \in B$ such that
-						$b'\,b' \subseteq  b$. Using Lemma 2.4.4, we get $b'\,b'\,f \subseteq bf$.
+						$b'\,b' \subseteq  b$. Using Lemma 3.10, we get $b'\,b'\,f \subseteq bf$.
 				\end{enumerate}
 				Thus, $B.f$ is a promodule. We now proceed to show that $(\string _)_*$ defines a functor.
 				\begin{enumerate}[label=(\roman*)]
@@ -1099,36 +1094,36 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 						In order to show $C.g.f \leq C.g.B.f$, fix any $b\in B, c\in C$.
 						We will show that $c\,g\,f \subseteq c\,g\,b\,f$. As $f$ is uniformly
 						continuous, $f.A \leq B.f$ gives that there exists $a \in A$ such that
-						$f\,a \subseteq b\,f$. Using Lemma 2.4.3, we get $(c\,g)f\,a \subseteq
+						$f\,a \subseteq b\,f$. Using Lemma 3.9, we get $(c\,g)f\,a \subseteq
 						(c\,g)b\,f$. Now, using reflexiveness of $a$, we get $c\,g\,f \subseteq
 						c\,g\,b\,f$.
 
-						Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in X$, we will find $c' \in C$ and
+						Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in C$, we will find $c' \in C$ and
 						$b \in B$ such that $c\, g\, f\, \supseteq c\, g\, b\, f\, $. By quasi-uniformity of C,
-						there exists $c' \in C$ such that $c \subseteq  c'\, c'$. Using Lemma 2.4.4
+						there exists $c' \in C$ such that $c \supseteq  c'\, c'$. Using Lemma 3.10
 						gives that $c\, (g\, f)\supseteq c'\, c'\, (g\, f) $. Because $g$ is uniformly
-						continuous, $C.g \geq g.B$ gives us $b\in B$ such that $g\, c' \supseteq b\, g$.
+						continuous, $C.g \geq g.B$ gives us $b\in B$ such that $c'\, g \supseteq b\, g$.
 						Using this in the previous inequality gives that $c\, g\, f \supseteq c'\, g\, b\, f$.
 
-					\item(Identity) let $(X,A)$ be in object of QUnif and
-						$1_{(X,A)}:(X,A)\to(X,A)$ be the identity function on $(X,A)$. That is,
+					\item(Identity) Let $(X,A)$ be an object of QUnif and
+						$1_{(X,A)}:(X,A)\to(X,A)$ be the identity of $(X,A)$. That is,
 						$1_{(X,A)}$ is defined as $x\mapsto x$.
 						Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
 						functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
 						and $RHS=1_{(X,A)_*}=1_{(X,A)}$
-						Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
+						Using Proposition 4.8 (f), we get that $A=1_{(X,A)}=RHS$. \qedhere
 				\end{enumerate}
 			\end{proof}
 
 
 			Similar to the above functor, we define a contravariant functor from the category QUnif to ProMod,
-			as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $B.f^o$.
+			as fixing objects and taking uniformly continuous maps $f:(X,A)\to(Y,B)$ to $f^o.B$.
 
-			\begin{prop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as
+			\begin{prop} The mapping defined above, $(\string _)^*:\text{QUnif}^{op} \to \text{ProMod}$ as :
 				\begin{enumerate}[label=(\alph*)]
-					\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$
+					\item for $(X,A) \in \text{QUnif}^{op}$, $(X,A)^*:=(X,A) \in \text{ProMod}$,
 					\item for $f:(X,A) \to (Y,B)$ in QUnif,
-						$f^* := f^o .B$
+						$f^* := f^o .B$,
 				\end{enumerate}
 				is indeed a functor.
 			\end{prop}
@@ -1136,10 +1131,10 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 				Showing that $f^o .B: (Y,B) \carrow (X,A)$ is a promodule.\\
 				So, need to show $f^o .B$ a prorelation $Y \to X$
-				and that $(f^o .B).B \sqsubseteq f^o .B$ and $A.(f^o .B) \sqsubseteq f^o .B$ \\
+				and that $(f^o .B).B \leq f^o .B$ and $A.(f^o .B) \leq f^o .B$ \\
 				To show prorelation, \begin{enumerate}[label=(\roman*)]
-					\item (Partial-order) Inclusion of relations i.e. for $k=f^o \circ b$ and
-						$k'=f^o \circ b'$ in $f^o .B$ , $k \subseteq k' \iff b \subseteq b'$
+					\item (Partial-order) Inclusion of relations is the
+						partial order.
 					\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
 						\text{ such that } l \subseteq k,k'$
 
@@ -1148,35 +1143,35 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 						By down-directedness of $B$, there exists $c \in B$ such that
 						$ c \subseteq b,b'$, define $l=f^o \circ c$.
-						Now, using Lemma 2.4.3 gives  $l= f^o \circ c \subseteq k,k'$.
+						Now, using Lemma 3.9 gives  $l= f^o \circ c \subseteq k,k'$.
 					\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
 						, need $l \in f^o .B$
 
 						Let $b\in B$ be such that $k=f^o \circ b$ and define
-						$b':=\{(y,y'): y \in Dom(l) \text{ and } y' \in (f^o)^{-1}(l(y))\}$\\
+						$b':=\{(y,y'): y \in Dom(l) \text{ and } y' \in (f^o)^{-1}\big(l(y))\}$\\
 						As $l\supseteq k=f^o \circ b$, $Dom(b')=Dom(l)\supseteq Dom(b)$
-						\\ and $range(l) \supseteq range(f^o \circ b)\implies
-						\forall y \in Dom(b), range (b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = range(b)$\\
+						\\ and $Ran(l) \supseteq Ran(f^o \circ b)\implies
+						\forall y \in Dom(b), Ran(b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = Ran(b)$.\\
 						Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
 						$f^o \circ b \subseteq l$ , \\
 						$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
 						(z,y) \in f^o \implies x \in Dom(l) \text{ and } z \in l(x)$ i.e.
-						$(x,z) \in l$
+						$(x,z) \in l$.
 
-				\end{enumerate}
 			\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
 				\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
 				Fix any $b \in B$, as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
-				\implies f^o \circ b'\circ b' \subseteq f^o \circ b$
+				\implies f^o \circ b'\circ b' \subseteq f^o \circ b$.
 
 				To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
-				$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$,\\
+				$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$.\\
 				As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
 				: f \circ a \subseteq b \circ f
-				\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   \\
-				Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$
+				\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   .\\
+				Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$.
 				And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
-				\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$\\
+				\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$.\\
+				\end{enumerate}
 			\item	Now, need to show that $(\string _)^*$ respects composition and identity.
 				\begin{enumerate}[label=(\roman*)]
 					\item (Composition) let $f,g$ be uniformly continuous,
@@ -1242,15 +1237,15 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 
 			%{{{ Proposition 1
 			\begin{prop}
-				Fix a uniformly continuous map, $f:(X,A) \rightarrow (Y,B)$
+				Let $f:(X,A) \rightarrow (Y,B)$ be a uniformly continuous map.
 				\begin{enumerate}[label=(\alph*)]
 					\item f is fully faithful if and only if $A= f^o.B.f$, that is
-						$A\geq f^o.B.f$
+						$A\geq f^o.B.f$.
 					\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
-						such that $b' \subseteq b\,f\,f^o \,b$
+						such that $b' \subseteq b\,f\,f^o \,b$.
 					\item f is topologically dense if and only if for any $b\in B$,
-						$\; b \, f\, f^o\,b$ is reflexive
-					\item f is fully dense if and only if f is topologically dense
+						$\; b \, f\, f^o\,b$ is reflexive.
+					\item f is fully dense if and only if f is topologically dense.
 				\end{enumerate}
 			\end{prop}
 			\begin{proof}\setcounter{equation}{0}
@@ -1259,101 +1254,102 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 				\begin{enumerate}[label=(\alph*)]
 					\item \begin{enumerate}[label=(\roman*)]
 						\item $ (\implies) $ Let f be fully faithful i.e. $f^*.f_*=A
-							\implies f^o .B.B.f=A $\\
+							\implies f^o .B.B.f=A $.\\
 							Need to show that $A= f^o .B.f$ i.e.
-							$A\leq f^o .B.f$ and  $A\geq f^o .B.f$\\
+							$A\leq f^o .B.f$ and  $A\geq f^o .B.f$.\\
 							By hypothesis and quasi-uniformity of B,
-							$A\geq f^o .B.B.f \geq f^o B.f $\\
+							$A\geq f^o .B.B.f \geq f^o B.f $.\\
 							To show $A \leq f^o .B.f$, need that $\forall b \in B, \exists a
-							\in A : a \subseteq f^o bf$\\
+							\in A : a \subseteq f^o bf$.\\
 							Fix $b\in B$, hypothesis gives that $f^o .B.B.f \leq A$ so, \\
 							$\exists a \in A: a \subseteq f^o bbf$ and also, by
 							quasi-uniformity of B, for $b, \exists b' \in B : b'b' \subseteq b
-							\implies f^o b'b'f \subseteq f^o bf$\\
-							Combining the above two inequalities,
-							$a \subseteq f^o bbf \subseteq f^o bf$\\
+							\implies f^o b'b'f \subseteq f^o bf$.\\
+							Combining the above two inequalities, we get							$a \subseteq f^o bbf \subseteq f^o bf$.\\
 						\item $(\impliedby)$ Let $A=f^o .B.f$ need to show $A=f^o.B.B.f$ i.e.
-							$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$\\
+							$A\geq f^o B.B.f \text{ and } A\leq f^o B.B.f$.\\
 							To show $A\geq f^o .B.B.f$, need to show that $\forall a\in A,
-							\exists b,b' \in B : a \supseteq f^o bb'f$\\
-							Have that $A\geq f^o .B.f$ and $B.B \leq B$\\
+							\exists b,b' \in B : a \supseteq f^o bb'f$.\\
+							Have that $A\geq f^o .B.f$ and $B.B \leq B$.\\
 							So, fix $a \in A$, now $\exists b\in B: a \subseteq f^o bf$
 							and for this b, $\exists b'\in B: b'b' \subseteq b$.
-							Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$
+							Therefore, $a \supseteq f^o bf \supseteq f^o b'b' f$.
 							To show $A\leq f^o .B.B.f$, need $\forall b,b'\in B, \exists
-							a\in A : a \subseteq f^o bb'f$ \\
+							a\in A : a \subseteq f^o bb'f$.\\
 							Before that, uniform continuity
-							of f along with Lemma 2.1.1 gives that \\$f.A\leq B.f
-							\implies A=f^o f.A \leq f^o.B.f$ \\
+							of f along with Lemma 2.1.1 gives that
+							$f.A\leq B.f$
+							implying $A=f^o f.A \leq f^o.B.f$.
 							So, fix $b,b' \in B $, now, as ,
 
 							$A\leq f^o .B.f $
-							giving\\ $\exists a \in A : a \subseteq f^o bf$ and
+							gives us $\exists a \in A : a \subseteq f^o bf$ and
 							$\exists a'\in A: a' \subseteq f^o b'f \implies \Delta_X \subseteq
 							f^o b'	f$.\\
-							Therefore $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
+							Hence $a=a\Delta_X \subseteq (f^o bf) (f^o b'f)
 							\subseteq f^o bb'f$
 					\end{enumerate}
 				\item	\begin{enumerate}[label=(\roman*)]
 					\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
 						showing that $\forall b \in B,\exists b'\in B: b'
-						\subseteq bff^ob$:\\
+						\subseteq bff^ob$.\\
 						So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
 						B$ such that $b' \subseteq bff^ob$.
 					\item $(\impliedby)$ Suppose $\forall b \in B, \exists b' \in B:
 						b' \subseteq bff^ob$. This gives $B\leq B.f.f^o .B$, in order
 						to show equality, also need $B\geq B.f.f^o .B$.
 						By quasi-uniformity of B, for any $b \in B$, $\exists b'\in B:b'b'
-						\subseteq b$. Now, by Lemma 2.4.2,
+						\subseteq b$. Now, by Lemma 3.8,
 						\[ f f^o \subseteq \Delta_Y \implies b'f f^o b' \subseteq b'
-						\Delta_Y b'=b'b' \subseteq b\]
+						\Delta_Y b'=b'b' \subseteq b.\]
 
 				\end{enumerate}
 			\item \begin{enumerate}[label=(\roman*)]
 				\item $(\implies)$ Let f be topologically dense. We will show that
 					for any $b\in B, y \in Y$, $\;(y,y) \in bff^ob$. Fix any $ b\in B$ and
 					$y \in Y$. As f is topologically dense, $\overline{f(X)}=Y $, implying
-					that $y\in \overline{f(X)}$, by definition giving that
+					that $y\in \overline{f(X)}$, by definition giving that:
 					\[ \exists x\in X \text{ such that }
-					(f(x),y) \in b \text{ and } (y,f(x)) \in b \]
+					(f(x),y) \in b \text{ and } (y,f(x)) \in b .\]
 					Re-writing the above statement in terms of relations, and
 					considering f as a relation:
 					\begin{align}
 						(f(x),y) \in b &\text{ gives }  x(b \circ f)y \text{ i.e. }
-						y \in (b \circ f)(x)\\
-						(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y)
+						y \in (b \circ f)(x),\\
+						(y,f(x)) \in b &\text{ gives } f(x)\subseteq b(y).
 					\end{align}
-					Repeatedly applying Lemma 2.4.3 to (2),
+					Repeatedly applying Lemma 3.9 to (2),
 					\[ f(x) \subseteq b(y) \implies
 						\big(f \circ f^o \big)(f(x) \subseteq \big(f \circ f^o \big)b(y)
 						\implies \big(f \circ f^o \circ f\big)(x) \subseteq
-					\big(f \circ f^o \circ b \big)(y)\]
-					Applying Lemma 2.4.1 to the final inequality
+					\big(f \circ f^o \circ b \big)(y).\]
+					Applying Lemma 3.7 to the final inequality
 					in the above statement gives that
 					\[f(x)= (f\circ  \Delta_X) (x)
 						\subseteq \big(f \circ f^o \circ f\big)(x) \subseteq
-					\big(f \circ f^o \circ b \big)(y)  \]
-					Applying Lemma 2.4.3 and then using (1) on the above inequality completes the result:
+					\big(f \circ f^o \circ b \big)(y). \]
+					Applying Lemma 3.9
+					and then using (1) on the above inequality completes the result:
 					\[ f(x) \subseteq \big(ff^ob \big)(y)
 						\implies \big(b \circ f\big)(x) \subseteq
-					\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y   \]
+					\big(bff^ob \big)(y) \implies y \in \big(bff^ob \big)(y) \text{ i.e. } y\big(bff^ob \big)y  . \]
 				\item $(\impliedby)$ Fix any $y \in Y$ and $b \in B$. Also, suppose that
-					$\Delta_Y \leq bff^o b$. As f is a function with domain as X,
-					$f^o :Y \to X$, $\phi \neq (f^o \circ b)(y)
+					$\Delta_Y \leq bff^o b$. As the domain of $f$ is $X$,
+					$f^o :Y \to X$, and as $b$ is reflexive, $\phi \neq (f^o \circ b)(y)
 					\subseteq  X$. So, fix $x\in (f^o \circ b)(y)$, going to show that
 					$(f(x),y)\in b$	and $(y,f(x)) \in b$. Again, while viewing f as a
-					relation.
+					relation:
 					\[ \Delta_Y \leq bff^ob
 						\implies \Delta_Y(y) \subseteq bf f^o b(y)=\big(bf\big)
-					(f^o b(y))\]
+					(f^o b(y)).\]
 					Last inequality of the above statement gives $y \in (bf)(x)
-					\text{ i.e. } (f(x),y)\in b $.\\
-					Applying Lemma 2.4.2 to f, and then using Lemma 2.4.4,
+					\text{ i.e. } (f(x),y)\in b $.
+					Applying Lemma 3.8 to f, and then using Lemma 3.10,
 					\begin{equation*}
-						ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b
+						ff^o  \subseteq \Delta_Y \implies f f^o b \subseteq \Delta_Yb=b.
 					\end{equation*}
 					Thus $f f^o b(y) \subseteq b(y)$ and hence $f(x) \subseteq b(y) \implies
-					(y,f(x)) \in b$
+					(y,f(x)) \in b$.
 			\end{enumerate}
 		\item \begin{enumerate}[label=(\roman*)]
 			\item
@@ -1362,7 +1358,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 					\implies b'=b'\Delta_Y \subseteq b'b' \subseteq b
 				\end{equation}
 				By the characterization of topologically dense in (c), have that $\Delta_Y \subseteq b'f f^o b'$.
-				Now, using the (3) and Lemma 2.4.3,
+				Now, using the (3) and Lemma 3.9,
 				\[ \Delta_Y \subseteq b'f f^o b' \implies b'=b'\Delta_Y \subseteq b'b'f f^o b' \subseteq bf f^o b'
 				\subseteq bf f^o b\]
 				Hence, we have $b'\in B : b' \subseteq bf f^o b$ giving us that f is fully dense (from (b)).
@@ -1375,21 +1371,21 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 %}}}
 \section{Yoneda Lemma in Quasi-Uniform Spaces}
 
-In this section, we will look at Yoneda Lemma and Yoneda Embedding for Quasi-Uniform Spaces.
+In this section, we will prove Yoneda Embedding and (a weak version of) Yoneda Lemma
+for quasi-uniform spaces.
 We use 1 to denote the quasi-uniform space with one element, that is, the quasi-uniform space
-$(\{\star\},\{(\star,\star)\})$. Also, when unambiguous, we use $1$ to denote the quasi-uniformity
-of the quasi-uniform space 1.
+$(\{\star\},\{(\star,\star)\})$. Also, when unambiguous, we also use $1$ to denote the
+quasi-uniformity of the quasi-uniform space 1.
 
 %{{{ A~ is a quasi-uniformity on PX
 \begin{definition}%{{{ PX		Definition
-	The set $PX$ is defined to be the collection of all promodules from the quasi-uniform space(X,A)
-	to the quasi-uniform space 1.
+	The set $PX$ is defined to be the collection of all promodules from the
+	quasi-uniform space $(X,A)$ to the quasi-uniform space 1.
 	\[PX:=\{\psi :(X,A) \carrow 1 | \psi \text{ is a promodule} \}\]
 \end{definition}
 \begin{prop}%{{{ A~		Definition
-	For any $a\in A$, $\tilde{a}$ is defined to be a relation $PX \to PX$ as
-	\[ \text{ for } \phi,\psi \in PX, \; \phi \, \tilde{a} \, \psi \; \text{ only if } \;
-	\phi \leq \psi.a \]
+	For any $a\in A$, $\tilde{a}$ is defined to be a relation on $PX$ as:
+	\[ \text{ for } \phi,\psi \in PX, \; \phi \, \tilde{a} \, \psi \; \text{if and only if } \;	\phi \leq \psi.a \; \;.\]
 	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
 \end{prop}
 \begin{proof}\setcounter{equation}{0}
@@ -1397,14 +1393,16 @@ of the quasi-uniform space 1.
 	First need to show that $\tilde{A}$ is a prorelation,
 	\begin{enumerate}[label=(\roman*)]
 		\item (Partial order) For any two relations $\tilde{a},\tilde{b}:PX \to PX $,
-			define $ \tilde{a} \leq \tilde{b}$ to be true only if $a \subseteq b$.
+			define $ \tilde{a} \leq \tilde{b}$ to be true if and only if
+			$a \subseteq b$.
 		\item(Down-Directed) Need for any $\tilde{a} ,\tilde{b} \in \tilde{A}$,
-			the existence of some $\tilde{c} \in A$ such that $c \subseteq a,b$\\
-			If $\tilde{a} ,\tilde{b} \in A$ then there exist $a,b \in A$. By down-directedness
-			of $A$, there exists a $c \in A$ such that  $c \subseteq a,b$. Now the definition
+			the existence of some $\tilde{c} \in A$ such that $c \subseteq a,b$.
+			If $\tilde{a} ,\tilde{b} \in A$ then by definition,
+			$a,b \in A$. By down-directedness
+			of $A$, there exists $c \in A$ such that  $c \subseteq a,b$. Now the definition
 			of $\tilde{A}$ gives that $\tilde{c} \in \tilde{A}$. And the definition of the
 			partial order on $\tilde{A}$ ensures $\tilde{c} \leq \tilde{a} ,\tilde{b}$.
-		\item (Upset) For any relation $l:PX \to PX$ , need that if  $\tilde{k}$ belongs to
+		\item (Upset) For any relation, $l:PX \to PX$ , need that if $\tilde{k}$ belongs to
 			$\tilde{A}$ such that $l \geq \tilde{k}$, then $l \in \tilde{A}$.\\
 			Fix any $k:PX \to PX$, and $\tilde{k} \in \tilde{A}$ such that $l\geq \tilde{k} $.
 			As $k$ is a relation between promodules $X \carrow 1$, it can be thought
@@ -1415,16 +1413,17 @@ of the quasi-uniform space 1.
 			And as $A$ is an upper-set, we get $a\in A$. Now, by definition of $\tilde{A}$,
 			$l \in \tilde{A}$.
 	\end{enumerate}
-	Secondly, need show that the other two conditions hold for $\tilde{A}$,
+	Secondly, we need show that the two conditions from Definition 4.1 hold for $\tilde{A}$.
 	\begin{enumerate}[label=(\roman*)]
 		\item For all $\tilde{a} \in \tilde{A}$, need $\tilde{a}$ to be reflexive i.e
 			if $\psi \in PX$ then $\psi \, \tilde{a} \, \psi$.\\
 			By definition of $\tilde{a}$ , need to show that $\psi \leq \psi.a$.
 			So, fix a $p \in \psi$, we will show that $p \subseteq p.a$.
-			Quasi-uniformity of $A$ gives that $\Delta_X \subseteq a$. Hence, by Lemma 2.4.3,
+			Quasi-uniformity of $A$ gives that $\Delta_X \subseteq a$. Hence,
+			by Lemma 3.9,
 			$p=p \, \Delta_X \subseteq p \,a$ .
 		\item For all $\tilde{a} \in \tilde{A}$, need to find $\tilde{b}\in \tilde{A}$ such that
-			$\tilde{b}\tilde{b} \leq \tilde{a} $\\
+			$\tilde{b}\, \tilde{b} \leq \tilde{a} $.\\
 			Before showing the result, proving that for any $x,y \in A$,
 			$\tilde{x} \, \tilde{y} \leq \widetilde{xy}$
 			i.e. $\forall \psi, \phi \in PX$ , $\psi(\tilde{x} \, \tilde{y})\phi \implies
@@ -1435,10 +1434,11 @@ of the quasi-uniform space 1.
 			\,b$ and that of $\tilde{a}$ gives $\psi_2 \leq \psi_3 \, a$. Combining
 			these inequalities, $\psi_1 \leq \psi_2.b \leq \psi_3.ab$.
 			Hence, by definition of	$\widetilde{ab}$, $\psi_1 \,(\widetilde{ab})\,\psi_3$.
+
 			Now, to show the result, fix any $\tilde{a}\in \tilde{A}$. Therefore,$a\in A$, and
 			by quasi-uniformity of $A$, $\exists b \in A: b \circ b \subseteq
 			a$. Thus, by the partial-order defined on $\tilde{A}$, $\widetilde{bb} \leq \tilde{a}$.
-			Now, transitivity of the partial order gives us the required result,
+			Hence, transitivity of the partial order gives us the required result,
 			$ \tilde{b} \, \tilde{b} \leq \widetilde{bb} \leq \tilde{a}$. \qedhere
 	\end{enumerate}
 \end{proof}
