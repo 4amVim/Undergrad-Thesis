@@ -1454,12 +1454,13 @@ quasi-uniformity of the quasi-uniform space 1.
 \begin{proof}\setcounter{equation}{0}
 
 \item \begin{enumerate}[label=(\alph*)]
-	\item In order to show $y_X$ is uniformly continuous, need to show that $y_X.A \leq \tilde{A}.y_X $.
-		By definition of $\leq$ , need $\forall a\in A, \exists b \in A:
-		y_X \circ b \subseteq \tilde{a} \circ y_X $. Applying the relations
-		to some element, x of the set X:
+	\item In order to show that $y_X^{}$ is uniformly continuous, need to show that
+		$y_X^{}.A \leq \tilde{A}.y_X^{} $.
+		By definition of $\leq$ , we need that for each $a\in A$, there exists $b \in A$
+		such that $y_X \circ b \subseteq \tilde{a} \circ y_X$. Applying the relations
+		to some element, $x$ of the set $X$ gives:
 		\begin{equation} \big(y_X \circ b\big)(x) \subseteq \big( \tilde{a} \circ y_X\big)(x) \implies
-		y_X(b(x)) \subseteq \tilde{a}(x^*) \end{equation}
+		y_X(b(x)) \subseteq \tilde{a}(x^*). \end{equation}
 
 		So, for the condition given by (4) to hold, if $y \in b(x)$, then it's required that
 		$y^*=y_X(y) \in \tilde{a} (x^*)$ i.e. $x^* \tilde{a}y^*$. Using the definition of $x^*,y^*$
@@ -1468,65 +1469,67 @@ quasi-uniformity of the quasi-uniform space 1.
 		\forall a' \in A, \exists a'' \in A: x^oa'' \subseteq y^oa'a  \end{equation}
 		Now, fix any $a \in A$, $x\in X$. Thus, quasi-uniformity of A, gives $a'' \in A$ such that
 		$a''a''\subseteq a$.Also, choose some $y \in a''(x)$. Hence, in
-		order to show that the condition from (5) holds, need that
-		$\forall b \in A, x^o a'' \subseteq y^oba$, and by applying the relations to an element z
-		gives the following condition
+		order to show that the condition from (2) holds, need that
+		$\forall b \in A, x^o a'' \subseteq y^oba$. Applying the relations to an element z
+		gives the following condition:
 		\begin{equation} \forall b \in B, \forall x \in X \text{ , }
-		\big(x^oa''\big)(z) \subseteq \big(y^oba\big)(z) \end{equation}
-		Examining the left side of (6),
+		\big(x^oa''\big)(z) \subseteq \big(y^oba\big)(z). \end{equation}
+		Examining the left side of (3) gives:
 		\[ \big( x^oa''\big)(z)=x^o (a''(z))= \begin{cases}
 			\phi &\text{ if } x \notin a''(z) \\
 			\star & \text{ if } \in a''(z)
-		\end{cases} \]
-		Thus, to show that (6) holds, need to show that (for any $b\in A$ and $z \in X$):
+		\end{cases} .\]
+		Thus, to show that (3) holds, need to show that (for any $b\in A$ and $z \in X$):
 		\begin{equation} x \in a''(z) \implies z(y^oba)\star \text{ i.e. } y\in(ba)(z)
 		\end{equation}
-		To show that (7) holds, fix any $z\in X: x \in a''(z)$. Also, by our choice of $y$,
+		To show that (4) holds, fix any $z\in X: x \in a''(z)$. Also, by our choice of $y$,
 		have that $y \in a''(x)$. And as $b\in A$, it's reflexive, giving that $y \in b(y)$.
 		So, by composition of relations, we get:
 		\[ za''x \text{ , }  xa''y \text{ and } yby \implies z(a''a''b)y \implies z(ab)y \text{ i.e. }
-		y \in (ba)(z)\]
-	\item By using Proposition 2.3 (a), need to show that $A\geq y_X^o.\tilde{A}.y_X$ i.e. $\forall
+		y \in (ba)(z).\]
+	\item By using Proposition 4.14 (a), need to show that $A\geq y_X^o.\tilde{A}.y_X$ i.e. $\forall
 		a\in A, \exists \tilde{b}\in \tilde{A} :  a \supseteq y_X^o \text{ } \tilde{b} \text{ } y_X $.
-		Applying to an element, $x\in X$ gives the condition
+		Applying the relations to an element, $x\in X$ gives the condition:
 		\begin{equation}
 			\Big( y_X^o \text{ } \tilde{b} \text{ } y_X \Big)(x) \subseteq a(x)
 			\implies \Big( y_X^o \text{ } \tilde{b} \Big) (x^*)= y_x^o
-			\Big(\tilde{b}(x^*)\Big) \subseteq a(x)
+			\Big(\tilde{b}(x^*)\Big) \subseteq a(x).
 		\end{equation}
 		Thus, if $y^* \in PX$ such that $x^* \tilde{b} y^*$, then
-		$y \in y_x^o\Big(\tilde{b}(x^*)\Big)$. Now, for (8) to hold, $y \in a(x)$ i.e. $xay$. Thus,
-		need only to show that for any $a\in A, \exists b \in A $ such that $\forall x,y \in X,
-		x^* \tilde{b}y^* \implies xay $. So, fix $a\in A$, and take $b \in A: bb \subseteq a$.
+		$y \in y_x^o\Big(\tilde{b}(x^*)\Big)$. For (5) to hold, need that
+		$y \in a(x)$, that is, $xay$. Thus,
+		need only to show that for any $a\in A$, there exists $b\in A $ such that
+		for any $x,y \in X$, $x^* \tilde{b}y^*$ implies $xay$.
+		So, fix $a\in A$, and take $b \in A: bb \subseteq a$.
 		Now, let $x^* \tilde{b}y^*$ i.e. $x^o.A \leq y^o .A .b$.
 		Hence, $\exists c \in A: x^oc \subseteq y^o bb$. And as c is reflexive,
-		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay \qedhere \]
+		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay\;. \qedhere \]
 \end{enumerate}
 \end{proof}
 %}}}
 %{{{ Yoneda Lemma
 \begin{theorem}[Yoneda Lemma] %{{{ Yoneda Lemma		Theorem
-	For every $\psi \in PX$, in the following digram,
+	The following statements hold for any $\psi \in PX$:
 	\begin{enumerate}[label=(\alph*)]
-		\item $\psi \geq \psi^*.(y_X)^*$
-		\item $\psi \in \overline{y_X(X)} \implies \psi \leq \psi^*.(y_X)_*$
+		\item $\psi \geq \psi^*.(y_X)^*$,
+		\item $\psi \in \overline{y_X(X)} \implies \psi \leq \psi^*.(y_X)_*$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}\setcounter{equation}{0}
-
 	\begin{enumerate}[label=(\alph*)]
 		\item By definition, $(y_X)_*=\tilde{A}.y_X$, and $\psi^*=\psi^o.\tilde{A}$. Need that
-			$\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$. And applying Lemma 2.2.1 to
+			$\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$.
+			Applying Lemma 4.5 to
 			$\tilde{A}$, the required condition becomes $\psi \geq \psi^o .\tilde{A} .y_X$
 			Fix $p \in \psi$,
-			we will find $a \in A: p \supseteq \psi^o a y_X$. Examining the right side of the condition,
-			(for any $a \in A$, $x \in X$  )
-			\begin{equation} \Big(\psi^o.\tilde{a} .y_X \Big) (x) = \psi^o.\tilde{a} (x^*)=
+			we will find $a \in A$ such that $p \supseteq \psi^o a y_X$. Examining the right side of the condition,
+			\begin{equation}
+				\text{ (for any $a \in A$, $x \in X$) } \Big(\psi^o.\tilde{a} .y_X \Big) (x) = \psi^o.\tilde{a} (x^*)=
 				\psi^o\big(\tilde{a}(x^*)\big)= \begin{cases}
 					\phi &\text{ if } \psi \notin \tilde{a} (x^*) \\
 					\star &\text{ if } \psi \in \tilde{a} (x^*) \\
 
-				\end{cases}\end{equation}
+				\end{cases}.\end{equation}
 
 				In case $\psi \notin \tilde{a} (x^*)$, the condition holds trivially. As $\psi$ is a
 				promodule, $\psi.A\leq \psi$ gives $\exists q\in \psi, a
@@ -1536,40 +1539,42 @@ quasi-uniformity of the quasi-uniform space 1.
 				\begin{equation} x^* \tilde{a} \psi \implies x^o.A \leq \psi.a
 					\implies \exists b\in A: x^ob \subseteq qa
 					\implies \forall z \in X, \big(x^o b \big)(z) \subseteq (qa)(z)
-				\end{equation}
-				Thus, in particular for $z=x$, as $b$ is reflexive, $xbx$, which gives:
-				\begin{equation} \big(x^o b \big)(x) \subseteq (qa)(x) \implies x^ox \subseteq (qa)(x) \implies \star \in (qa)(x) \end{equation}
-				But, as $qa \subseteq p$ , (11) gives that $xp\star$.
+				.\end{equation}
+				Thus, in particular for $z=x$, as $b$ is reflexive, $xbx$, gives:
+				\begin{equation} \big(x^o b \big)(x) \subseteq (qa)(x) \implies x^ox \subseteq (qa)(x) \implies \star \in (qa)(x). \end{equation}
+				But, as $qa \subseteq p$ , (3) gives that $xp\star$.
 			\item Suppose $\psi \in \overline{y_X(X)}$, need to show $\psi \leq \psi^*.(y_X)_*=\psi^o.\tilde{A}.y_X$ i.e.
 				for $a \in A,$ $\exists p \in \psi: p \subseteq \psi^o.\tilde{a}.y_X$. For any $x \in Dom(p)$,
 				the condition requires:
 				\begin{equation}
 					p(x) \subseteq  \psi^o.\tilde{a} .y_X(x)=\psi^o\big(\tilde{a} (x^*)\big)
 				\end{equation}
-				By definition of $p$, for (12) to hold, need that $xp\star \implies \psi \in \tilde{a}(x^*) $. Fix
-				any $a\in A$, we will find $p \in \psi$ such that (12) holds. By quasi-uniformity of A,
-				$\exists b \in A: bb \subseteq a$. From Proposition 2.5(a), $y_X$ is uniformly continuous,
-				$y_X.A \leq \tilde{A}.y_X $ giving that $\exists c \in A: y_xc \subseteq \tilde{b}y_X $. Thus, for
-				any $z,w\in X$ such that $z c w$,
+				By definition of $p$, for (4) to hold, need that $xp\star \implies \psi \in \tilde{a}(x^*) $. Fix
+				any $a\in A$, we will find $p \in \psi$ such that (4) holds.
+				By quasi-uniformity of A,
+				$\exists b \in A: bb \subseteq a$. From Proposition 5.3 (a),
+				we know that $y_X$ is uniformly continuous, that is,
+				$y_X.A \leq \tilde{A}.y_X $. Thus, we get that $\exists c \in A: y_xc \subseteq \tilde{b}y_X $. Hence, for any $z,w\in X$ such that $z c w$,
 				\begin{equation} \big(y_X c \big)(z) \subseteq \big(\tilde{b} y_X\big)(z) \implies
-					y_X(c(z)) \subseteq \tilde{b}(z^*) \implies w^* \in \tilde{b}(z^*) \text{ i.e. } z^* \tilde{b} w^*
+					y_X(c(z)) \subseteq \tilde{b}(z^*) \implies w^* \in \tilde{b}(z^*) \text{ i.e. } z^* \tilde{b} w^*\;.
 				\end{equation}
 				As $A$ is a quasi-uniformity, $\exists d\in A: dd \subseteq c$. Also, because $A$ is a down-
-				directed set, $\exists a' \in A: a' \subseteq b,d $. This along with (13) gives that
-				for any $x,y \in X$
-				\begin{equation} x(a'a')y \implies x(dd)y \implies xcy \implies x^* \tilde{b} y^* \end{equation}
+				directed set, $\exists a' \in A: a' \subseteq b,d $. This along with (5) gives that
+				for any $x,y \in X$,
+				\begin{equation} x(a'a')y \implies x(dd)y \implies xcy \implies x^* \tilde{b} y^* \; .\end{equation}
 				Now, because $\psi \in \overline{y_X(X)}$, we get
 				$\exists x^* \in y_X(X) \text{ such that } \psi \tilde{a'}x^* \text{ and } x^* \tilde{a'} \psi $.
-				By definition of $\tilde{a}$, $\psi \tilde{a'}x^*$ gives
-				\begin{equation} \psi \leq x^o.A.a' \implies \exists p \in \psi: p \subseteq x^o a'a' \end{equation}
-				Fix any $z \in X : zp \star$, using (15) and (14) gives:
-				\begin{equation} zp \star \xRightarrow z(x^o a'a') \star \xRightarrow{(15)} z(a'a')x
-				\xRightarrow{(14)} z^* \tilde{b}x^*   \end{equation}
+				Using the definition of $\tilde{a}$, from $\psi \tilde{a'}x^*$,
+				we get:
+				\begin{equation} \psi \leq x^o.A.a' \implies \exists p \in \psi: p \subseteq x^o a'a' \; .\end{equation}
+				Fix any $z \in X$ such that $zp \star$, using (7) and (6) gives:
+				\begin{equation} zp \star \xRightarrow z(x^o a'a') \star \xRightarrow{(7)} z(a'a')x
+				\xRightarrow{(6)} z^* \tilde{b}x^*  \; . \end{equation}
 
-				Finally, by definition of the partial order on $\tilde{A}$,$a' \subseteq b \implies \tilde{a'}
+				Finally, the definition of the partial order on $\tilde{A}$,
+				gives us that $a' \subseteq b \implies \tilde{a'}
 				\subseteq \tilde{b} $. Therefore,  $x^* \tilde{a'}\psi \implies x^* \tilde{b}\psi$.
-				Now, using (16), $z^* \tilde{b}x^* \text{ and } x^*\tilde{b}\psi  $ gives the desired result
-				$z^* \tilde{b} x^* $. \qedhere
+				Now, using (8), we get $z^* \tilde{b}x^* \text{ and } x^*\tilde{b}\psi  $. Hence, giving us the desired result, that is, $z^* \tilde{b} x^* $. \qedhere
 		\end{enumerate}
 	\end{proof}
 	%}}}
@@ -1585,16 +1590,16 @@ quasi-uniformity of the quasi-uniform space 1.
 		Fix any $\psi \in PX$. \setcounter{equation}{0}
 		\begin{enumerate}[label=(\roman*)]
 			\item ($\implies$)
-				Let $\psi \in \overline{y_X(X)}$, from Theorem 4.4, we get that
+				Let $\psi \in \overline{y_X(X)}$, from Theorem 5.4, we get that
 				$\psi = \psi^*.(y_X^{})_*^{}$. In order to show $\psi$ is a
-				right-adjoint, by using Lemma 4.5, it is enough to show that $\psi^*$ is a
+				right-adjoint, we will show that $\psi^*$ is a
 				right adjoint and that $(y_X^{})_*^{}$ is an equivalence.
 				\begin{enumerate}[label=\Roman*]
 					\item In order to show that $(y_X^{})_*^{}$ is an equivalence,
 						we need that $A=(y_X^{})^*_{}.(y_X^{})_*$ and
 						$\tilde{A}= (y_X^{})_*.(y_X^{})^*_{}$.\\
-						From proposition 4.3 (b), we have that $y_X^{}$
-						is fully faithful, and by Proposition 3.13 (a), this gives us
+						From proposition 5.3 (b), we have that $y_X^{}$
+						is fully faithful, and by Proposition 4.14 (a), this gives us
 						that $A=(y_X^{})^*_{}.(y_X^{})_*$.
 						\begin{itemize}
 							\item 	We are now going to show that
@@ -1613,33 +1618,38 @@ quasi-uniformity of the quasi-uniform space 1.
 							\item To show that $\tilde{A} \geq (y_X^{})_*.(y_X^{})^*$, fix any $a\in A$. By
 								quasi-uniformity of $\tilde{A}$, there exists $\tilde{b}\in \tilde{A}$ such that
 								$\tilde{b} \, \tilde{b} \subseteq a$. We will show that $\tilde{a} \supseteq
-								\tilde{b}\,y_X^{} \, y_X^{o} \, \tilde{b} $.
+								\tilde{b}\,y_X^{} \, y_X^{o} \, \tilde{b} $:
 								\[ \psi \big(\tilde{b}\,y_X^{} \, y_X^{o} \, \tilde{b} \big) \phi
-								\implies \psi \big( \tilde{b} \tilde{b} \big) \phi \implies \psi \tilde{a} \phi\]
+								\implies \psi \big( \tilde{b} \tilde{b} \big) \phi \implies \psi \tilde{a} \phi \; .\]
 
 
 						\end{itemize}
 
 					\item In order to show that
 						$\psi^*$ is a right adjoint to $\psi_*$,
+						due to the 2-categorical structure of ProMod,
 						we need to show that
 						$\tilde{A} \geq \psi_\star.\psi^\star $ and
 						$\psi_\star.\psi^\star \geq 1$.
 						\begin{itemize}
-							\item To show that $\tilde{A}\geq \psi_*.\psi^*=\psi_*.\psi^o.\tilde{A} $,
+	\item To show that $\tilde{A}\geq \psi_*.\psi^*=\psi_*.\psi^o.\tilde{A} $,
 								fix any $a\in A$. We will show that $\psi_*.\psi^o.\tilde{a} \subseteq \tilde{a}$.
-								Using definition of $\psi_*$, for any $\phi \in \overline{y_X^{}(X)}$, we get that
+								Using definition of $\psi_*$, for any $\phi \in \overline{y_X^{}(X)}$, we get:
 								\[\big(\psi_*.\psi^o.\tilde{a}\big)(\phi)=
 									\psi_*.\psi^o(\tilde{a}(\phi))= \begin{cases}
 										\phi &\text{ if }\tilde{a} (\phi)\neq \psi \\
 										\psi=\psi_*.\psi^o(\psi) &\text{ if } \tilde{a} (\phi)=\psi
-									\end{cases}\]
+									\end{cases}.\]
 									The above equation gives that $\phi\big(\psi_*.\psi^o.\tilde{a}\big)\psi$ implies
 									$\phi \tilde{a} \psi$.
+									Hence,
+									we have that
+									$\tilde{a}\supseteq
+									\psi_*.\psi^o.\tilde{a} $.
 								\item We will show that $\psi_\star.\psi^\star \geq 1$, that is
 									$\star(\psi^o.\tilde{a} .\psi_*)\star$. Using definition of $\psi_*$,
 									\[\big(\psi^o.\tilde{a} .\psi_*\big)(\star)=\big(\psi^o.\tilde{a}\big) (\psi_*(\star))
-									= \big( \psi^o.\tilde{a} \big) (\psi)=\psi^o \big( \tilde{a}(\psi)  \big) \]
+									= \big( \psi^o.\tilde{a} \big) (\psi)=\psi^o \big( \tilde{a}(\psi)  \big). \]
 									By the quasi-uniformity of $\tilde{A}$, we get that $\tilde{a}$ is reflexive, and hence,
 									$\psi \tilde{a} \psi$. So, from the above equation, we have that
 									$\star \in \psi^o(\psi) \subseteq \big(\psi^o.\tilde{a} .\psi_*\big)(\star) $.
@@ -1650,15 +1660,15 @@ quasi-uniformity of the quasi-uniform space 1.
 					$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
 					\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
 					exists a promodule $\phi: 1 \carrow X$ such that $\phi.\psi \leq A$ and
-					$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that
+					$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that:
 					\begin{equation}\exists p \in \phi, q \in \psi \text{ such that }
-						a \supseteq p.q
+						a \supseteq p.q \; .
 					\end{equation}
 					Because $\phi$ and $\psi$ are promodules,
 					\begin{align}
-						A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \\
+						A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \; ,\\
 						A.\psi \leq \psi & \text{ gives the existence of } q' \in \psi \text{ and } a'' \in A
-						\text{ such that } q \supseteq a''q'
+						\text{ such that } q \supseteq a''q' \; .
 					\end{align}
 					Now, from $1 \leq \psi.\phi$, we get that $q'\,p'$ is reflexive i.e. $\star (q' \,p')
 					\star$. By the definition of composition we get the existence of an $x \in X$
@@ -1666,39 +1676,40 @@ quasi-uniformity of the quasi-uniform space 1.
 					defined as $\star \mapsto x$,
 					\begin{align}
 						x \, q' \, \star \text{ i.e. } &\star \in q'(x) \text{ gives that }
-						q' \supseteq x^o \\
+						q' \supseteq x^o \;,\\
 						\star \,p' \, x \text{ i.e. } &x \in p'(\star) \text{ gives that }
-						p'\supseteq x
+						p'\supseteq x \;.
 					\end{align}
-					Thus, by using inequalities (1),(2) and (3), we get that
+					Thus, by using inequalities (1),(2) and (3), we get:
 					\begin{equation}
-						a \supseteq p\,q \supseteq a'\,p'\,q'\,a''
+						a \supseteq p\,q \supseteq a'\,p'\,q'\,a'' \; .
 					\end{equation}
 					By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
-					we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. Showing
+					we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. We are now
+					going to show that
 					$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q'$:
 					\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
-					\supseteq x^o\,x\,q' \subseteq q'\]
+					\supseteq x^o\,x\,q' = q' \; .\]
 					Where the first inequality comes from (6) by using reflexiveness of $a''$ and then
 					left-multiplying by $x^o$. The second inequality comes from (5),
 					third one from reflexiveness of $b$ and $a'$,
-					and the last one is given by Lemma 2.4.1.
+					and the last one is given by Lemma 3.7.
 
 					In order to show $x^* \, \tilde{a} \, \psi$, by definition of $\tilde{a}$,
-					need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will show
-					$k\,a \supseteq x^o \, a''$.
+					need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will now show
+					$k\,a \supseteq x^o \, a''$:
 
 					\begin{equation}
 						a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a''
-						\supseteq p' \,x^o \,a''
+						\supseteq p' \,x^o \,a'' \; .
 					\end{equation}
 
 					Where the first inequality is given by (6), second one
 					is due to reflexiveness	of $a'$ and the third inequality comes by using (4).
-					Left-multiplying (7) with $k$ gives the following.
+					Left-multiplying (7) with $k$ gives the following:
 					\begin{equation}
 						ka \supseteq k\,p'\,x^o\,a'' \text{ that is, for any } z\in X,
-						\; \; z (k\, a) \star \implies z ( k\,p'\,x^o\,a'') \star
+						\; \; z (k\, a) \star \implies z ( k\,p'\,x^o\,a'') \star \; .
 					\end{equation}
 					As $\psi$ is a right adjoint to $\phi$, we have $1\leq \psi.\phi$, giving that
 					$\star (k \, p' )\star $. So, using the implication in(8), we get that
