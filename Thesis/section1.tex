@@ -73,20 +73,35 @@
 \thispagestyle{empty}
 \newpage
 \begin{abstract}
-	We detail a proof of Yoneda Lemma from \cite{Tom}, showing Cayley's theorem and
-	Yoneda Embedding as its consequences. We define a
-	categorical structure on quasi-uniform spaces and on promodules as described in
-	\cite{Clementino_Hofmann_2011}, in order to establish Yoneda
-	Embedding for quasi-uniform spaces. Further, we prove a weak version of Yoneda Lemma
-	for quasi-uniform spaces.
+	We work out the details of the proof for Yoneda Lemma using the text from \cite{Tom}.
+	Roughly speaking, Yoneda Lemma allows us to embed locally small categories into $Set$ via
+	representable functors. We then give two consequences of the Lemma: first is to show
+	that Cayley's theorem
+	from group theory is a particular case of Yoneda Lemma, and second is to
+	derive Yoneda Embedding, a fully faithful functor from locally small categories to
+	their presheaf category.
+
+	Further,
+	we discuss quasi-uniform spaces from the paper \cite{Clementino_Hofmann_2011}. Here
+	we discuss categories of quasi-uniform spaces and Promodules. We define the Yoneda
+	embedding and prove a (weak) Yoneda Lemma for quasi-uniform spaces. We stop our work
+	here; though the paper goes on a step further to discuss the Cauchy completion monad for
+	quasi-uniform spaces.
 \end{abstract}
 %\addcontentsline{toc}{section}{Acknowledgments}
 \tableofcontents
 \section{Introduction}
 
+Informally, Yoneda Lemma can be understood as giving us a way to study, one by one,
+objects of a locally small category $ \mathcal{A} $ by looking at how they interact with different functors from
+the presheaf category on $ \mathcal{A} $. In a crude sense, one may consider Yoneda Lemma to be
+akin to a math flavored particle accelerator, in order to figure out a mystery category, we
+put an object of it in the Lemma, and see how it reacts to being moved representable functors
+from $ \mathcal{A}$ to $Set$. Once we have exhaustively tested it, we learn a lot about it's
+structure.
+
 In this section, we set forth basic definitions and lemmas that we will require in
 order to prove Yoneda lemma.
-
 For any category $\mathcal{A}$, and its objects $X,Y\in \mathcal{A} $,
 we denote $Hom_{\mathcal{A}}^{\mbox{}}(X,Y)$ with $\mathcal{A} (X,Y)$.
 
@@ -317,6 +332,10 @@ Throughout this work, the notation $(\string _)$ occurs as a placeholder for the
 				$[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A)$
 				as a set. Second we will show the isomorphism
 				is natural in $X$ and $A$.
+			\item In a way, Yoneda Lemma gives us that every functor from a locally
+				small category $ \mathcal{A} $ to $Set$, is either a representable
+				functor, or it has a natural transformation to it from a
+				representable functor.
 \end{enumerate}
 		\begin{proof}\setcounter{equation}{0}
 			Let $\mathcal{A} $ be a locally small category.
@@ -1300,7 +1319,7 @@ This gives us that $\delta$ and $\gamma$ are inverses, as
 					\end{enumerate}
 				\item	\begin{enumerate}[label=(\roman*)]
 					\item $(\implies )$ Let f be fully dense i.e. $B=f_*f^* = B.f.f^o.B$.
-						showing that $\forall b \in B,\exists b'\in B: b'
+						Showing that $\forall b \in B,\exists b'\in B: b'
 						\subseteq bff^ob$.\\
 						So, fix $b\in B$, as $B \leq B.f.f^o.B$, there exists $b' \in
 						B$ such that $b' \subseteq bff^ob$.
