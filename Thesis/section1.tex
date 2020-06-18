@@ -288,8 +288,7 @@ Throughout this work, the notation $(\string _)$ occurs as a placeholder for the
 		\begin{theorem}{\textbf{Yoneda Lemma}} %{{{ Yoneda		Theorem
 			\setcounter{equation}{0}
 			If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
-			and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism
-			(of sets),
+			and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism,
 			\begin{equation} [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{ which is natural in } A \text{ and } X.\end{equation}
 		\end{theorem}
 		\paragraph{Notation:} \begin{itemize}
@@ -306,9 +305,19 @@ Throughout this work, the notation $(\string _)$ occurs as a placeholder for the
 					\arrow[Rightarrow, from=U , to=D, "\alpha"]
 				\end{tikzcd}$.
 		\end{itemize}
-		To prove the theorem,
-		first, we show that $[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A) $ as a set,
-		and then that this isomorphism is natural in $X$ and $A$.
+		\paragraph{Remarks:} \begin{enumerate}
+			\item For a locally small category $ \mathcal{A} $, the functor category
+				$[ \mathcal{A} ^{op},Set ]$ is not in general locally small,
+				and so the left hand side of (1) is a priori a class
+				and not necessarily a set. However, when we prove Yoneda
+				Lemma, we set up a bijection between this class and $RHS$
+				of (1), which certainly is a set. Hence, the $LHS$ of (1)
+				is a set too.
+			\item We shall prove the theorem in two steps. First, we show that
+				$[ \mathcal{A} ^{op}, Set](H_A,X)$ is isomorphic to $X(A)$
+				as a set. Second we will show the isomorphism
+				is natural in $X$ and $A$.
+\end{enumerate}
 		\begin{proof}\setcounter{equation}{0}
 			Let $\mathcal{A} $ be a locally small category.
 			Fix an object $A \in \mathcal{A} $ and a presheaf $X$ on $\mathcal{A}$.
