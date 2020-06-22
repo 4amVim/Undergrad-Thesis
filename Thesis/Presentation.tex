@@ -1,0 +1,1268 @@
+\documentclass[8pt]{beamer}
+%Compiled by Overleaf
+\mode<presentation> { \usetheme{Frankfurt} %\setbeamertemplate{footline}[page number] 
+\setbeamertemplate{navigation symbols}{} }
+\usepackage{amsthm,amsfonts,amssymb,amscd,amsxtra,tikz-cd}
+\usepackage{biblatex}
+\usepackage{appendixnumberbeamer}
+
+\addbibresource{references.bib}
+
+
+\title[Yoneda Lemma and Quasi-Uniform Spaces]{ \Huge Yoneda Lemma and Quasi-Uniform Spaces}
+
+\author{\huge Ayush Rawat} % Your name
+\institute[SNU] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large
+Shiv Nadar University\\ % Your institution for the title page
+\medskip}
+
+\date{22 June 2020}
+\newtheorem{defi}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lema}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{ex}{Example}
+\newtheorem{coro}{Corollary}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+\begin{frame}{Abstract}
+We work out the details of the proof for Yoneda Lemma using the text from \cite{Tom}.
+	Roughly speaking, Yoneda Lemma allows us to embed locally small categories into $Set$ via
+	representable functors. We then give two consequences of the Lemma: first is to show
+	that Cayley's theorem
+	from group theory is a particular case of Yoneda Lemma, and second is to
+	derive Yoneda Embedding, a fully faithful functor from locally small categories to
+	their presheaf category.
+	Further,
+	we discuss quasi-uniform spaces from the paper \cite{Clementino_Hofmann_2011}. Here
+	we discuss categories of quasi-uniform spaces and Promodules. We define the Yoneda
+	embedding and prove a (weak) Yoneda Lemma for quasi-uniform spaces. We stop our work
+	here; though the paper goes on a step further to discuss the Cauchy completion monad for
+	quasi-uniform spaces.
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Representables}
+\begin{definition} %{{{Category A op		Definition
+	For any category $\mathcal{A} $, it's opposite category, $\mathcal{A}^{op}$
+	is the category having the objects of $\mathcal{A}$.
+	And for objects $A,B \in \mathcal{A} $, a morphism $f \in \mathcal{A}^{op} (A,B)$
+	if and only if there is a morphism $g \in \mathcal{A}(B,A)$.
+\end{definition}
+\pause
+\begin{prop} %{{{ H_A	Definition
+	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
+	a functor, $H_A: \mathcal{A} ^{op} \rightarrow Set$ defined as:
+	\begin{enumerate}
+		\item For any object $B \in \mathcal{A} $ , $H_A(B):=\mathcal{A} (B,A)$.
+		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
+			\[H_A(g): \mathcal{A} (Y,A) \rightarrow \mathcal{A}(X,A)
+			\text{ is given by } p \mapsto p \circ g.\]
+	\end{enumerate}
+\end{prop}
+\pause
+	A functor $ \mathcal{A} ^{op} \to Set$ that is isomorphic to $H_A$
+	is called a representable.
+\end{frame}
+\begin{frame}[fragile]{Required Results}
+If a transformation is natural in two individual variables simultaneously, then it is natural their pair.
+	\begin{lema}
+		Let $\mathcal{A},\mathcal{B}$ and $\mathcal{C}$ be categories. Suppose there
+		are functors $F,G:\mathcal{A} \times \mathcal{B} \to \mathcal{C}$.
+
+		For every $A\in \mathcal{A}$, there are functors, $F^A,G^A:\mathcal{B} \to \mathcal{C}$
+		defined as taking $B \in \mathcal{B}$ to $F(A,B),\, G(A,B)$ and
+		morphism $f$ to $F((1_A,f)),\, G((1_A,f)) $. And, for every $B\in \mathcal{B}$,
+		there are functors $F_B,G_B:\mathcal{A} \to \mathcal{C}$ defined similarly.
+
+		A family of maps, $\big( \alpha_{A,B}: F(A,B) \to G(A,B)
+		\big)_{A \in \mathcal{A} , B \in \mathcal{B} } $ is a natural transformation
+		$F \to G$ if the following conditions are satisfied:
+		\begin{enumerate}
+			\item For each $A \in \mathcal{A}$, the family
+				$\big( \alpha_{A,B}: F^A(B) \to G^A(B) \big)_{ B \in \mathcal{B} } $ is
+				a natural transformation $F^A \to G^A$;
+			\item For each $B \in \mathcal{B}$, the family
+				$\big( \alpha_{A,B}: F_B(A) \to G_B(A) \big)_{ A \in \mathcal{A} } $ is
+				a natural transformation $F_B \to G_B$.
+		\end{enumerate}
+	\end{lema}
+\pause
+	Following is an equivalent definition of natural isomorphism.
+	\begin{lema}
+		Let $ 	\begin{tikzcd}
+			\mathcal{A}  \arrow[r,bend left=50, "F"{name=U, below}]
+			\arrow[r, bend right = 50, "G"{name=D, above}]
+		& \mathcal{B}
+		\arrow[Rightarrow, from=U , to=D, "\alpha"]
+		\end{tikzcd}$
+		be a natural transformation. If for every $A \in \mathcal{A} $,
+		$\alpha_A:F(A) \to G(A)$ is an isomorphism
+		then $\alpha$ is a natural isomorphism.
+	\end{lema}
+\end{frame}
+\section{Yoneda Lemma}
+\begin{frame}{Yoneda Lemma}
+		\begin{theorem}
+			If $\mathcal{A} $ is a locally small category then, for any object $A \in \mathcal{A} $
+			and $X \in [ \mathcal{A}^{op},Set]$,\\ there exists an isomorphism,
+			\begin{equation} [ \mathcal{A} ^{op},Set ](H_A,X)\cong X(A) \text{ which is natural in } A \text{ and } X.\end{equation}
+		\end{theorem}
+		\pause
+		Outline of the proof:
+		\begin{itemize}
+		    \item<1-> Define a map from $[ \mathcal{A} ^{op},Set ](H_A,X)$ to $X(A)$.
+		    \item<2-> Define a map from $X(A)$ to $[ \mathcal{A} ^{op},Set ](H_A,X)$.
+		    \item<3-> Show the maps to be mutually inverse.
+		    \item<4-> Prove the resulting isomorphism natural in $A$.
+		    \item<5-> Prove it natural in $X$.
+		\end{itemize}
+\end{frame}
+\section{Consequences}
+\begin{frame}
+\frametitle{Cayley's Theorem}
+\begin{theorem}{\textbf{Cayley's Theorem}} %{{{ Cayley's Theorem		Theorem
+			Every group, $G$ is isomorphic to a subgroup of symmetric group on $G$.
+\end{theorem}
+Outline of the proof:
+Take a group $G$.
+		\begin{itemize}
+		    \item<1-> Define category $\mathcal{A}$ to have a single
+		    object, $\star$. With morphisms corresponding to elements of $G$.
+		    With their product also being as elements of $G$. So that
+		    $\mathcal{A}(\star,\star)$ is isomorphic to group $G$.
+		    \item<2-> Prove that each member of the collection $[ \mathcal{A} ^{op},Set ](H_\star,H_\star)$ can be considered
+		    as a bijection on $G$.
+		    \item<3-> Show that the above collection of bijections is actually a group.
+		    \item<4-> Use Yoneda Lemma to get a set isomorphism between
+		    $[ \mathcal{A} ^{op},Set ](H_\star,H_\star)$ and $\mathcal{A}(\star,\star)$.
+		    \item<5-> Prove this set isomorphism to be a group isomorphism.
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Yoneda Embedding}
+    \begin{definition} %{{{ Embedding of a category		Definition
+			A category $\mathcal{A}$  is said to be embedded in a category $\mathcal{B}$ if
+			and only if there exists a functor $F: \mathcal{A} \to \mathcal{B}$
+			such that $F$ is full and faithful.
+		\end{definition} %}}}
+		\pause
+		\begin{prop} %{{{ H_A	Definition
+	For a locally small category $\mathcal{A}$, fixing an object $A \in \mathcal{A} $ gives
+	a functor, $H_\bullet: \mathcal{A} \to [ \mathcal{A} ^{op},Set$ ] defined as:
+	\begin{enumerate}
+		\item For any object $B \in \mathcal{A} $ , $H_\bullet(B):=H_A(B)$,
+		\item For any morphism, $g : X \rightarrow Y $ in $\mathcal{A}$,
+			for any $K\in \mathcal{A}$, $H_\bullet(g)$ takes $p \in H_X(K)$ to 
+			$g \circ p$ in $H_Y(K)$.
+	\end{enumerate}
+\end{prop}
+\pause
+\begin{theorem}{ \textbf{Yoneda Embedding}}
+				Any locally small category can be embedded in the presheaf category on it.
+			\end{theorem}
+			\pause
+			The proof proceeds by showing functor $H_\bullet$ to be
+			full and faithful.
+\end{frame}
+\section{Definitions}
+\begin{frame}{Prorelation}
+\begin{definition}%{{{ Prorelation		Definition
+				A prorelation is a partially ordered, down-directed, up-set of relations $X \to Y$.\\
+				That is, $P \subseteq \mathcal{P}(X \times Y)$ is a prorelation if it satisfies the
+				following conditions:
+				\begin{enumerate}
+					\item Partial Order: Containment of relations defines a partial order.
+						That is, $r \subseteq s$  meaning that for any $(x,y) \in X \times Y$,
+						if  $(x,y)\in r\;$ then $\;(x,y)\in s$.
+					\item Down-directed: For any $r,s \in P$, there exists $t \in P $ such that
+						$t\subseteq r \text{ and } t \subseteq s$.
+					\item Up-set: For any relation $u:X\to Y$, if there exists $p \in P$ such that
+						$p \subseteq u $ then $u \in P$.
+				\end{enumerate}
+			\end{definition}
+		\pause
+			\begin{example} %{{{ 		Example
+				For any positive real number $\epsilon$, define a relation on $\mathbb{R}$ as
+				$A_\epsilon=\{ (x,y) |\; |x-y|<\epsilon \}$.
+				The collection of all relations on $\mathbb{R}$ that contains some
+				$A_\epsilon$ will be a prorelation, $K$ on $\mathbb{R}$.
+				That is, $K=\{ a:\mathbb{R} \to \mathbb{R} \, | \; a \supseteq A_\epsilon \text{ for some } \epsilon>0 \; \}$ forms a prorelation.
+				If $k,l \in K$, then there exist $\delta ,\, \epsilon > 0$ such that
+				$k \supseteq A_\delta$ and $l \supseteq A_\epsilon$. Thus, the relation $A_{
+				\frac{\delta+\epsilon}{2}}$ is in both $k$ and $l$. Moreover,
+				$K$ is an up-set by definition.
+			\end{example}
+			\pause
+			\begin{lemma}
+				Composition of two prorelations is a prorelation.
+			\end{lemma}
+\end{frame}
+
+\begin{frame}{Quasi-Uniform Space}
+Quasi-uniformity is a particular kind of prorelation.
+    \begin{definition} %{{{ Quasi-uniformity		Definition
+				A prorelation $P$ on a set $X$ is said to be a quasi-uniformity
+				if it satisfies the following conditions:
+				\begin{enumerate}
+					\item Every relation in $P$ is reflexive. That is,
+						for each $p \in P$, if $x \in X$ then $(x,x) \in p$.
+					\item For each $p$ in $P$, there exists $p'$ in $P$ such that
+						$p' \circ p' \subseteq p$.
+				\end{enumerate}
+			\end{definition}
+			\pause
+			\begin{example} %{{{ 		Example
+				As earlier, define $A_\epsilon=\{ (x,y) |\; |x-y|<\epsilon \}$.
+				The collection of all relations on $\mathbb{R}$ that contains some
+				$A_\epsilon$, that is, $K=\{ a:\mathbb{R} \to \mathbb{R} \, | \; a \supseteq A_\epsilon \text{ for some } \epsilon>0 \; \}$ forms a prorelation.
+				If $k,l \in K$, then there exist $\delta ,\, \epsilon > 0$ such that
+				$k \supseteq A_\delta$ and $l \supseteq A_\epsilon$. Thus, the relation $A_{
+				\frac{\delta+\epsilon}{2}}$ is in both $k$ and $l$. Moreover,
+				$K$ is an up-set by definition.
+			\end{example}
+			\pause
+			\begin{definition} %{{{Quasi-uniform space Definition
+				If $X$ is a set, and $A$ is a quasi-uniformity on $X$, then (X,A) is a quasi-uniform space.
+			\end{definition}
+			\end{frame}
+			
+\begin{frame}
+			The following gives us a partial order on prorelations:
+			\begin{definition} %{{{ Containment of Prorelations		Definition
+
+				For prorelations $P,Q:X\to Y$, if for each $q \in Q$, there exists $p \in P$ such that
+				$p \subseteq q$, then we write $P\leq Q$.
+			\end{definition}
+			\pause
+			We will require the following definition in the next slide.
+				\begin{definition} %{{{ Uniformly Continuous function 		Definition
+				A function, $f:(X,A) \to (Y,B)$ is said to be uniformly continuous if and only if $f.A \leq B.f$.
+				That is, for each $b \in B$, there exists $a \in A$ such that
+				$f \circ a \subseteq b \circ f$.
+			\end{definition}
+\end{frame}
+
+\section{QUnif and ProMod}
+\begin{frame}{Category definition}
+On this slide, we define two categories.
+\begin{definition}
+    The collection of quasi-uniform spaces can be given a categorical structure by considering the uniformly continuous maps between two spaces as the morphisms between them. We call this category QUnif. Composition is as that of functions,
+    and identity morphisms are the identity functions.
+\end{definition}\pause
+\begin{definition}%{{{ Promodule		Definition
+				A prorelation, $\phi:X \to Y$ is called a promodule $\phi: (X,A) \to (Y,B)$  if it
+				satisfies:
+				\[ \phi.A \leq \phi \text{ and } B. \phi \leq \phi .\]
+			\end{definition}
+			\pause
+			\begin{definition}
+				Now, we define a 2-category called ProMod as having quasi-uniform spaces as 0-cells and the
+			promodules between them being 1-cells.
+			The promodule $A$ will work as the identity of $(X,A)$.
+
+			Let promodules $P,Q: (X,A) \to (Y,B)$. Then, there
+			is a 2-cell from $P$ to $Q$ if and only if $P \leq Q$ as prorelations.
+		\end{definition}
+\end{frame}
+\begin{frame}{Functors from QUnif to ProMod}
+We have a covariant functor from QUnif to ProMod:
+\begin{prop} Functor $(\string _)_*:\text{QUnif} \to \text{ProMod}$ defined as:
+				\begin{enumerate}
+					\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$,
+					\item for $f:(X,A) \to (Y,B)$ in QUnif,
+						$f_* := B.f$,
+				\end{enumerate}
+			\end{prop}
+			\pause 
+			as well as a contravariant functor from QUnif to ProMod,
+			\begin{prop} Functor $(\string _)^*:\text{QUnif}^{op}_{} \to \text{ProMod}$ defined as as:
+				\begin{enumerate}
+					\item for $(X,A) \in \text{QUnif}$, $(X,A)_*:=(X,A) \in \text{ProMod}$,
+					\item for $f:(X,A) \to (Y,B)$ in QUnif,
+						$f^* := f^{o}.B$.
+				\end{enumerate}
+			\end{prop}
+\end{frame}
+
+\begin{frame}{Topological definitions}
+\begin{definition} %{{{Topologically Dense		Definition
+				For any quasi-uniform space $(X,A)$, an element $x \in X$ is said to belong in the
+				topological closure of set $M\subseteq X$ if and only if for each $a\in A$,
+				there exists $y\in M$ such that $x\, a\, y$ and $y\, a\, x$.
+			\end{definition}
+			\pause
+
+			\begin{definition} %{{{ Fully Faithful and Dense		Definition
+				Let $f:(X,A) \to (Y,B)$ be a uniformly continuous function.
+				\begin{enumerate}
+					\item f is said to be fully faithful if and only if $f^* .f_*=A$.
+					\item f is said to be fully dense if and only if $f_* .f^*=B $.
+					\item f is said to be topologically dense of and only if $\overline{f(X)}=Y$.
+				\end{enumerate}
+			\end{definition}
+			\pause
+
+The following proposition gives us easier to apply versions of previous definitions.
+\begin{prop}
+				Let $f:(X,A) \rightarrow (Y,B)$ be a uniformly continuous map.
+				\begin{enumerate}
+					\item f is fully faithful if and only if $A= f^o.B.f$, that is
+						$A\geq f^o.B.f$.
+					\item f is fully dense if and only if for any $b\in B$, $\exists b' \in B$
+						such that $b' \subseteq b\,f\,f^o \,b$.
+					\item f is topologically dense if and only if for any $b\in B$,
+						$\; b \, f\, f^o\,b$ is reflexive.
+					\item f is fully dense if and only if f is topologically dense.
+				\end{enumerate}
+			\end{prop}
+\end{frame}
+\section{Yoneda Lemma in QUS}
+\begin{frame}{Quasi-uniform space of promodules}
+
+\begin{definition}%{{{ PX		Definition
+	The set $PX$ is defined to be the collection of all promodules from the
+	quasi-uniform space $(X,A)$ to the quasi-uniform space 1.
+	\[PX:=\{\psi :(X,A) \to 1 | \psi \text{ is a promodule} \}\]
+\end{definition}\pause
+On this set, we can define a quasi-uniformity.
+\begin{prop}%{{{ A~		Definition
+	For any $a\in A$, $\tilde{a}$ is defined to be a relation on $PX$ as:
+	\[ \text{ for } \phi,\psi \in PX, \; \phi \, \tilde{a} \, \psi \; \text{if and only if } \;	\phi \leq \psi.a \; \;.\]
+	The set, $\tilde{A}:=\{\tilde{a}:a \in A\}$ defines a quasi-uniformity on $PX$.
+\end{prop}\pause
+Just like we could embed any category into its 
+presheaf category via $H_\bullet$, we can embed any quasi-uniform
+space into its 'quasi-uniform space of promodules':
+\begin{prop}
+For a quasi-uniform space $(X,A)$, function $y_X:X \to PX$ is defined by $x\mapsto x^*$ for $x \in X$.
+	\begin{itemize}
+		\item $y_X^{}:(X,A) \rightarrow (PX,\tilde{A})$ is a uniformly continuous map.
+		\item $y_X^{}:(X,A) \rightarrow (PX,\tilde{A})$ is fully faithful.
+	\end{itemize}
+\end{prop}
+\end{frame}
+
+\begin{frame}{Yoneda Lemma for Quasi-Uniform Spaces}
+To think of Yoneda Lemma in quasi-uniform spaces,
+\begin{itemize}
+    \item consider the promodule $(y_X^{})_*$ to be the representable $H_A$ in our initial statement of Yoneda Lemma,
+    \item consider the promodule $\psi^*$ to be the presheaf $X$ in our initial statement of Yoneda Lemma.
+\end{itemize}
+This gives us a weak version of Yoneda Lemma that holds in quasi-uniform space:
+\pause
+\begin{theorem}%{{{ Yoneda Lemma		Theorem
+	The following statements hold for any $\psi \in PX$:
+	\begin{enumerate}
+		\item $\psi \geq \psi^*.(y_X)_*$,
+		\item $\psi \in \overline{y_X(X)} \implies \psi \leq \psi^*.(y_X)_*$.
+	\end{enumerate}
+\end{theorem} \pause 
+And the full strength Yoneda Lemma holds only for elements of $PX$ that
+are also in the topological closure of $y_X^{}(X)$:
+\begin{coro}
+		For $\psi \in PX$, $\psi \in \overline{y_X(X)}$ if and only if $\psi$ is a right-adjoint.
+	\end{coro}
+\end{frame}
+
+\begin{frame}{References}
+\nocite{Fletcher_Lindgren_1982}\nocite{Riehl_2016}
+        \printbibliography
+\end{frame}
+
+\appendix
+
+\section{QUS YL}
+\begin{frame}{Showing $\psi \geq \psi^*.(y_X^{})^*_{}$}
+\begin{itemize}
+\item<1-> By definition, $(y_X)_*=\tilde{A}.y_X$, and $\psi^*=\psi^o.\tilde{A}$, \\
+so, we need to show that $\psi \geq (y_X)_*.\psi^* = \psi^o.\tilde{A}.\tilde{A}.y_X$. \\
+As $\tilde{A}.\tilde{A}=\tilde{A}$, we need $\psi \geq \psi^o.\tilde{A}.y_X$.\\
+\\
+Fix $p \in \psi$. By definition of 2-cells in ProMod, we reqiure the following. 
+\item<1->For this $p$ we need to find $a \in A$ such that $p \supseteq \psi^o \tilde{a} y_X^{}$.
+\item<2->
+Examining the right side of the condition, for any $a \in A$, $x \in X$
+			\begin{equation*}
+		\Big(\psi^o.\tilde{a} .y_X \Big) (x) = =
+				\psi^o\big(\tilde{a}(x^*)\big)= \begin{cases}
+					\phi &\text{ if } \psi \notin \tilde{a} (x^*) \\
+					\star &\text{ if } \psi \in \tilde{a} (x^*)
+				\end{cases}.\end{equation*}
+				So, if $\psi \notin \tilde{a} (x^*)$, then, as $p \supseteq \phi$, 
+				we're done. 
+				Thus, let $\psi \in \tilde{a} (x^*)$, that is, $x^* \tilde{a} \psi$.
+				
+				\item <2-> Hence, $x \big( \psi^o.\tilde{a}. y_X^{} \big) \star$, we now need to show
+				$ x p \star$
+				\item<3-> As $\psi$ is a promodule, $\psi.A \leq \psi$ gives us the
+				the existence of $q \in \psi$ and $a \in A$ such that $qa \subseteq p$. Using the definition of $\tilde{a}$, $x^* \tilde{a} \psi$ gives:
+				\begin{equation*} x^o.A \leq \psi.a
+					\implies \exists b\in A: x^ob \subseteq qa
+					\implies \forall z \in X, \big(x^o b \big)(z) \subseteq (qa)(z)
+				.\end{equation*}
+				\item<4-> By quasi-uniformity of $A$, $b$ is reflexive, giving that
+				in particular, for $xbx$,\begin{equation*} \big(x^o b \big)(x) \subseteq (qa)(x) \implies x^ox \subseteq (qa)(x) \implies \star \in (qa)(x) \implies \star \in p(x) \end{equation*}
+\end{itemize}
+\end{frame}
+\begin{frame}{Showing $\psi \in \overline{y_X(X)} \implies 
+\psi \leq \psi^*.(y_X^{})^*_{}$}
+
+\begin{enumerate}
+    \item <1-> By definition, we need to show that for any $a \in A$, $\exists p \in \psi: p \subseteq \psi^o.\tilde{a}.y_X$. \\ Fix any $x \in Dom(p)$, will show 
+    $p(x) \subseteq  \psi^o.\tilde{a} .y_X(x)=\psi^o\big(\tilde{a} (x^*)\big)$
+    \item <2-> So, need that $xp\star \implies \psi \in \tilde{a}(x^*)$
+    Fix any $a \in A$, let's find $p \in \psi$ such that the above inequality holds.
+    \item <3-> Quasi-uniformity of A gives that $\exists b \in A: bb \subseteq a$.
+    As we know that $y_X^{}$ is uniformly continuous, from Yoneda Embedding in QUS,
+    we have that $y_X.A \leq \tilde{A}.y_X $. So, $\exists c \in A$ such that 
+    $y_xc \subseteq \tilde{b}y_X $. Thus, for any $z$ such that $zcw$,
+    \begin{equation*} \big(y_X c \big)(z) \subseteq \big(\tilde{b} y_X\big)(z) \implies
+					y_X(c(z)) \subseteq \tilde{b}(z^*) \implies w^* \in \tilde{b}(z^*) \text{ that is, } z^* \tilde{b} w^*\;.
+				\end{equation*}
+			\item<4-> As $A$ is a quasi-uniformity, $\exists d\in A: dd \subseteq c$. Also, because $A$ is a down-
+				directed set, $\exists a' \in A: a' \subseteq b,d $. Thus, using the
+				above chain of implications, for any $x,y \in X$,
+				$ x(a'a')y \implies x(dd)y \implies xcy \implies x^* \tilde{b} y^* \; .$
+				\item<5-> Now, because $\psi \in \overline{y_X(X)}$, we get
+				$\exists x \in X \text{ such that } \psi \tilde{a'}x^* \text{ and } x^* \tilde{a'} \psi $.
+				\item<6-> Using the definition of $\tilde{a'}$, from $\psi \tilde{a'}x^*$,
+				we have $\psi \leq x^o.A.a'$, i.e. $\exists p \in \psi: p \subseteq x^o a'a'$.
+				\item<7-> Fix any $z \in X$ such that $zp \star$. Using (6), definition of $x^o_{}$ and then
+				(4), we get that we need to show: \begin{equation*} zp \star \implies z(x^o a'a') \star \implies z(a'a')x
+				\implies z^* \tilde{b}x^*  \; . \end{equation*}
+				\item<8-> Finally, as $\tilde{a'} \subseteq \tilde{b}$, From (5),
+				we have that $z^* \tilde{b}x^* \text{ and } x^*\tilde{b}\psi  $. Using composition, $z^* \tilde{b} x^* $.
+				
+				
+\end{enumerate}
+
+\end{frame}
+
+\section{QUS YE}
+\begin{frame}{Showing $y_X^{}$ is uniformly continuous}
+\begin{enumerate}
+
+\item<1-> As $y_X^{}:(X,A) \rightarrow (PX,\tilde{A})$, we need to show $y_X^{}.A \leq \tilde{A}.y_X^{} $.
+\item<2-> So, need that for each $a\in A$, there exists $b \in A$
+		such that $y_X \circ b \subseteq \tilde{a} \circ y_X$.
+\item<3->  Applying the relations
+		to some element, $x$ of the set $X$ gives us:
+		\begin{equation*} \big(y_X \circ b\big)(x) \subseteq \big( \tilde{a} \circ y_X\big)(x) \implies
+		y_X(b(x)) \subseteq \tilde{a}(x^*). \end{equation*}
+\item<4-> So, for the condition given above to hold, if $y \in b(x)$, then it's required that
+		$y^*=y_X(y) \in \tilde{a} (x^*)$ i.e. $x^* \tilde{a}y^*$. Using the definition of $x^*,y^*$
+		and $\tilde{a}$,
+		\begin{equation*} x^* \tilde{a}y^* \iff x^o.A\leq y^o.A.a \iff
+		\forall a' \in A, \exists a'' \in A: x^oa'' \subseteq y^oa'a  \end{equation*}
+\item<5-> Fix any $a \in A$, $x\in X$. Thus, quasi-uniformity of A, gives $ \exists a'' \in A$ such that
+		$a''a''\subseteq a$. Now, choose $y \in a''(x)$. Hence, in
+		order to show that the condition above holds, need that
+		$\forall b \in A, x^o a'' \subseteq y^oba$.
+		Applying the relations to an element $z \in X$ gives the following condition:
+		\begin{equation} \forall b \in B, \forall x \in X \text{ , }
+		\big(x^oa''\big)(z) \subseteq \big(y^oba\big)(z). \end{equation}
+		\item<6-> Examining the left side,
+		\[ \big( x^oa''\big)(z)=x^o (a''(z))= \begin{cases}
+			\phi &\text{ if } x \notin a''(z) \\
+			\star & \text{ if } \in a''(z)
+		\end{cases} .\]
+\end{enumerate}
+\end{frame}
+\begin{frame}{Showing $y_X^{}$ is uniformly continuous}
+\begin{enumerate}
+  \setcounter{enumi}{6}
+  \item<1-> Thus, to show that (1) holds, need to show that, for any $b\in A$ and $z \in X$:
+		\begin{equation*} x \in a''(z) \implies z(y^oba)\star \text{ i.e. } y\in(ba)(z)
+		\end{equation*}
+		\item<2-> Fix any $z\in X: x \in a''(z)$. Also, by our choice of $y$,
+		have that $y \in a''(x)$. Now, going to show that the above condition holds:
+		As $A$ is a quasi-uniformity, $b$ is reflexive, giving that $y \in b(y)$.
+		\item<3-> Hence, by composition of relations, we get:
+		\[ za''x \text{ , }  xa''y \text{ and } yby \implies z(a''a''b)y \implies z(ab)y \text{ i.e. }
+		y \in (ba)(z).\]
+		\end{enumerate}
+		\end{frame}
+\begin{frame}{Showing $y_X^{}$ is full and faithful}
+		\begin{itemize}
+		\item<1-> By using the four-part proposition's first result, we just need to show that $A\geq y_X^o.\tilde{A}.y_X$.
+		\item<2-> That amounts to showing $\forall
+		a\in A, \exists \tilde{b}\in \tilde{A} :  a \supseteq y_X^o \text{ } \tilde{b} \text{ } y_X $.
+		\item<3->
+		Applying the relations to an element, $x\in X$ gives the condition:
+		\begin{equation}
+			\Big( y_X^o \text{ } \tilde{b} \text{ } y_X \Big)(x) \subseteq a(x)
+			\implies \Big( y_X^o \text{ } \tilde{b} \Big) (x^*)= y_x^o
+			\Big(\tilde{b}(x^*)\Big) \subseteq a(x).
+		\end{equation}
+		\item<4->
+		Thus, if $y^* \in PX$ such that $x^* \tilde{b} y^*$, then
+		$y \in y_x^o\Big(\tilde{b}(x^*)\Big)$. For the above condtition to hold, need that
+		$y \in a(x)$, that is, $xay$.
+		\item<5-> Thus,
+		need only to show that for any $a\in A$, there exists $b\in A $ such that
+		for any $x,y \in X$, $x^* \tilde{b}y^*$ implies $xay$.
+		\item<6-> So, fix $a\in A$, and take $b \in A: bb \subseteq a$.
+		Now, let $x^* \tilde{b}y^*$ i.e. $x^o.A \leq y^o .A .b$.
+		
+		\item<7-> Hence, $\exists c \in A: x^oc \subseteq y^o bb$. And as c is reflexive,
+		\[ xcx \implies x(cx^o)\star \implies x(bby^o)\star \implies x(bb)y \implies xay\;. \qedhere \]
+		\end{itemize}
+\end{frame}
+
+\section{Coro}
+\begin{frame}[allowframebreaks]{Proof: Yoneda Corollary}
+\setcounter{equation}{0}
+		Fix any $\psi \in PX$. \setcounter{equation}{0}
+		\begin{enumerate}
+			\item ($\implies$)
+				Let $\psi \in \overline{y_X(X)}$, from Theorem 5.4, we get that
+				$\psi = \psi^*.(y_X^{})_*^{}$. In order to show $\psi$ is a
+				right-adjoint, we will show that $\psi^*$ is a
+				right adjoint and that $(y_X^{})_*^{}$ is an equivalence.
+				\begin{enumerate}
+					\item In order to show that $(y_X^{})_*^{}$ is an equivalence,
+						we need that $A=(y_X^{})^*_{}.(y_X^{})_*$ and
+						$\tilde{A}= (y_X^{})_*.(y_X^{})^*_{}$.\\
+						From proposition 5.3 (b), we have that $y_X^{}$
+						is fully faithful, and by Proposition 4.14 (a), this gives us
+						that $A=(y_X^{})^*_{}.(y_X^{})_*$.
+						\begin{itemize}
+							\item 	We are now going to show that
+								$\tilde{A} \leq (y_X^{})_*.(y_X^{})^*$.
+								Fix any $a,b\in A$, we need to find $c\in A$
+								such that $\tilde{c} \subseteq \tilde{a}\,
+								y_X^{} \, y_X^{o} \, \tilde{b} $.
+								\[\big(\tilde{a}\, y_X^{}.y_X^{o}\, \tilde{b}\big) (\psi)
+									=\big(\tilde{a}\,\tilde{b}\big) (\psi)
+									\supseteq \tilde{c} \tilde{c} (\psi)
+								\supseteq \tilde{c}(\psi) \]
+								In the above equation, the equality holds because $\psi \in \overline{y_X^{}(X)}$, gives
+								the existence of $x^*=\tilde{b}(\psi)$. And the first inequality is given by down-directedness of
+								$\tilde{A}$, whereas the second one holds because $\tilde{c}$ is reflexive, as $\tilde{A}$ is a
+								quasi-uniformity.
+							\item To show that $\tilde{A} \geq (y_X^{})_*.(y_X^{})^*$, fix any $a\in A$. By
+								quasi-uniformity of $\tilde{A}$, there exists $\tilde{b}\in \tilde{A}$ such that
+								$\tilde{b} \, \tilde{b} \subseteq a$. We will show that $\tilde{a} \supseteq
+								\tilde{b}\,y_X^{} \, y_X^{o} \, \tilde{b} $:
+								\[ \psi \big(\tilde{b}\,y_X^{} \, y_X^{o} \, \tilde{b} \big) \phi
+								\implies \psi \big( \tilde{b} \tilde{b} \big) \phi \implies \psi \tilde{a} \phi \; .\]
+
+
+						\end{itemize}
+
+					\item In order to show that
+						$\psi^*$ is a right adjoint to $\psi_*$,
+						due to the 2-categorical structure of ProMod,
+						we need to show that
+						$\tilde{A} \geq \psi_\star.\psi^\star $ and
+						$\psi_\star.\psi^\star \geq 1$.
+						\begin{itemize}
+	\item To show that $\tilde{A}\geq \psi_*.\psi^*=\psi_*.\psi^o.\tilde{A} $,
+								fix any $a\in A$. We will show that $\psi_*.\psi^o.\tilde{a} \subseteq \tilde{a}$.
+								Using definition of $\psi_*$, for any $\phi \in \overline{y_X^{}(X)}$, we get:
+								\[\big(\psi_*.\psi^o.\tilde{a}\big)(\phi)=
+									\psi_*.\psi^o(\tilde{a}(\phi))= \begin{cases}
+										\phi &\text{ if }\tilde{a} (\phi)\neq \psi \\
+										\psi=\psi_*.\psi^o(\psi) &\text{ if } \tilde{a} (\phi)=\psi
+									\end{cases}.\]
+									The above equation gives that $\phi\big(\psi_*.\psi^o.\tilde{a}\big)\psi$ implies
+									$\phi \tilde{a} \psi$.
+									Hence,
+									we have that
+									$\tilde{a}\supseteq
+									\psi_*.\psi^o.\tilde{a} $.
+								\item We will show that $\psi_\star.\psi^\star \geq 1$, that is
+									$\star(\psi^o.\tilde{a} .\psi_*)\star$. Using definition of $\psi_*$,
+									\[\big(\psi^o.\tilde{a} .\psi_*\big)(\star)=\big(\psi^o.\tilde{a}\big) (\psi_*(\star))
+									= \big( \psi^o.\tilde{a} \big) (\psi)=\psi^o \big( \tilde{a}(\psi)  \big). \]
+									By the quasi-uniformity of $\tilde{A}$, we get that $\tilde{a}$ is reflexive, and hence,
+									$\psi \tilde{a} \psi$. So, from the above equation, we have that
+									$\star \in \psi^o(\psi) \subseteq \big(\psi^o.\tilde{a} .\psi_*\big)(\star) $.
+							\end{itemize}
+					\end{enumerate}
+
+				\item ($\impliedby$) Suppose $\psi$ is a right adjoint. Need to show that for any
+					$a \in A$, $\exists x^* \in y_X(X)$ such that $\psi \, \tilde{a} \,x^*
+					\tilde{a} \, \psi$. Fix $a \in A$. Because $\psi$ is a right-adjoint, there
+					exists a promodule $\phi: 1 \to X$ such that $\phi.\psi \leq A$ and
+					$1\leq \psi.\phi$. From $\phi.\psi \leq A$, we get that:
+					\begin{equation}\exists p \in \phi, q \in \psi \text{ such that }
+						a \supseteq p.q \; .
+					\end{equation}
+					Because $\phi$ and $\psi$ are promodules,
+					\begin{align}
+						A.\phi \leq \phi & \text{ gives the existence of } p' \in \phi \text{ such that } p\supseteq a'p'  \; ,\\
+						A.\psi \leq \psi & \text{ gives the existence of } q' \in \psi \text{ and } a'' \in A
+						\text{ such that } q \supseteq a''q' \; .
+					\end{align}
+					Now, from $1 \leq \psi.\phi$, we get that $q'\,p'$ is reflexive i.e. $\star (q' \,p')
+					\star$. By the definition of composition we get the existence of an $x \in X$
+					such that $\star \, p' \, x \,q'\,\star$. Now, considering $x$ as a map, $x:1 \to X$
+					defined as $\star \mapsto x$,
+					\begin{align}
+						x \, q' \, \star \text{ i.e. } &\star \in q'(x) \text{ gives that }
+						q' \supseteq x^o \;,\\
+						\star \,p' \, x \text{ i.e. } &x \in p'(\star) \text{ gives that }
+						p'\supseteq x \;.
+					\end{align}
+					Thus, by using inequalities (1),(2) and (3), we get:
+					\begin{equation}
+						a \supseteq p\,q \supseteq a'\,p'\,q'\,a'' \; .
+					\end{equation}
+					By definition of $\tilde{a}$, to show $\psi \, \tilde{a} \, x^*$,
+					we need that $\psi \leq x^*\,a=x^o.\,A.\,a$. We are now
+					going to show that
+					$\text{ for any } b\in A$, $\;  x^o\,b\,a \supseteq q'$:
+					\[ x^o\,b\,a \supseteq x^o\,b\,a'\,p'\,q' \supseteq x^o\,b\,a'\,x\,q'
+					\supseteq x^o\,x\,q' = q' \; .\]
+					Where the first inequality comes from (6) by using reflexiveness of $a''$ and then
+					left-multiplying by $x^o$. The second inequality comes from (5),
+					third one from reflexiveness of $b$ and $a'$,
+					and the last one is given by Lemma 3.7.
+
+					In order to show $x^* \, \tilde{a} \, \psi$, by definition of $\tilde{a}$,
+					need that $x^o.A=x^* \leq \psi\,a$. Fix $k\in \psi$. We will now show
+					$k\,a \supseteq x^o \, a''$:
+
+					\begin{equation}
+						a\supseteq a'\,p'\,q'\,a'' \supseteq p'\,q'\,a''
+						\supseteq p' \,x^o \,a'' \; .
+					\end{equation}
+
+					Where the first inequality is given by (6), second one
+					is due to reflexiveness	of $a'$ and the third inequality comes by using (4).
+					Left-multiplying (7) with $k$ gives the following:
+					\begin{equation}
+						ka \supseteq k\,p'\,x^o\,a'' \text{ that is, for any } z\in X,
+						\; \; z (k\, a) \star \implies z ( k\,p'\,x^o\,a'') \star \; .
+					\end{equation}
+					As $\psi$ is a right adjoint to $\phi$, we have $1\leq \psi.\phi$, giving that
+					$\star (k \, p' )\star $. So, using the implication in(8), we get that
+					$z(k\, a) \star $ implies $z ( x^o\,a'') \star (k\,p') \star$, which in turn
+					gives that $z(x^o \, a'')\star$. Hence, we get that $ka \supseteq x^o\, a''$
+					\qedhere
+			\end{enumerate}
+\end{frame}
+
+\section{YL}
+\setcounter{equation}{0}
+\begin{frame}[fragile]{Showing isomorphism between $[\mathcal{A}^{op},Set](H_A,X)$
+					and $X(A)$}
+					Let $\mathcal{A} $ be a locally small category.
+			Fix an object $A \in \mathcal{A} $ and a presheaf $X$ on $\mathcal{A}$.
+					\begin{itemize}
+\item<1-> Define $\string ^ :\mathcal{C}(H_A,X) \to X(A) $
+					for any $\alpha:H_A \to X,$ as  $\hat{\alpha}:= \alpha_A(1_A)$.
+					As $1_A \in Set(A,A)=H_A(A)$,
+					definition of $\alpha_A$ gives that $\alpha_A(1_A)\in X(A)$.
+\item<2-> Define $\string ~ : X(A) \to \mathcal{C}(H_A,X)$
+					for any $ x \in X(A)$ as the natural transformation $\tilde{x} : H_A \to X$ whose
+					K-component is the function mapping each morphism $p \in \mathcal{A}(K,A)$
+					to $\Big(X(p)\Big)(x)$. That is, $\tilde{x}_K^{}
+					(p):=\Big(X(p)\Big)(x)$.
+\item<3-> We are going to show that $\tilde{x}$ is a natural transformation.
+\item<4->Fix objects $K,L \in \mathcal{A} $ and morphism $q \in \mathcal{A}^{op}(K,L)$.
+					$\text{Need to show that the square }
+					\begin{tikzcd}
+						\mathcal{A}(K,A) \arrow[swap]{d}{\tilde{x}_K} \arrow{r}{ - \circ q}
+		& \mathcal{A} (L,A) \arrow{d}{\tilde{x}_L}\\
+		X(K) \arrow[swap]{r}{X(q)}
+		& X(L)
+					\end{tikzcd}\text{ commutes }$.\\
+
+					So, for any $f:K\to A$, need that $\tilde{x}_L(f \circ q)= X(q) \circ \tilde{x}_K(f)$. Using
+					the definition of $\tilde{x} $ gives the following.
+					\begin{align*}
+						LHS &=\tilde{x}_L(f \circ q ) =\Big( X(f \circ q)\Big)(x) \\
+						RHS &=X(q) \circ \tilde{x}_K(f) =\Big(X(q)\Big) \big(X(f)(x)\big)=\Big(X(q) \circ X(f)\Big) (x)
+					\end{align*}
+					And as $X$ is a contravariant functor, $X(f \circ q)= X(q) \circ X(f)$,
+					giving that LHS=RHS.
+					\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Showing isomorphism between $[\mathcal{A}^{op},Set](H_A,X)$
+					and $X(A)$}
+					\begin{itemize}
+					\item<1-> Need to show that $\string ^ $ and $\string ~ $ are mutually inverse.
+					\item<2->For any $x \in X(A)$,
+							$\hat{\tilde{x}}=\tilde{x}_A (1_A)=\Big(X(1_A) \Big) (x)=1_{X(A)}(x)=x$.
+						For any $\alpha \in \mathcal{C} (H_A,X)$ , need to show that $\tilde{\hat{\alpha}}=\alpha$.
+							So, it's required that each of their component are equal.
+\item<3-> As both $\tilde{\hat{\alpha}}$ and $\alpha$ are natural transformations
+							between functors that go to the category \textit{Set}, each of their components is a function.
+							So, need to show that for any $f \in \mathcal{A} (K,A)=H_A(K)$,
+							$\Big(\tilde{\hat{\alpha}}\Big)_K(f)$=$\alpha_K(f)$.
+\item<4-> Using first the definition of $ \string ~$ and then that of $\hat{\alpha}$ gives:
+							\begin{align}
+								LHS=\tilde{\hat{\alpha}}_K(f)=\Big(X(f)\Big)(\hat{\alpha})=\Big(X(f)\Big)(\alpha_A(1_A))
+							\end{align}
+							And as $f\in \mathcal{A} (K,A)$, we also have the following.
+							\begin{equation}
+								RHS=\alpha_K(f)= \alpha_K(1_A \circ f)
+							\end{equation}
+\item<5-> Because $\alpha$ is a natural transformation, the following square commutes for $1_A$:
+							\begin{equation*}\begin{tikzcd}
+								\mathcal{A} (A,A) \arrow[swap]{d}{\alpha_A} \arrow{r}{- \circ f}
+	& \mathcal{A} (K,A) \arrow{d}{\alpha_K}\\
+	X(A) \arrow[swap]{r}{X(f)}
+	& X(K)
+							\end{tikzcd},\end{equation*}
+							which gives that $\alpha_K(1_A \circ f)=\Big(X(f) \Big) \big( \alpha_A (1_A) \big)$.
+							Hence, we get that $RHS=LHS$, giving us that $\string ^$ and $\string ~$ define a
+							a set isomorphism, as $\alpha_K$ being a 
+							function, $RHS$ is a set.
+					\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Showing natural in $X$}
+\begin{enumerate}
+\item<1-> By using the very first two Lemmas, it's enough to show that $\string ^$	is natural in $X$ and natural in $A$.
+\item<2->
+							Fix any $A \in \mathcal{A}$. Need, for
+							presheaves $X,Y \in \mathcal{C}$ and
+							natural transformation $\beta \in \mathcal{C} (X,Y)$, the following square to commute:
+							\begin{equation*}
+								\begin{tikzcd}
+									\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
+									\arrow{r}{\beta \circ -}
+			& \mathcal{C}(H_A,Y) \arrow{d}{\string ^}\\
+			X(A) \arrow[swap]{r}{\beta_A}
+			& Y(A)
+								\end{tikzcd}.
+							\end{equation*}
+							\item<3->
+							So, for any $\alpha:H_A \to X$, we need that
+							$\big( \string ^ \circ (\beta \circ \string _ )\big)(\alpha) = \big( \beta_A \circ \string ^
+							\big)(\alpha)$.
+\item<4-> Using the definition of
+							$(\beta \circ \string _ )$ and $\string ^$ gives:
+							\begin{align*}
+								LHS & = \big( \string ^ \circ (\beta \circ \string _ ) \big)(\alpha) =
+								\widehat{\big(  (\beta \circ \string _ )(\alpha)\big)}=
+								\widehat{\big(  \beta \circ \alpha\big)}
+								=\big(  \beta \circ \alpha\big)_A(1_A) \\
+								RHS & = \big( \beta_A \circ \string ^ \big)(\alpha)
+								= \beta_A (\widehat{\alpha}) =\big( \beta_A \circ \alpha_A\big)(1_A)
+							\end{align*}
+							As $\alpha \in \mathcal{C} (H_A,X)$ and $\beta \in \mathcal{C}(X,Y)$
+							are morphisms in $\mathcal{C}$, composition in $\mathcal{C}$ gives
+							$(\beta \circ \alpha)_A = \beta_A \circ \alpha_A$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Showing natural in $A$}
+\begin{enumerate}
+\item<1-> Fix any $X \in \mathcal{C} $ Need that
+							for objects $A,B \in \mathcal{A} $ and morphism $f\in \mathcal{A} ^{op}(A,B)$,
+							the following square commutes:
+							\begin{equation*}
+								\begin{tikzcd}
+									\mathcal{C}(H_A,X) \arrow[swap]{d}{ \string ^}
+									\arrow{r}{- \circ H_f}
+			& \mathcal{C}(H_B,Y) \arrow{d}{\string ^}\\
+			X(A) \arrow[swap]{r}{X(f)}
+			& X(B)
+								\end{tikzcd},
+							\end{equation*}
+							Where $H_f$ denotes
+							$(f \circ \string _ )$. So, for any $\alpha:H_A \to X$, we need that
+							$\big( \string ^ \circ H_f \big)(\alpha)=\Big((X(f)) \circ \string ^ \Big)(\alpha) $.
+\item<2-> Using definition of $H_f$ and $\string ^$, we get:
+							\begin{align*}
+								LHS&=\big( \string ^ \circ H_f \big)(\alpha)= \widehat{\alpha \circ H_f}
+								=(\alpha \circ H_f)_B (1_B) = \alpha_B (f \circ 1_B) = \alpha_B(1_A \circ f) \\
+								RHS&=\Big((X(f)) \circ \string ^ \Big)(\alpha)
+								= (X(f))(\hat{\alpha})= \Big(X(f) \Big)\big(\alpha_A(1_A)\big)
+							\end{align*}
+\item<3-> By using equality of equations (1) and (2), for
+							$f \in \mathcal{A}(B,A)$, we get that
+							$\Big(X(f) \Big)\big(\alpha_A(1_A)\big)=\alpha_B( 1_A \circ f) $.
+							Hence, $RHS=LHS$. \qedhere
+\end{enumerate}
+\end{frame}
+
+\section{CT}
+\begin{frame}[fragile]{Natural transformations from $H_\star$
+					to $H_\star$ are bijections on G.}
+					\begin{itemize}
+					    \item<1-> Let $G$ be a group. Define category $\mathcal{A}$ with a single object $\star$. And let the morphisms of $\mathcal{A}$ be elements of $G$. Then, $G$ and $\mathcal{A}(\star, \star)$ have the
+			same elements
+			and rule of composition, so there exists a group isomorphism $\psi:
+			\mathcal{A} (\star,\star) \to G$.
+\item<2-> As $\mathcal{A} ^{op}$ is a category with a single object,
+					each natural transformation $\alpha:
+					\begin{tikzcd}[row sep=small, column sep=large]
+						\mathcal{A} ^{op} \arrow[r,bend left=50, "H_\star"{name=U, below}]
+						\arrow[r, bend right = 50, "H_\star"{name=D, above}]
+						& Set
+						\arrow[Rightarrow, from=U , to=D, "\alpha"]
+					\end{tikzcd}$
+					has only one component, that is $\alpha_\star$. Therefore, we can
+					identify $\alpha$ with $\alpha_\star$.
+\item<3-> Using naturality of $\alpha$, we get that
+					\begin{equation*}
+						\text{ the square }
+						\begin{tikzcd}
+							\mathcal{A} (\star,\star) \arrow[swap]{d}{\alpha_\star} \arrow{r}{\string _ \circ f}
+			& \mathcal{A} (\star,\star) \arrow{d}{\alpha_\star}\\
+			\mathcal{A} (\star,\star) \arrow[swap]{r}{ \string _ \circ f}
+			& \mathcal{A} (\star,\star)
+						\end{tikzcd}
+						\text{ commutes for any } f \in \mathcal{A}(\star,\star).
+					\end{equation*}
+					
+\item<4-> Applying the identity of $\star$ in $\mathcal{A}$ in above square
+					gives us the following equation:
+					\begin{equation*}
+						\big( (\string _ \circ f) \circ \alpha_\star \big)(1_\star) =
+						\big(  \alpha_\star \circ (\string _ \circ f)\big)(1_\star)
+						\implies \alpha_\star(f)=\alpha_\star(1_\star) \circ f
+						\implies \alpha_\star(f)=\alpha_\star(1_\star).f
+					\end{equation*}
+					
+		Thus, every natural transformation $\alpha$ is defined in
+					terms of its value at $1_\star$.
+					This can be considered as left multiplication by
+					$\alpha_\star(1_\star)$ in $G$, which
+					we know is a bijection on $G$.
+	\item<5-> So far we have shown that
+					the collection $[\mathcal{A} ^{op},Set](H_\star,H_\star)$ of
+					all $\alpha:H_\star \to H_\star$ is a
+					collection of bijections on $G$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The collection $[\mathcal{A}^{op},Set](H_\star,H_\star)$ is a group.}
+					\begin{itemize}
+\item<1-> We will show that the collection
+					$[\mathcal{A} ^{op},Set](H_\star, H_\star)$
+					is a group with respect to composition in the category
+					$[\mathcal{A} ^{op},Set]$.
+					\item<2->
+					As $[\mathcal{A} ^{op},Set]$ is a category, we have that
+					the composition is associative. Also, because this collection contains
+					morphisms with the same source and destination,
+					it is closed under composition. Identity of
+					$[ \mathcal{A} ^{op},Set ] (H_\star,H_\star)$ will act as
+					the identity for its group structure.
+\item<3->
+					We will now show closure under inverses.
+					Fix any $\gamma:H_\star \to H_\star$.
+					
+					\item<4-> Since $\gamma_\star(1_\star)$ belongs to
+					$ \mathcal{A} (\star,\star)$,
+					let us call $\psi(\gamma_\star(1_\star))=h \in G$. Thus,
+					there exists $h^{-1}\in G$. 
+					
+					\item<5-> As $\psi$ is onto,
+					there exists $a\in \mathcal{A} (\star,\star)$ such that
+					$\psi(a)=h^{-1}$.
+					\item<6-> We know that any natural transformation $\alpha$
+					is defined in terms of $\alpha_\star(1_\star) \in
+					\mathcal{A}(\star,\star)$. Thus, we define
+					$\delta:H_\star \to H_\star$ with $\delta_\star(1_\star)=a$.
+					Giving us that
+					$h^{-1}=\psi \big(\delta_\star(1_\star) \big) $.
+						And as $\psi$ is a group isomorphism,
+					\[ 1_\star = \psi^{-1}(h.h^{-1})=\psi^{-1}(h)\,. \psi^{-1}(h^{-1})
+					=\big(\gamma_\star(1_\star)\big).\big(\delta_\star(1_\star)\big).\]
+					\item<7->
+This gives us that $\delta$ and $\gamma$ are inverses, because 
+for any $ k \in \mathcal{A} (\star,\star)$, \[ 
+						\big( \gamma \circ \delta\big)_\star
+						(k)
+						= \gamma_\star\big(\delta_\star(k)\big)
+						=\gamma_\star \big( \delta_\star(1_\star).k \big)
+						=\big(\gamma_\star(1_\star)\big).
+						\big( \delta_\star(1_\star) \big).k
+					=1_\star.k=k\]
+				\item<8->
+					Thus, the collection $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$ is a group.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Applying Yoneda Lemma, and showing group isomorphism}
+					\begin{itemize}
+\item<1-> As the collection of elements of $G$ form a set, $\mathcal{A}(\star,\star)$
+					is also a set. Hence, $\mathcal{A}$ is a locally small category. Because
+					$\mathcal{A} ^{op}$ has the same number of morphisms as $\mathcal{A}$,
+					it is also a locally small category, and we may apply Yoneda Lemma to it.
+\item<2-> Taking $A=\star$ and $X=H_\star$, we get:
+					\begin{equation*} [ \mathcal{A} ^{op}, Set](H_\star,H_\star)
+						\; \hat{\cong} \; H_\star(\star), \end{equation*}
+					where the isomorphism $\string ^$ is between sets.
+\item<3-> From the proof of Yoneda Lemma, we know that the map
+					$\string ^$ acts as $\alpha \mapsto \alpha_\star (1_\star)$.
+					Hence, for any $\alpha,\beta:H_\star \to H_\star$,
+					\begin{equation*}
+						\widehat {\alpha \circ \beta}= (\alpha \circ \beta)_\star(1_\star)
+						=(\alpha)_\star \Big( (\beta)_\star (1_\star) \Big)=
+						\Big((\alpha)_\star(1_\star) \Big) . \Big( (\beta)_\star (1_\star) \Big)
+						=\hat{\alpha} . \hat{\beta}\;,
+					\end{equation*}
+\item<4-> Using I and II, we get that $[ \mathcal{A} ^{op}, Set](H_\star,H_\star)$
+			is a group with all of it's elements being bijections on $G$.
+			Thus, it is a subgroup of the symmetric group on G.
+\item<5-> Finally, the isomorphism $\string ^$ is between groups,
+			with the $LHS$ being the above mentioned subgroup.
+			And $RHS$ being $\mathcal{A} (\star, \star)$, which is further
+			isomorphic to group $G$:
+		\[ G \; \overset{\psi}{\cong} \; \mathcal{A} (\star,\star) \; \hat{\cong} \;
+			[ \mathcal{A} ^{op}, Set](H_\star,H_\star)\, \leq Sym(G).\]
+			This is	precisely the statement of Cayley's theorem.\qedhere
+\end{itemize}
+\end{frame}
+
+\section{YE}
+\setcounter{equation}{0}
+\begin{frame}[fragile]{Functor $H_\bullet$ is full}
+    We will show that the functor $H_\bullet$ is
+				full and faithful. Fix any objects $X,Y$ in a locally small category $\mathcal{A}$.
+    \begin{itemize}
+        \item<1-> Fix any objects $X,Y$ in a locally small category $\mathcal{A}$.
+To show that $H_\bullet$ is a full, we need to show that for every $\alpha
+						\in [\mathcal{A} ^{op},Set](H_X,H_Y)$, there exists a morphism
+						$f\in \mathcal{A} (X,Y)$ such that $H_\bullet(f)=\alpha$.
+\item<2-> Thus, we need to show that their $K$-components are equal for every $K \in \mathcal{A}$.
+Using the definition of $H_\bullet(f)$, this amounts to showing that
+						\begin{equation*}  \text{ for any morphism } k \in H_X(K),
+							\Big(H_\bullet(f)\Big)_K^{}(k)=\alpha_K(k), \text{ that is }
+							f\circ k=\alpha_K(k).
+						\end{equation*}
+						
+\item<3->	Because $\alpha_X$ goes from $H_X(X)$ to $H_Y(X)$, $\alpha_X(1_X)$ is a morphism
+						in $\mathcal{A}(X,Y)$. 
+\item<4-> We will show that choosing this morphism to be $f$
+						will give us the required result, that is $\big( \alpha_X(1_X) \big) \circ
+						k=\alpha_K(k)$. 
+						
+\item<5-> Using the naturality of $\alpha$,
+						$ \text{ we get that }
+							\begin{tikzcd}
+								\mathcal{A} (X,X) \arrow[swap]{d}{\alpha_X} \arrow{r}{\string _ \circ k}
+			& \mathcal{A} (K,X) \arrow{d}{\alpha_K}\\
+			\mathcal{A} (X,Y) \arrow[swap]{r}{\string _ \circ k}
+			& \mathcal{A} (K,Y)
+							\end{tikzcd}
+						\text{ commutes. }$
+						\item<6->
+						Thus, for the identity morphism $1_X \in \mathcal{A} (X,X)$, we get the following:
+						\[ \Big(H_Y(k) \circ \alpha_X\Big)(1_X)=\Big(\alpha_K \circ H_X(k)\Big)(1_X)
+							 \implies
+						\alpha_K(1_X) \circ k=\alpha_K(k).\]
+\item<6-> Thus, we have that $H_\bullet$ is a full functor.
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Functor $H_\bullet$ is faithful}
+    \begin{itemize}
+        \item<1-> Fix any morphisms $f,g$ in $\mathcal{A} (X,Y)$ and suppose	$H_\bullet(f)=H_\bullet(g)$.In order to show $H_\bullet$ is faithful,
+						we need to show that $f=g$. 
+		\item<2-> As $H_\bullet(f)$ and $H_\bullet(g)$ are equal natural transformations, we have that the action of their $X$-components is equal. 
+		\item<3-> Thus,
+						in particular, for the identity of $X$, $\big(H_\bullet(f) \big)_X (1_X)
+						= \big(H_\bullet(g) \big)_X (1_X)$. 
+		\item<4-> Using the definition of $H_\bullet$, we get
+						that $f \circ 1_X = g \circ 1_X$. And as both $g$ and $f$ are morphisms
+						from $X$, we get that $f=g$.
+    \end{itemize}
+\end{frame}
+
+
+\section{ProMod}
+\setcounter{equation}{0}
+\begin{frame}[allowframebreaks]{Proof: Promod is a 2-category}
+\setcounter{equation}{0}
+				In order to show that ProMod is a 2-category, need the following:
+				\begin{enumerate}
+					\item (1-Identities) For each quasi-uniform space $(X,A)$,
+						$A:(X,A) \to (X,A)$ a promodule because $A.A=A$ by Lemma 4.5.
+					\item (1-Composition) Need composition of promodules to be a promodule.\\
+						Let $\phi:(X,A)\to (Y,B)$ and $\psi:(Y,B)\to (Z,C)$ be promodules.
+						To show that $\psi.\phi:(X,A) \to (Z,C)$ is a promodule, need it to be a
+						prorelation that satisfies the two conditions required to be a promodule:
+						\begin{enumerate}
+							\item By Lemma 3.4, prorelations are closed under composition.
+								Hence, $\psi.\phi$ is a prorelation
+							\item Need to show that $\psi.\phi.A \leq \psi.\phi$. So, Fix
+								$p \in \psi$ and $q \in \phi$. As $\phi$ is a promodule,
+								$\phi.A\leq \phi$ gives that there exists
+								$ q' \in \phi \text{ and } a\in A$ such that
+								$q'\,a \subseteq q$. Thus,
+								$p\,q'\,a \subseteq p\,q$.
+							\item Need to show that $C.\psi.\phi \leq \psi.\phi$.Fix $p \in \psi$
+								and $q\in \phi$. Because
+								$\psi$ is a promodule, $C.\psi \leq \psi$ gives that
+								there exists $c\in C$ and $p' \in \psi$ such that
+								$c\,p' \subseteq p$. Thus, $c\,p'\,q \subseteq p\,q$
+						\end{enumerate}
+					\item (2-Identities) As every promodule is contained in itself, always have $\psi \leq \psi$.
+						Define this comparison to be the identity 2-cell for $\psi$ and denote it by $\leq_\psi$
+
+					\item (Vertical 2-composition) For promodules $\psi,\phi,\delta:(X,A) \to (Y,B)$,
+						if there is is a 2-cell from $\psi$ to $\phi$ and another one from $\phi$
+						to $\delta$ i.e. $\psi \leq \phi \leq \delta$, then by transitivity
+						of the partial order, $\psi \leq \delta$ i.e. there's a 2-cell from
+						$\psi$ to $\delta$.
+					\item (Horizontal 2-composition) If there are promodules
+						$\psi,\psi':(X,A) \to (Y,B)$ and
+						$\phi,\phi':(Y,B) \to (Z,C)$ such that $\psi \leq \psi'$ and $\phi \leq
+						\phi'$, need to show that $\psi.\phi \leq \psi'.\phi'$. Fix $p' \in \psi'$ and
+						$q' \in \phi'$. As $\psi\leq\psi'$, $\exists p\in \psi: p \subseteq p'$
+						and as $\psi\leq\psi'$, $\exists q \in \phi: q \subseteq q'$.
+						Thus, $p\,q\subseteq p'\,q'$
+					\item (1-Identity) Need to show that for any promodule $\phi:(X,A) \to (Y,B)$,
+						$\phi.A=\phi=B.\phi$. By quasi-uniformity of $A$, every $a \in A$, is
+						reflexive. Thus, for any $p \in \phi$ and $a \in A$,
+						$p=p. \Delta_X \subseteq p \,a$
+						giving that $\phi \leq \phi.A$. And as $\phi$ is a promodule,
+						$\phi \geq \phi.A$. Hence, by anti-symmetry of the partial order, $\phi=\phi.A$.
+
+						Similarly, By quasi-uniformity of $B$, every $b \in B$, is
+						reflexive. Thus, for any $p \in \phi$ and $b\in B$, $p=\Delta_Y.p\subseteq
+						b\,p$ giving that $\phi \leq B.\phi$. And as $\phi$ is a promodule,
+						$\phi \geq B.\phi$. Hence, $\phi=B.\phi$.
+					\item (1-Associativity) As composition of relations is associative, so too is the
+						composition of prorelations directly giving that composition of promodules
+						i.e. 1-cells is associative.
+					\item (Vertical 2-Identity) Let $\leq:\psi \to \phi$ be a 2-cell i.e.
+						$\psi \leq \phi$. By our definition of identity 2-cell, $\leq_\psi.\leq_1$
+						means precisely that $\psi \leq \psi \leq \phi $, and by transitivity,
+						this is equivalent to $\psi \leq \phi$.
+						Similarly, $\leq_1.\leq_\phi$ means exactly that $\psi
+						\leq \phi \leq \phi $, and this is equivalent to $\psi \leq \phi$.
+					\item (Vertical 2-Associativity) Associativity of the partial order on promodules
+						directly gives the associativity of composition of 2-cells in ProMod.
+					\item (Horizontal 2-Identity) Let $\psi,\phi: (X,A)\to (Y,B)$ be promodules.
+						For any 2-cell $\leq:\psi \to \phi $, need to show that the 2-cell given
+						by the horizontal composition, $\leq*\leq_A$ is equal to $\leq$, as well as
+						equal to $\leq_B *\leq$. So, it's required that $\psi.A \leq \phi.A
+						\iff \psi \leq \phi \iff B.\psi \leq B.\phi$. And this holds as a
+						direct consequence of (f).
+					\item (Horizontal 2-Associativity) As there's a unique 2-cell between any two
+						promodules, and composition of promodules is associative,
+						horizontal composition of 2-cells is associative.
+					\item (2-Identity) For promodules $\psi:(X,A)\to (Y,B)$ and
+						$:\phi(Y,B) \to (Z,C)$ need $(\leq_\psi * \leq_\phi)=\leq_{\psi.\phi}$.
+						Both sides of the required equality are 2-cells $\leq:\psi.\phi
+						\to \psi.\phi$.	Thus, they are equal by the uniqueness of 2-cells between
+						any two 1-cells.
+					\item (2-Interchange) Let $\psi,\phi,\delta:(X,A) \to (Y,B)$ and
+						$\psi',\phi',\delta':(Y,B) \to (Z,C)$ be promodules. For
+						2-cells $\leq_1:\psi \to \phi $,$\leq_2:\phi \to \delta $,
+						$\leq_a:\psi' \to \phi' $ and $\leq_b:\phi' \to \delta'$,need to show
+						$(\leq_b.\leq_a)*(\leq_2.\leq_1)=(\leq_b*\leq_2).(\leq_a*\leq_1)$.
+						Both RHS and LHS are 2-cells from $\psi.\psi'$ to $\delta.\delta'$ and are
+						hence equal. \qedhere
+				\end{enumerate}
+\end{frame}
+
+\section{QUnif}
+\setcounter{equation}{0}
+\begin{frame}[allowframebreaks]{Proof: QUnif is a category}
+\setcounter{equation}{0}
+				\begin{enumerate}
+					\item (Associativity) The composition of functions is associative by definition.
+					\item (Identity) For each object $(X,A)$, the identity function
+						$\Delta_X:(X,A) \to (X,A)$ is uniformly continuous as
+						$\Delta_X.A=A \leq A=A.\Delta_X$.
+						\qedhere
+				\end{enumerate}
+\end{frame}
+
+\section{CoFunc}
+\setcounter{equation}{0}
+\begin{frame}[allowframebreaks]{Proof: Covariant Functor}
+\begin{enumerate}
+					\item (Partial-Order) Inclusion of relations acts as the partial order.
+					\item (Down-Directed) Fix any $k,k'$ belonging to $B.f$. Thus, there exist
+						$b,b'$ in $B$ such that $k=b\,f$ and $k'=b\,f$. Using down-directedness
+						of $B$, there exists $c \in B$ such that $c \subseteq b,b'$. Hence,
+						by Lemma 3.10, $c\,f \subseteq k,k'$.
+					\item (Up-set) Let $k$ belong to $B.f$ and $l:(X,A) \to (Y,B)$ be a
+						uniformly continuous function such that $l \supseteq k$.
+						Define a relation $b'= \{(f(d),l(d)): d \in Dom(l) \}$.
+						By definition, for any $x \in X$ and $z \in Y$ such that $(x,z) \in l$, we get that
+						$(f(x),z)\in b'$. And $l \supseteq k=b\, f$ implies $Dom(l)  \supseteq Dom(f)$,
+						giving $(x,f(x)) \in f$. Therefore, by definition of composition,
+						$(x,z) \in b'.f$. Conversely, suppose $(x,z) \in b'.f$.
+						By definition of composition, there exists $f(x)\in Y$ such that
+						$(f(x),z) \in b'$. Again using the definition of
+						$b'$, we get that $z=l(x)$ i.e. $(x,z)\in l$. Hence, $l=b'\, f$.
+						Now we will show that $b'\supseteq b$. Because $b'\, f=l \supseteq k=b\, f$, for any
+						$x\in X$ we have that $b'\big(f(x)\big) \supseteq b\big(f(x)\big)$. Thus,
+						$b'|_{f(x)} \supseteq b|_{f(x)}$. By down-directedness of $B$,
+						$b|_{f(x)} \subset b$ implies $ b(x)|_{f(x)} \in B$.
+						Finally, $b' \supseteq b'|_{f(x)} \supseteq b|_{f(x)}$ gives $b' \in B$.
+						Hence, $b'.f \in B.f$.
+					\item Need to show that $(B.f).A \leq B.f$. So, fix any $b\in B$, we will find
+						$b' \in B$ and $a\in A$ such that $b' \, f\,a \subseteq bf$.
+						By quasi-uniformity of $B$, there exists $b' \in B$ such that $b'\,b'
+						\subseteq b$. Using Lemma 3.10, we get that $b'\,b'\,f \subseteq b\,f$.
+						As $f$ is uniformly continuous, $f.A \leq B.f$ gives that there is some
+						$a \in A \text{ such that } f\,a \subseteq b'\,f$. Using this in the
+						previous inequality, we get $b'\,f\,a \subseteq b'\,b'\,f\subseteq  b\,f$.
+					\item Need to show that $B.B.f \leq B.f$. Fix any $b \in B$, we will find
+						$b' \in B$ such that $b'\,b'\,f \subseteq b\,f$.
+						By quasi-uniformity of $B$, there exists $b \in B$ such that
+						$b'\,b' \subseteq  b$. Using Lemma 3.10, we get $b'\,b'\,f \subseteq bf$.
+				\end{enumerate}
+				Thus, $B.f$ is a promodule. We now proceed to show that $(\string _)_*$ defines a functor.
+				\begin{enumerate}
+					\item (Composition) Need to show that $(g\circ f)_*=g_*f_*$ i.e. $C.g.f=C.g.B.f$.
+
+						In order to show $C.g.f \leq C.g.B.f$, fix any $b\in B, c\in C$.
+						We will show that $c\,g\,f \subseteq c\,g\,b\,f$. As $f$ is uniformly
+						continuous, $f.A \leq B.f$ gives that there exists $a \in A$ such that
+						$f\,a \subseteq b\,f$. Using Lemma 3.9, we get $(c\,g)f\,a \subseteq
+						(c\,g)b\,f$. Now, using reflexiveness of $a$, we get $c\,g\,f \subseteq
+						c\,g\,b\,f$.
+
+						Now, to show that $C.g.f \geq C.g.B.f$. Fix any $c \in C$, we will find $c' \in C$ and
+						$b \in B$ such that $c\, g\, f\, \supseteq c\, g\, b\, f\, $. By quasi-uniformity of C,
+						there exists $c' \in C$ such that $c \supseteq  c'\, c'$. Using Lemma 3.10
+						gives that $c\, (g\, f)\supseteq c'\, c'\, (g\, f) $. Because $g$ is uniformly
+						continuous, $C.g \geq g.B$ gives us $b\in B$ such that $c'\, g \supseteq b\, g$.
+						Using this in the previous inequality gives that $c\, g\, f \supseteq c'\, g\, b\, f$.
+
+					\item(Identity) Let $(X,A)$ be an object of QUnif and
+						$1_{(X,A)}:(X,A)\to(X,A)$ be the identity of $(X,A)$. That is,
+						$1_{(X,A)}$ is defined as $x\mapsto x$.
+						Need to show that $(1_{(X,A)})_*=1_{(X,A)_*}$. Using
+						functor's definition, $LHS=(1_{(X,A)})_*=A.(1_{(X,A)})=A.1_{(X,A)}=A$
+						and $RHS=1_{(X,A)_*}=1_{(X,A)}$
+						Using Proposition 4.8 (f), we get that $A=1_{(X,A)}=RHS$. \qedhere
+				\end{enumerate}
+\end{frame}
+
+\section{ContraFunc}
+\setcounter{equation}{0}
+\begin{frame}[allowframebreaks]{Proof: Contravariant Functor}
+\setcounter{equation}{0}
+				Showing that $f^o .B: (Y,B) \to (X,A)$ is a promodule.\\
+				So, need to show $f^o .B$ a prorelation $Y \to X$
+				and that $(f^o .B).B \leq f^o .B$ and $A.(f^o .B) \leq f^o .B$ \\
+				To show prorelation, \begin{enumerate}
+					\item (Partial-order) Inclusion of relations is the
+						partial order.
+					\item (Down directed) for $k,k' \in f^o .B$, need that $\exists l \in f^o .B
+						\text{ such that } l \subseteq k,k'$
+
+						Fix $k,k' \in f^o .B \implies \exists b,b' \in B : k=f^o \circ b \text{ and }
+						k' = f^o \circ b'$
+
+						By down-directedness of $B$, there exists $c \in B$ such that
+						$ c \subseteq b,b'$, define $l=f^o \circ c$.
+						Now, using Lemma 3.9 gives  $l= f^o \circ c \subseteq k,k'$.
+					\item (Up-set) for a relation $l:Y \to X$ and $k \in f^o .B$ such that $l \supseteq k$
+						, need $l \in f^o .B$
+
+						Let $b\in B$ be such that $k=f^o \circ b$ and define
+						$b':=\{(y,y'): y \in Dom(l) \text{ and } y' \in (f^o)^{-1}\big(l(y))\}$\\
+						As $l\supseteq k=f^o \circ b$, $Dom(b')=Dom(l)\supseteq Dom(b)$
+						\\ and $Ran(l) \supseteq Ran(f^o \circ b)\implies
+						\forall y \in Dom(b), Ran(b')=(f^o )^{-1}(l(y)) \supseteq (f^o)^{-1}(f^o \circ b ) = Ran(b)$.\\
+						Now, by definition of $b'$, $f^o \circ b' \supseteq l$. To show
+						$f^o \circ b \subseteq l$ , \\
+						$(x,y)\in f^o \circ b' \implies \exists z \in Y: (x,z)\in b' \text{ and }
+						(z,y) \in f^o \implies x \in Dom(l) \text{ and } z \in l(x)$ i.e.
+						$(x,z) \in l$.
+
+			\item	To show $(f^o .B).B \leq f^o .B$, need that $\forall b \in B,
+				\exists b' \in B : f^o \circ b' \circ b' \subseteq f^o \circ b$,\\
+				Fix any $b \in B$, as B is a quasi-uniformity, $\exists b' \in B : b' \circ b' \subseteq b
+				\implies f^o \circ b'\circ b' \subseteq f^o \circ b$.
+
+				To show $A.(f^o .B) \leq f^o .B$, need that $\forall b \in B$,
+				$\exists b' \in B, a\in A : a \circ f^o \circ b' \subseteq f^o \circ b$.\\
+				As $f$ is uniformly continuous, $f.A\leq B.f$ i.e. $\forall b \in B, \exists a \in A
+				: f \circ a \subseteq b \circ f
+				\implies a= f^o \circ f \circ a \subseteq f^o \circ  b \circ f $   .\\
+				Fix any $b \in B, \text{ so, } \exists b' \in B : b'b' \subseteq b$.
+				And, for this $b', \exists a : a \subseteq f^ob'f \implies af^ob' \subseteq f^ob'ff^ob'
+				\subseteq f^o b'b' \subseteq f^o b \implies af^ob' \subseteq f^o b$.\\
+				\end{enumerate}
+		Now, need to show that $(\string _)^*$ respects composition and identity.
+				\begin{enumerate}
+					\item (Composition) let $f,g$ be uniformly continuous,
+						$(X,A) \xrightarrow{f} (Y,B) \xrightarrow{g} (Z,C)$
+						need that $(g \circ f)^*= f^*.g^* $
+
+						LHS=$(g \circ f)^*=(g \circ f)^o .C=(f^o \circ g^o).C$ and
+						RHS=$f^*.g^* =(f^o .B).(g^o .C)$\\
+						For equality, showing that LHS$\geq$RHS and LHS$\leq$RHS:
+
+						To show $(f^o \circ g^o).C\geq(f^o .B).(g^o .C)$, need that
+						$\forall c \in C, \exists b \in B, c' \in C : f^og^oc
+						\supseteq f^obgc'$ \\
+						Fix any $c \in C, \text{ so, } \exists c' \in C: c' \circ c' \subseteq c
+						\implies f^o g^o c \supseteq f^o g^o (c'c')
+						=f^o g^o (c' \Delta_Z c') \supseteq f^o g^o c'(gg^o)c'$ \\
+						By uniform continuity of g, for $c'\in C,\exists b\in B: gb\subseteq c'g $
+						\\Thus, $f^o g^o c \supseteq f^o g^o (c'g)g^oc' \supseteq
+						f^o (g^o g)bg^o c'=f^o bg^o c'$.
+
+						To show $(f^o \circ g^o).C\leq(f^o .B).(g^o .C)$, need that
+						$\forall b \in B, c \in C, \exists c' \in C: f^o g^o c \subseteq f^obg^oc $
+						\\Fix any $c\in C, b\in B$ will show that $c':=c$ works:\\
+						As B is a quasi-uniformity, $\Delta_Y \subseteq b\implies f^o \Delta_Y
+						g^o c=f^o g^o c \subseteq f^o b	g^o c=f^o b g^o c'$
+					\item(Identity) let $(X,A)\in \text{ QUnif }^{op} $, and
+						$1_{(X,A)}:(X,A)\to(X,A)$ as $x\mapsto x$ need that
+						$(1_{(X,A)})^*=1_{(X,A)^*}$
+						LHS=$(1_{(X,A)})^*=(1_{(X,A)})^o.A=1_{(X,A)}.A=A$. \\
+						And as $RHS=1_{(X,A)^*}=1_{(X,A)}$
+						Using Proposition 3.2(f), we get that $A=1_{(X,A)}=RHS$. \qedhere
+				\end{enumerate}
+\end{frame}
+
+\section{ComPro}
+\setcounter{equation}{0}
+\begin{frame}[allowframebreaks]{Proof: Composition of Prorelations is a prorelation}
+\setcounter{equation}{0}
+				For prorelations $P:X \to Y$ and $Q:Y \to Z$, need to show that Q.P is a prorelation.
+				\begin{enumerate}
+					\item (Partial Order) Inclusion of relations gives a partial order.
+					\item (Down-Directed) If $k,k' \in Q.P$, then $k=q\,p$ and $k'=q'\,p'$ for some
+						$q,q' \in Q$ and $p,p' \in P$. Because $Q$ and $P$ are prorelations,
+						and hence down-directed sets there exists, $a \in Q$ such that
+						$ a\subseteq q,q'$ and $b \in P$ such that $b \subseteq p,p'$. Thus,
+						giving an element, $a\circ b$ of $Q.P$ such that $a \circ b \subseteq k, k'$.
+					\item (Up-Set) Let $l:X \to Z$ be a relation, and $k \in Q.P$ such that $l \supseteq k$.
+						Define relations $ p:X \to Y $ and $q:Y \to Z$ as,
+						$p=\{(x,y): x \in Dom(l) \text{ and } y \in Y\}$ and
+						$q=\{(y,z):  y \in Y \text{ and } z \in Ran(l)\}$.
+						Because $k\in Q.P$, there exist $q'\in Q$ and $p' \in P$ such that
+						$k = q' \circ p'$. Thus by definition of $p$ and $q$, we get that
+						$p \supseteq p'$ and $q \supseteq q'$. Hence $p \in P$ and $q \in Q$ because
+						$P$ and $Q$ are up-sets, which gives us that $q\circ p \in Q.P$.
+						For any $(x,z) \in l$, by definition
+						of $p$ and $q$, we get that for every $y \in Y$, $(x,y) \in p$ and
+						$(y,z) \in q $. By
+						definition of composition, this gives that $(x,z) \in q \circ p$,
+						giving that $l \subseteq q \circ p$. And, by definition
+						of $q \circ p$ we get that $l \supseteq q \circ p$. Finally giving that
+						$l=q \circ p \in Q.P$. \qedhere
+				\end{enumerate}
+\end{frame}
+
+\section{Topo}
+\begin{frame}{Topology induced by a quasi-uniformity}
+    A subfamily $\mathbb{B}$ of quasi-uniformity $A$ is called a base for $A$
+		if each relation in $A$ contains a relation in $\mathbb{B}$.
+			\begin{prop}
+				Let $\mathbb{B}$ be the base for quasi-uniformity $A$ on $X$.
+				For $x \in X$, define $\mathbb{B}(x)=\{B(x) | B \in \mathbb{B}\}$.
+				Then there is a unique topology on $X$ such that for each $x\in X$,
+				$\mathbb{B}(x)$ is a base for the neighborhood of $x$ in this topology.
+			\end{prop}
+			We skip the proof as we have no requirement of it. But refer the interested reader to
+\cite{Fletcher_Lindgren_1982} for similar results.
+\end{frame}
+
+\end{document}
