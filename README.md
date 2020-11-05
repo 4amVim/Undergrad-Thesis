@@ -1,7 +1,8 @@
 # Hi, didn't expect to see you here !
-But hey, now that you are here, check out the two pdfs in the root directory why don't you ? I promise they're nothing scary.
+But hey, now that you are here, please do check out my [thesis](https://github.com/Marceline/Undergrad/blob/master/UG%20Thesis.pdf). It's written in a way so as to be readable by any STEM undergraduate. Or, perhaps have a look at [the presentation](https://github.com/Marceline/Undergrad/blob/master/Presentation.pdf)(although it's not fun without an accompanying video).
 
-This repo contains stuff from final semester of undergrad at SNU, pertaining to a course in analysis and my undergraduate thesis. The latter was about understanding, and then writing the paper https://www.sciencedirect.com/science/article/pii/S0166864111002525 in a more approachable format. It instead ended up skipping the last section.
+For my thesis, I chose to rewrite [On the completion monad via the Yoneda embedding in quasi-uniform spaces](https://www.sciencedirect.com/science/article/pii/S0166864111002525), by Maria Manuel Clementinoa and Dirk Hofmannb. The raison d'etre was to make it accessible to anyone with an understanding of undergraduate mathematics. My attempt did end up skipping the last section.
 
-TL;DR This repo is here as a testament to the beating that quality takes when doing stuff at the eleventh hour. If you still want to read,
-look no further than the two PDFs in the root directory.
+This repo also contains stuff from final semester of undergrad at SNU, pertaining to a course in analysis.
+
+TL;DR This repo is here as a testament to the beating that quality takes when doing stuff at the eleventh hour. But stay posted for a rectification!
