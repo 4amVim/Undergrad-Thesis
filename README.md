@@ -6,3 +6,5 @@ For my thesis, I chose to rewrite [On the completion monad via the Yoneda embedd
 This repo also contains stuff from final semester of undergrad at SNU, pertaining to a course in analysis.
 
 TL;DR This repo is here as a testament to the beating that quality takes when doing stuff at the eleventh hour. But stay posted for a rectification!
+
+P.S. I'm (thinking of) working towards a way to visualize the concepts mentioned in it to make it even easier for beginners to broach the subject, but no ETAs yet.
